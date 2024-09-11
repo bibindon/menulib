@@ -1,0 +1,16 @@
+﻿################################################################################
+# この .gitignore ファイルは Microsoft(R) Visual Studio によって自動的に作成されました。
+################################################################################
+
+/.vs
+/novel-system/.vs/novel-system/v16
+/novel-system/Debug
+/novel-system/novel-system/Debug
+/novel-system/Sample/Debug
+/novel-system/Sample/Sample.vcxproj.user
+/novel-system/novel-system/novel-system.vcxproj.user
+/menulib/.vs
+/menulib/Debug
+/menulib/menulib/Debug
+*.user
+/menulib/Sample/Debug
