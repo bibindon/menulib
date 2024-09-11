@@ -7,7 +7,7 @@
 
 #pragma comment( lib, "menulib.lib" )
 
-#include "MenuLib.h"
+#include "..\menulib\MenuLib.h"
 
 #include <d3d9.h>
 #include <d3dx9.h>
@@ -26,7 +26,7 @@ public:
 
     void DrawImage(const int x, const int y, const int transparency) override
     {
-        D3DXVECTOR3 pos {0.f, 0.f, 0.f};
+        D3DXVECTOR3 pos {(float)x, (float)y, 0.f};
         m_D3DSprite->Begin(D3DXSPRITE_ALPHABLEND);
         RECT rect = {
             0,
@@ -43,10 +43,7 @@ public:
         m_D3DSprite->End();
 
     }
-    void DrawText_(const std::string& msg) override
-    {
 
-    }
     void Load(const std::string& filepath) override
     {
         LPD3DXSPRITE tempSprite { nullptr };
@@ -81,6 +78,44 @@ private:
     UINT m_height { 0 };
 };
 
+class Text : public IText
+{
+public:
+
+    Text(LPDIRECT3DDEVICE9 pD3DDevice)
+        : m_pD3DDevice(pD3DDevice)
+    {
+    }
+
+    void Init()
+    {
+        HRESULT hr = D3DXCreateFont(
+            m_pD3DDevice,
+            24,
+            0,
+            FW_NORMAL,
+            1,
+            false,
+            SHIFTJIS_CHARSET,
+            OUT_TT_ONLY_PRECIS,
+            ANTIALIASED_QUALITY,
+            FF_DONTCARE,
+            "‚l‚r –¾’©",
+            &m_pFont);
+    }
+
+    virtual void DrawText_(const std::string& msg, const int x, const int y)
+    {
+        RECT rect = { x, y, 0, 0 };
+        m_pFont->DrawText(NULL, msg.c_str(), -1, &rect, DT_LEFT | DT_NOCLIP,
+            D3DCOLOR_ARGB(255, 255, 255, 255));
+    }
+
+private:
+
+    LPDIRECT3DDEVICE9 m_pD3DDevice = NULL;
+    LPD3DXFONT m_pFont = NULL;
+};
 
 
 LPDIRECT3D9 g_pD3D = NULL;
@@ -192,33 +227,36 @@ HRESULT InitD3D(HWND hWnd)
         NULL
     );
 
-    ISprite* spritelist[10];
-    {
-        Sprite* sprite = new Sprite(g_pd3dDevice);
-        sprite->Load("board.png");
-        spritelist[0] = sprite;
-    }
+    std::vector<ISprite*> spritelist;
     {
         Sprite* sprite = new Sprite(g_pd3dDevice);
         sprite->Load("cursor.png");
-        spritelist[1] = sprite;
+        spritelist.push_back(sprite);
     }
     {
         Sprite* sprite = new Sprite(g_pd3dDevice);
-        sprite->Load("ending01.png");
-        spritelist[2] = sprite;
+        sprite->Load("background.png");
+        spritelist.push_back(sprite);
     }
     {
         Sprite* sprite = new Sprite(g_pd3dDevice);
-        sprite->Load("ending02.png");
-        spritelist[3] = sprite;
+        sprite->Load("panel.png");
+        spritelist.push_back(sprite);
     }
     {
         Sprite* sprite = new Sprite(g_pd3dDevice);
-        sprite->Load("ending03.png");
-        spritelist[4] = sprite;
+        sprite->Load("panel.png");
+        spritelist.push_back(sprite);
     }
-    menu.Init("", spritelist);
+    {
+        Sprite* sprite = new Sprite(g_pd3dDevice);
+        sprite->Load("panel.png");
+        spritelist.push_back(sprite);
+    }
+    IText* itext = new Text(g_pd3dDevice);
+    itext->Init();
+
+    menu.Init("", spritelist, itext);
 
     return S_OK;
 }
@@ -241,7 +279,7 @@ VOID Render()
 
     D3DXMATRIX mat;
     D3DXMATRIX View, Proj;
-    D3DXMatrixPerspectiveFovLH(&Proj, D3DXToRadian(45), 640.0f / 480.0f, 1.0f, 10000.0f);
+    D3DXMatrixPerspectiveFovLH(&Proj, D3DXToRadian(45), 1600.0f / 900.0f, 1.0f, 10000.0f);
     D3DXVECTOR3 vec1(10 * sinf(f), 10, -10 * cosf(f));
     D3DXVECTOR3 vec2(0, 0, 0);
     D3DXVECTOR3 vec3(0, 1, 0);
@@ -294,10 +332,18 @@ LRESULT WINAPI MsgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
     case WM_KEYDOWN:
         switch (wParam)
         {
-        case VK_ESCAPE:
-            menu.Step();
+        case VK_LEFT:
+            menu.Previous();
+            break;
+        case VK_RIGHT:
+            menu.Next();
             break;
         }
+
+    case WM_LBUTTONDOWN:
+        POINTS mouse_p = MAKEPOINTS(lParam);
+        menu.Click(mouse_p.x, mouse_p.y);
+        break;
     }
 
     return DefWindowProc(hWnd, msg, wParam, lParam);
@@ -311,7 +357,7 @@ INT WINAPI wWinMain(_In_ HINSTANCE hInst, _In_opt_ HINSTANCE, _In_ LPWSTR, _In_ 
     RegisterClassEx(&wc);
 
     RECT rect;
-    SetRect(&rect, 0, 0, 640, 480);
+    SetRect(&rect, 0, 0, 1600, 900);
     AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, FALSE);
     rect.right = rect.right - rect.left;
     rect.bottom = rect.bottom - rect.top;

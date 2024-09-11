@@ -22,6 +22,7 @@
     <ClCompile Include="MenuLib.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="HeaderOnlyCsv.hpp" />
     <ClInclude Include="MenuLib.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
