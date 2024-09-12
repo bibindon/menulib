@@ -907,7 +907,7 @@ LRESULT WINAPI MsgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             PostQuitMessage(0);
             break;
         }
-
+        break;
     case WM_LBUTTONDOWN:
     {
         POINTS mouse_p = MAKEPOINTS(lParam);
