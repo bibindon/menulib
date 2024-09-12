@@ -54,6 +54,11 @@ std::string MenuLib::Into()
     return std::string();
 }
 
+std::string MenuLib::Back()
+{
+    return std::string();
+}
+
 
 void MenuLib::Click(const int x, const int y)
 {
