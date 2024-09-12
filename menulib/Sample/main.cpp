@@ -78,11 +78,11 @@ private:
     UINT m_height { 0 };
 };
 
-class Text : public IText
+class Font : public IFont
 {
 public:
 
-    Text(LPDIRECT3DDEVICE9 pD3DDevice)
+    Font(LPDIRECT3DDEVICE9 pD3DDevice)
         : m_pD3DDevice(pD3DDevice)
     {
     }
@@ -128,6 +128,7 @@ DWORD dwNumMaterials = 0;
 LPD3DXEFFECT pEffect = NULL;
 D3DXMATERIAL* d3dxMaterials = NULL;
 float f = 0.0f;
+bool bShowMenu = false;
 
 MenuLib menu;
 
@@ -227,36 +228,19 @@ HRESULT InitD3D(HWND hWnd)
         NULL
     );
 
-    std::vector<ISprite*> spritelist;
-    {
-        Sprite* sprite = new Sprite(g_pd3dDevice);
-        sprite->Load("cursor.png");
-        spritelist.push_back(sprite);
-    }
-    {
-        Sprite* sprite = new Sprite(g_pd3dDevice);
-        sprite->Load("background.png");
-        spritelist.push_back(sprite);
-    }
-    {
-        Sprite* sprite = new Sprite(g_pd3dDevice);
-        sprite->Load("panel.png");
-        spritelist.push_back(sprite);
-    }
-    {
-        Sprite* sprite = new Sprite(g_pd3dDevice);
-        sprite->Load("panel.png");
-        spritelist.push_back(sprite);
-    }
-    {
-        Sprite* sprite = new Sprite(g_pd3dDevice);
-        sprite->Load("panel.png");
-        spritelist.push_back(sprite);
-    }
-    IText* itext = new Text(g_pd3dDevice);
-    itext->Init();
+    Sprite* sprCursor = new Sprite(g_pd3dDevice);
+    sprCursor->Load("cursor.png");
 
-    menu.Init("", spritelist, itext);
+    Sprite* sprBackground = new Sprite(g_pd3dDevice);
+    sprBackground->Load("background.png");
+
+    Sprite* sprPanel = new Sprite(g_pd3dDevice);
+    sprPanel->Load("panel.png");
+
+    IFont* pFont = new Font(g_pd3dDevice);
+    pFont->Init();
+
+    menu.Init("", pFont, sprCursor, sprBackground, sprPanel);
 
     return S_OK;
 }
@@ -306,7 +290,10 @@ VOID Render()
             pEffect->SetTexture("texture1", pTextures[i]);
             pMesh->DrawSubset(i);
         }
-        menu.Draw();
+        if (bShowMenu)
+        {
+            menu.Draw();
+        }
         pEffect->EndPass();
         pEffect->End();
         g_pd3dDevice->EndScene();
@@ -332,11 +319,27 @@ LRESULT WINAPI MsgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
     case WM_KEYDOWN:
         switch (wParam)
         {
+        case 'M':
+            if (bShowMenu)
+            {
+                bShowMenu = false;
+            }
+            else
+            {
+                bShowMenu = true;
+            }
+            break;
+        case VK_UP:
+            menu.Up();
+            break;
+        case VK_DOWN:
+            menu.Down();
+            break;
         case VK_LEFT:
-            menu.Previous();
+            menu.Left();
             break;
         case VK_RIGHT:
-            menu.Next();
+            menu.Right();
             break;
         }
 

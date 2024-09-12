@@ -1,36 +1,59 @@
 #include "MenuLib.h"
 
-void MenuLib::Init(const std::string& csvfilepath, std::vector<ISprite*> sprite, IText* text)
+void MenuLib::Init(
+    const std::string& csvfilepath,
+    IFont* font,
+    ISprite* sprCursor,
+    ISprite* sprBackground,
+    ISprite* sprPanel)
 {
-    m_sprite = sprite;
-    m_text = text;
+    m_font = font;
+    m_sprCursor = sprCursor;
+    m_sprBackground = sprBackground;
+    m_sprPanel = sprPanel;
 }
 
-void MenuLib::Next()
+std::string MenuLib::Up()
 {
-    m_topIndex++;
-    if (3 <= m_topIndex)
+    if (m_topBarIndex >= 7)
     {
-        m_topIndex = 3;
+        m_topBarIndex -= 7;
     }
+    return std::string();
 }
 
-void MenuLib::Previous()
+std::string MenuLib::Down()
 {
-    m_topIndex--;
-    if ( m_topIndex <= 0)
+    if (m_topBarIndex <= 2)
     {
-        m_topIndex = 0;
+        m_topBarIndex += 7;
     }
+    return std::string();
 }
 
-void MenuLib::Into()
+std::string MenuLib::Right()
 {
+    if (m_topBarIndex <= 8)
+    {
+        m_topBarIndex++;
+    }
+    return std::string();
 }
 
-void MenuLib::Back()
+std::string MenuLib::Left()
 {
+    if (1 <= m_topBarIndex)
+    {
+        m_topBarIndex--;
+    }
+    return std::string();
 }
+
+std::string MenuLib::Into()
+{
+    return std::string();
+}
+
 
 void MenuLib::Click(const int x, const int y)
 {
@@ -38,35 +61,63 @@ void MenuLib::Click(const int x, const int y)
     {
         if (x < 300)
         {
-            m_topIndex = 0;
+            m_topBarIndex = 0;
         }
         else if (300 <= x && x < 600)
         {
-            m_topIndex = 1;
+            m_topBarIndex = 1;
         }
         else if (600 <= x && x < 900)
         {
-            m_topIndex = 2;
+            m_topBarIndex = 2;
         }
         else if (900 <= x && x < 1200)
         {
-            m_topIndex = 3;
+            m_topBarIndex = 3;
         }
     }
 }
 
 void MenuLib::Draw()
 {
-    m_sprite.at(1)->DrawImage(0, 0);
-    m_sprite.at(2)->DrawImage(100, 90);
-    m_sprite.at(2)->DrawImage(400, 90);
-    m_sprite.at(2)->DrawImage(700, 90);
-    m_sprite.at(2)->DrawImage(1000, 90);
+    m_sprBackground->DrawImage(0, 0);
 
-    m_text->DrawText_("aaa", 200, 100);
-    m_text->DrawText_("bbb", 500, 100);
-    m_text->DrawText_("ccc", 800, 100);
-    m_text->DrawText_("ddd", 1100, 100);
+    const int PADDINGX = 50;
+    const int PADDINGY = 10;
 
-    m_sprite.at(0)->DrawImage(300*m_topIndex, 90);
+    const int STARTX = 100;
+    const int STARTY = 80;
+    const int PANEL_WIDTH = 200;
+    const int PANEL_HEIGHT = 50;
+
+
+
+    for (int i = 0; i < 7; ++i)
+    {
+        m_sprPanel->DrawImage(STARTX + (PANEL_WIDTH * i), STARTY);
+    }
+    for (int i = 0; i < 7; ++i)
+    {
+        m_sprPanel->DrawImage(STARTX + (PANEL_WIDTH * i), STARTY + PANEL_HEIGHT);
+    }
+
+    m_font->DrawText_("アイテム", STARTX + (PANEL_WIDTH * 0) + PADDINGX, STARTY + PADDINGY);
+    m_font->DrawText_("武器・防具", STARTX + (PANEL_WIDTH * 1) + PADDINGX, STARTY + PADDINGY);
+    m_font->DrawText_("タスク", STARTX + (PANEL_WIDTH * 2) + PADDINGX, STARTY + PADDINGY);
+    m_font->DrawText_("マップ", STARTX + (PANEL_WIDTH * 3) + PADDINGX, STARTY + PADDINGY);
+    m_font->DrawText_("人物情報", STARTX + (PANEL_WIDTH * 4) + PADDINGX, STARTY + PADDINGY);
+    m_font->DrawText_("敵情報", STARTX + (PANEL_WIDTH * 5) + PADDINGX, STARTY + PADDINGY);
+    m_font->DrawText_("技・魔法", STARTX + (PANEL_WIDTH * 6) + PADDINGX, STARTY + PADDINGY);
+    m_font->DrawText_("ステータス", STARTX + (PANEL_WIDTH * 0) + PADDINGX, STARTY + PANEL_HEIGHT + PADDINGY);
+    m_font->DrawText_("タイトル", STARTX + (PANEL_WIDTH * 1) + PADDINGX, STARTY + PANEL_HEIGHT + PADDINGY);
+    m_font->DrawText_("最初から", STARTX + (PANEL_WIDTH * 2) + PADDINGX, STARTY + PANEL_HEIGHT + PADDINGY);
+
+    if (m_topBarIndex <= 6)
+    {
+        m_sprCursor->DrawImage(-30 + STARTX+ PANEL_WIDTH*m_topBarIndex, STARTY);
+    }
+    else
+    {
+        m_sprCursor->DrawImage(-30 + STARTX+ PANEL_WIDTH*(m_topBarIndex-7), STARTY+PANEL_HEIGHT);
+    }
 }
