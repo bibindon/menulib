@@ -28,6 +28,24 @@ public:
     virtual ~ISoundEffect() {};
 };
 
+class ItemInfo
+{
+public:
+    std::string GetName();
+    void SetName(const std::string& arg);
+    int GetNum();
+    void SetNum(const int arg);
+    ISprite* GetSprite();
+    void SetSprite(ISprite* const arg);
+    std::string GetDetail();
+    void SetDetail(const std::string& arg);
+private:
+    std::string m_name;
+    int m_num;
+    ISprite* m_sprite;
+    std::string m_detail;
+};
+
 class MenuLib
 {
 public:
@@ -40,7 +58,9 @@ public:
         ISprite* sprBackground,
         ISprite* sprPanel,
         ISprite* sprPanelLeft
-        );
+    );
+
+    void SetItem(const std::vector<ItemInfo>& items);
     std::string Up();
     std::string Down();
     std::string Right();
@@ -51,14 +71,20 @@ public:
     void Draw();
 
 private:
-
-    const int PADDINGX = 50;
-    const int PADDINGY = 10;
-
-    const int STARTX = 100;
-    const int STARTY = 80;
-    const int PANEL_WIDTH = 200;
-    const int PANEL_HEIGHT = 50;
+    enum class eFocus
+    {
+        TOP_BAR,
+        ITEM,
+        WEAPON,
+        TASK,
+        MAP,
+        HUMAN,
+        ENEMY,
+        SKILL,
+        STATUS,
+        TITLE,
+        OPENING,
+    };
 
     ISprite* m_sprCursor;
     ISprite* m_sprBackground;
@@ -66,6 +92,10 @@ private:
     ISprite* m_sprPanelLeft;
     IFont* m_font;
     ISoundEffect* m_SE;
+    eFocus m_eFocus = eFocus::TOP_BAR;
     int m_topBarIndex { 0 };
+    int m_itemCursorIndex { 0 };
+    std::vector<std::string> m_TopBarName;
+    std::vector<ItemInfo> m_itemInfoList;
 };
 

@@ -71,6 +71,12 @@ public:
         m_height = desc.Height;
     }
 
+    ~Sprite()
+    {
+        m_D3DSprite->Release();
+        m_pD3DTexture->Release();
+    }
+
 private:
 
     LPDIRECT3DDEVICE9 m_pD3DDevice = NULL;
@@ -113,6 +119,11 @@ public:
             D3DCOLOR_ARGB(255, 255, 255, 255));
     }
 
+    ~Font()
+    {
+        m_pFont->Release();
+    }
+
 private:
 
     LPDIRECT3DDEVICE9 m_pD3DDevice = NULL;
@@ -150,7 +161,7 @@ DWORD dwNumMaterials = 0;
 LPD3DXEFFECT pEffect = NULL;
 D3DXMATERIAL* d3dxMaterials = NULL;
 float f = 0.0f;
-bool bShowMenu = false;
+bool bShowMenu = true;
 
 MenuLib menu;
 
@@ -268,6 +279,248 @@ HRESULT InitD3D(HWND hWnd)
     ISoundEffect* pSE = new SoundEffect();
 
     menu.Init("", pFont, pSE, sprCursor, sprBackground, sprPanel, sprPanelLeft);
+    std::vector<ItemInfo> itemInfoList;
+    {
+        ItemInfo itemInfo;
+        itemInfo.SetName("テストアイテム１");
+        itemInfo.SetNum(10);
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load("item1.png");
+        itemInfo.SetSprite(sprItem);
+        itemInfo.SetDetail("テストアイテムテキスト\nテストテキストテキスト\nテストテキストテキスト\nテストテキストテストテキスト"); // TODO
+        itemInfoList.push_back(itemInfo);
+    }
+    {
+        ItemInfo itemInfo;
+        itemInfo.SetName("テストアイテム２");
+        itemInfo.SetNum(20);
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load("item2.png");
+        itemInfo.SetSprite(sprItem);
+        itemInfo.SetDetail("ＡＡＡテストアイテムテキスト\nテストテキストテストテキスト"); // TODO
+        itemInfoList.push_back(itemInfo);
+    }
+    {
+        ItemInfo itemInfo;
+        itemInfo.SetName("テストアイテム３");
+        itemInfo.SetNum(30);
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load("item3.png");
+        itemInfo.SetSprite(sprItem);
+        itemInfo.SetDetail("ＢＢＢテストアイテムテキスト\nテストテキストテストテキスト"); // TODO
+        itemInfoList.push_back(itemInfo);
+    }
+    {
+        ItemInfo itemInfo;
+        itemInfo.SetName("テストアイテム１");
+        itemInfo.SetNum(10);
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load("item1.png");
+        itemInfo.SetSprite(sprItem);
+        itemInfo.SetDetail("テストアイテムテキスト\nテストテキストテキスト\nテストテキストテキスト\nテストテキストテストテキスト"); // TODO
+        itemInfoList.push_back(itemInfo);
+    }
+    {
+        ItemInfo itemInfo;
+        itemInfo.SetName("テストアイテム２");
+        itemInfo.SetNum(20);
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load("item2.png");
+        itemInfo.SetSprite(sprItem);
+        itemInfo.SetDetail("ＡＡＡテストアイテムテキスト\nテストテキストテストテキスト"); // TODO
+        itemInfoList.push_back(itemInfo);
+    }
+    {
+        ItemInfo itemInfo;
+        itemInfo.SetName("テストアイテム３");
+        itemInfo.SetNum(30);
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load("item3.png");
+        itemInfo.SetSprite(sprItem);
+        itemInfo.SetDetail("ＢＢＢテストアイテムテキスト\nテストテキストテストテキスト"); // TODO
+        itemInfoList.push_back(itemInfo);
+    }
+    {
+        ItemInfo itemInfo;
+        itemInfo.SetName("テストアイテム１");
+        itemInfo.SetNum(10);
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load("item1.png");
+        itemInfo.SetSprite(sprItem);
+        itemInfo.SetDetail("テストアイテムテキスト\nテストテキストテキスト\nテストテキストテキスト\nテストテキストテストテキスト"); // TODO
+        itemInfoList.push_back(itemInfo);
+    }
+    {
+        ItemInfo itemInfo;
+        itemInfo.SetName("テストアイテム２");
+        itemInfo.SetNum(20);
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load("item2.png");
+        itemInfo.SetSprite(sprItem);
+        itemInfo.SetDetail("ＡＡＡテストアイテムテキスト\nテストテキストテストテキスト"); // TODO
+        itemInfoList.push_back(itemInfo);
+    }
+    {
+        ItemInfo itemInfo;
+        itemInfo.SetName("テストアイテム３");
+        itemInfo.SetNum(30);
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load("item3.png");
+        itemInfo.SetSprite(sprItem);
+        itemInfo.SetDetail("ＢＢＢテストアイテムテキスト\nテストテキストテストテキスト"); // TODO
+        itemInfoList.push_back(itemInfo);
+    }
+    {
+        ItemInfo itemInfo;
+        itemInfo.SetName("テストアイテム１");
+        itemInfo.SetNum(10);
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load("item1.png");
+        itemInfo.SetSprite(sprItem);
+        itemInfo.SetDetail("テストアイテムテキスト\nテストテキストテキスト\nテストテキストテキスト\nテストテキストテストテキスト"); // TODO
+        itemInfoList.push_back(itemInfo);
+    }
+    {
+        ItemInfo itemInfo;
+        itemInfo.SetName("テストアイテム２");
+        itemInfo.SetNum(20);
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load("item2.png");
+        itemInfo.SetSprite(sprItem);
+        itemInfo.SetDetail("ＡＡＡテストアイテムテキスト\nテストテキストテストテキスト"); // TODO
+        itemInfoList.push_back(itemInfo);
+    }
+    {
+        ItemInfo itemInfo;
+        itemInfo.SetName("テストアイテム３");
+        itemInfo.SetNum(30);
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load("item3.png");
+        itemInfo.SetSprite(sprItem);
+        itemInfo.SetDetail("ＢＢＢテストアイテムテキスト\nテストテキストテストテキスト"); // TODO
+        itemInfoList.push_back(itemInfo);
+    }
+    {
+        ItemInfo itemInfo;
+        itemInfo.SetName("テストアイテム１");
+        itemInfo.SetNum(10);
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load("item1.png");
+        itemInfo.SetSprite(sprItem);
+        itemInfo.SetDetail("テストアイテムテキスト\nテストテキストテキスト\nテストテキストテキスト\nテストテキストテストテキスト"); // TODO
+        itemInfoList.push_back(itemInfo);
+    }
+    {
+        ItemInfo itemInfo;
+        itemInfo.SetName("テストアイテム２");
+        itemInfo.SetNum(20);
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load("item2.png");
+        itemInfo.SetSprite(sprItem);
+        itemInfo.SetDetail("ＡＡＡテストアイテムテキスト\nテストテキストテストテキスト"); // TODO
+        itemInfoList.push_back(itemInfo);
+    }
+    {
+        ItemInfo itemInfo;
+        itemInfo.SetName("テストアイテム３");
+        itemInfo.SetNum(30);
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load("item3.png");
+        itemInfo.SetSprite(sprItem);
+        itemInfo.SetDetail("ＢＢＢテストアイテムテキスト\nテストテキストテストテキスト"); // TODO
+        itemInfoList.push_back(itemInfo);
+    }
+    {
+        ItemInfo itemInfo;
+        itemInfo.SetName("テストアイテム１");
+        itemInfo.SetNum(10);
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load("item1.png");
+        itemInfo.SetSprite(sprItem);
+        itemInfo.SetDetail("テストアイテムテキスト\nテストテキストテキスト\nテストテキストテキスト\nテストテキストテストテキスト"); // TODO
+        itemInfoList.push_back(itemInfo);
+    }
+    {
+        ItemInfo itemInfo;
+        itemInfo.SetName("テストアイテム２");
+        itemInfo.SetNum(20);
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load("item2.png");
+        itemInfo.SetSprite(sprItem);
+        itemInfo.SetDetail("ＡＡＡテストアイテムテキスト\nテストテキストテストテキスト"); // TODO
+        itemInfoList.push_back(itemInfo);
+    }
+    {
+        ItemInfo itemInfo;
+        itemInfo.SetName("テストアイテム３");
+        itemInfo.SetNum(30);
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load("item3.png");
+        itemInfo.SetSprite(sprItem);
+        itemInfo.SetDetail("ＢＢＢテストアイテムテキスト\nテストテキストテストテキスト"); // TODO
+        itemInfoList.push_back(itemInfo);
+    }
+    {
+        ItemInfo itemInfo;
+        itemInfo.SetName("テストアイテム１");
+        itemInfo.SetNum(10);
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load("item1.png");
+        itemInfo.SetSprite(sprItem);
+        itemInfo.SetDetail("テストアイテムテキスト\nテストテキストテキスト\nテストテキストテキスト\nテストテキストテストテキスト"); // TODO
+        itemInfoList.push_back(itemInfo);
+    }
+    {
+        ItemInfo itemInfo;
+        itemInfo.SetName("テストアイテム２");
+        itemInfo.SetNum(20);
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load("item2.png");
+        itemInfo.SetSprite(sprItem);
+        itemInfo.SetDetail("ＡＡＡテストアイテムテキスト\nテストテキストテストテキスト"); // TODO
+        itemInfoList.push_back(itemInfo);
+    }
+    {
+        ItemInfo itemInfo;
+        itemInfo.SetName("テストアイテム３");
+        itemInfo.SetNum(30);
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load("item3.png");
+        itemInfo.SetSprite(sprItem);
+        itemInfo.SetDetail("ＢＢＢテストアイテムテキスト\nテストテキストテストテキスト"); // TODO
+        itemInfoList.push_back(itemInfo);
+    }
+    {
+        ItemInfo itemInfo;
+        itemInfo.SetName("テストアイテム１");
+        itemInfo.SetNum(10);
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load("item1.png");
+        itemInfo.SetSprite(sprItem);
+        itemInfo.SetDetail("テストアイテムテキスト\nテストテキストテキスト\nテストテキストテキスト\nテストテキストテストテキスト"); // TODO
+        itemInfoList.push_back(itemInfo);
+    }
+    {
+        ItemInfo itemInfo;
+        itemInfo.SetName("テストアイテム２");
+        itemInfo.SetNum(20);
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load("item2.png");
+        itemInfo.SetSprite(sprItem);
+        itemInfo.SetDetail("ＡＡＡテストアイテムテキスト\nテストテキストテストテキスト"); // TODO
+        itemInfoList.push_back(itemInfo);
+    }
+    {
+        ItemInfo itemInfo;
+        itemInfo.SetName("テストアイテム３");
+        itemInfo.SetNum(30);
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load("item3.png");
+        itemInfo.SetSprite(sprItem);
+        itemInfo.SetDetail("ＢＢＢテストアイテムテキスト\nテストテキストテストテキスト"); // TODO
+        itemInfoList.push_back(itemInfo);
+    }
+    menu.SetItem(itemInfoList);
 
     return S_OK;
 }
@@ -286,12 +539,12 @@ VOID Render()
     {
         return;
     }
-    f += 0.025f;
+    f += 0.010f;
 
     D3DXMATRIX mat;
     D3DXMATRIX View, Proj;
     D3DXMatrixPerspectiveFovLH(&Proj, D3DXToRadian(45), 1600.0f / 900.0f, 1.0f, 10000.0f);
-    D3DXVECTOR3 vec1(10 * sinf(f), 10, -10 * cosf(f));
+    D3DXVECTOR3 vec1(3 * sinf(f), 3, -3 * cosf(f));
     D3DXVECTOR3 vec2(0, 0, 0);
     D3DXVECTOR3 vec3(0, 1, 0);
     D3DXMatrixLookAtLH(&View, &vec1, &vec2, &vec3);
@@ -367,6 +620,15 @@ LRESULT WINAPI MsgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             break;
         case VK_RIGHT:
             menu.Right();
+            break;
+        case VK_RETURN:
+            menu.Into();
+            break;
+        case VK_BACK:
+            menu.Back();
+            break;
+        case VK_ESCAPE:
+            PostQuitMessage(0);
             break;
         }
 
