@@ -521,6 +521,35 @@ HRESULT InitD3D(HWND hWnd)
         itemInfoList.push_back(itemInfo);
     }
     menu.SetItem(itemInfoList);
+    std::vector<HumanInfo> humanInfoList;
+    {
+        HumanInfo humanInfo;
+        humanInfo.SetName("テスト人物１");
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load("human1.png");
+        humanInfo.SetSprite(sprItem);
+        humanInfo.SetDetail("テスト人物テキスト\nテスト人物テキスト\nテスト人物テキスト\nテスト人物テキスト\nテスト人物テキスト");
+        humanInfoList.push_back(humanInfo);
+    }
+    {
+        HumanInfo humanInfo;
+        humanInfo.SetName("テスト人物２");
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load("human2.png");
+        humanInfo.SetSprite(sprItem);
+        humanInfo.SetDetail("テスト人物２\n　\nテスト人物テキスト\nテスト人物テキスト\nテスト人物テキスト\nテスト人物テキスト\nテスト人物テキスト");
+        humanInfoList.push_back(humanInfo);
+    }
+    {
+        HumanInfo humanInfo;
+        humanInfo.SetName("テスト人物３");
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load("human3.png");
+        humanInfo.SetSprite(sprItem);
+        humanInfo.SetDetail("テスト人物３\n　\nテスト人物テキスト\nテスト人物テキスト\nテスト人物テキスト\nテスト人物テキスト\nテスト人物テキスト");
+        humanInfoList.push_back(humanInfo);
+    }
+    menu.SetHuman(humanInfoList);
 
     return S_OK;
 }
@@ -557,8 +586,8 @@ VOID Render()
 
     if (SUCCEEDED(g_pd3dDevice->BeginScene()))
     {
-        char msg[100];
-        strcpy_s(msg, 100, "Xファイルの読み込みと表示");
+        char msg[128];
+        strcpy_s(msg, 128, "Mキーでメニューを表示・非表示");
         TextDraw(g_pFont, msg, 0, 0);
 
         pEffect->SetTechnique("BasicTec");
@@ -622,8 +651,18 @@ LRESULT WINAPI MsgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             menu.Right();
             break;
         case VK_RETURN:
-            menu.Into();
+        {
+            std::string result = menu.Into();
+            if (result == "タイトル")
+            {
+                bShowMenu = false;
+            }
+            else if (result == "最初から")
+            {
+                bShowMenu = false;
+            }
             break;
+        }
         case VK_BACK:
             menu.Back();
             break;

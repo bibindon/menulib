@@ -46,6 +46,21 @@ private:
     std::string m_detail;
 };
 
+class HumanInfo
+{
+public:
+    std::string GetName();
+    void SetName(const std::string& arg);
+    ISprite* GetSprite();
+    void SetSprite(ISprite* const arg);
+    std::string GetDetail();
+    void SetDetail(const std::string& arg);
+private:
+    std::string m_name;
+    ISprite* m_sprite;
+    std::string m_detail;
+};
+
 class MenuLib
 {
 public:
@@ -61,6 +76,7 @@ public:
     );
 
     void SetItem(const std::vector<ItemInfo>& items);
+    void SetHuman(const std::vector<HumanInfo>& items);
     std::string Up();
     std::string Down();
     std::string Right();
@@ -87,6 +103,18 @@ private:
         OPENING,
     };
 
+    const int TOPBAR_ITEM = 0;
+    const int TOPBAR_WEAPON = 1;
+    const int TOPBAR_TASK = 2;
+    const int TOPBAR_MAP = 3;
+    const int TOPBAR_HUMAN = 4;
+    const int TOPBAR_ENEMY = 5;
+    const int TOPBAR_SKILL = 6;
+    const int TOPBAR_STATUS = 7;
+    const int TOPBAR_TITLE = 8;
+    const int TOPBAR_OPENING = 9;
+    const int TOPBAR_MAX = 10;
+
     ISprite* m_sprCursor;
     ISprite* m_sprBackground;
     ISprite* m_sprPanel;
@@ -95,13 +123,22 @@ private:
     ISoundEffect* m_SE;
     eFocus m_eFocus = eFocus::TOP_BAR;
     int m_topBarIndex { 0 };
+
     int m_itemCursor { 0 };
     int m_itemSelect { 0 };
     // 何番目のアイテムが一番上に表示されているか
     // スクロール可能なので一番上に表示されるアイテムはスクロールすると変わる。
     int m_itemBegin { 0 };
     int m_itemSubCursor { 0 };
+
+    int m_humanCursor { 0 };
+    int m_humanSelect { 0 };
+    // 何番目のアイテムが一番上に表示されているか
+    // スクロール可能なので一番上に表示されるアイテムはスクロールすると変わる。
+    int m_humanBegin { 0 };
+
     std::vector<std::string> m_TopBarName;
     std::vector<ItemInfo> m_itemInfoList;
+    std::vector<HumanInfo> m_humanInfoList;
 };
 
