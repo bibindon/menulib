@@ -1,4 +1,6 @@
 
+https://github.com/user-attachments/assets/cf7178c0-6af1-4823-a3b8-3e3ed4c8319f
+
 GUI処理とロジック部分の完全な分離を試みる。
 
 スプライトクラスのインターフェースを持ち、クライアントは描画部分を実装する。
