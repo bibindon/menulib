@@ -21,7 +21,9 @@ public:
 class ISoundEffect
 {
 public:
-    virtual void PlaySE(const std::string& msg) = 0;
+    virtual void PlayMove() = 0;
+    virtual void PlayClick() = 0;
+    virtual void PlayBack() = 0;
     virtual void Init() = 0;
     virtual ~ISoundEffect() {};
 };
@@ -33,9 +35,11 @@ public:
     void Init(
         const std::string& csvfilepath,
         IFont* font,
+        ISoundEffect* SE,
         ISprite* sprCursor,
         ISprite* sprBackground,
-        ISprite* sprPanel
+        ISprite* sprPanel,
+        ISprite* sprPanelLeft
         );
     std::string Up();
     std::string Down();
@@ -48,10 +52,20 @@ public:
 
 private:
 
+    const int PADDINGX = 50;
+    const int PADDINGY = 10;
+
+    const int STARTX = 100;
+    const int STARTY = 80;
+    const int PANEL_WIDTH = 200;
+    const int PANEL_HEIGHT = 50;
+
     ISprite* m_sprCursor;
     ISprite* m_sprBackground;
     ISprite* m_sprPanel;
+    ISprite* m_sprPanelLeft;
     IFont* m_font;
+    ISoundEffect* m_SE;
     int m_topBarIndex { 0 };
 };
 

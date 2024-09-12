@@ -3,14 +3,18 @@
 void MenuLib::Init(
     const std::string& csvfilepath,
     IFont* font,
+    ISoundEffect* SE,
     ISprite* sprCursor,
     ISprite* sprBackground,
-    ISprite* sprPanel)
+    ISprite* sprPanel,
+    ISprite* sprPanelLeft)
 {
     m_font = font;
+    m_SE = SE;
     m_sprCursor = sprCursor;
     m_sprBackground = sprBackground;
     m_sprPanel = sprPanel;
+    m_sprPanelLeft = sprPanelLeft;
 }
 
 std::string MenuLib::Up()
@@ -18,7 +22,9 @@ std::string MenuLib::Up()
     if (m_topBarIndex >= 7)
     {
         m_topBarIndex -= 7;
+        m_SE->PlayMove();
     }
+     
     return std::string();
 }
 
@@ -27,6 +33,7 @@ std::string MenuLib::Down()
     if (m_topBarIndex <= 2)
     {
         m_topBarIndex += 7;
+        m_SE->PlayMove();
     }
     return std::string();
 }
@@ -36,6 +43,7 @@ std::string MenuLib::Right()
     if (m_topBarIndex <= 8)
     {
         m_topBarIndex++;
+        m_SE->PlayMove();
     }
     return std::string();
 }
@@ -45,17 +53,20 @@ std::string MenuLib::Left()
     if (1 <= m_topBarIndex)
     {
         m_topBarIndex--;
+        m_SE->PlayMove();
     }
     return std::string();
 }
 
 std::string MenuLib::Into()
 {
+    m_SE->PlayClick();
     return std::string();
 }
 
 std::string MenuLib::Back()
 {
+    m_SE->PlayBack();
     return std::string();
 }
 
@@ -87,16 +98,6 @@ void MenuLib::Draw()
 {
     m_sprBackground->DrawImage(0, 0);
 
-    const int PADDINGX = 50;
-    const int PADDINGY = 10;
-
-    const int STARTX = 100;
-    const int STARTY = 80;
-    const int PANEL_WIDTH = 200;
-    const int PANEL_HEIGHT = 50;
-
-
-
     for (int i = 0; i < 7; ++i)
     {
         m_sprPanel->DrawImage(STARTX + (PANEL_WIDTH * i), STARTY);
@@ -125,4 +126,13 @@ void MenuLib::Draw()
     {
         m_sprCursor->DrawImage(-30 + STARTX+ PANEL_WIDTH*(m_topBarIndex-7), STARTY+PANEL_HEIGHT);
     }
+
+    if (m_topBarIndex == 0)
+    {
+        m_sprPanelLeft->DrawImage(100, 200);
+        m_sprPanelLeft->DrawImage(100, 260);
+        m_sprPanelLeft->DrawImage(100, 320);
+        m_sprPanelLeft->DrawImage(100, 380);
+    }
+
 }

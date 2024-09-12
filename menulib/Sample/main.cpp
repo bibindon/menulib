@@ -5,6 +5,8 @@
 #pragma comment( lib, "d3dx9.lib" )
 #endif
 
+#pragma comment (lib, "winmm.lib")
+
 #pragma comment( lib, "menulib.lib" )
 
 #include "..\menulib\MenuLib.h"
@@ -117,6 +119,26 @@ private:
     LPD3DXFONT m_pFont = NULL;
 };
 
+
+class SoundEffect : public ISoundEffect
+{
+    virtual void PlayMove() override
+    {
+        PlaySound("cursor_move.wav", NULL, SND_FILENAME | SND_ASYNC);
+    }
+    virtual void PlayClick() override
+    {
+        PlaySound("cursor_confirm.wav", NULL, SND_FILENAME | SND_ASYNC);
+    }
+    virtual void PlayBack() override
+    {
+
+    }
+    virtual void Init() override
+    {
+
+    }
+};
 
 LPDIRECT3D9 g_pD3D = NULL;
 LPDIRECT3DDEVICE9 g_pd3dDevice = NULL;
@@ -237,10 +259,15 @@ HRESULT InitD3D(HWND hWnd)
     Sprite* sprPanel = new Sprite(g_pd3dDevice);
     sprPanel->Load("panel.png");
 
+    Sprite* sprPanelLeft = new Sprite(g_pd3dDevice);
+    sprPanelLeft->Load("panelLeft.png");
+
     IFont* pFont = new Font(g_pd3dDevice);
     pFont->Init();
 
-    menu.Init("", pFont, sprCursor, sprBackground, sprPanel);
+    ISoundEffect* pSE = new SoundEffect();
+
+    menu.Init("", pFont, pSE, sprCursor, sprBackground, sprPanel, sprPanelLeft);
 
     return S_OK;
 }
