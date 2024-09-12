@@ -139,8 +139,8 @@ class SoundEffect : public ISoundEffect
     }
     virtual void PlayClick() override
     {
-//        PlaySound("cursor_confirm.wav", NULL, SND_FILENAME | SND_ASYNC);
-        PlaySound("cursor_move.wav", NULL, SND_FILENAME | SND_ASYNC);
+        PlaySound("cursor_confirm.wav", NULL, SND_FILENAME | SND_ASYNC);
+//        PlaySound("cursor_move.wav", NULL, SND_FILENAME | SND_ASYNC);
     }
     virtual void PlayBack() override
     {
@@ -909,9 +909,30 @@ LRESULT WINAPI MsgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
         }
 
     case WM_LBUTTONDOWN:
+    {
         POINTS mouse_p = MAKEPOINTS(lParam);
         menu.Click(mouse_p.x, mouse_p.y);
         break;
+    }
+    case WM_RBUTTONDOWN:
+    {
+        POINTS mouse_p = MAKEPOINTS(lParam);
+        menu.RightClick(mouse_p.x, mouse_p.y);
+        break;
+    }
+    case WM_MOUSEWHEEL:
+    {
+        int zDelta = GET_WHEEL_DELTA_WPARAM(wParam);
+        if (zDelta <= 0)
+        {
+            menu.Next();
+        }
+        else
+        {
+            menu.Previous();
+        }
+        break;
+    }
     }
 
     return DefWindowProc(hWnd, msg, wParam, lParam);

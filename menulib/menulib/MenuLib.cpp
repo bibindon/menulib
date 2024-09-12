@@ -492,6 +492,32 @@ std::string MenuLib::Back()
     return m_TopBarName.at(m_topBarIndex);
 }
 
+std::string MenuLib::Next()
+{
+    if (m_eFocus == eFocus::TOP_BAR)
+    {
+        Right();
+    }
+    else
+    {
+        Down();
+    }
+    return std::string();
+}
+
+std::string MenuLib::Previous()
+{
+    if (m_eFocus == eFocus::TOP_BAR)
+    {
+        Left();
+    }
+    else
+    {
+        Up();
+    }
+    return std::string();
+}
+
 void MenuLib::Click(const int x, const int y)
 {
     m_SE->PlayClick();
@@ -559,7 +585,7 @@ void MenuLib::Click(const int x, const int y)
             {
                 if (m_topBarIndex == TOPBAR_ITEM)
                 {
-                    m_eFocus = eFocus::ITEM_SUB;
+                    m_eFocus = eFocus::ITEM;
                     m_itemCursor = 0;
                     m_itemSelect = m_itemBegin;
                 }
@@ -574,7 +600,7 @@ void MenuLib::Click(const int x, const int y)
             {
                 if (m_topBarIndex == TOPBAR_ITEM)
                 {
-                    m_eFocus = eFocus::ITEM_SUB;
+                    m_eFocus = eFocus::ITEM;
                     m_itemCursor = 1;
                     m_itemSelect = m_itemBegin + 1;
                 }
@@ -589,7 +615,7 @@ void MenuLib::Click(const int x, const int y)
             {
                 if (m_topBarIndex == TOPBAR_ITEM)
                 {
-                    m_eFocus = eFocus::ITEM_SUB;
+                    m_eFocus = eFocus::ITEM;
                     m_itemCursor = 2;
                     m_itemSelect = m_itemBegin + 2;
                 }
@@ -604,7 +630,7 @@ void MenuLib::Click(const int x, const int y)
             {
                 if (m_topBarIndex == TOPBAR_ITEM)
                 {
-                    m_eFocus = eFocus::ITEM_SUB;
+                    m_eFocus = eFocus::ITEM;
                     m_itemCursor = 3;
                     m_itemSelect = m_itemBegin + 3;
                 }
@@ -619,7 +645,7 @@ void MenuLib::Click(const int x, const int y)
             {
                 if (m_topBarIndex == TOPBAR_ITEM)
                 {
-                    m_eFocus = eFocus::ITEM_SUB;
+                    m_eFocus = eFocus::ITEM;
                     m_itemCursor = 4;
                     m_itemSelect = m_itemBegin + 4;
                 }
@@ -634,7 +660,7 @@ void MenuLib::Click(const int x, const int y)
             {
                 if (m_topBarIndex == TOPBAR_ITEM)
                 {
-                    m_eFocus = eFocus::ITEM_SUB;
+                    m_eFocus = eFocus::ITEM;
                     m_itemCursor = 5;
                     m_itemSelect = m_itemBegin + 5;
                 }
@@ -649,7 +675,7 @@ void MenuLib::Click(const int x, const int y)
             {
                 if (m_topBarIndex == TOPBAR_ITEM)
                 {
-                    m_eFocus = eFocus::ITEM_SUB;
+                    m_eFocus = eFocus::ITEM;
                     m_itemCursor = 6;
                     m_itemSelect = m_itemBegin + 6;
                 }
@@ -664,7 +690,7 @@ void MenuLib::Click(const int x, const int y)
             {
                 if (m_topBarIndex == TOPBAR_ITEM)
                 {
-                    m_eFocus = eFocus::ITEM_SUB;
+                    m_eFocus = eFocus::ITEM;
                     m_itemCursor = 7;
                     m_itemSelect = m_itemBegin + 7;
                 }
@@ -679,7 +705,7 @@ void MenuLib::Click(const int x, const int y)
             {
                 if (m_topBarIndex == TOPBAR_ITEM)
                 {
-                    m_eFocus = eFocus::ITEM_SUB;
+                    m_eFocus = eFocus::ITEM;
                     m_itemCursor = 8;
                     m_itemSelect = m_itemBegin + 8;
                 }
@@ -694,7 +720,7 @@ void MenuLib::Click(const int x, const int y)
             {
                 if (m_topBarIndex == TOPBAR_ITEM)
                 {
-                    m_eFocus = eFocus::ITEM_SUB;
+                    m_eFocus = eFocus::ITEM;
                     m_itemCursor = 9;
                     m_itemSelect = m_itemBegin + 9;
                 }
@@ -704,6 +730,104 @@ void MenuLib::Click(const int x, const int y)
                     m_weaponCursor = 9;
                     m_weaponSelect = m_weaponBegin + 9;
                 }
+            }
+        }
+    }
+}
+
+void MenuLib::RightClick(const int x, const int y)
+{
+    m_SE->PlayClick();
+    if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH)
+    {
+        if (LEFT_PANEL_STARTY < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 1)
+        {
+            if (m_topBarIndex == TOPBAR_ITEM)
+            {
+                m_eFocus = eFocus::ITEM_SUB;
+                m_itemCursor = 0;
+                m_itemSelect = m_itemBegin;
+            }
+        }
+        else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 1 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 2)
+        {
+            if (m_topBarIndex == TOPBAR_ITEM)
+            {
+                m_eFocus = eFocus::ITEM_SUB;
+                m_itemCursor = 1;
+                m_itemSelect = m_itemBegin + 1;
+            }
+        }
+        else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 2 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 3)
+        {
+            if (m_topBarIndex == TOPBAR_ITEM)
+            {
+                m_eFocus = eFocus::ITEM_SUB;
+                m_itemCursor = 2;
+                m_itemSelect = m_itemBegin + 2;
+            }
+        }
+        else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 3 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 4)
+        {
+            if (m_topBarIndex == TOPBAR_ITEM)
+            {
+                m_eFocus = eFocus::ITEM_SUB;
+                m_itemCursor = 3;
+                m_itemSelect = m_itemBegin + 3;
+            }
+        }
+        else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 4 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 5)
+        {
+            if (m_topBarIndex == TOPBAR_ITEM)
+            {
+                m_eFocus = eFocus::ITEM_SUB;
+                m_itemCursor = 4;
+                m_itemSelect = m_itemBegin + 4;
+            }
+        }
+        else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 5 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 6)
+        {
+            if (m_topBarIndex == TOPBAR_ITEM)
+            {
+                m_eFocus = eFocus::ITEM_SUB;
+                m_itemCursor = 5;
+                m_itemSelect = m_itemBegin + 5;
+            }
+        }
+        else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 6 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 7)
+        {
+            if (m_topBarIndex == TOPBAR_ITEM)
+            {
+                m_eFocus = eFocus::ITEM_SUB;
+                m_itemCursor = 6;
+                m_itemSelect = m_itemBegin + 6;
+            }
+        }
+        else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 7 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 8)
+        {
+            if (m_topBarIndex == TOPBAR_ITEM)
+            {
+                m_eFocus = eFocus::ITEM_SUB;
+                m_itemCursor = 7;
+                m_itemSelect = m_itemBegin + 7;
+            }
+        }
+        else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 8 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 9)
+        {
+            if (m_topBarIndex == TOPBAR_ITEM)
+            {
+                m_eFocus = eFocus::ITEM_SUB;
+                m_itemCursor = 8;
+                m_itemSelect = m_itemBegin + 8;
+            }
+        }
+        else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 9 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 10)
+        {
+            if (m_topBarIndex == TOPBAR_ITEM)
+            {
+                m_eFocus = eFocus::ITEM_SUB;
+                m_itemCursor = 9;
+                m_itemSelect = m_itemBegin + 9;
             }
         }
     }
