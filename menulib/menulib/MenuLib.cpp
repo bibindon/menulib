@@ -31,16 +31,16 @@ void MenuLib::Init(
     m_sprPanel = sprPanel;
     m_sprPanelLeft = sprPanelLeft;
 
-    m_TopBarName.push_back("アイテム"); // o
+    m_TopBarName.push_back("アイテム");
     m_TopBarName.push_back("武器・防具");
     m_TopBarName.push_back("タスク");
     m_TopBarName.push_back("マップ");
-    m_TopBarName.push_back("人物情報"); // o
+    m_TopBarName.push_back("人物情報");
     m_TopBarName.push_back("敵情報");
     m_TopBarName.push_back("技・魔法");
     m_TopBarName.push_back("ステータス");
-    m_TopBarName.push_back("タイトル"); // o
-    m_TopBarName.push_back("最初から"); // o
+    m_TopBarName.push_back("タイトル");
+    m_TopBarName.push_back("最初から");
 }
 
 void MenuLib::SetItem(const std::vector<ItemInfo>& items)
@@ -82,9 +82,9 @@ std::string MenuLib::Up()
 {
     if (m_eFocus == eFocus::TOP_BAR)
     {
-        if (m_topBarIndex >= 7)
+        if (m_topBarIndex >= TOPBAR_COL_MAX)
         {
-            m_topBarIndex -= 7;
+            m_topBarIndex -= TOPBAR_COL_MAX;
             m_SE->PlayMove();
         }
     }
@@ -210,7 +210,7 @@ std::string MenuLib::Down()
     {
         if (m_topBarIndex <= 2)
         {
-            m_topBarIndex += 7;
+            m_topBarIndex += TOPBAR_COL_MAX;
             m_SE->PlayMove();
         }
     }
@@ -221,11 +221,11 @@ std::string MenuLib::Down()
         {
             m_itemSelect++;
             // 10行まで表示可能なので現在行が8ならカーソルを下に移動可能
-            if (m_itemCursor <= 8)
+            if (m_itemCursor <= LEFT_PANEL_ROW_MAX - 2)
             {
                 m_itemCursor++;
             }
-            else if (m_itemCursor == 9)
+            else if (m_itemCursor == LEFT_PANEL_ROW_MAX - 1)
             {
                 m_itemBegin++;
             }
@@ -239,11 +239,11 @@ std::string MenuLib::Down()
         {
             m_weaponSelect++;
             // 10行まで表示可能なので現在行が8ならカーソルを下に移動可能
-            if (m_weaponCursor <= LEFTPANEL_MAX-2)
+            if (m_weaponCursor <= LEFT_PANEL_ROW_MAX-2)
             {
                 m_weaponCursor++;
             }
-            else if (m_weaponCursor == LEFTPANEL_MAX-1)
+            else if (m_weaponCursor == LEFT_PANEL_ROW_MAX-1)
             {
                 m_weaponBegin++;
             }
@@ -257,11 +257,11 @@ std::string MenuLib::Down()
         {
             m_taskSelect++;
             // 10行まで表示可能なので現在行が8ならカーソルを下に移動可能
-            if (m_taskCursor <= LEFTPANEL_MAX-2)
+            if (m_taskCursor <= LEFT_PANEL_ROW_MAX-2)
             {
                 m_taskCursor++;
             }
-            else if (m_taskCursor == LEFTPANEL_MAX-1)
+            else if (m_taskCursor == LEFT_PANEL_ROW_MAX-1)
             {
                 m_taskBegin++;
             }
@@ -275,11 +275,11 @@ std::string MenuLib::Down()
         {
             m_mapSelect++;
             // 10行まで表示可能なので現在行が8ならカーソルを下に移動可能
-            if (m_mapCursor <= LEFTPANEL_MAX-2)
+            if (m_mapCursor <= LEFT_PANEL_ROW_MAX-2)
             {
                 m_mapCursor++;
             }
-            else if (m_mapCursor == LEFTPANEL_MAX-1)
+            else if (m_mapCursor == LEFT_PANEL_ROW_MAX-1)
             {
                 m_mapBegin++;
             }
@@ -293,11 +293,11 @@ std::string MenuLib::Down()
         {
             m_humanSelect++;
             // 10行まで表示可能なので現在行が8ならカーソルを下に移動可能
-            if (m_humanCursor <= LEFTPANEL_MAX-2)
+            if (m_humanCursor <= LEFT_PANEL_ROW_MAX-2)
             {
                 m_humanCursor++;
             }
-            else if (m_humanCursor == LEFTPANEL_MAX-1)
+            else if (m_humanCursor == LEFT_PANEL_ROW_MAX-1)
             {
                 m_humanBegin++;
             }
@@ -311,11 +311,11 @@ std::string MenuLib::Down()
         {
             m_enemySelect++;
             // 10行まで表示可能なので現在行が8ならカーソルを下に移動可能
-            if (m_enemyCursor <= LEFTPANEL_MAX-2)
+            if (m_enemyCursor <= LEFT_PANEL_ROW_MAX-2)
             {
                 m_enemyCursor++;
             }
-            else if (m_enemyCursor == LEFTPANEL_MAX-1)
+            else if (m_enemyCursor == LEFT_PANEL_ROW_MAX-1)
             {
                 m_enemyBegin++;
             }
@@ -329,11 +329,11 @@ std::string MenuLib::Down()
         {
             m_skillSelect++;
             // 10行まで表示可能なので現在行が8ならカーソルを下に移動可能
-            if (m_skillCursor <= LEFTPANEL_MAX-2)
+            if (m_skillCursor <= LEFT_PANEL_ROW_MAX-2)
             {
                 m_skillCursor++;
             }
-            else if (m_skillCursor == LEFTPANEL_MAX-1)
+            else if (m_skillCursor == LEFT_PANEL_ROW_MAX-1)
             {
                 m_skillBegin++;
             }
@@ -347,7 +347,7 @@ std::string MenuLib::Right()
 {
     if (m_eFocus == eFocus::TOP_BAR)
     {
-        if (m_topBarIndex <= 8)
+        if (m_topBarIndex <= LEFT_PANEL_ROW_MAX - 2)
         {
             m_topBarIndex++;
             m_SE->PlayMove();
@@ -492,26 +492,219 @@ std::string MenuLib::Back()
     return m_TopBarName.at(m_topBarIndex);
 }
 
-// TODO
 void MenuLib::Click(const int x, const int y)
 {
-    if (50 < y && y <= 200)
+    m_SE->PlayClick();
+    if (TOPBAR_STARTY < y && y <= TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT * 1)
     {
-        if (x < 300)
+        if (TOPBAR_STARTX < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 1)
         {
-            m_topBarIndex = 0;
+            m_eFocus = eFocus::ITEM;
+            m_topBarIndex = TOPBAR_ITEM;
         }
-        else if (300 <= x && x < 600)
+        else if (TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 1 < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 2)
         {
-            m_topBarIndex = 1;
+            m_eFocus = eFocus::WEAPON;
+            m_topBarIndex = TOPBAR_WEAPON;
         }
-        else if (600 <= x && x < 900)
+        else if (TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 2 < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 3)
         {
-            m_topBarIndex = 2;
+            m_eFocus = eFocus::TASK;
+            m_topBarIndex = TOPBAR_TASK;
         }
-        else if (900 <= x && x < 1200)
+        else if (TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 3 < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 4)
         {
-            m_topBarIndex = 3;
+            m_eFocus = eFocus::MAP;
+            m_topBarIndex = TOPBAR_MAP;
+        }
+        else if (TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 4 < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 5)
+        {
+            m_eFocus = eFocus::HUMAN;
+            m_topBarIndex = TOPBAR_HUMAN;
+        }
+        else if (TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 5 < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 6)
+        {
+            m_eFocus = eFocus::ENEMY;
+            m_topBarIndex = TOPBAR_ENEMY;
+        }
+        else if (TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 6 < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 7)
+        {
+            m_eFocus = eFocus::SKILL;
+            m_topBarIndex = TOPBAR_SKILL;
+        }
+    }
+    else if (TOPBAR_STARTY < y + TOPBAR_PANEL_HEIGHT * 1 && y <= TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT * 2)
+    {
+        if (TOPBAR_STARTX < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 1)
+        {
+            m_eFocus = eFocus::STATUS;
+            m_topBarIndex = TOPBAR_STATUS;
+        }
+        else if (TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 1 < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 2)
+        {
+            m_eFocus = eFocus::TITLE;
+            m_topBarIndex = TOPBAR_TITLE;
+        }
+        else if (TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 2 < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 3)
+        {
+            m_eFocus = eFocus::OPENING;
+            m_topBarIndex = TOPBAR_OPENING;
+        }
+    }
+    else
+    {
+        if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH)
+        {
+            if (LEFT_PANEL_STARTY < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 1)
+            {
+                if (m_topBarIndex == TOPBAR_ITEM)
+                {
+                    m_eFocus = eFocus::ITEM_SUB;
+                    m_itemCursor = 0;
+                    m_itemSelect = m_itemBegin;
+                }
+                else if (m_topBarIndex == TOPBAR_WEAPON)
+                {
+                    m_eFocus = eFocus::WEAPON;
+                    m_weaponCursor = 0;
+                    m_weaponSelect = m_weaponBegin;
+                }
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 1 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 2)
+            {
+                if (m_topBarIndex == TOPBAR_ITEM)
+                {
+                    m_eFocus = eFocus::ITEM_SUB;
+                    m_itemCursor = 1;
+                    m_itemSelect = m_itemBegin + 1;
+                }
+                else if (m_topBarIndex == TOPBAR_WEAPON)
+                {
+                    m_eFocus = eFocus::WEAPON;
+                    m_weaponCursor = 1;
+                    m_weaponSelect = m_weaponBegin + 1;
+                }
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 2 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 3)
+            {
+                if (m_topBarIndex == TOPBAR_ITEM)
+                {
+                    m_eFocus = eFocus::ITEM_SUB;
+                    m_itemCursor = 2;
+                    m_itemSelect = m_itemBegin + 2;
+                }
+                else if (m_topBarIndex == TOPBAR_WEAPON)
+                {
+                    m_eFocus = eFocus::WEAPON;
+                    m_weaponCursor = 2;
+                    m_weaponSelect = m_weaponBegin + 2;
+                }
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 3 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 4)
+            {
+                if (m_topBarIndex == TOPBAR_ITEM)
+                {
+                    m_eFocus = eFocus::ITEM_SUB;
+                    m_itemCursor = 3;
+                    m_itemSelect = m_itemBegin + 3;
+                }
+                else if (m_topBarIndex == TOPBAR_WEAPON)
+                {
+                    m_eFocus = eFocus::WEAPON;
+                    m_weaponCursor = 3;
+                    m_weaponSelect = m_weaponBegin + 3;
+                }
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 4 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 5)
+            {
+                if (m_topBarIndex == TOPBAR_ITEM)
+                {
+                    m_eFocus = eFocus::ITEM_SUB;
+                    m_itemCursor = 4;
+                    m_itemSelect = m_itemBegin + 4;
+                }
+                else if (m_topBarIndex == TOPBAR_WEAPON)
+                {
+                    m_eFocus = eFocus::WEAPON;
+                    m_weaponCursor = 4;
+                    m_weaponSelect = m_weaponBegin + 4;
+                }
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 5 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 6)
+            {
+                if (m_topBarIndex == TOPBAR_ITEM)
+                {
+                    m_eFocus = eFocus::ITEM_SUB;
+                    m_itemCursor = 5;
+                    m_itemSelect = m_itemBegin + 5;
+                }
+                else if (m_topBarIndex == TOPBAR_WEAPON)
+                {
+                    m_eFocus = eFocus::WEAPON;
+                    m_weaponCursor = 5;
+                    m_weaponSelect = m_weaponBegin + 5;
+                }
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 6 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 7)
+            {
+                if (m_topBarIndex == TOPBAR_ITEM)
+                {
+                    m_eFocus = eFocus::ITEM_SUB;
+                    m_itemCursor = 6;
+                    m_itemSelect = m_itemBegin + 6;
+                }
+                else if (m_topBarIndex == TOPBAR_WEAPON)
+                {
+                    m_eFocus = eFocus::WEAPON;
+                    m_weaponCursor = 6;
+                    m_weaponSelect = m_weaponBegin + 6;
+                }
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 7 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 8)
+            {
+                if (m_topBarIndex == TOPBAR_ITEM)
+                {
+                    m_eFocus = eFocus::ITEM_SUB;
+                    m_itemCursor = 7;
+                    m_itemSelect = m_itemBegin + 7;
+                }
+                else if (m_topBarIndex == TOPBAR_WEAPON)
+                {
+                    m_eFocus = eFocus::WEAPON;
+                    m_weaponCursor = 7;
+                    m_weaponSelect = m_weaponBegin + 7;
+                }
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 8 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 9)
+            {
+                if (m_topBarIndex == TOPBAR_ITEM)
+                {
+                    m_eFocus = eFocus::ITEM_SUB;
+                    m_itemCursor = 8;
+                    m_itemSelect = m_itemBegin + 8;
+                }
+                else if (m_topBarIndex == TOPBAR_WEAPON)
+                {
+                    m_eFocus = eFocus::WEAPON;
+                    m_weaponCursor = 8;
+                    m_weaponSelect = m_weaponBegin + 8;
+                }
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 9 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 10)
+            {
+                if (m_topBarIndex == TOPBAR_ITEM)
+                {
+                    m_eFocus = eFocus::ITEM_SUB;
+                    m_itemCursor = 9;
+                    m_itemSelect = m_itemBegin + 9;
+                }
+                else if (m_topBarIndex == TOPBAR_WEAPON)
+                {
+                    m_eFocus = eFocus::WEAPON;
+                    m_weaponCursor = 9;
+                    m_weaponSelect = m_weaponBegin + 9;
+                }
+            }
         }
     }
 }
@@ -520,146 +713,134 @@ void MenuLib::Draw()
 {
     m_sprBackground->DrawImage(0, 0);
 
-    const int PADDINGX = 50;
-    const int PADDINGY = 8;
-
-    const int STARTX = 100;
-    const int STARTY = 80;
-    const int PANEL_WIDTH = 200;
-    const int PANEL_HEIGHT = 50;
-
-    for (int i = 0; i < 7; ++i)
+    for (int i = 0; i < TOPBAR_COL_MAX; ++i)
     {
-        m_sprPanel->DrawImage(STARTX + (PANEL_WIDTH * i), STARTY);
+        m_sprPanel->DrawImage(TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * i), TOPBAR_STARTY);
     }
-    for (int i = 0; i < 7; ++i)
+    for (int i = 0; i < TOPBAR_COL_MAX; ++i)
     {
-        m_sprPanel->DrawImage(STARTX + (PANEL_WIDTH * i), STARTY + PANEL_HEIGHT);
+        m_sprPanel->DrawImage(TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * i), TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT);
     }
  
-    m_font->DrawText_("アイテム", STARTX + (PANEL_WIDTH * 0) + PADDINGX, STARTY + PADDINGY);
-    m_font->DrawText_("武器・防具", STARTX + (PANEL_WIDTH * 1) + PADDINGX, STARTY + PADDINGY);
-    m_font->DrawText_("タスク", STARTX + (PANEL_WIDTH * 2) + PADDINGX, STARTY + PADDINGY);
-    m_font->DrawText_("マップ", STARTX + (PANEL_WIDTH * 3) + PADDINGX, STARTY + PADDINGY);
-    m_font->DrawText_("人物情報", STARTX + (PANEL_WIDTH * 4) + PADDINGX, STARTY + PADDINGY);
-    m_font->DrawText_("敵情報", STARTX + (PANEL_WIDTH * 5) + PADDINGX, STARTY + PADDINGY);
-    m_font->DrawText_("技・魔法", STARTX + (PANEL_WIDTH * 6) + PADDINGX, STARTY + PADDINGY);
-    m_font->DrawText_("ステータス", STARTX + (PANEL_WIDTH * 0) + PADDINGX, STARTY + PANEL_HEIGHT + PADDINGY);
-    m_font->DrawText_("タイトル", STARTX + (PANEL_WIDTH * 1) + PADDINGX, STARTY + PANEL_HEIGHT + PADDINGY);
-    m_font->DrawText_("最初から", STARTX + (PANEL_WIDTH * 2) + PADDINGX, STARTY + PANEL_HEIGHT + PADDINGY);
-
-    const int LEFT_PANEL_PADDINGX = 50;
-    const int LEFT_PANEL_PADDINGY = 13;
-    const int LEFT_PANEL_HEIGHT = 60;
+    m_font->DrawText_("アイテム", TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 0) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY);
+    m_font->DrawText_("武器・防具", TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 1) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY);
+    m_font->DrawText_("タスク", TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 2) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY);
+    m_font->DrawText_("マップ", TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 3) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY);
+    m_font->DrawText_("人物情報", TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 4) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY);
+    m_font->DrawText_("敵情報", TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 5) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY);
+    m_font->DrawText_("技・魔法", TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 6) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY);
+    m_font->DrawText_("ステータス", TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 0) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT + TOPBAR_PADDINGY);
+    m_font->DrawText_("タイトル", TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 1) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT + TOPBAR_PADDINGY);
+    m_font->DrawText_("最初から", TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 2) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT + TOPBAR_PADDINGY);
 
     // Show left bar
     if (m_topBarIndex == TOPBAR_ITEM)
     {
-        for (int i = 0; i < 10; ++i)
+        for (int i = 0; i < LEFT_PANEL_ROW_MAX; ++i)
         {
             if ((int)m_itemInfoList.size() <= m_itemBegin + i)
             {
                 break;
             }
-            m_sprPanelLeft->DrawImage(100, 200 + (i*LEFT_PANEL_HEIGHT));
+            m_sprPanelLeft->DrawImage(LEFT_PANEL_STARTX, LEFT_PANEL_STARTY + (i*LEFT_PANEL_HEIGHT));
             m_font->DrawText_(
                 m_itemInfoList.at(m_itemBegin+i).GetName(),
-                100 + LEFT_PANEL_PADDINGX,
-                200 + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
+                LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
+                LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
             m_font->DrawText_(
                 std::to_string(m_itemInfoList.at(m_itemBegin+i).GetNum()),
                 445 + LEFT_PANEL_PADDINGX,
-                200 + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
+                LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
         }
     }
     else if (m_topBarIndex == TOPBAR_WEAPON)
     {
-        for (int i = 0; i < 10; ++i)
+        for (int i = 0; i < LEFT_PANEL_ROW_MAX; ++i)
         {
             if ((int)m_weaponInfoList.size() <= m_weaponBegin + i)
             {
                 break;
             }
-            m_sprPanelLeft->DrawImage(100, 200 + (i*LEFT_PANEL_HEIGHT));
+            m_sprPanelLeft->DrawImage(LEFT_PANEL_STARTX, LEFT_PANEL_STARTY + (i*LEFT_PANEL_HEIGHT));
             m_font->DrawText_(
                 m_weaponInfoList.at(m_weaponBegin+i).GetName(),
-                100 + LEFT_PANEL_PADDINGX,
-                200 + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
+                LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
+                LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
         }
     }
     else if (m_topBarIndex == TOPBAR_TASK)
     {
-        for (int i = 0; i < 10; ++i)
+        for (int i = 0; i < LEFT_PANEL_ROW_MAX; ++i)
         {
             if ((int)m_taskInfoList.size() <= m_taskBegin + i)
             {
                 break;
             }
-            m_sprPanelLeft->DrawImage(100, 200 + (i*LEFT_PANEL_HEIGHT));
+            m_sprPanelLeft->DrawImage(LEFT_PANEL_STARTX, LEFT_PANEL_STARTY + (i*LEFT_PANEL_HEIGHT));
             m_font->DrawText_(
                 m_taskInfoList.at(m_taskBegin+i).GetName(),
-                100 + LEFT_PANEL_PADDINGX,
-                200 + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
+                LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
+                LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
         }
     }
     else if (m_topBarIndex == TOPBAR_MAP)
     {
-        for (int i = 0; i < 10; ++i)
+        for (int i = 0; i < LEFT_PANEL_ROW_MAX; ++i)
         {
             if ((int)m_mapInfoList.size() <= m_mapBegin + i)
             {
                 break;
             }
-            m_sprPanelLeft->DrawImage(100, 200 + (i*LEFT_PANEL_HEIGHT));
+            m_sprPanelLeft->DrawImage(LEFT_PANEL_STARTX, LEFT_PANEL_STARTY + (i*LEFT_PANEL_HEIGHT));
             m_font->DrawText_(
                 m_mapInfoList.at(m_mapBegin+i).GetName(),
-                100 + LEFT_PANEL_PADDINGX,
-                200 + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
+                LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
+                LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
         }
     }
     else if (m_topBarIndex == TOPBAR_HUMAN)
     {
-        for (int i = 0; i < 10; ++i)
+        for (int i = 0; i < LEFT_PANEL_ROW_MAX; ++i)
         {
             if ((int)m_humanInfoList.size() <= m_humanBegin + i)
             {
                 break;
             }
-            m_sprPanelLeft->DrawImage(100, 200 + (i*LEFT_PANEL_HEIGHT));
+            m_sprPanelLeft->DrawImage(LEFT_PANEL_STARTX, LEFT_PANEL_STARTY + (i*LEFT_PANEL_HEIGHT));
             m_font->DrawText_(
                 m_humanInfoList.at(m_humanBegin+i).GetName(),
-                100 + LEFT_PANEL_PADDINGX,
-                200 + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
+                LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
+                LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
         }
     }
     else if (m_topBarIndex == TOPBAR_ENEMY)
     {
-        for (int i = 0; i < 10; ++i)
+        for (int i = 0; i < LEFT_PANEL_ROW_MAX; ++i)
         {
             if ((int)m_enemyInfoList.size() <= m_enemyBegin + i)
             {
                 break;
             }
-            m_sprPanelLeft->DrawImage(100, 200 + (i*LEFT_PANEL_HEIGHT));
+            m_sprPanelLeft->DrawImage(LEFT_PANEL_STARTX, LEFT_PANEL_STARTY + (i*LEFT_PANEL_HEIGHT));
             m_font->DrawText_(
                 m_enemyInfoList.at(m_enemyBegin+i).GetName(),
-                100 + LEFT_PANEL_PADDINGX,
-                200 + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
+                LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
+                LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
         }
     }
     else if (m_topBarIndex == TOPBAR_SKILL)
     {
-        for (int i = 0; i < 10; ++i)
+        for (int i = 0; i < LEFT_PANEL_ROW_MAX; ++i)
         {
             if ((int)m_skillInfoList.size() <= m_skillBegin + i)
             {
                 break;
             }
-            m_sprPanelLeft->DrawImage(100, 200 + (i*LEFT_PANEL_HEIGHT));
+            m_sprPanelLeft->DrawImage(LEFT_PANEL_STARTX, LEFT_PANEL_STARTY + (i*LEFT_PANEL_HEIGHT));
             m_font->DrawText_(
                 m_skillInfoList.at(m_skillBegin+i).GetName(),
-                100 + LEFT_PANEL_PADDINGX,
-                200 + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
+                LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
+                LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
         }
     }
 
@@ -792,11 +973,11 @@ void MenuLib::Draw()
     {
         if (m_topBarIndex <= 6)
         {
-            m_sprCursor->DrawImage(-30 + STARTX + PANEL_WIDTH * m_topBarIndex, STARTY);
+            m_sprCursor->DrawImage(-30 + TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * m_topBarIndex, TOPBAR_STARTY);
         }
         else
         {
-            m_sprCursor->DrawImage(-30 + STARTX + PANEL_WIDTH * (m_topBarIndex - 7), STARTY + PANEL_HEIGHT);
+            m_sprCursor->DrawImage(-30 + TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * (m_topBarIndex - 7), TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT);
         }
     }
     else if (m_eFocus == eFocus::ITEM)

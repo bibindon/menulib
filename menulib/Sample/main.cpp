@@ -139,7 +139,8 @@ class SoundEffect : public ISoundEffect
     }
     virtual void PlayClick() override
     {
-        PlaySound("cursor_confirm.wav", NULL, SND_FILENAME | SND_ASYNC);
+//        PlaySound("cursor_confirm.wav", NULL, SND_FILENAME | SND_ASYNC);
+        PlaySound("cursor_move.wav", NULL, SND_FILENAME | SND_ASYNC);
     }
     virtual void PlayBack() override
     {

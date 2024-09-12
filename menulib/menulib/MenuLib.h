@@ -195,7 +195,26 @@ private:
     const int TOPBAR_OPENING = 9;
     const int TOPBAR_MAX = 10;
 
-    const int LEFTPANEL_MAX = 10;
+    const int TOPBAR_PADDINGX = 50;
+    const int TOPBAR_PADDINGY = 8;
+
+    const int TOPBAR_STARTX = 100;
+    const int TOPBAR_STARTY = 80;
+    const int TOPBAR_PANEL_WIDTH = 200;
+    const int TOPBAR_PANEL_HEIGHT = 50;
+
+    const int TOPBAR_COL_MAX = 7;
+
+    const int LEFT_PANEL_PADDINGX = 50;
+    const int LEFT_PANEL_PADDINGY = 13;
+
+    const int LEFT_PANEL_WIDTH = 432;
+    const int LEFT_PANEL_HEIGHT = 60;
+
+    const int LEFT_PANEL_STARTX = 100;
+    const int LEFT_PANEL_STARTY = 200;
+
+    const int LEFT_PANEL_ROW_MAX = 10;
 
     ISprite* m_sprCursor;
     ISprite* m_sprBackground;
