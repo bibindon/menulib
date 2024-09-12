@@ -550,6 +550,242 @@ HRESULT InitD3D(HWND hWnd)
         humanInfoList.push_back(humanInfo);
     }
     menu.SetHuman(humanInfoList);
+    {
+        std::vector<WeaponInfo> infoList;
+        {
+            WeaponInfo info;
+            info.SetName("テスト人物１");
+            Sprite* sprItem = new Sprite(g_pd3dDevice);
+            sprItem->Load("test.png");
+            info.SetSprite(sprItem);
+            info.SetDetail("テスト人物テキスト\nテスト人物テキスト\nテスト人物テキスト\nテスト人物テキスト\nテスト人物テキスト");
+            infoList.push_back(info);
+        }
+        {
+            WeaponInfo info;
+            info.SetName("テスト人物２");
+            Sprite* sprItem = new Sprite(g_pd3dDevice);
+            sprItem->Load("test.png");
+            info.SetSprite(sprItem);
+            info.SetDetail("テスト人物２\n　\nテスト人物テキスト\nテスト人物テキスト\nテスト人物テキスト\nテスト人物テキスト\nテスト人物テキスト");
+            infoList.push_back(info);
+        }
+        {
+            WeaponInfo info;
+            info.SetName("テスト人物３");
+            Sprite* sprItem = new Sprite(g_pd3dDevice);
+            sprItem->Load("test.png");
+            info.SetSprite(sprItem);
+            info.SetDetail("テスト人物３\n　\nテスト人物テキスト\nテスト人物テキスト\nテスト人物テキスト\nテスト人物テキスト\nテスト人物テキスト");
+            infoList.push_back(info);
+        }
+        menu.SetWeapon(infoList);
+    }
+    {
+        std::vector<TaskInfo> infoList;
+        {
+            TaskInfo info;
+            info.SetName("サンプルテキスト１");
+            Sprite* sprItem = new Sprite(g_pd3dDevice);
+            sprItem->Load("test.png");
+            info.SetSprite(sprItem);
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            TaskInfo info;
+            info.SetName("サンプルテキスト２");
+            Sprite* sprItem = new Sprite(g_pd3dDevice);
+            sprItem->Load("test.png");
+            info.SetSprite(sprItem);
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            TaskInfo info;
+            info.SetName("サンプルテキスト３");
+            Sprite* sprItem = new Sprite(g_pd3dDevice);
+            sprItem->Load("test.png");
+            info.SetSprite(sprItem);
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        menu.SetTask(infoList);
+    }
+    {
+        std::vector<EnemyInfo> infoList;
+        {
+            EnemyInfo info;
+            info.SetName("サンプルテキスト１");
+            Sprite* sprItem = new Sprite(g_pd3dDevice);
+            sprItem->Load("test.png");
+            info.SetSprite(sprItem);
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            EnemyInfo info;
+            info.SetName("サンプルテキスト２");
+            Sprite* sprItem = new Sprite(g_pd3dDevice);
+            sprItem->Load("test.png");
+            info.SetSprite(sprItem);
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            EnemyInfo info;
+            info.SetName("サンプルテキスト３");
+            Sprite* sprItem = new Sprite(g_pd3dDevice);
+            sprItem->Load("test.png");
+            info.SetSprite(sprItem);
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            EnemyInfo info;
+            info.SetName("サンプルテキスト１");
+            Sprite* sprItem = new Sprite(g_pd3dDevice);
+            sprItem->Load("test.png");
+            info.SetSprite(sprItem);
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            EnemyInfo info;
+            info.SetName("サンプルテキスト２");
+            Sprite* sprItem = new Sprite(g_pd3dDevice);
+            sprItem->Load("test.png");
+            info.SetSprite(sprItem);
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            EnemyInfo info;
+            info.SetName("サンプルテキスト３");
+            Sprite* sprItem = new Sprite(g_pd3dDevice);
+            sprItem->Load("test.png");
+            info.SetSprite(sprItem);
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            EnemyInfo info;
+            info.SetName("サンプルテキスト１");
+            Sprite* sprItem = new Sprite(g_pd3dDevice);
+            sprItem->Load("test.png");
+            info.SetSprite(sprItem);
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            EnemyInfo info;
+            info.SetName("サンプルテキスト２");
+            Sprite* sprItem = new Sprite(g_pd3dDevice);
+            sprItem->Load("test.png");
+            info.SetSprite(sprItem);
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            EnemyInfo info;
+            info.SetName("サンプルテキスト３");
+            Sprite* sprItem = new Sprite(g_pd3dDevice);
+            sprItem->Load("test.png");
+            info.SetSprite(sprItem);
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        menu.SetEnemy(infoList);
+    }
+    {
+        std::vector<SkillInfo> infoList;
+        {
+            SkillInfo info;
+            info.SetName("サンプルテキスト１");
+            Sprite* sprItem = new Sprite(g_pd3dDevice);
+            sprItem->Load("test.png");
+            info.SetSprite(sprItem);
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            SkillInfo info;
+            info.SetName("サンプルテキスト２");
+            Sprite* sprItem = new Sprite(g_pd3dDevice);
+            sprItem->Load("test.png");
+            info.SetSprite(sprItem);
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            SkillInfo info;
+            info.SetName("サンプルテキスト３");
+            Sprite* sprItem = new Sprite(g_pd3dDevice);
+            sprItem->Load("test.png");
+            info.SetSprite(sprItem);
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        menu.SetSkill(infoList);
+    }
+    {
+        std::vector<MapInfo> infoList;
+        {
+            MapInfo info;
+            info.SetName("サンプルテキスト１");
+            Sprite* sprItem = new Sprite(g_pd3dDevice);
+            sprItem->Load("test.png");
+            info.SetSprite(sprItem);
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            MapInfo info;
+            info.SetName("サンプルテキスト２");
+            Sprite* sprItem = new Sprite(g_pd3dDevice);
+            sprItem->Load("test.png");
+            info.SetSprite(sprItem);
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            MapInfo info;
+            info.SetName("サンプルテキスト３");
+            Sprite* sprItem = new Sprite(g_pd3dDevice);
+            sprItem->Load("test.png");
+            info.SetSprite(sprItem);
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            MapInfo info;
+            info.SetName("サンプルテキスト１");
+            Sprite* sprItem = new Sprite(g_pd3dDevice);
+            sprItem->Load("test.png");
+            info.SetSprite(sprItem);
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            MapInfo info;
+            info.SetName("サンプルテキスト２");
+            Sprite* sprItem = new Sprite(g_pd3dDevice);
+            sprItem->Load("test.png");
+            info.SetSprite(sprItem);
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            MapInfo info;
+            info.SetName("サンプルテキスト３");
+            Sprite* sprItem = new Sprite(g_pd3dDevice);
+            sprItem->Load("test.png");
+            info.SetSprite(sprItem);
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        menu.SetMap(infoList);
+    }
 
     return S_OK;
 }

@@ -61,6 +61,81 @@ private:
     std::string m_detail;
 };
 
+class EnemyInfo
+{
+public:
+    std::string GetName();
+    void SetName(const std::string& arg);
+    ISprite* GetSprite();
+    void SetSprite(ISprite* const arg);
+    std::string GetDetail();
+    void SetDetail(const std::string& arg);
+private:
+    std::string m_name;
+    ISprite* m_sprite;
+    std::string m_detail;
+};
+
+class SkillInfo
+{
+public:
+    std::string GetName();
+    void SetName(const std::string& arg);
+    ISprite* GetSprite();
+    void SetSprite(ISprite* const arg);
+    std::string GetDetail();
+    void SetDetail(const std::string& arg);
+private:
+    std::string m_name;
+    ISprite* m_sprite;
+    std::string m_detail;
+};
+
+class MapInfo
+{
+public:
+    std::string GetName();
+    void SetName(const std::string& arg);
+    ISprite* GetSprite();
+    void SetSprite(ISprite* const arg);
+    std::string GetDetail();
+    void SetDetail(const std::string& arg);
+private:
+    std::string m_name;
+    ISprite* m_sprite;
+    std::string m_detail;
+};
+
+class WeaponInfo
+{
+public:
+    std::string GetName();
+    void SetName(const std::string& arg);
+    ISprite* GetSprite();
+    void SetSprite(ISprite* const arg);
+    std::string GetDetail();
+    void SetDetail(const std::string& arg);
+private:
+    std::string m_name;
+    ISprite* m_sprite;
+    std::string m_detail;
+};
+
+class TaskInfo
+{
+public:
+    std::string GetName();
+    void SetName(const std::string& arg);
+    ISprite* GetSprite();
+    void SetSprite(ISprite* const arg);
+    std::string GetDetail();
+    void SetDetail(const std::string& arg);
+private:
+    std::string m_name;
+    ISprite* m_sprite;
+    std::string m_detail;
+};
+
 class MenuLib
 {
 public:
@@ -77,6 +152,11 @@ public:
 
     void SetItem(const std::vector<ItemInfo>& items);
     void SetHuman(const std::vector<HumanInfo>& items);
+    void SetEnemy(const std::vector<EnemyInfo>& items);
+    void SetMap(const std::vector<MapInfo>& items);
+    void SetSkill(const std::vector<SkillInfo>& items);
+    void SetTask(const std::vector<TaskInfo>& items);
+    void SetWeapon(const std::vector<WeaponInfo>& items);
     std::string Up();
     std::string Down();
     std::string Right();
@@ -115,6 +195,8 @@ private:
     const int TOPBAR_OPENING = 9;
     const int TOPBAR_MAX = 10;
 
+    const int LEFTPANEL_MAX = 10;
+
     ISprite* m_sprCursor;
     ISprite* m_sprBackground;
     ISprite* m_sprPanel;
@@ -137,8 +219,43 @@ private:
     // スクロール可能なので一番上に表示されるアイテムはスクロールすると変わる。
     int m_humanBegin { 0 };
 
+    int m_taskCursor { 0 };
+    int m_taskSelect { 0 };
+    // 何番目のアイテムが一番上に表示されているか
+    // スクロール可能なので一番上に表示されるアイテムはスクロールすると変わる。
+    int m_taskBegin { 0 };
+
+    int m_enemyCursor { 0 };
+    int m_enemySelect { 0 };
+    // 何番目のアイテムが一番上に表示されているか
+    // スクロール可能なので一番上に表示されるアイテムはスクロールすると変わる。
+    int m_enemyBegin { 0 };
+
+    int m_mapCursor { 0 };
+    int m_mapSelect { 0 };
+    // 何番目のアイテムが一番上に表示されているか
+    // スクロール可能なので一番上に表示されるアイテムはスクロールすると変わる。
+    int m_mapBegin { 0 };
+
+    int m_weaponCursor { 0 };
+    int m_weaponSelect { 0 };
+    // 何番目のアイテムが一番上に表示されているか
+    // スクロール可能なので一番上に表示されるアイテムはスクロールすると変わる。
+    int m_weaponBegin { 0 };
+
+    int m_skillCursor { 0 };
+    int m_skillSelect { 0 };
+    // 何番目のアイテムが一番上に表示されているか
+    // スクロール可能なので一番上に表示されるアイテムはスクロールすると変わる。
+    int m_skillBegin { 0 };
+
     std::vector<std::string> m_TopBarName;
     std::vector<ItemInfo> m_itemInfoList;
     std::vector<HumanInfo> m_humanInfoList;
+    std::vector<EnemyInfo> m_enemyInfoList;
+    std::vector<MapInfo> m_mapInfoList;
+    std::vector<SkillInfo> m_skillInfoList;
+    std::vector<TaskInfo> m_taskInfoList;
+    std::vector<WeaponInfo> m_weaponInfoList;
 };
 

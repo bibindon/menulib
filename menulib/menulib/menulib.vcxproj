@@ -19,12 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="EnemyInfo.cpp" />
     <ClCompile Include="HumanInfo.cpp" />
     <ClCompile Include="ItemInfo.cpp" />
+    <ClCompile Include="MapInfo.cpp" />
     <ClCompile Include="MenuLib.cpp" />
+    <ClCompile Include="SkillInfo.cpp" />
+    <ClCompile Include="TaskInfo.cpp" />
+    <ClCompile Include="WeaponInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="HeaderOnlyCsv.hpp" />
     <ClInclude Include="MenuLib.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
