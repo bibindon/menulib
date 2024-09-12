@@ -60,9 +60,17 @@ std::string MenuLib::Up()
     }
     else if (m_eFocus == eFocus::ITEM)
     {
-        if (m_itemCursorIndex >= 1)
+        if (m_itemSelect >= 1)
         {
-            m_itemCursorIndex--;
+            m_itemSelect--;
+            if (m_itemCursor >= 1)
+            {
+                m_itemCursor--;
+            }
+            else if (m_itemCursor == 0)
+            {
+                m_itemBegin--;
+            }
             m_SE->PlayMove();
         }
     }
@@ -82,9 +90,19 @@ std::string MenuLib::Down()
     }
     else if (m_eFocus == eFocus::ITEM)
     {
-        if (m_itemCursorIndex <= (int)m_itemInfoList.size() - 2)
+        // スクロール可能なためカーソルの位置と選択アイテムは異なる
+        if (m_itemSelect <= (int)m_itemInfoList.size() - 2)
         {
-            m_itemCursorIndex++;
+            m_itemSelect++;
+            // 10行まで表示可能なので現在行が8ならカーソルを下に移動可能
+            if (m_itemCursor <= 8)
+            {
+                m_itemCursor++;
+            }
+            else if (m_itemCursor == 9)
+            {
+                m_itemBegin++;
+            }
             m_SE->PlayMove();
         }
     }
@@ -93,35 +111,79 @@ std::string MenuLib::Down()
 
 std::string MenuLib::Right()
 {
-    if (m_topBarIndex <= 8)
+    if (m_eFocus == eFocus::TOP_BAR)
     {
-        m_topBarIndex++;
-        m_SE->PlayMove();
+        if (m_topBarIndex <= 8)
+        {
+            m_topBarIndex++;
+            m_SE->PlayMove();
+        }
+    }
+    else if (m_eFocus == eFocus::ITEM_SUB)
+    {
+        if (m_itemSubCursor == 0)
+        {
+            m_itemSubCursor++;
+            m_SE->PlayMove();
+        }
     }
     return m_TopBarName.at(m_topBarIndex);
 }
 
 std::string MenuLib::Left()
 {
-    if (1 <= m_topBarIndex)
+    if (m_eFocus == eFocus::TOP_BAR)
     {
-        m_topBarIndex--;
-        m_SE->PlayMove();
+        if (1 <= m_topBarIndex)
+        {
+            m_topBarIndex--;
+            m_SE->PlayMove();
+        }
+    }
+    else if (m_eFocus == eFocus::ITEM_SUB)
+    {
+        if (m_itemSubCursor == 1)
+        {
+            m_itemSubCursor--;
+            m_SE->PlayMove();
+        }
     }
     return m_TopBarName.at(m_topBarIndex);
 }
 
 std::string MenuLib::Into()
 {
+    std::string result;
     m_SE->PlayClick();
     if (m_eFocus == eFocus::TOP_BAR)
     {
         if (m_topBarIndex == 0)
         {
             m_eFocus = eFocus::ITEM;
+            m_itemCursor = 0;
+            m_itemBegin = 0;
+            m_itemSelect = 0;
         }
     }
-    return m_TopBarName.at(m_topBarIndex);
+    else if (m_eFocus == eFocus::ITEM)
+    {
+        m_eFocus = eFocus::ITEM_SUB;
+        m_itemSubCursor = 0;
+    }
+    else if (m_eFocus == eFocus::ITEM_SUB)
+    {
+        result = m_TopBarName.at(m_topBarIndex);
+        result += ":" + m_itemInfoList.at(m_itemSelect).GetName();
+        if (m_itemSubCursor == 0)
+        {
+            result += ":使う";
+        }
+        else
+        {
+            result += ":捨てる";
+        }
+    }
+    return result;
 }
 
 std::string MenuLib::Back()
@@ -129,6 +191,11 @@ std::string MenuLib::Back()
     if (m_eFocus == eFocus::ITEM)
     {
         m_eFocus = eFocus::TOP_BAR;
+        m_SE->PlayBack();
+    }
+    else if (m_eFocus == eFocus::ITEM_SUB)
+    {
+        m_eFocus = eFocus::ITEM;
         m_SE->PlayBack();
     }
     return m_TopBarName.at(m_topBarIndex);
@@ -194,33 +261,33 @@ void MenuLib::Draw()
     const int LEFT_PANEL_PADDINGY = 13;
     const int LEFT_PANEL_HEIGHT = 60;
 
+    // Show left bar
     if (m_topBarIndex == 0)
     {
-        for (std::size_t i = 0; i < m_itemInfoList.size(); ++i)
+        for (int i = 0; i < 10; ++i)
         {
-            if (i >= 10)
+            if ((int)m_itemInfoList.size() <= m_itemBegin + i)
             {
                 break;
             }
             m_sprPanelLeft->DrawImage(100, 200 + (i*LEFT_PANEL_HEIGHT));
             m_font->DrawText_(
-                m_itemInfoList.at(i).GetName(),
+                m_itemInfoList.at(m_itemBegin+i).GetName(),
                 100 + LEFT_PANEL_PADDINGX,
                 200 + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
             m_font->DrawText_(
-                std::to_string(m_itemInfoList.at(i).GetNum()),
+                std::to_string(m_itemInfoList.at(m_itemBegin+i).GetNum()),
                 445 + LEFT_PANEL_PADDINGX,
                 200 + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
         }
     }
 
     // Show item detail
-
-    if (m_eFocus == eFocus::ITEM)
+    if (m_eFocus == eFocus::ITEM || m_eFocus == eFocus::ITEM_SUB)
     {
-        m_itemInfoList.at(m_itemCursorIndex).GetSprite()->DrawImage(600, 300);
+        m_itemInfoList.at(m_itemSelect).GetSprite()->DrawImage(550, 300);
 
-        std::string detail = m_itemInfoList.at(m_itemCursorIndex).GetDetail();
+        std::string detail = m_itemInfoList.at(m_itemSelect).GetDetail();
         std::vector<std::string> details = split(detail, '\n');
 
         for (std::size_t i = 0; i < details.size(); ++i)
@@ -232,6 +299,17 @@ void MenuLib::Draw()
                 );
         }
     }
+    // Show item sub
+    if (m_eFocus == eFocus::ITEM_SUB)
+    {
+        m_sprPanelLeft->DrawImage(550, 200 + (m_itemCursor*LEFT_PANEL_HEIGHT));
+        m_font->DrawText_(
+            "使う　　　　　捨てる",
+            650,
+            200 + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT)
+        );
+    }
+
 
     // Show cursor
     if (m_eFocus == eFocus::TOP_BAR)
@@ -247,7 +325,11 @@ void MenuLib::Draw()
     }
     else if (m_eFocus == eFocus::ITEM)
     {
-        m_sprCursor->DrawImage(80, 205 + (m_itemCursorIndex * 60));
+        m_sprCursor->DrawImage(80, 205 + (m_itemCursor * 60));
+    }
+    else if (m_eFocus == eFocus::ITEM_SUB)
+    {
+        m_sprCursor->DrawImage(570 + (m_itemSubCursor * 160), 205 + (m_itemCursor * 60));
     }
 }
 

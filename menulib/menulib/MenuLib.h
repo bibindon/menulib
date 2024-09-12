@@ -75,6 +75,7 @@ private:
     {
         TOP_BAR,
         ITEM,
+        ITEM_SUB,
         WEAPON,
         TASK,
         MAP,
@@ -94,7 +95,12 @@ private:
     ISoundEffect* m_SE;
     eFocus m_eFocus = eFocus::TOP_BAR;
     int m_topBarIndex { 0 };
-    int m_itemCursorIndex { 0 };
+    int m_itemCursor { 0 };
+    int m_itemSelect { 0 };
+    // 何番目のアイテムが一番上に表示されているか
+    // スクロール可能なので一番上に表示されるアイテムはスクロールすると変わる。
+    int m_itemBegin { 0 };
+    int m_itemSubCursor { 0 };
     std::vector<std::string> m_TopBarName;
     std::vector<ItemInfo> m_itemInfoList;
 };

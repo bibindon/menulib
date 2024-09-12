@@ -143,7 +143,7 @@ class SoundEffect : public ISoundEffect
     }
     virtual void PlayBack() override
     {
-
+        PlaySound("cursor_cancel.wav", NULL, SND_FILENAME | SND_ASYNC);
     }
     virtual void Init() override
     {
