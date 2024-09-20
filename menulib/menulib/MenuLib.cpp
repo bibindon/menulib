@@ -16,7 +16,7 @@ std::vector<std::string> split(const std::string& s, char delim)
 }
 
 void MenuLib::Init(
-    const std::string& csvfilepath,
+    const std::string& csvfilepath, /* TODO remove */
     IFont* font,
     ISoundEffect* SE,
     ISprite* sprCursor,
