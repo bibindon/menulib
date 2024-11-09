@@ -1,5 +1,7 @@
 #include "MenuLib.h"
 
+using namespace NSMenulib;
+
 std::string HumanInfo::GetName()
 {
     return m_name;

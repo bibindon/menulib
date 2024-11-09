@@ -1,5 +1,7 @@
 #include "MenuLib.h"
 
+using namespace NSMenulib;
+
 std::string MapInfo::GetName()
 {
     return m_name;

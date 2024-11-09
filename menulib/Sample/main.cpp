@@ -15,6 +15,8 @@
 #include <d3dx9.h>
 #include <string>
 
+using namespace NSMenulib;
+
 #define SAFE_RELEASE(p) { if (p) { (p)->Release(); (p) = NULL; } }
 
 class Sprite : public ISprite

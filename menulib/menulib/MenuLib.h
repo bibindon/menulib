@@ -2,6 +2,8 @@
 #include <string>
 #include <vector>
 
+namespace NSMenulib
+{
 class ISprite
 {
 public:
@@ -280,4 +282,5 @@ private:
     std::vector<TaskInfo> m_taskInfoList;
     std::vector<WeaponInfo> m_weaponInfoList;
 };
+}
 
