@@ -3,7 +3,7 @@
 
 using namespace NSMenulib;
 
-std::vector<std::string> split(const std::string& s, char delim)
+static std::vector<std::string> split(const std::string& s, char delim)
 {
     std::vector<std::string> result;
     std::stringstream ss(s);
