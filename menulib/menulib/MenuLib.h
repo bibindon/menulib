@@ -170,6 +170,8 @@ public:
     void Click(const int x, const int y);
     void RightClick(const int x, const int y);
     void Draw();
+    
+    // Œã‚©‚ç•Ï‚¦‚½‚¢‚Æ‚«
 
 private:
     enum class eFocus

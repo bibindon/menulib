@@ -877,6 +877,32 @@ LRESULT WINAPI MsgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
                 bShowMenu = true;
             }
             break;
+        // メニューを表示している最中にメニューに表示されている内容を変える
+        case VK_F2:
+        {
+            std::vector<ItemInfo> itemInfoList;
+            {
+                ItemInfo itemInfo;
+                itemInfo.SetName("テストアイテム１");
+                itemInfo.SetNum(10);
+                Sprite* sprItem = new Sprite(g_pd3dDevice);
+                sprItem->Load("item1.png");
+                itemInfo.SetSprite(sprItem);
+                itemInfo.SetDetail("テストアイテムテキスト\nテストテキストテキスト\nテストテキストテキスト\nテストテキストテストテキスト"); // TODO
+                itemInfoList.push_back(itemInfo);
+            }
+            {
+                ItemInfo itemInfo;
+                itemInfo.SetName("テストアイテム３");
+                itemInfo.SetNum(30);
+                Sprite* sprItem = new Sprite(g_pd3dDevice);
+                sprItem->Load("item3.png");
+                itemInfo.SetSprite(sprItem);
+                itemInfo.SetDetail("ＢＢＢテストアイテムテキスト\nテストテキストテストテキスト"); // TODO
+                itemInfoList.push_back(itemInfo);
+            }
+            menu.SetItem(itemInfoList);
+        }
         case VK_UP:
             menu.Up();
             break;
