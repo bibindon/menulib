@@ -929,8 +929,15 @@ LRESULT WINAPI MsgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             break;
         }
         case VK_BACK:
-            menu.Back();
+        {
+            std::string result;
+            result = menu.Back();
+            if (result == "EXIT")
+            {
+                bShowMenu = false;
+            }
             break;
+        }
         case VK_ESCAPE:
             PostQuitMessage(0);
             break;
