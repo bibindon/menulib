@@ -476,22 +476,33 @@ std::string MenuLib::Into()
 
 std::string MenuLib::Back()
 {
+    std::string result;
     if (m_eFocus == eFocus::ITEM)
     {
         m_eFocus = eFocus::TOP_BAR;
         m_SE->PlayBack();
+        result = m_TopBarName.at(m_topBarIndex);
     }
     else if (m_eFocus == eFocus::ITEM_SUB)
     {
         m_eFocus = eFocus::ITEM;
         m_SE->PlayBack();
+        result = m_TopBarName.at(m_topBarIndex);
+        result += ":" + m_itemInfoList.at(m_itemSelect).GetName();
+    }
+    // TOP_BARにフォーカスがあるときに戻ろうとした。
+    // つまりメニュー画面を閉じようとした。
+    else if (m_eFocus == eFocus::TOP_BAR)
+    {
+        result = "";
     }
     else
     {
         m_eFocus = eFocus::TOP_BAR;
         m_SE->PlayBack();
+        result = m_TopBarName.at(m_topBarIndex);
     }
-    return m_TopBarName.at(m_topBarIndex);
+    return result;
 }
 
 std::string MenuLib::Next()
