@@ -494,7 +494,7 @@ std::string MenuLib::Back()
     // ‚Â‚Ü‚èƒƒjƒ…[‰æ–Ê‚ğ•Â‚¶‚æ‚¤‚Æ‚µ‚½B
     else if (m_eFocus == eFocus::TOP_BAR)
     {
-        result = "";
+        result = "EXIT";
     }
     else
     {
