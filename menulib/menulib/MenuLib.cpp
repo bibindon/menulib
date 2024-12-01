@@ -994,7 +994,7 @@ void MenuLib::Draw()
             m_font->DrawText_(
                 details.at(i),
                 1100,
-                250 + i*40
+                250 + (int)i*40
                 );
         }
     }
@@ -1020,7 +1020,7 @@ void MenuLib::Draw()
             m_font->DrawText_(
                 details.at(i),
                 1100,
-                250 + i*40
+                250 + (int)i*40
                 );
         }
     }
@@ -1036,7 +1036,7 @@ void MenuLib::Draw()
             m_font->DrawText_(
                 details.at(i),
                 1100,
-                250 + i*40
+                250 + (int)i*40
                 );
         }
     }
@@ -1052,7 +1052,7 @@ void MenuLib::Draw()
             m_font->DrawText_(
                 details.at(i),
                 1100,
-                250 + i*40
+                250 + (int)i*40
                 );
         }
     }
@@ -1068,7 +1068,7 @@ void MenuLib::Draw()
             m_font->DrawText_(
                 details.at(i),
                 1100,
-                250 + i*40
+                250 + (int)i*40
                 );
         }
     }
@@ -1084,7 +1084,7 @@ void MenuLib::Draw()
             m_font->DrawText_(
                 details.at(i),
                 1100,
-                250 + i*40
+                250 + (int)i*40
                 );
         }
     }
@@ -1100,7 +1100,7 @@ void MenuLib::Draw()
             m_font->DrawText_(
                 details.at(i),
                 1100,
-                250 + i*40
+                250 + (int)i*40
                 );
         }
     }
