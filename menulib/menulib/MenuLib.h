@@ -43,8 +43,8 @@ public:
     void SetDetail(const std::string& arg);
 private:
     std::string m_name;
-    int m_num;
-    ISprite* m_sprite;
+    int m_num = 0;
+    ISprite* m_sprite = nullptr;
     std::string m_detail;
 };
 
@@ -59,7 +59,7 @@ public:
     void SetDetail(const std::string& arg);
 private:
     std::string m_name;
-    ISprite* m_sprite;
+    ISprite* m_sprite = nullptr;
     std::string m_detail;
 };
 
@@ -74,7 +74,7 @@ public:
     void SetDetail(const std::string& arg);
 private:
     std::string m_name;
-    ISprite* m_sprite;
+    ISprite* m_sprite = nullptr;
     std::string m_detail;
 };
 
@@ -89,7 +89,7 @@ public:
     void SetDetail(const std::string& arg);
 private:
     std::string m_name;
-    ISprite* m_sprite;
+    ISprite* m_sprite = nullptr;
     std::string m_detail;
 };
 
@@ -104,7 +104,7 @@ public:
     void SetDetail(const std::string& arg);
 private:
     std::string m_name;
-    ISprite* m_sprite;
+    ISprite* m_sprite = nullptr;
     std::string m_detail;
 };
 
@@ -119,7 +119,7 @@ public:
     void SetDetail(const std::string& arg);
 private:
     std::string m_name;
-    ISprite* m_sprite;
+    ISprite* m_sprite = nullptr;
     std::string m_detail;
 };
 
@@ -134,7 +134,7 @@ public:
     void SetDetail(const std::string& arg);
 private:
     std::string m_name;
-    ISprite* m_sprite;
+    ISprite* m_sprite = nullptr;
     std::string m_detail;
 };
 
@@ -227,8 +227,8 @@ private:
     ISprite* m_sprBackground;
     ISprite* m_sprPanel;
     ISprite* m_sprPanelLeft;
-    IFont* m_font;
-    ISoundEffect* m_SE;
+    IFont* m_font = nullptr;
+    ISoundEffect* m_SE = nullptr;
     eFocus m_eFocus = eFocus::TOP_BAR;
     int m_topBarIndex { 0 };
 
