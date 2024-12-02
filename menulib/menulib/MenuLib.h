@@ -35,15 +35,15 @@ class ItemInfo
 public:
     std::string GetName();
     void SetName(const std::string& arg);
-    int GetNum();
-    void SetNum(const int arg);
+    int GetDurability();
+    void SetDurability(const int arg);
     ISprite* GetSprite();
     void SetSprite(ISprite* const arg);
     std::string GetDetail();
     void SetDetail(const std::string& arg);
 private:
     std::string m_name;
-    int m_num = 0;
+    int m_durability = 0;
     ISprite* m_sprite = nullptr;
     std::string m_detail;
 };

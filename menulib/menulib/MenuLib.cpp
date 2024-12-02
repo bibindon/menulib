@@ -885,7 +885,7 @@ void MenuLib::Draw()
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
                 LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
             m_font->DrawText_(
-                std::to_string(m_itemInfoList.at(m_itemBegin+i).GetNum()),
+                std::to_string(m_itemInfoList.at(m_itemBegin+i).GetDurability()),
                 445 + LEFT_PANEL_PADDINGX,
                 LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
         }

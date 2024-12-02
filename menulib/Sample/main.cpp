@@ -286,7 +286,7 @@ HRESULT InitD3D(HWND hWnd)
     {
         ItemInfo itemInfo;
         itemInfo.SetName("テストアイテム１");
-        itemInfo.SetNum(10);
+        itemInfo.SetDurability(10);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item1.png");
         itemInfo.SetSprite(sprItem);
@@ -296,7 +296,7 @@ HRESULT InitD3D(HWND hWnd)
     {
         ItemInfo itemInfo;
         itemInfo.SetName("テストアイテム２");
-        itemInfo.SetNum(20);
+        itemInfo.SetDurability(20);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item2.png");
         itemInfo.SetSprite(sprItem);
@@ -306,7 +306,7 @@ HRESULT InitD3D(HWND hWnd)
     {
         ItemInfo itemInfo;
         itemInfo.SetName("テストアイテム３");
-        itemInfo.SetNum(30);
+        itemInfo.SetDurability(30);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item3.png");
         itemInfo.SetSprite(sprItem);
@@ -316,7 +316,7 @@ HRESULT InitD3D(HWND hWnd)
     {
         ItemInfo itemInfo;
         itemInfo.SetName("テストアイテム１");
-        itemInfo.SetNum(10);
+        itemInfo.SetDurability(10);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item1.png");
         itemInfo.SetSprite(sprItem);
@@ -326,7 +326,7 @@ HRESULT InitD3D(HWND hWnd)
     {
         ItemInfo itemInfo;
         itemInfo.SetName("テストアイテム２");
-        itemInfo.SetNum(20);
+        itemInfo.SetDurability(20);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item2.png");
         itemInfo.SetSprite(sprItem);
@@ -336,7 +336,7 @@ HRESULT InitD3D(HWND hWnd)
     {
         ItemInfo itemInfo;
         itemInfo.SetName("テストアイテム３");
-        itemInfo.SetNum(30);
+        itemInfo.SetDurability(30);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item3.png");
         itemInfo.SetSprite(sprItem);
@@ -346,7 +346,7 @@ HRESULT InitD3D(HWND hWnd)
     {
         ItemInfo itemInfo;
         itemInfo.SetName("テストアイテム１");
-        itemInfo.SetNum(10);
+        itemInfo.SetDurability(10);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item1.png");
         itemInfo.SetSprite(sprItem);
@@ -356,7 +356,7 @@ HRESULT InitD3D(HWND hWnd)
     {
         ItemInfo itemInfo;
         itemInfo.SetName("テストアイテム２");
-        itemInfo.SetNum(20);
+        itemInfo.SetDurability(20);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item2.png");
         itemInfo.SetSprite(sprItem);
@@ -366,7 +366,7 @@ HRESULT InitD3D(HWND hWnd)
     {
         ItemInfo itemInfo;
         itemInfo.SetName("テストアイテム３");
-        itemInfo.SetNum(30);
+        itemInfo.SetDurability(30);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item3.png");
         itemInfo.SetSprite(sprItem);
@@ -376,7 +376,7 @@ HRESULT InitD3D(HWND hWnd)
     {
         ItemInfo itemInfo;
         itemInfo.SetName("テストアイテム１");
-        itemInfo.SetNum(10);
+        itemInfo.SetDurability(10);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item1.png");
         itemInfo.SetSprite(sprItem);
@@ -386,7 +386,7 @@ HRESULT InitD3D(HWND hWnd)
     {
         ItemInfo itemInfo;
         itemInfo.SetName("テストアイテム２");
-        itemInfo.SetNum(20);
+        itemInfo.SetDurability(20);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item2.png");
         itemInfo.SetSprite(sprItem);
@@ -396,7 +396,7 @@ HRESULT InitD3D(HWND hWnd)
     {
         ItemInfo itemInfo;
         itemInfo.SetName("テストアイテム３");
-        itemInfo.SetNum(30);
+        itemInfo.SetDurability(30);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item3.png");
         itemInfo.SetSprite(sprItem);
@@ -406,7 +406,7 @@ HRESULT InitD3D(HWND hWnd)
     {
         ItemInfo itemInfo;
         itemInfo.SetName("テストアイテム１");
-        itemInfo.SetNum(10);
+        itemInfo.SetDurability(10);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item1.png");
         itemInfo.SetSprite(sprItem);
@@ -416,7 +416,7 @@ HRESULT InitD3D(HWND hWnd)
     {
         ItemInfo itemInfo;
         itemInfo.SetName("テストアイテム２");
-        itemInfo.SetNum(20);
+        itemInfo.SetDurability(20);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item2.png");
         itemInfo.SetSprite(sprItem);
@@ -426,7 +426,7 @@ HRESULT InitD3D(HWND hWnd)
     {
         ItemInfo itemInfo;
         itemInfo.SetName("テストアイテム３");
-        itemInfo.SetNum(30);
+        itemInfo.SetDurability(30);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item3.png");
         itemInfo.SetSprite(sprItem);
@@ -436,7 +436,7 @@ HRESULT InitD3D(HWND hWnd)
     {
         ItemInfo itemInfo;
         itemInfo.SetName("テストアイテム１");
-        itemInfo.SetNum(10);
+        itemInfo.SetDurability(10);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item1.png");
         itemInfo.SetSprite(sprItem);
@@ -446,7 +446,7 @@ HRESULT InitD3D(HWND hWnd)
     {
         ItemInfo itemInfo;
         itemInfo.SetName("テストアイテム２");
-        itemInfo.SetNum(20);
+        itemInfo.SetDurability(20);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item2.png");
         itemInfo.SetSprite(sprItem);
@@ -456,7 +456,7 @@ HRESULT InitD3D(HWND hWnd)
     {
         ItemInfo itemInfo;
         itemInfo.SetName("テストアイテム３");
-        itemInfo.SetNum(30);
+        itemInfo.SetDurability(30);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item3.png");
         itemInfo.SetSprite(sprItem);
@@ -466,7 +466,7 @@ HRESULT InitD3D(HWND hWnd)
     {
         ItemInfo itemInfo;
         itemInfo.SetName("テストアイテム１");
-        itemInfo.SetNum(10);
+        itemInfo.SetDurability(10);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item1.png");
         itemInfo.SetSprite(sprItem);
@@ -476,7 +476,7 @@ HRESULT InitD3D(HWND hWnd)
     {
         ItemInfo itemInfo;
         itemInfo.SetName("テストアイテム２");
-        itemInfo.SetNum(20);
+        itemInfo.SetDurability(20);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item2.png");
         itemInfo.SetSprite(sprItem);
@@ -486,7 +486,7 @@ HRESULT InitD3D(HWND hWnd)
     {
         ItemInfo itemInfo;
         itemInfo.SetName("テストアイテム３");
-        itemInfo.SetNum(30);
+        itemInfo.SetDurability(30);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item3.png");
         itemInfo.SetSprite(sprItem);
@@ -496,7 +496,7 @@ HRESULT InitD3D(HWND hWnd)
     {
         ItemInfo itemInfo;
         itemInfo.SetName("テストアイテム１");
-        itemInfo.SetNum(10);
+        itemInfo.SetDurability(10);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item1.png");
         itemInfo.SetSprite(sprItem);
@@ -506,7 +506,7 @@ HRESULT InitD3D(HWND hWnd)
     {
         ItemInfo itemInfo;
         itemInfo.SetName("テストアイテム２");
-        itemInfo.SetNum(20);
+        itemInfo.SetDurability(20);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item2.png");
         itemInfo.SetSprite(sprItem);
@@ -516,7 +516,7 @@ HRESULT InitD3D(HWND hWnd)
     {
         ItemInfo itemInfo;
         itemInfo.SetName("テストアイテム３");
-        itemInfo.SetNum(30);
+        itemInfo.SetDurability(30);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item3.png");
         itemInfo.SetSprite(sprItem);
@@ -884,7 +884,7 @@ LRESULT WINAPI MsgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             {
                 ItemInfo itemInfo;
                 itemInfo.SetName("テストアイテム１");
-                itemInfo.SetNum(10);
+                itemInfo.SetDurability(10);
                 Sprite* sprItem = new Sprite(g_pd3dDevice);
                 sprItem->Load("item1.png");
                 itemInfo.SetSprite(sprItem);
@@ -894,7 +894,7 @@ LRESULT WINAPI MsgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             {
                 ItemInfo itemInfo;
                 itemInfo.SetName("テストアイテム３");
-                itemInfo.SetNum(30);
+                itemInfo.SetDurability(30);
                 Sprite* sprItem = new Sprite(g_pd3dDevice);
                 sprItem->Load("item3.png");
                 itemInfo.SetSprite(sprItem);

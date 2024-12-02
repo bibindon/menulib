@@ -12,14 +12,14 @@ void ItemInfo::SetName(const std::string& arg)
     m_name = arg;
 }
 
-int ItemInfo::GetNum()
+int ItemInfo::GetDurability()
 {
-    return m_num;
+    return m_durability;
 }
 
-void ItemInfo::SetNum(const int arg)
+void ItemInfo::SetDurability(const int arg)
 {
-    m_num = arg;
+    m_durability = arg;
 }
 
 ISprite* ItemInfo::GetSprite()
