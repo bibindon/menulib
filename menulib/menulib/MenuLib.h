@@ -223,10 +223,10 @@ private:
 
     const int LEFT_PANEL_ROW_MAX = 10;
 
-    ISprite* m_sprCursor;
-    ISprite* m_sprBackground;
-    ISprite* m_sprPanel;
-    ISprite* m_sprPanelLeft;
+    ISprite* m_sprCursor = nullptr;
+    ISprite* m_sprBackground = nullptr;
+    ISprite* m_sprPanel = nullptr;
+    ISprite* m_sprPanelLeft = nullptr;
     IFont* m_font = nullptr;
     ISoundEffect* m_SE = nullptr;
     eFocus m_eFocus = eFocus::TOP_BAR;
