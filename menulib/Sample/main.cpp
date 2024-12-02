@@ -561,6 +561,7 @@ HRESULT InitD3D(HWND hWnd)
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load("test.png");
             info.SetSprite(sprItem);
+            info.SetDurability(10);
             info.SetDetail("テスト人物テキスト\nテスト人物テキスト\nテスト人物テキスト\nテスト人物テキスト\nテスト人物テキスト");
             infoList.push_back(info);
         }
@@ -570,6 +571,7 @@ HRESULT InitD3D(HWND hWnd)
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load("test.png");
             info.SetSprite(sprItem);
+            info.SetDurability(20);
             info.SetDetail("テスト人物２\n　\nテスト人物テキスト\nテスト人物テキスト\nテスト人物テキスト\nテスト人物テキスト\nテスト人物テキスト");
             infoList.push_back(info);
         }
@@ -579,6 +581,7 @@ HRESULT InitD3D(HWND hWnd)
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load("test.png");
             info.SetSprite(sprItem);
+            info.SetDurability(30);
             info.SetDetail("テスト人物３\n　\nテスト人物テキスト\nテスト人物テキスト\nテスト人物テキスト\nテスト人物テキスト\nテスト人物テキスト");
             infoList.push_back(info);
         }

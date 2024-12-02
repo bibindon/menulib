@@ -873,6 +873,7 @@ void MenuLib::Draw()
     // Show left bar
     if (m_topBarIndex == TOPBAR_ITEM)
     {
+        m_font->DrawText_("‘Ï‹v“x", LEFT_PANEL_STARTX + 370, LEFT_PANEL_STARTY - 35);
         for (int i = 0; i < LEFT_PANEL_ROW_MAX; ++i)
         {
             if ((int)m_itemInfoList.size() <= m_itemBegin + i)
@@ -892,6 +893,7 @@ void MenuLib::Draw()
     }
     else if (m_topBarIndex == TOPBAR_WEAPON)
     {
+        m_font->DrawText_("‘Ï‹v“x", LEFT_PANEL_STARTX + 370, LEFT_PANEL_STARTY - 35);
         for (int i = 0; i < LEFT_PANEL_ROW_MAX; ++i)
         {
             if ((int)m_weaponInfoList.size() <= m_weaponBegin + i)
@@ -902,6 +904,10 @@ void MenuLib::Draw()
             m_font->DrawText_(
                 m_weaponInfoList.at(m_weaponBegin+i).GetName(),
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
+                LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
+            m_font->DrawText_(
+                std::to_string(m_weaponInfoList.at(m_weaponBegin+i).GetDurability()),
+                445 + LEFT_PANEL_PADDINGX,
                 LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
         }
     }
@@ -1119,35 +1125,35 @@ void MenuLib::Draw()
     }
     else if (m_eFocus == eFocus::ITEM)
     {
-        m_sprCursor->DrawImage(80, 205 + (m_itemCursor * 60));
+        m_sprCursor->DrawImage(80, LEFT_PANEL_CURSORY + (m_itemCursor * 60));
     }
     else if (m_eFocus == eFocus::ITEM_SUB)
     {
-        m_sprCursor->DrawImage(570 + (m_itemSubCursor * 160), 205 + (m_itemCursor * 60));
+        m_sprCursor->DrawImage(570 + (m_itemSubCursor * 160), LEFT_PANEL_CURSORY + (m_itemCursor * 60));
     }
     else if (m_eFocus == eFocus::WEAPON)
     {
-        m_sprCursor->DrawImage(80, 205 + (m_weaponCursor * 60));
+        m_sprCursor->DrawImage(80, LEFT_PANEL_CURSORY + (m_weaponCursor * 60));
     }
     else if (m_eFocus == eFocus::TASK)
     {
-        m_sprCursor->DrawImage(80, 205 + (m_taskCursor * 60));
+        m_sprCursor->DrawImage(80, LEFT_PANEL_CURSORY + (m_taskCursor * 60));
     }
     else if (m_eFocus == eFocus::MAP)
     {
-        m_sprCursor->DrawImage(80, 205 + (m_mapCursor * 60));
+        m_sprCursor->DrawImage(80, LEFT_PANEL_CURSORY + (m_mapCursor * 60));
     }
     else if (m_eFocus == eFocus::HUMAN)
     {
-        m_sprCursor->DrawImage(80, 205 + (m_humanCursor * 60));
+        m_sprCursor->DrawImage(80, LEFT_PANEL_CURSORY + (m_humanCursor * 60));
     }
     else if (m_eFocus == eFocus::ENEMY)
     {
-        m_sprCursor->DrawImage(80, 205 + (m_enemyCursor * 60));
+        m_sprCursor->DrawImage(80, LEFT_PANEL_CURSORY + (m_enemyCursor * 60));
     }
     else if (m_eFocus == eFocus::SKILL)
     {
-        m_sprCursor->DrawImage(80, 205 + (m_skillCursor * 60));
+        m_sprCursor->DrawImage(80, LEFT_PANEL_CURSORY + (m_skillCursor * 60));
     }
 }
 

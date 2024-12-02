@@ -32,3 +32,13 @@ void WeaponInfo::SetDetail(const std::string& arg)
     m_detail = arg;
 }
 
+int WeaponInfo::GetDurability()
+{
+    return m_durability;
+}
+
+void WeaponInfo::SetDurability(const int arg)
+{
+    m_durability = arg;
+}
+

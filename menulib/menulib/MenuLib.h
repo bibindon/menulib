@@ -117,10 +117,13 @@ public:
     void SetSprite(ISprite* const arg);
     std::string GetDetail();
     void SetDetail(const std::string& arg);
+    int GetDurability();
+    void SetDurability(const int arg);
 private:
     std::string m_name;
     ISprite* m_sprite = nullptr;
     std::string m_detail;
+    int m_durability = 0;
 };
 
 class TaskInfo
@@ -219,7 +222,9 @@ private:
     const int LEFT_PANEL_HEIGHT = 60;
 
     const int LEFT_PANEL_STARTX = 100;
-    const int LEFT_PANEL_STARTY = 200;
+    const int LEFT_PANEL_STARTY = 230;
+
+    const int LEFT_PANEL_CURSORY = 235;
 
     const int LEFT_PANEL_ROW_MAX = 10;
 
