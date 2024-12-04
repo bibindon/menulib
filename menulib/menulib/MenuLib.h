@@ -35,17 +35,39 @@ class ItemInfo
 public:
     std::string GetName();
     void SetName(const std::string& arg);
+
     int GetDurability();
     void SetDurability(const int arg);
+
     ISprite* GetSprite();
     void SetSprite(ISprite* const arg);
+
     std::string GetDetail();
     void SetDetail(const std::string& arg);
+
+    int GetLevel();
+    void SetLevel(const int arg);
+
+    int GetId();
+    void SetId(const int arg);
+
+    int GetSubId();
+    void SetSubId(const int arg);
+
 private:
+
     std::string m_name;
     int m_durability = 0;
     ISprite* m_sprite = nullptr;
     std::string m_detail;
+    int m_level = 0;
+
+    // 画面表示に使用されない。
+    // 耐久値が100の斧と、50の斧と50の斧を所持してインベントリに表示できる。
+    // 耐久値50の斧を選択したときどちらを選択したのかわからないので
+    // ID、SubIDを持つことができるようにする。IDは種別、SubIDは個別の番号
+    int m_id = 0;
+    int m_subId = 0;
 };
 
 class HumanInfo
@@ -113,17 +135,39 @@ class WeaponInfo
 public:
     std::string GetName();
     void SetName(const std::string& arg);
+
     ISprite* GetSprite();
     void SetSprite(ISprite* const arg);
+
     std::string GetDetail();
     void SetDetail(const std::string& arg);
+
     int GetDurability();
     void SetDurability(const int arg);
+
+    int GetLevel();
+    void SetLevel(const int arg);
+
+    int GetId();
+    void SetId(const int arg);
+
+    int GetSubId();
+    void SetSubId(const int arg);
+
 private:
+
     std::string m_name;
     ISprite* m_sprite = nullptr;
     std::string m_detail;
     int m_durability = 0;
+    int m_level = 0;
+
+    // 画面表示に使用されない。
+    // 耐久値が100の斧と、50の斧と50の斧を所持してインベントリに表示できる。
+    // 耐久値50の斧を選択したときどちらを選択したのかわからないので
+    // ID、SubIDを持つことができるようにする。IDは種別、SubIDは個別の番号
+    int m_id = 0;
+    int m_subId = 0;
 };
 
 class TaskInfo

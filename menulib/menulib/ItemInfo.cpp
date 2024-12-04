@@ -42,3 +42,33 @@ void ItemInfo::SetDetail(const std::string& arg)
     m_detail = arg;
 }
 
+int NSMenulib::ItemInfo::GetLevel()
+{
+    return m_level;
+}
+
+void NSMenulib::ItemInfo::SetLevel(const int arg)
+{
+    m_level = arg;
+}
+
+int NSMenulib::ItemInfo::GetId()
+{
+    return m_id;;
+}
+
+void NSMenulib::ItemInfo::SetId(const int arg)
+{
+    m_id = arg;
+}
+
+int NSMenulib::ItemInfo::GetSubId()
+{
+    return m_subId;
+}
+
+void NSMenulib::ItemInfo::SetSubId(const int arg)
+{
+    m_subId = arg;
+}
+
