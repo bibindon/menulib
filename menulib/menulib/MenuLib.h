@@ -2,6 +2,7 @@
 #include <string>
 #include <list>
 #include <vector>
+#include <map>
 
 namespace NSMenulib
 {
@@ -208,7 +209,7 @@ public:
     void SetEnemy(const std::vector<EnemyInfo>& items);
     void SetMap(const std::vector<MapInfo>& items);
     void SetSkill(const std::vector<SkillInfo>& items);
-    void SetTask(const std::vector<GuideInfo>& items);
+    void SetGuide(const std::vector<GuideInfo>& items);
     void SetWeapon(const std::vector<WeaponInfo>& items);
     std::string Up();
     std::string Down();
@@ -306,6 +307,12 @@ private:
     // スクロール可能なので一番上に表示されるアイテムはスクロールすると変わる。
     int m_guideBegin { 0 };
 
+    int m_guideSubCursor { 0 };
+    int m_guideSubSelect { 0 };
+    // 何番目のアイテムが一番上に表示されているか
+    // スクロール可能なので一番上に表示されるアイテムはスクロールすると変わる。
+    int m_guideSubBegin { 0 };
+
     int m_enemyCursor { 0 };
     int m_enemySelect { 0 };
     // 何番目のアイテムが一番上に表示されているか
@@ -338,6 +345,9 @@ private:
     std::vector<SkillInfo> m_skillInfoList;
     std::vector<GuideInfo> m_guideInfoList;
     std::vector<WeaponInfo> m_weaponInfoList;
+
+    std::vector<std::string> m_guideCategory;
+    std::map<std::string, std::vector<std::string>> m_guideSubCategory;
 };
 }
 

@@ -70,9 +70,27 @@ void MenuLib::SetSkill(const std::vector<SkillInfo>& items)
     m_skillInfoList = items;
 }
 
-void MenuLib::SetTask(const std::vector<GuideInfo>& items)
+void MenuLib::SetGuide(const std::vector<GuideInfo>& items)
 {
     m_guideInfoList = items;
+
+    std::vector<std::string> vs;
+    for (std::size_t i = 0; i < m_guideInfoList.size(); ++i)
+    {
+        std::string work_str = m_guideInfoList.at(i).GetCategory();
+        if (std::find(vs.begin(), vs.end(), work_str) == vs.end())
+        {
+            vs.push_back(work_str);
+        }
+    }
+    m_guideCategory = vs;
+
+    for (std::size_t i = 0; i < m_guideInfoList.size(); ++i)
+    {
+        std::string category = m_guideInfoList.at(i).GetCategory();
+        std::string subCategory = m_guideInfoList.at(i).GetSubCategory();
+        m_guideSubCategory[category].push_back(subCategory);
+    }
 }
 
 void MenuLib::SetWeapon(const std::vector<WeaponInfo>& items)
@@ -134,6 +152,22 @@ std::string MenuLib::Up()
             else if (m_guideCursor == 0)
             {
                 m_guideBegin--;
+            }
+            m_SE->PlayMove();
+        }
+    }
+    else if (m_eFocus == eFocus::GUIDE_SUB)
+    {
+        if (m_guideSubSelect >= 1)
+        {
+            m_guideSubSelect--;
+            if (m_guideSubCursor >= 1)
+            {
+                m_guideSubCursor--;
+            }
+            else if (m_guideSubCursor == 0)
+            {
+                m_guideSubBegin--;
             }
             m_SE->PlayMove();
         }
@@ -266,6 +300,25 @@ std::string MenuLib::Down()
             else if (m_guideCursor == LEFT_PANEL_ROW_MAX-1)
             {
                 m_guideBegin++;
+            }
+            m_SE->PlayMove();
+        }
+    }
+    else if (m_eFocus == eFocus::GUIDE_SUB)
+    {
+        // スクロール可能なためカーソルの位置と選択アイテムは異なる
+        std::vector<std::string> vs = m_guideSubCategory.at(m_guideCategory.at(m_guideSelect));
+        if (m_guideSubSelect <= (int)vs.size() - 2)
+        {
+            m_guideSubSelect++;
+            // 10行まで表示可能なので現在行が8ならカーソルを下に移動可能
+            if (m_guideSubCursor <= LEFT_PANEL_ROW_MAX-2)
+            {
+                m_guideSubCursor++;
+            }
+            else if (m_guideSubCursor == LEFT_PANEL_ROW_MAX-1)
+            {
+                m_guideSubBegin++;
             }
             m_SE->PlayMove();
         }
@@ -475,6 +528,11 @@ std::string MenuLib::Into()
         m_eFocus = eFocus::ITEM;
         m_itemSubCursor = 0;
     }
+    else if (m_eFocus == eFocus::GUIDE)
+    {
+        m_eFocus = eFocus::GUIDE_SUB;
+        m_guideSubCursor = 0;
+    }
     return result;
 }
 
@@ -493,6 +551,13 @@ std::string MenuLib::Back()
         m_SE->PlayBack();
         result = m_TopBarName.at(m_topBarIndex);
         result += ":" + m_itemInfoList.at(m_itemSelect).GetName();
+    }
+    else if (m_eFocus == eFocus::GUIDE_SUB)
+    {
+        m_eFocus = eFocus::GUIDE;
+        m_SE->PlayBack();
+        m_guideSubSelect = 0;
+        m_guideSubBegin = 0;
     }
     // TOP_BARにフォーカスがあるときに戻ろうとした。
     // つまりメニュー画面を閉じようとした。
@@ -865,7 +930,7 @@ void MenuLib::Draw()
  
     m_font->DrawText_("アイテム", TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 0) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY);
     m_font->DrawText_("武器・防具", TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 1) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY);
-    m_font->DrawText_("タスク", TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 2) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY);
+    m_font->DrawText_("操作説明", TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 2) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY);
     m_font->DrawText_("マップ", TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 3) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY);
     m_font->DrawText_("人物情報", TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 4) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY);
     m_font->DrawText_("敵情報", TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 5) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY);
@@ -943,17 +1008,17 @@ void MenuLib::Draw()
     }
     else if (m_topBarIndex == TOPBAR_GUIDE)
     {
+        // 大カテゴリの数だけ表示
         for (int i = 0; i < LEFT_PANEL_ROW_MAX; ++i)
         {
-            if ((int)m_guideInfoList.size() <= m_guideBegin + i)
+            if ((int)m_guideCategory.size() <= m_guideBegin + i)
             {
                 break;
             }
             m_sprPanelLeft->DrawImage(LEFT_PANEL_STARTX, LEFT_PANEL_STARTY + (i*LEFT_PANEL_HEIGHT));
-            m_font->DrawText_(
-                m_guideInfoList.at(m_guideBegin+i).GetCategory(),
-                LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
-                LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
+            m_font->DrawText_(m_guideCategory.at(m_guideBegin+i),
+                              LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
+                              LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
         }
     }
     else if (m_topBarIndex == TOPBAR_MAP)
@@ -1034,6 +1099,7 @@ void MenuLib::Draw()
                 );
         }
     }
+
     // Show item sub
     if (m_eFocus == eFocus::ITEM_SUB)
     {
@@ -1044,6 +1110,26 @@ void MenuLib::Draw()
             LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT)
         );
     }
+
+    // Show guide sub category
+    if (m_eFocus == eFocus::GUIDE || m_eFocus == eFocus::GUIDE_SUB)
+    {
+        std::string category = m_guideCategory.at(m_guideSelect);
+        std::vector<std::string> vs = m_guideSubCategory.at(category);
+
+        for (int i = 0; i < LEFT_PANEL_ROW_MAX; ++i)
+        {
+            if ((int)vs.size() <= m_guideSubBegin + i)
+            {
+                break;
+            }
+            m_sprPanelLeft->DrawImage(550, LEFT_PANEL_STARTY + (i*LEFT_PANEL_HEIGHT));
+            m_font->DrawText_(vs.at(m_guideSubBegin+i),
+                              650,
+                              LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
+        }
+    }
+
     if (m_eFocus == eFocus::WEAPON)
     {
         m_weaponInfoList.at(m_weaponSelect).GetSprite()->DrawImage(550, 300);
@@ -1060,9 +1146,21 @@ void MenuLib::Draw()
                 );
         }
     }
-    if (m_eFocus == eFocus::GUIDE)
+
+    if (m_eFocus == eFocus::GUIDE_SUB)
     {
-        std::string detail = m_guideInfoList.at(m_guideSelect).GetDetail();
+        std::string category = m_guideCategory.at(m_guideSelect);
+        std::string subCategory = m_guideSubCategory.at(category).at(m_guideSubSelect);
+        std::string detail;
+        for (std::size_t i = 0; i < m_guideInfoList.size(); ++i)
+        {
+            if (m_guideInfoList.at(i).GetCategory() == category &&
+                m_guideInfoList.at(i).GetSubCategory() == subCategory)
+            {
+                detail = m_guideInfoList.at(i).GetDetail();
+                break;
+            }
+        }
         std::vector<std::string> details = split(detail, '\n');
 
         for (std::size_t i = 0; i < details.size(); ++i)
@@ -1074,6 +1172,7 @@ void MenuLib::Draw()
                 );
         }
     }
+
     if (m_eFocus == eFocus::MAP)
     {
         m_mapInfoList.at(m_mapSelect).GetSprite()->DrawImage(550, 300);
@@ -1090,6 +1189,7 @@ void MenuLib::Draw()
                 );
         }
     }
+
     if (m_eFocus == eFocus::HUMAN)
     {
         m_humanInfoList.at(m_humanSelect).GetSprite()->DrawImage(550, 300);
@@ -1106,6 +1206,7 @@ void MenuLib::Draw()
                 );
         }
     }
+
     if (m_eFocus == eFocus::ENEMY)
     {
         m_enemyInfoList.at(m_enemySelect).GetSprite()->DrawImage(550, 300);
@@ -1122,6 +1223,7 @@ void MenuLib::Draw()
                 );
         }
     }
+
     if (m_eFocus == eFocus::SKILL)
     {
         m_skillInfoList.at(m_skillSelect).GetSprite()->DrawImage(550, 300);
@@ -1166,6 +1268,10 @@ void MenuLib::Draw()
     else if (m_eFocus == eFocus::GUIDE)
     {
         m_sprCursor->DrawImage(80, LEFT_PANEL_CURSORY + (m_guideCursor * 60));
+    }
+    else if (m_eFocus == eFocus::GUIDE_SUB)
+    {
+        m_sprCursor->DrawImage(570, LEFT_PANEL_CURSORY + (m_guideSubCursor * 60));
     }
     else if (m_eFocus == eFocus::MAP)
     {

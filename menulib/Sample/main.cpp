@@ -735,7 +735,7 @@ HRESULT InitD3D(HWND hWnd)
             info.SetDetail("サンプルテキスト\n\nサンプルテキスト");
             infoList.push_back(info);
         }
-        menu.SetTask(infoList);
+        menu.SetGuide(infoList);
     }
     {
         std::vector<EnemyInfo> infoList;
