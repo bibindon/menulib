@@ -33,7 +33,7 @@
     <ClCompile Include="SkillInfo.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="TaskInfo.cpp">
+    <ClCompile Include="GuideInfo.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="WeaponInfo.cpp">

@@ -608,32 +608,131 @@ HRESULT InitD3D(HWND hWnd)
         menu.SetWeapon(infoList);
     }
     {
-        std::vector<TaskInfo> infoList;
+        std::vector<GuideInfo> infoList;
         {
-            TaskInfo info;
-            info.SetName("サンプルテキスト１");
-            Sprite* sprItem = new Sprite(g_pd3dDevice);
-            sprItem->Load("test.png");
-            info.SetSprite(sprItem);
+            GuideInfo info;
+            info.SetCategory("大カテゴリ１");
+            info.SetSubCategory("小カテゴリ１");
             info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト\nサンプルテキスト");
             infoList.push_back(info);
         }
         {
-            TaskInfo info;
-            info.SetName("サンプルテキスト２");
-            Sprite* sprItem = new Sprite(g_pd3dDevice);
-            sprItem->Load("test.png");
-            info.SetSprite(sprItem);
+            GuideInfo info;
+            info.SetCategory("大カテゴリ１");
+            info.SetSubCategory("小カテゴリ２");
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            GuideInfo info;
+            info.SetCategory("大カテゴリ１");
+            info.SetSubCategory("小カテゴリ３");
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            GuideInfo info;
+            info.SetCategory("大カテゴリ２");
+            info.SetSubCategory("小カテゴリ１");
             info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト\nサンプルテキスト");
             infoList.push_back(info);
         }
         {
-            TaskInfo info;
-            info.SetName("サンプルテキスト３");
-            Sprite* sprItem = new Sprite(g_pd3dDevice);
-            sprItem->Load("test.png");
-            info.SetSprite(sprItem);
-            info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト\nサンプルテキスト");
+            GuideInfo info;
+            info.SetCategory("大カテゴリ２");
+            info.SetSubCategory("小カテゴリ２");
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            GuideInfo info;
+            info.SetCategory("大カテゴリ２");
+            info.SetSubCategory("小カテゴリ３");
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            GuideInfo info;
+            info.SetCategory("大カテゴリ２");
+            info.SetSubCategory("小カテゴリ４");
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            GuideInfo info;
+            info.SetCategory("大カテゴリ２");
+            info.SetSubCategory("小カテゴリ５");
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            GuideInfo info;
+            info.SetCategory("大カテゴリ２");
+            info.SetSubCategory("小カテゴリ５");
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            GuideInfo info;
+            info.SetCategory("大カテゴリ２");
+            info.SetSubCategory("小カテゴリ５");
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            GuideInfo info;
+            info.SetCategory("大カテゴリ２");
+            info.SetSubCategory("小カテゴリ５");
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            GuideInfo info;
+            info.SetCategory("大カテゴリ２");
+            info.SetSubCategory("小カテゴリ５");
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            GuideInfo info;
+            info.SetCategory("大カテゴリ２");
+            info.SetSubCategory("小カテゴリ５");
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            GuideInfo info;
+            info.SetCategory("大カテゴリ２");
+            info.SetSubCategory("小カテゴリ５");
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            GuideInfo info;
+            info.SetCategory("大カテゴリ２");
+            info.SetSubCategory("小カテゴリ５");
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            GuideInfo info;
+            info.SetCategory("大カテゴリ２");
+            info.SetSubCategory("小カテゴリ５");
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            GuideInfo info;
+            info.SetCategory("大カテゴリ２");
+            info.SetSubCategory("小カテゴリ５");
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            GuideInfo info;
+            info.SetCategory("大カテゴリ３");
+            info.SetSubCategory("小カテゴリ１");
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト");
             infoList.push_back(info);
         }
         menu.SetTask(infoList);

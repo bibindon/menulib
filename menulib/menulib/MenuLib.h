@@ -171,17 +171,20 @@ private:
     int m_subId = 0;
 };
 
-class TaskInfo
+class GuideInfo
 {
 public:
-    std::string GetName();
-    void SetName(const std::string& arg);
-    ISprite* GetSprite();
-    void SetSprite(ISprite* const arg);
+    std::string GetCategory();
+    void SetCategory(const std::string& arg);
+
+    std::string GetSubCategory();
+    void SetSubCategory(const std::string& arg);
+
     std::string GetDetail();
     void SetDetail(const std::string& arg);
 private:
-    std::string m_name;
+    std::string m_category;
+    std::string m_subCategory;
     ISprite* m_sprite = nullptr;
     std::string m_detail;
 };
@@ -205,7 +208,7 @@ public:
     void SetEnemy(const std::vector<EnemyInfo>& items);
     void SetMap(const std::vector<MapInfo>& items);
     void SetSkill(const std::vector<SkillInfo>& items);
-    void SetTask(const std::vector<TaskInfo>& items);
+    void SetTask(const std::vector<GuideInfo>& items);
     void SetWeapon(const std::vector<WeaponInfo>& items);
     std::string Up();
     std::string Down();
@@ -229,7 +232,8 @@ private:
         ITEM,
         ITEM_SUB,
         WEAPON,
-        TASK,
+        GUIDE,
+        GUIDE_SUB,
         MAP,
         HUMAN,
         ENEMY,
@@ -241,7 +245,7 @@ private:
 
     const int TOPBAR_ITEM = 0;
     const int TOPBAR_WEAPON = 1;
-    const int TOPBAR_TASK = 2;
+    const int TOPBAR_GUIDE = 2;
     const int TOPBAR_MAP = 3;
     const int TOPBAR_HUMAN = 4;
     const int TOPBAR_ENEMY = 5;
@@ -296,11 +300,11 @@ private:
     // スクロール可能なので一番上に表示されるアイテムはスクロールすると変わる。
     int m_humanBegin { 0 };
 
-    int m_taskCursor { 0 };
-    int m_taskSelect { 0 };
+    int m_guideCursor { 0 };
+    int m_guideSelect { 0 };
     // 何番目のアイテムが一番上に表示されているか
     // スクロール可能なので一番上に表示されるアイテムはスクロールすると変わる。
-    int m_taskBegin { 0 };
+    int m_guideBegin { 0 };
 
     int m_enemyCursor { 0 };
     int m_enemySelect { 0 };
@@ -332,7 +336,7 @@ private:
     std::vector<EnemyInfo> m_enemyInfoList;
     std::vector<MapInfo> m_mapInfoList;
     std::vector<SkillInfo> m_skillInfoList;
-    std::vector<TaskInfo> m_taskInfoList;
+    std::vector<GuideInfo> m_guideInfoList;
     std::vector<WeaponInfo> m_weaponInfoList;
 };
 }

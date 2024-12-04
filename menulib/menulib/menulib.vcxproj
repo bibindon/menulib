@@ -25,7 +25,7 @@
     <ClCompile Include="MapInfo.cpp" />
     <ClCompile Include="MenuLib.cpp" />
     <ClCompile Include="SkillInfo.cpp" />
-    <ClCompile Include="TaskInfo.cpp" />
+    <ClCompile Include="GuideInfo.cpp" />
     <ClCompile Include="WeaponInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
