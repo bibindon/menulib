@@ -2,7 +2,7 @@
 
 using namespace NSMenulib;
 
-std::string ItemInfo::GetName()
+std::string ItemInfo::GetName() const
 {
     return m_name;
 }
@@ -12,7 +12,7 @@ void ItemInfo::SetName(const std::string& arg)
     m_name = arg;
 }
 
-int ItemInfo::GetDurability()
+int ItemInfo::GetDurability() const
 {
     return m_durability;
 }
@@ -22,7 +22,7 @@ void ItemInfo::SetDurability(const int arg)
     m_durability = arg;
 }
 
-ISprite* ItemInfo::GetSprite()
+ISprite* ItemInfo::GetSprite() const
 {
     return m_sprite;
 }
@@ -32,7 +32,7 @@ void ItemInfo::SetSprite(ISprite * const arg)
     m_sprite = arg;
 }
 
-std::string ItemInfo::GetDetail()
+std::string ItemInfo::GetDetail() const
 {
     return m_detail;
 }
@@ -42,7 +42,7 @@ void ItemInfo::SetDetail(const std::string& arg)
     m_detail = arg;
 }
 
-int NSMenulib::ItemInfo::GetLevel()
+int NSMenulib::ItemInfo::GetLevel() const
 {
     return m_level;
 }
@@ -52,7 +52,7 @@ void NSMenulib::ItemInfo::SetLevel(const int arg)
     m_level = arg;
 }
 
-int NSMenulib::ItemInfo::GetId()
+int NSMenulib::ItemInfo::GetId() const
 {
     return m_id;;
 }
@@ -62,7 +62,7 @@ void NSMenulib::ItemInfo::SetId(const int arg)
     m_id = arg;
 }
 
-int NSMenulib::ItemInfo::GetSubId()
+int NSMenulib::ItemInfo::GetSubId() const
 {
     return m_subId;
 }

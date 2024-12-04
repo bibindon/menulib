@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <list>
 #include <vector>
 
 namespace NSMenulib
@@ -33,25 +34,25 @@ public:
 class ItemInfo
 {
 public:
-    std::string GetName();
+    std::string GetName() const;
     void SetName(const std::string& arg);
 
-    int GetDurability();
+    int GetDurability() const;
     void SetDurability(const int arg);
 
-    ISprite* GetSprite();
+    ISprite* GetSprite() const;
     void SetSprite(ISprite* const arg);
 
-    std::string GetDetail();
+    std::string GetDetail() const;
     void SetDetail(const std::string& arg);
 
-    int GetLevel();
+    int GetLevel() const;
     void SetLevel(const int arg);
 
-    int GetId();
+    int GetId() const;
     void SetId(const int arg);
 
-    int GetSubId();
+    int GetSubId() const;
     void SetSubId(const int arg);
 
 private:
@@ -219,6 +220,7 @@ public:
     void Draw();
     
     // Œã‚©‚ç•Ï‚¦‚½‚¢‚Æ‚«
+    void DeleteItem(const ItemInfo& itemInfo);
 
 private:
     enum class eFocus

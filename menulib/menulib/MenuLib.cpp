@@ -1173,3 +1173,16 @@ void MenuLib::Draw()
     }
 }
 
+void NSMenulib::MenuLib::DeleteItem(const ItemInfo& itemInfo)
+{
+    for (std::size_t i = 0; i < m_itemInfoList.size(); ++i)
+    {
+        if (m_itemInfoList.at(i).GetId() == itemInfo.GetId() &&
+            m_itemInfoList.at(i).GetSubId() == itemInfo.GetSubId())
+        {
+            m_itemInfoList.erase(m_itemInfoList.begin() + i);
+            break;
+        }
+    }
+}
+
