@@ -462,8 +462,8 @@ std::string MenuLib::Into()
     {
         result = m_TopBarName.at(m_topBarIndex);
         result += ":" + m_itemInfoList.at(m_itemSelect).GetName();
-        result += ":" + m_itemInfoList.at(m_itemSelect).GetId();
-        result += ":" + m_itemInfoList.at(m_itemSelect).GetSubId();
+        result += ":" + std::to_string(m_itemInfoList.at(m_itemSelect).GetId());
+        result += ":" + std::to_string(m_itemInfoList.at(m_itemSelect).GetSubId());
         if (m_itemSubCursor == 0)
         {
             result += ":使う";
@@ -472,6 +472,8 @@ std::string MenuLib::Into()
         {
             result += ":捨てる";
         }
+        m_eFocus = eFocus::ITEM;
+        m_itemSubCursor = 0;
     }
     return result;
 }
@@ -889,15 +891,21 @@ void MenuLib::Draw()
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
                 LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
 
-            m_font->DrawText_(
-                std::to_string(m_itemInfoList.at(m_itemBegin+i).GetLevel()),
-                385 + LEFT_PANEL_PADDINGX,
-                LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
+            if (m_itemInfoList.at(m_itemBegin + i).GetLevel() != -1)
+            {
+                m_font->DrawText_(
+                    std::to_string(m_itemInfoList.at(m_itemBegin+i).GetLevel()),
+                    385 + LEFT_PANEL_PADDINGX,
+                    LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
+            }
 
-            m_font->DrawText_(
-                std::to_string(m_itemInfoList.at(m_itemBegin+i).GetDurability()),
-                435 + LEFT_PANEL_PADDINGX,
-                LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
+            if (m_itemInfoList.at(m_itemBegin + i).GetDurability() != -1)
+            {
+                m_font->DrawText_(
+                    std::to_string(m_itemInfoList.at(m_itemBegin + i).GetDurability()),
+                    435 + LEFT_PANEL_PADDINGX,
+                    LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i * LEFT_PANEL_HEIGHT));
+            }
         }
     }
     else if (m_topBarIndex == TOPBAR_WEAPON)
@@ -916,15 +924,21 @@ void MenuLib::Draw()
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
                 LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
 
-            m_font->DrawText_(
-                std::to_string(m_weaponInfoList.at(m_weaponBegin+i).GetDurability()),
-                385 + LEFT_PANEL_PADDINGX,
-                LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
+            if (m_weaponInfoList.at(m_weaponBegin + i).GetLevel() != -1)
+            {
+                m_font->DrawText_(
+                    std::to_string(m_weaponInfoList.at(m_weaponBegin + i).GetLevel()),
+                    385 + LEFT_PANEL_PADDINGX,
+                    LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i * LEFT_PANEL_HEIGHT));
+            }
 
-            m_font->DrawText_(
-                std::to_string(m_weaponInfoList.at(m_weaponBegin+i).GetDurability()),
-                435 + LEFT_PANEL_PADDINGX,
-                LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
+            if (m_weaponInfoList.at(m_weaponBegin + i).GetDurability() != -1)
+            {
+                m_font->DrawText_(
+                    std::to_string(m_weaponInfoList.at(m_weaponBegin+i).GetDurability()),
+                    435 + LEFT_PANEL_PADDINGX,
+                    LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
+            }
         }
     }
     else if (m_topBarIndex == TOPBAR_TASK)
@@ -1023,11 +1037,11 @@ void MenuLib::Draw()
     // Show item sub
     if (m_eFocus == eFocus::ITEM_SUB)
     {
-        m_sprPanelLeft->DrawImage(550, 200 + (m_itemCursor*LEFT_PANEL_HEIGHT));
+        m_sprPanelLeft->DrawImage(550, LEFT_PANEL_STARTY + (m_itemCursor*LEFT_PANEL_HEIGHT));
         m_font->DrawText_(
             "使う　　　　　捨てる",
             650,
-            200 + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT)
+            LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT)
         );
     }
     if (m_eFocus == eFocus::WEAPON)

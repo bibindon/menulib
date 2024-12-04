@@ -14,10 +14,26 @@
 #include <d3d9.h>
 #include <d3dx9.h>
 #include <string>
+#include <sstream>
 
 using namespace NSMenulib;
 
 #define SAFE_RELEASE(p) { if (p) { (p)->Release(); (p) = NULL; } }
+
+static std::vector<std::string> split(const std::string& s, char delim)
+{
+    std::vector<std::string> result;
+    std::stringstream ss(s);
+    std::string item;
+
+    while (getline(ss, item, delim))
+    {
+        result.push_back(item);
+    }
+
+    return result;
+}
+
 
 class Sprite : public ISprite
 {
@@ -932,6 +948,15 @@ LRESULT WINAPI MsgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             else if (result == "ç≈èâÇ©ÇÁ")
             {
                 bShowMenu = false;
+            }
+
+            std::vector<std::string> vs = split(result, ':');
+
+            if (vs.size() == 5)
+            {
+                int id =std::stoi(vs.at(2));
+                int subId =std::stoi(vs.at(3));
+                menu.DeleteItem(id, subId);
             }
             break;
         }
