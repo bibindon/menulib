@@ -220,7 +220,7 @@ public:
     void Draw();
     
     // Œã‚©‚ç•Ï‚¦‚½‚¢‚Æ‚«
-    void DeleteItem(const ItemInfo& itemInfo);
+    void DeleteItem(const int id, const int subId);
 
 private:
     enum class eFocus

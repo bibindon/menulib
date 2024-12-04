@@ -1173,12 +1173,11 @@ void MenuLib::Draw()
     }
 }
 
-void NSMenulib::MenuLib::DeleteItem(const ItemInfo& itemInfo)
+void NSMenulib::MenuLib::DeleteItem(const int id, const int subId)
 {
     for (std::size_t i = 0; i < m_itemInfoList.size(); ++i)
     {
-        if (m_itemInfoList.at(i).GetId() == itemInfo.GetId() &&
-            m_itemInfoList.at(i).GetSubId() == itemInfo.GetSubId())
+        if (m_itemInfoList.at(i).GetId() == id && m_itemInfoList.at(i).GetSubId() == subId)
         {
             m_itemInfoList.erase(m_itemInfoList.begin() + i);
             break;
