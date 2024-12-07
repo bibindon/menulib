@@ -239,8 +239,12 @@ public:
     void RightClick(const int x, const int y);
     void Draw();
     
-    // 後から変えたいとき
+    // アイテム情報を後から変えたいとき
+    void AddItem(const int id, const int subId);
     void DeleteItem(const int id, const int subId);
+
+    // ステータス内容を後から変えたいとき
+    void UpdateStatusText(const std::string& text);
 
 private:
     enum class eFocus

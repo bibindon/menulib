@@ -1373,6 +1373,11 @@ void MenuLib::Draw()
     }
 }
 
+void NSMenulib::MenuLib::AddItem(const int id, const int subId)
+{
+    // TODO
+}
+
 void NSMenulib::MenuLib::DeleteItem(const int id, const int subId)
 {
     for (std::size_t i = 0; i < m_itemInfoList.size(); ++i)
@@ -1383,5 +1388,10 @@ void NSMenulib::MenuLib::DeleteItem(const int id, const int subId)
             break;
         }
     }
+}
+
+void NSMenulib::MenuLib::UpdateStatusText(const std::string& text)
+{
+    m_statusInfoList.at(0).SetDetail(text);
 }
 
