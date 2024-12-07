@@ -854,6 +854,37 @@ HRESULT InitD3D(HWND hWnd)
         menu.SetSkill(infoList);
     }
     {
+        std::vector<StatusInfo> infoList;
+        {
+            StatusInfo info;
+            info.SetName("サンプルテキスト１");
+            Sprite* sprItem = new Sprite(g_pd3dDevice);
+            sprItem->Load("test.png");
+            info.SetSprite(sprItem);
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            StatusInfo info;
+            info.SetName("サンプルテキスト２");
+            Sprite* sprItem = new Sprite(g_pd3dDevice);
+            sprItem->Load("test.png");
+            info.SetSprite(sprItem);
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        {
+            StatusInfo info;
+            info.SetName("サンプルテキスト３");
+            Sprite* sprItem = new Sprite(g_pd3dDevice);
+            sprItem->Load("test.png");
+            info.SetSprite(sprItem);
+            info.SetDetail("サンプルテキスト\n\nサンプルテキスト\nサンプルテキスト\nサンプルテキスト");
+            infoList.push_back(info);
+        }
+        menu.SetStatus(infoList);
+    }
+    {
         std::vector<MapInfo> infoList;
         {
             MapInfo info;

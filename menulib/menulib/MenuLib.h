@@ -117,6 +117,21 @@ private:
     std::string m_detail;
 };
 
+class StatusInfo
+{
+public:
+    std::string GetName();
+    void SetName(const std::string& arg);
+    ISprite* GetSprite();
+    void SetSprite(ISprite* const arg);
+    std::string GetDetail();
+    void SetDetail(const std::string& arg);
+private:
+    std::string m_name;
+    ISprite* m_sprite = nullptr;
+    std::string m_detail;
+};
+
 class MapInfo
 {
 public:
@@ -209,6 +224,7 @@ public:
     void SetEnemy(const std::vector<EnemyInfo>& items);
     void SetMap(const std::vector<MapInfo>& items);
     void SetSkill(const std::vector<SkillInfo>& items);
+    void SetStatus(const std::vector<StatusInfo>& items);
     void SetGuide(const std::vector<GuideInfo>& items);
     void SetWeapon(const std::vector<WeaponInfo>& items);
     std::string Up();
@@ -337,12 +353,19 @@ private:
     // スクロール可能なので一番上に表示されるアイテムはスクロールすると変わる。
     int m_skillBegin { 0 };
 
+    int m_statusCursor { 0 };
+    int m_statusSelect { 0 };
+    // 何番目のアイテムが一番上に表示されているか
+    // スクロール可能なので一番上に表示されるアイテムはスクロールすると変わる。
+    int m_statusBegin { 0 };
+
     std::vector<std::string> m_TopBarName;
     std::vector<ItemInfo> m_itemInfoList;
     std::vector<HumanInfo> m_humanInfoList;
     std::vector<EnemyInfo> m_enemyInfoList;
     std::vector<MapInfo> m_mapInfoList;
     std::vector<SkillInfo> m_skillInfoList;
+    std::vector<StatusInfo> m_statusInfoList;
     std::vector<GuideInfo> m_guideInfoList;
     std::vector<WeaponInfo> m_weaponInfoList;
 
