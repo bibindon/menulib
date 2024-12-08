@@ -1,5 +1,6 @@
 #include "MenuLib.h"
 #include <sstream>
+#include <algorithm>
 
 using namespace NSMenulib;
 
@@ -1376,6 +1377,29 @@ void MenuLib::Draw()
 void NSMenulib::MenuLib::AddItem(const ItemInfo& itemInfo)
 {
 	m_itemInfoList.push_back(itemInfo);
+    std::sort(m_itemInfoList.begin(), m_itemInfoList.end(),
+              [&](const ItemInfo& left, const ItemInfo& right)
+              {
+                  if (left.GetId() < right.GetId())
+                  {
+                      return true;
+                  }
+                  else if (left.GetId() > right.GetId())
+                  {
+                      return false;
+                  }
+                  else
+                  {
+                      if (left.GetSubId() < right.GetSubId())
+                      {
+                          return true;
+                      }
+                      else
+                      {
+						  return false;
+                      }
+                  }
+              });
 }
 
 void NSMenulib::MenuLib::DeleteItem(const int id, const int subId)
