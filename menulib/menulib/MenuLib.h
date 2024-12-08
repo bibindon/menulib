@@ -240,7 +240,7 @@ public:
     void Draw();
     
     // アイテム情報を後から変えたいとき
-    void AddItem(const int id, const int subId);
+    void AddItem(const ItemInfo& itemInfo);
     void DeleteItem(const int id, const int subId);
 
     // ステータス内容を後から変えたいとき

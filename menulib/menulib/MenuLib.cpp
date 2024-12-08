@@ -1373,9 +1373,9 @@ void MenuLib::Draw()
     }
 }
 
-void NSMenulib::MenuLib::AddItem(const int id, const int subId)
+void NSMenulib::MenuLib::AddItem(const ItemInfo& itemInfo)
 {
-    // TODO
+	m_itemInfoList.push_back(itemInfo);
 }
 
 void NSMenulib::MenuLib::DeleteItem(const int id, const int subId)
