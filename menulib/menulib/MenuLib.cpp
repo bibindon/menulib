@@ -35,7 +35,7 @@ void MenuLib::Init(
     m_sprPanelLeft = sprPanelLeft;
 
     m_TopBarName.push_back("アイテム");
-    m_TopBarName.push_back("武器・防具");
+    m_TopBarName.push_back("武器");
     m_TopBarName.push_back("操作説明");
     m_TopBarName.push_back("マップ");
     m_TopBarName.push_back("人物情報");
