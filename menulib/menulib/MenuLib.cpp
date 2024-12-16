@@ -456,6 +456,14 @@ std::string MenuLib::Right()
             m_SE->PlayMove();
         }
     }
+    else if (m_eFocus == eFocus::WEAPON_SUB)
+    {
+        if (m_weaponSubCursor == 0)
+        {
+            m_weaponSubCursor++;
+            m_SE->PlayMove();
+        }
+    }
     return m_TopBarName.at(m_topBarIndex);
 }
 
@@ -474,6 +482,14 @@ std::string MenuLib::Left()
         if (m_itemSubCursor == 1)
         {
             m_itemSubCursor--;
+            m_SE->PlayMove();
+        }
+    }
+    else if (m_eFocus == eFocus::WEAPON_SUB)
+    {
+        if (m_weaponSubCursor == 1)
+        {
+            m_weaponSubCursor--;
             m_SE->PlayMove();
         }
     }
@@ -575,6 +591,28 @@ std::string MenuLib::Into()
         m_eFocus = eFocus::ITEM;
         m_itemSubCursor = 0;
     }
+    else if (m_eFocus == eFocus::WEAPON)
+    {
+        m_eFocus = eFocus::WEAPON_SUB;
+        m_weaponSubCursor = 0;
+    }
+    else if (m_eFocus == eFocus::WEAPON_SUB)
+    {
+        result = m_TopBarName.at(m_topBarIndex);
+        result += ":" + m_weaponInfoList.at(m_weaponSelect).GetName();
+        result += ":" + std::to_string(m_weaponInfoList.at(m_weaponSelect).GetId());
+        result += ":" + std::to_string(m_weaponInfoList.at(m_weaponSelect).GetSubId());
+        if (m_weaponSubCursor == 0)
+        {
+            result += ":装備";
+        }
+        else
+        {
+            result += ":キャンセル";
+        }
+        m_eFocus = eFocus::WEAPON;
+        m_weaponSubCursor = 0;
+    }
     else if (m_eFocus == eFocus::GUIDE)
     {
         m_eFocus = eFocus::GUIDE_SUB;
@@ -598,6 +636,13 @@ std::string MenuLib::Back()
         m_SE->PlayBack();
         result = m_TopBarName.at(m_topBarIndex);
         result += ":" + m_itemInfoList.at(m_itemSelect).GetName();
+    }
+    else if (m_eFocus == eFocus::WEAPON_SUB)
+    {
+        m_eFocus = eFocus::WEAPON;
+        m_SE->PlayBack();
+        result = m_TopBarName.at(m_topBarIndex);
+        result += ":" + m_weaponInfoList.at(m_weaponSelect).GetName();
     }
     else if (m_eFocus == eFocus::GUIDE_SUB)
     {
@@ -877,6 +922,12 @@ void MenuLib::RightClick(const int x, const int y)
                 m_itemCursor = 0;
                 m_itemSelect = m_itemBegin;
             }
+            else if (m_topBarIndex == TOPBAR_WEAPON)
+            {
+                m_eFocus = eFocus::WEAPON_SUB;
+                m_weaponCursor = 0;
+                m_weaponSelect = m_weaponBegin;
+            }
         }
         else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 1 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 2)
         {
@@ -885,6 +936,12 @@ void MenuLib::RightClick(const int x, const int y)
                 m_eFocus = eFocus::ITEM_SUB;
                 m_itemCursor = 1;
                 m_itemSelect = m_itemBegin + 1;
+            }
+            else if (m_topBarIndex == TOPBAR_WEAPON)
+            {
+                m_eFocus = eFocus::WEAPON_SUB;
+                m_weaponCursor = 1;
+                m_weaponSelect = m_weaponBegin + 1;
             }
         }
         else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 2 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 3)
@@ -895,6 +952,12 @@ void MenuLib::RightClick(const int x, const int y)
                 m_itemCursor = 2;
                 m_itemSelect = m_itemBegin + 2;
             }
+            else if (m_topBarIndex == TOPBAR_WEAPON)
+            {
+                m_eFocus = eFocus::WEAPON_SUB;
+                m_weaponCursor = 2;
+                m_weaponSelect = m_weaponBegin + 2;
+            }
         }
         else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 3 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 4)
         {
@@ -903,6 +966,12 @@ void MenuLib::RightClick(const int x, const int y)
                 m_eFocus = eFocus::ITEM_SUB;
                 m_itemCursor = 3;
                 m_itemSelect = m_itemBegin + 3;
+            }
+            else if (m_topBarIndex == TOPBAR_WEAPON)
+            {
+                m_eFocus = eFocus::WEAPON_SUB;
+                m_weaponCursor = 3;
+                m_weaponSelect = m_weaponBegin + 3;
             }
         }
         else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 4 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 5)
@@ -913,6 +982,12 @@ void MenuLib::RightClick(const int x, const int y)
                 m_itemCursor = 4;
                 m_itemSelect = m_itemBegin + 4;
             }
+            else if (m_topBarIndex == TOPBAR_WEAPON)
+            {
+                m_eFocus = eFocus::WEAPON_SUB;
+                m_weaponCursor = 4;
+                m_weaponSelect = m_weaponBegin + 4;
+            }
         }
         else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 5 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 6)
         {
@@ -921,6 +996,12 @@ void MenuLib::RightClick(const int x, const int y)
                 m_eFocus = eFocus::ITEM_SUB;
                 m_itemCursor = 5;
                 m_itemSelect = m_itemBegin + 5;
+            }
+            else if (m_topBarIndex == TOPBAR_WEAPON)
+            {
+                m_eFocus = eFocus::WEAPON_SUB;
+                m_weaponCursor = 5;
+                m_weaponSelect = m_weaponBegin + 5;
             }
         }
         else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 6 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 7)
@@ -931,6 +1012,12 @@ void MenuLib::RightClick(const int x, const int y)
                 m_itemCursor = 6;
                 m_itemSelect = m_itemBegin + 6;
             }
+            else if (m_topBarIndex == TOPBAR_WEAPON)
+            {
+                m_eFocus = eFocus::WEAPON_SUB;
+                m_weaponCursor = 6;
+                m_weaponSelect = m_weaponBegin + 6;
+            }
         }
         else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 7 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 8)
         {
@@ -939,6 +1026,12 @@ void MenuLib::RightClick(const int x, const int y)
                 m_eFocus = eFocus::ITEM_SUB;
                 m_itemCursor = 7;
                 m_itemSelect = m_itemBegin + 7;
+            }
+            else if (m_topBarIndex == TOPBAR_WEAPON)
+            {
+                m_eFocus = eFocus::WEAPON_SUB;
+                m_weaponCursor = 7;
+                m_weaponSelect = m_weaponBegin + 7;
             }
         }
         else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 8 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 9)
@@ -949,6 +1042,12 @@ void MenuLib::RightClick(const int x, const int y)
                 m_itemCursor = 8;
                 m_itemSelect = m_itemBegin + 8;
             }
+            else if (m_topBarIndex == TOPBAR_WEAPON)
+            {
+                m_eFocus = eFocus::WEAPON_SUB;
+                m_weaponCursor = 8;
+                m_weaponSelect = m_weaponBegin + 8;
+            }
         }
         else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 9 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 10)
         {
@@ -957,6 +1056,12 @@ void MenuLib::RightClick(const int x, const int y)
                 m_eFocus = eFocus::ITEM_SUB;
                 m_itemCursor = 9;
                 m_itemSelect = m_itemBegin + 9;
+            }
+            else if (m_topBarIndex == TOPBAR_WEAPON)
+            {
+                m_eFocus = eFocus::WEAPON_SUB;
+                m_weaponCursor = 9;
+                m_weaponSelect = m_weaponBegin + 9;
             }
         }
     }
@@ -1173,6 +1278,17 @@ void MenuLib::Draw()
         );
     }
 
+    // Show weapon sub
+    if (m_eFocus == eFocus::WEAPON_SUB)
+    {
+        m_sprPanelLeft->DrawImage(550, LEFT_PANEL_STARTY + (m_weaponCursor*LEFT_PANEL_HEIGHT));
+        m_font->DrawText_(
+            "装備する　　キャンセル",
+            650,
+            LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_weaponCursor * LEFT_PANEL_HEIGHT)
+        );
+    }
+
     // Show guide sub category
     if (m_eFocus == eFocus::GUIDE || m_eFocus == eFocus::GUIDE_SUB)
     {
@@ -1343,6 +1459,10 @@ void MenuLib::Draw()
     else if (m_eFocus == eFocus::WEAPON)
     {
         m_sprCursor->DrawImage(80, LEFT_PANEL_CURSORY + (m_weaponCursor * 60));
+    }
+    else if (m_eFocus == eFocus::WEAPON_SUB)
+    {
+        m_sprCursor->DrawImage(570 + (m_weaponSubCursor * 160), LEFT_PANEL_CURSORY + (m_weaponCursor * 60));
     }
     else if (m_eFocus == eFocus::GUIDE)
     {

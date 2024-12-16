@@ -253,6 +253,7 @@ private:
         ITEM,
         ITEM_SUB,
         WEAPON,
+        WEAPON_SUB,
         GUIDE,
         GUIDE_SUB,
         MAP,
@@ -350,6 +351,7 @@ private:
     // 何番目のアイテムが一番上に表示されているか
     // スクロール可能なので一番上に表示されるアイテムはスクロールすると変わる。
     int m_weaponBegin { 0 };
+    int m_weaponSubCursor { 0 };
 
     int m_skillCursor { 0 };
     int m_skillSelect { 0 };

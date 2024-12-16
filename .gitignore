@@ -10,7 +10,8 @@
 /novel-system/Sample/Sample.vcxproj.user
 /novel-system/novel-system/novel-system.vcxproj.user
 /menulib/.vs
-/menulib/Debug
+/menulib/Debug/*
+!/menulib/Debug/menulib.*
 /menulib/menulib/Debug
 *.user
 /menulib/Sample/Debug
