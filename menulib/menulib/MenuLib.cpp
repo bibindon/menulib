@@ -42,8 +42,8 @@ void MenuLib::Init(
     m_TopBarName.push_back("敵情報");
     m_TopBarName.push_back("技・魔法");
     m_TopBarName.push_back("ステータス");
-    m_TopBarName.push_back("セーブして終了");
-    m_TopBarName.push_back("最初から");
+    m_TopBarName.push_back("セーブして終了"); // TODO 確認画面があってほしい
+    m_TopBarName.push_back("最初から"); // TODO 確認画面があってほしい
 }
 
 void MenuLib::SetItem(const std::vector<ItemInfo>& items)
@@ -618,6 +618,11 @@ std::string MenuLib::Into()
         m_eFocus = eFocus::GUIDE_SUB;
         m_guideSubCursor = 0;
     }
+    else if (m_eFocus == eFocus::QUIT)
+    {
+        result = m_TopBarName.at(m_topBarIndex);
+    }
+
     return result;
 }
 
@@ -742,7 +747,7 @@ void MenuLib::Click(const int x, const int y)
         }
         else if (TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 1 < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 2)
         {
-            m_eFocus = eFocus::TITLE;
+            m_eFocus = eFocus::QUIT;
             m_topBarIndex = TOPBAR_TITLE;
         }
         else if (TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 2 < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 3)

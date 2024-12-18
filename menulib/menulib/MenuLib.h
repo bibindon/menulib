@@ -261,7 +261,7 @@ private:
         ENEMY,
         SKILL,
         STATUS,
-        TITLE,
+        QUIT,
         OPENING,
     };
 
