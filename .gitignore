@@ -17,3 +17,12 @@
 /menulib/Sample/Debug
 /menulib/UnitTest/Debug
 /menulib/packages/Microsoft.DXSDK.D3DX.9.29.952.8
+/menulib/menulib/Release
+/menulib/Release/d3dx9_43.dll
+/menulib/Release/d3dx11_43.dll
+/menulib/Release/d3dx10_43.dll
+/menulib/Release/D3DCompiler_43.dll
+/menulib/Release/simple.cso
+/menulib/Release/Sample.pdb
+/menulib/Release/Sample.exe
+/menulib/Sample/Release
