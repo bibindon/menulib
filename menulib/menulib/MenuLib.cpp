@@ -1501,7 +1501,7 @@ void MenuLib::Draw()
 
 void NSMenulib::MenuLib::AddItem(const ItemInfo& itemInfo)
 {
-	m_itemInfoList.push_back(itemInfo);
+    m_itemInfoList.push_back(itemInfo);
     std::sort(m_itemInfoList.begin(), m_itemInfoList.end(),
               [&](const ItemInfo& left, const ItemInfo& right)
               {
@@ -1521,7 +1521,7 @@ void NSMenulib::MenuLib::AddItem(const ItemInfo& itemInfo)
                       }
                       else
                       {
-						  return false;
+                          return false;
                       }
                   }
               });
