@@ -42,7 +42,7 @@ void MenuLib::Init(
     m_TopBarName.push_back("敵情報");
     m_TopBarName.push_back("技・魔法");
     m_TopBarName.push_back("ステータス");
-    m_TopBarName.push_back("タイトル");
+    m_TopBarName.push_back("セーブして終了");
     m_TopBarName.push_back("最初から");
 }
 
@@ -1088,7 +1088,7 @@ void MenuLib::Draw()
     m_font->DrawText_("敵情報", TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 5) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY);
     m_font->DrawText_("技・魔法", TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 6) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY);
     m_font->DrawText_("ステータス", TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 0) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT + TOPBAR_PADDINGY);
-    m_font->DrawText_("タイトル", TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 1) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT + TOPBAR_PADDINGY);
+    m_font->DrawText_("セーブして終了", TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 1) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT + TOPBAR_PADDINGY);
     m_font->DrawText_("最初から", TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 2) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT + TOPBAR_PADDINGY);
 
     // Show left bar
