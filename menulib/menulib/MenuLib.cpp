@@ -1191,6 +1191,7 @@ void MenuLib::Draw()
     else
     {
         const int transparency = 32;
+
         m_font->DrawText_(m_TopBarName.at(0), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 0) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY, true, transparency);
         m_font->DrawText_(m_TopBarName.at(1), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 1) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY, true, transparency);
         m_font->DrawText_(m_TopBarName.at(2), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 2) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY, true, transparency);
@@ -1230,10 +1231,22 @@ void MenuLib::Draw()
             {
                 break;
             }
+
+            int trans = 255;
+            if (m_eFocus == eFocus::ITEM_SUB)
+            {
+                trans = 32;
+                if (i == m_itemCursor)
+                {
+                    trans = 255;
+                }
+            }
             m_font->DrawText_(
-                m_itemInfoList.at(m_itemBegin+i).GetName(),
+                m_itemInfoList.at(m_itemBegin + i).GetName(),
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
-                LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
+                LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i * LEFT_PANEL_HEIGHT),
+                false,
+                trans);
 
             if (m_itemInfoList.at(m_itemBegin + i).GetLevel() != -1)
             {
@@ -1241,7 +1254,8 @@ void MenuLib::Draw()
                     std::to_string(m_itemInfoList.at(m_itemBegin+i).GetLevel()),
                     350 + LEFT_PANEL_PADDINGX,
                     LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT),
-                    true);
+                    true,
+                    trans);
             }
 
             if (m_itemInfoList.at(m_itemBegin + i).GetDurability() != -1)
@@ -1250,7 +1264,8 @@ void MenuLib::Draw()
                     std::to_string(m_itemInfoList.at(m_itemBegin + i).GetDurability()),
                     410 + LEFT_PANEL_PADDINGX,
                     LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i * LEFT_PANEL_HEIGHT),
-                    true);
+                    true,
+                    trans);
             }
         }
     }
@@ -1400,7 +1415,12 @@ void MenuLib::Draw()
     // Show item detail
     if (m_eFocus == eFocus::ITEM || m_eFocus == eFocus::ITEM_SUB)
     {
-        m_itemInfoList.at(m_itemSelect).GetSprite()->DrawImage(550, 300);
+        int trans = 255;
+        if (m_eFocus == eFocus::ITEM_SUB)
+        {
+            trans = 64;
+        }
+        m_itemInfoList.at(m_itemSelect).GetSprite()->DrawImage(550, 300, trans);
 
         std::string detail = m_itemInfoList.at(m_itemSelect).GetDetail();
         std::vector<std::string> details = split(detail, '\n');
@@ -1453,9 +1473,15 @@ void MenuLib::Draw()
         }
     }
 
-    if (m_eFocus == eFocus::WEAPON)
+    if (m_eFocus == eFocus::WEAPON || m_eFocus == eFocus::WEAPON_SUB)
     {
-        m_weaponInfoList.at(m_weaponSelect).GetSprite()->DrawImage(550, 300);
+        int trans = 255;
+        if (m_eFocus == eFocus::WEAPON_SUB)
+        {
+            trans = 64;
+        }
+
+        m_weaponInfoList.at(m_weaponSelect).GetSprite()->DrawImage(550, 300, trans);
 
         std::string detail = m_weaponInfoList.at(m_weaponSelect).GetDetail();
         std::vector<std::string> details = split(detail, '\n');
