@@ -649,11 +649,27 @@ std::string MenuLib::Into()
     }
     else if (m_eFocus == eFocus::QUIT)
     {
-        result = m_TopBarName.at(m_topBarIndex);
+        if (m_quitCursor == 0)
+        {
+            result = m_TopBarName.at(m_topBarIndex);
+        }
+        else
+        {
+            m_eFocus = eFocus::TOP_BAR;
+            m_quitCursor = 0;
+        }
     }
     else if (m_eFocus == eFocus::OPENING)
     {
-        result = m_TopBarName.at(m_topBarIndex);
+        if (m_openingCursor == 0)
+        {
+            result = m_TopBarName.at(m_topBarIndex);
+        }
+        else
+        {
+            m_eFocus = eFocus::TOP_BAR;
+            m_openingCursor = 0;
+        }
     }
 
     return result;
