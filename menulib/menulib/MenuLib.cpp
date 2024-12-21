@@ -1192,22 +1192,26 @@ std::string MenuLib::Click(const int x, const int y)
                 }
             }
 
-            if (m_eFocus == eFocus::ITEM)
+            if (m_eFocus == eFocus::ITEM || m_eFocus == eFocus::ITEM_SUB)
             {
                 m_itemCursor = nCursor;
                 m_itemSelect = nSelect;
+                m_itemSubCursor = 0;
                 m_eFocus = eFocus::ITEM_SUB;
             }
-            else if (m_eFocus == eFocus::WEAPON)
+            else if (m_eFocus == eFocus::WEAPON || m_eFocus == eFocus::WEAPON_SUB)
             {
                 m_weaponCursor = nCursor;
                 m_weaponSelect = nSelect;
+                m_weaponSubCursor = 0;
                 m_eFocus = eFocus::WEAPON_SUB;
             }
-            else if (m_eFocus == eFocus::GUIDE)
+            else if (m_eFocus == eFocus::GUIDE || m_eFocus == eFocus::GUIDE_SUB)
             {
                 m_guideCursor = nCursor;
                 m_guideSelect = nSelect;
+                m_guideSubCursor = 0;
+                m_guideSubSelect = 0;
                 m_eFocus = eFocus::GUIDE_SUB;
             }
             else if (m_eFocus == eFocus::MAP)
