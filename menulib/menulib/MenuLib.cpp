@@ -787,175 +787,186 @@ void NSMenulib::MenuLib::CursorOn(const int x, const int y)
             m_SE->PlayMove();
         }
     }
-    else if (m_eFocus == eFocus::ITEM)
+    else if (m_eFocus == eFocus::ITEM ||
+             m_eFocus == eFocus::WEAPON ||
+             m_eFocus == eFocus::GUIDE ||
+             m_eFocus == eFocus::MAP ||
+             m_eFocus == eFocus::HUMAN||
+             m_eFocus == eFocus::ENEMY ||
+             m_eFocus == eFocus::SKILL ||
+             m_eFocus == eFocus::STATUS ||
+             m_eFocus == eFocus::QUIT ||
+             m_eFocus == eFocus::OPENING)
     {
-        int previousIndex = m_itemCursor;
         if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH)
         {
-            if (LEFT_PANEL_STARTY < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 1)
+            int previousIndex = 0;
+            int nCursor = 0;
+            int nSelect = 0;
+            int nBegin = 0;
+            int nSize = 10;
+            if (m_eFocus == eFocus::ITEM)
             {
-                m_itemCursor = 0;
-                m_itemSelect = m_itemBegin;
+                previousIndex = m_itemSelect;
+                nBegin = m_itemBegin;
+                if (m_itemInfoList.size() <= 9)
+                {
+                    nSize = m_itemInfoList.size();
+                }
             }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 1 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 2)
+            else if (m_eFocus == eFocus::WEAPON)
             {
-                m_itemCursor = 1;
-                m_itemSelect = m_itemBegin + 1;
+                previousIndex = m_weaponSelect;
+                nBegin = m_weaponBegin;
+                if (m_weaponInfoList.size() <= 9)
+                {
+                    nSize = m_weaponInfoList.size();
+                }
             }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 2 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 3)
+            else if (m_eFocus == eFocus::GUIDE)
             {
-                m_itemCursor = 2;
-                m_itemSelect = m_itemBegin + 2;
+                previousIndex = m_guideSelect;
+                nBegin = m_guideBegin;
+                if (m_guideInfoList.size() <= 9)
+                {
+                    nSize = m_guideInfoList.size();
+                }
             }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 3 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 4)
+            else if (m_eFocus == eFocus::MAP)
             {
-                m_itemCursor = 3;
-                m_itemSelect = m_itemBegin + 3;
+                previousIndex = m_mapSelect;
+                nBegin = m_mapBegin;
+                if (m_mapInfoList.size() <= 9)
+                {
+                    nSize = m_mapInfoList.size();
+                }
             }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 4 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 5)
+            else if (m_eFocus == eFocus::HUMAN)
             {
-                m_itemCursor = 4;
-                m_itemSelect = m_itemBegin + 4;
+                previousIndex = m_humanSelect;
+                nBegin = m_humanBegin;
+                if (m_humanInfoList.size() <= 9)
+                {
+                    nSize = m_humanInfoList.size();
+                }
             }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 5 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 6)
+            else if (m_eFocus == eFocus::ENEMY)
             {
-                m_itemCursor = 5;
-                m_itemSelect = m_itemBegin + 5;
+                previousIndex = m_enemySelect;
+                nBegin = m_enemyBegin;
+                if (m_enemyInfoList.size() <= 9)
+                {
+                    nSize = m_enemyInfoList.size();
+                }
             }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 6 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 7)
+            else if (m_eFocus == eFocus::SKILL)
             {
-                m_itemCursor = 6;
-                m_itemSelect = m_itemBegin + 6;
+                previousIndex = m_skillSelect;
+                nBegin = m_skillBegin;
+                if (m_skillInfoList.size() <= 9)
+                {
+                    nSize = m_skillInfoList.size();
+                }
             }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 7 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 8)
+            else if (m_eFocus == eFocus::STATUS)
             {
-                m_itemCursor = 7;
-                m_itemSelect = m_itemBegin + 7;
+                previousIndex = m_statusSelect;
+                nBegin = m_statusBegin;
+                if (m_statusInfoList.size() <= 9)
+                {
+                    nSize = m_statusInfoList.size();
+                }
             }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 8 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 9)
+            else if (m_eFocus == eFocus::QUIT)
             {
-                m_itemCursor = 8;
-                m_itemSelect = m_itemBegin + 8;
+                previousIndex = m_quitCursor;
+                nBegin = 0;
+                nSize = 2;
             }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 9 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 10)
+            else if (m_eFocus == eFocus::OPENING)
             {
-                m_itemCursor = 9;
-                m_itemSelect = m_itemBegin + 9;
+                previousIndex = m_openingCursor;
+                nBegin = 0;
+                nSize = 2;
             }
-        }
 
-        if (previousIndex != m_itemCursor)
-        {
-            m_SE->PlayMove();
+            for (int i = 0; i < nSize; ++i)
+            {
+                if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
+                    y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (i + 1))
+                {
+                    nCursor = i;
+                    nSelect = nBegin + i;
+                }
+            }
+
+            if (previousIndex != nSelect)
+            {
+                m_SE->PlayMove();
+            }
+
+            if (m_eFocus == eFocus::ITEM)
+            {
+                m_itemCursor = nCursor;
+                m_itemSelect = nSelect;
+            }
+            else if (m_eFocus == eFocus::WEAPON)
+            {
+                m_weaponCursor = nCursor;
+                m_weaponSelect = nSelect;
+            }
+            else if (m_eFocus == eFocus::GUIDE)
+            {
+                m_guideCursor = nCursor;
+                m_guideSelect = nSelect;
+            }
+            else if (m_eFocus == eFocus::MAP)
+            {
+                m_mapCursor = nCursor;
+                m_mapSelect = nSelect;
+            }
+            else if (m_eFocus == eFocus::HUMAN)
+            {
+                m_humanCursor = nCursor;
+                m_humanSelect = nSelect;
+            }
+            else if (m_eFocus == eFocus::ENEMY)
+            {
+                m_enemyCursor = nCursor;
+                m_enemySelect = nSelect;
+            }
+            else if (m_eFocus == eFocus::SKILL)
+            {
+                m_skillCursor = nCursor;
+                m_skillSelect = nSelect;
+            }
+            else if (m_eFocus == eFocus::STATUS)
+            {
+                m_statusCursor = nCursor;
+                m_statusSelect = nSelect;
+            }
+            else if (m_eFocus == eFocus::QUIT)
+            {
+                m_quitCursor = nCursor;
+            }
+            else if (m_eFocus == eFocus::OPENING)
+            {
+                m_openingCursor = nCursor;
+            }
         }
     }
-    else if (m_eFocus == eFocus::WEAPON)
+    else if (m_eFocus == eFocus::ITEM_SUB ||
+             m_eFocus == eFocus::WEAPON_SUB ||
+             m_eFocus == eFocus::GUIDE_SUB)
     {
-        int previousIndex = m_weaponCursor;
-        if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH)
-        {
-            if (LEFT_PANEL_STARTY < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 1)
-            {
-                m_weaponCursor = 0;
-                m_weaponSelect = m_weaponBegin + 0;
-            }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 1 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 2)
-            {
-                m_weaponCursor = 1;
-                m_weaponSelect = m_weaponBegin + 1;
-            }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 2 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 3)
-            {
-                m_weaponCursor = 2;
-                m_weaponSelect = m_weaponBegin + 2;
-            }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 3 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 4)
-            {
-                m_weaponCursor = 3;
-                m_weaponSelect = m_weaponBegin + 3;
-            }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 4 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 5)
-            {
-                m_weaponCursor = 4;
-                m_weaponSelect = m_weaponBegin + 4;
-            }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 5 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 6)
-            {
-                m_weaponCursor = 5;
-                m_weaponSelect = m_weaponBegin + 5;
-            }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 6 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 7)
-            {
-                m_weaponCursor = 6;
-                m_weaponSelect = m_weaponBegin + 6;
-            }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 7 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 8)
-            {
-                m_weaponCursor = 7;
-                m_weaponSelect = m_weaponBegin + 7;
-            }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 8 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 9)
-            {
-                m_weaponCursor = 8;
-                m_weaponSelect = m_weaponBegin + 8;
-            }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 9 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 10)
-            {
-                m_weaponCursor = 9;
-                m_weaponSelect = m_weaponBegin + 9;
-            }
-        }
-
-        if (previousIndex != m_itemCursor)
-        {
-            m_SE->PlayMove();
-        }
-    }
-    else if (m_eFocus == eFocus::QUIT)
-    {
-        int previousIndex = m_weaponCursor;
-        if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH)
-        {
-            if (LEFT_PANEL_STARTY < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 1)
-            {
-                m_quitCursor = 0;
-            }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 1 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 2)
-            {
-                m_quitCursor = 1;
-            }
-        }
-
-        if (previousIndex != m_quitCursor)
-        {
-            m_SE->PlayMove();
-        }
-    }
-    else if (m_eFocus == eFocus::OPENING)
-    {
-        int previousIndex = m_openingCursor;
-        if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH)
-        {
-            if (LEFT_PANEL_STARTY < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 1)
-            {
-                m_openingCursor = 0;
-            }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 1 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 2)
-            {
-                m_openingCursor = 1;
-            }
-        }
-
-        if (previousIndex != m_openingCursor)
-        {
-            m_SE->PlayMove();
-        }
     }
 }
 
 void MenuLib::Click(const int x, const int y)
 {
     m_SE->PlayClick();
+
+    // どこにフォーカスがあってもTOP Barをクリックしたら、その操作は有効にする。
     if (TOPBAR_STARTY < y && y <= TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT * 1)
     {
         if (TOPBAR_STARTX < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 1)
@@ -1012,319 +1023,151 @@ void MenuLib::Click(const int x, const int y)
             m_topBarIndex = TOPBAR_OPENING;
         }
     }
-    else
+    else if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH)
     {
-        if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH)
+        int nCursor = 0;
+        int nSelect = 0;
+        int nBegin = 0;
+        int nSize = 10;
+        if (m_eFocus == eFocus::ITEM)
         {
-            if (LEFT_PANEL_STARTY < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 1)
+            nBegin = m_itemBegin;
+            if (m_itemInfoList.size() <= 9)
             {
-                if (m_topBarIndex == TOPBAR_ITEM)
-                {
-                    m_eFocus = eFocus::ITEM;
-                    m_itemCursor = 0;
-                    m_itemSelect = m_itemBegin;
-                }
-                else if (m_topBarIndex == TOPBAR_WEAPON)
-                {
-                    m_eFocus = eFocus::WEAPON;
-                    m_weaponCursor = 0;
-                    m_weaponSelect = m_weaponBegin;
-                }
+                nSize = m_itemInfoList.size();
             }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 1 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 2)
+        }
+        else if (m_eFocus == eFocus::WEAPON)
+        {
+            nBegin = m_weaponBegin;
+            if (m_weaponInfoList.size() <= 9)
             {
-                if (m_topBarIndex == TOPBAR_ITEM)
-                {
-                    m_eFocus = eFocus::ITEM;
-                    m_itemCursor = 1;
-                    m_itemSelect = m_itemBegin + 1;
-                }
-                else if (m_topBarIndex == TOPBAR_WEAPON)
-                {
-                    m_eFocus = eFocus::WEAPON;
-                    m_weaponCursor = 1;
-                    m_weaponSelect = m_weaponBegin + 1;
-                }
+                nSize = m_weaponInfoList.size();
             }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 2 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 3)
+        }
+        else if (m_eFocus == eFocus::GUIDE)
+        {
+            nBegin = m_guideBegin;
+            if (m_guideInfoList.size() <= 9)
             {
-                if (m_topBarIndex == TOPBAR_ITEM)
-                {
-                    m_eFocus = eFocus::ITEM;
-                    m_itemCursor = 2;
-                    m_itemSelect = m_itemBegin + 2;
-                }
-                else if (m_topBarIndex == TOPBAR_WEAPON)
-                {
-                    m_eFocus = eFocus::WEAPON;
-                    m_weaponCursor = 2;
-                    m_weaponSelect = m_weaponBegin + 2;
-                }
+                nSize = m_guideInfoList.size();
             }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 3 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 4)
+        }
+        else if (m_eFocus == eFocus::MAP)
+        {
+            nBegin = m_mapBegin;
+            if (m_mapInfoList.size() <= 9)
             {
-                if (m_topBarIndex == TOPBAR_ITEM)
-                {
-                    m_eFocus = eFocus::ITEM;
-                    m_itemCursor = 3;
-                    m_itemSelect = m_itemBegin + 3;
-                }
-                else if (m_topBarIndex == TOPBAR_WEAPON)
-                {
-                    m_eFocus = eFocus::WEAPON;
-                    m_weaponCursor = 3;
-                    m_weaponSelect = m_weaponBegin + 3;
-                }
+                nSize = m_mapInfoList.size();
             }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 4 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 5)
+        }
+        else if (m_eFocus == eFocus::HUMAN)
+        {
+            nBegin = m_humanBegin;
+            if (m_humanInfoList.size() <= 9)
             {
-                if (m_topBarIndex == TOPBAR_ITEM)
-                {
-                    m_eFocus = eFocus::ITEM;
-                    m_itemCursor = 4;
-                    m_itemSelect = m_itemBegin + 4;
-                }
-                else if (m_topBarIndex == TOPBAR_WEAPON)
-                {
-                    m_eFocus = eFocus::WEAPON;
-                    m_weaponCursor = 4;
-                    m_weaponSelect = m_weaponBegin + 4;
-                }
+                nSize = m_humanInfoList.size();
             }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 5 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 6)
+        }
+        else if (m_eFocus == eFocus::ENEMY)
+        {
+            nBegin = m_enemyBegin;
+            if (m_enemyInfoList.size() <= 9)
             {
-                if (m_topBarIndex == TOPBAR_ITEM)
-                {
-                    m_eFocus = eFocus::ITEM;
-                    m_itemCursor = 5;
-                    m_itemSelect = m_itemBegin + 5;
-                }
-                else if (m_topBarIndex == TOPBAR_WEAPON)
-                {
-                    m_eFocus = eFocus::WEAPON;
-                    m_weaponCursor = 5;
-                    m_weaponSelect = m_weaponBegin + 5;
-                }
+                nSize = m_enemyInfoList.size();
             }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 6 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 7)
+        }
+        else if (m_eFocus == eFocus::SKILL)
+        {
+            nBegin = m_skillBegin;
+            if (m_skillInfoList.size() <= 9)
             {
-                if (m_topBarIndex == TOPBAR_ITEM)
-                {
-                    m_eFocus = eFocus::ITEM;
-                    m_itemCursor = 6;
-                    m_itemSelect = m_itemBegin + 6;
-                }
-                else if (m_topBarIndex == TOPBAR_WEAPON)
-                {
-                    m_eFocus = eFocus::WEAPON;
-                    m_weaponCursor = 6;
-                    m_weaponSelect = m_weaponBegin + 6;
-                }
+                nSize = m_skillInfoList.size();
             }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 7 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 8)
+        }
+        else if (m_eFocus == eFocus::STATUS)
+        {
+            nBegin = m_statusBegin;
+            if (m_statusInfoList.size() <= 9)
             {
-                if (m_topBarIndex == TOPBAR_ITEM)
-                {
-                    m_eFocus = eFocus::ITEM;
-                    m_itemCursor = 7;
-                    m_itemSelect = m_itemBegin + 7;
-                }
-                else if (m_topBarIndex == TOPBAR_WEAPON)
-                {
-                    m_eFocus = eFocus::WEAPON;
-                    m_weaponCursor = 7;
-                    m_weaponSelect = m_weaponBegin + 7;
-                }
+                nSize = m_statusInfoList.size();
             }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 8 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 9)
+        }
+        else if (m_eFocus == eFocus::QUIT)
+        {
+            nBegin = 0;
+            nSize = 2;
+        }
+        else if (m_eFocus == eFocus::OPENING)
+        {
+            nBegin = 0;
+            nSize = 2;
+        }
+
+        for (int i = 0; i < nSize; ++i)
+        {
+            if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
+                y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (i + 1))
             {
-                if (m_topBarIndex == TOPBAR_ITEM)
-                {
-                    m_eFocus = eFocus::ITEM;
-                    m_itemCursor = 8;
-                    m_itemSelect = m_itemBegin + 8;
-                }
-                else if (m_topBarIndex == TOPBAR_WEAPON)
-                {
-                    m_eFocus = eFocus::WEAPON;
-                    m_weaponCursor = 8;
-                    m_weaponSelect = m_weaponBegin + 8;
-                }
+                nCursor = i;
+                nSelect = nBegin + i;
             }
-            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 9 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 10)
-            {
-                if (m_topBarIndex == TOPBAR_ITEM)
-                {
-                    m_eFocus = eFocus::ITEM;
-                    m_itemCursor = 9;
-                    m_itemSelect = m_itemBegin + 9;
-                }
-                else if (m_topBarIndex == TOPBAR_WEAPON)
-                {
-                    m_eFocus = eFocus::WEAPON;
-                    m_weaponCursor = 9;
-                    m_weaponSelect = m_weaponBegin + 9;
-                }
-            }
+        }
+
+        if (m_eFocus == eFocus::ITEM)
+        {
+            m_itemCursor = nCursor;
+            m_itemSelect = nSelect;
+            m_eFocus = eFocus::ITEM_SUB;
+        }
+        else if (m_eFocus == eFocus::WEAPON)
+        {
+            m_weaponCursor = nCursor;
+            m_weaponSelect = nSelect;
+            m_eFocus = eFocus::WEAPON_SUB;
+        }
+        else if (m_eFocus == eFocus::GUIDE)
+        {
+            m_guideCursor = nCursor;
+            m_guideSelect = nSelect;
+            m_eFocus = eFocus::GUIDE_SUB;
+        }
+        else if (m_eFocus == eFocus::MAP)
+        {
+            m_mapCursor = nCursor;
+            m_mapSelect = nSelect;
+        }
+        else if (m_eFocus == eFocus::HUMAN)
+        {
+            m_humanCursor = nCursor;
+            m_humanSelect = nSelect;
+        }
+        else if (m_eFocus == eFocus::ENEMY)
+        {
+            m_enemyCursor = nCursor;
+            m_enemySelect = nSelect;
+        }
+        else if (m_eFocus == eFocus::SKILL)
+        {
+            m_skillCursor = nCursor;
+            m_skillSelect = nSelect;
+        }
+        else if (m_eFocus == eFocus::STATUS)
+        {
+            m_statusCursor = nCursor;
+            m_statusSelect = nSelect;
+        }
+        else if (m_eFocus == eFocus::QUIT)
+        {
+            m_quitCursor = nCursor;
+        }
+        else if (m_eFocus == eFocus::OPENING)
+        {
+            m_openingCursor = nCursor;
         }
     }
-}
-
-void MenuLib::RightClick(const int x, const int y)
-{
-    m_SE->PlayClick();
-    if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH)
+    else if (MIDDLE_PANEL_STARTX < x && x <= MIDDLE_PANEL_STARTX + LEFT_PANEL_WIDTH)
     {
-        if (LEFT_PANEL_STARTY < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 1)
-        {
-            if (m_topBarIndex == TOPBAR_ITEM)
-            {
-                m_eFocus = eFocus::ITEM_SUB;
-                m_itemCursor = 0;
-                m_itemSelect = m_itemBegin;
-            }
-            else if (m_topBarIndex == TOPBAR_WEAPON)
-            {
-                m_eFocus = eFocus::WEAPON_SUB;
-                m_weaponCursor = 0;
-                m_weaponSelect = m_weaponBegin;
-            }
-        }
-        else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 1 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 2)
-        {
-            if (m_topBarIndex == TOPBAR_ITEM)
-            {
-                m_eFocus = eFocus::ITEM_SUB;
-                m_itemCursor = 1;
-                m_itemSelect = m_itemBegin + 1;
-            }
-            else if (m_topBarIndex == TOPBAR_WEAPON)
-            {
-                m_eFocus = eFocus::WEAPON_SUB;
-                m_weaponCursor = 1;
-                m_weaponSelect = m_weaponBegin + 1;
-            }
-        }
-        else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 2 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 3)
-        {
-            if (m_topBarIndex == TOPBAR_ITEM)
-            {
-                m_eFocus = eFocus::ITEM_SUB;
-                m_itemCursor = 2;
-                m_itemSelect = m_itemBegin + 2;
-            }
-            else if (m_topBarIndex == TOPBAR_WEAPON)
-            {
-                m_eFocus = eFocus::WEAPON_SUB;
-                m_weaponCursor = 2;
-                m_weaponSelect = m_weaponBegin + 2;
-            }
-        }
-        else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 3 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 4)
-        {
-            if (m_topBarIndex == TOPBAR_ITEM)
-            {
-                m_eFocus = eFocus::ITEM_SUB;
-                m_itemCursor = 3;
-                m_itemSelect = m_itemBegin + 3;
-            }
-            else if (m_topBarIndex == TOPBAR_WEAPON)
-            {
-                m_eFocus = eFocus::WEAPON_SUB;
-                m_weaponCursor = 3;
-                m_weaponSelect = m_weaponBegin + 3;
-            }
-        }
-        else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 4 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 5)
-        {
-            if (m_topBarIndex == TOPBAR_ITEM)
-            {
-                m_eFocus = eFocus::ITEM_SUB;
-                m_itemCursor = 4;
-                m_itemSelect = m_itemBegin + 4;
-            }
-            else if (m_topBarIndex == TOPBAR_WEAPON)
-            {
-                m_eFocus = eFocus::WEAPON_SUB;
-                m_weaponCursor = 4;
-                m_weaponSelect = m_weaponBegin + 4;
-            }
-        }
-        else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 5 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 6)
-        {
-            if (m_topBarIndex == TOPBAR_ITEM)
-            {
-                m_eFocus = eFocus::ITEM_SUB;
-                m_itemCursor = 5;
-                m_itemSelect = m_itemBegin + 5;
-            }
-            else if (m_topBarIndex == TOPBAR_WEAPON)
-            {
-                m_eFocus = eFocus::WEAPON_SUB;
-                m_weaponCursor = 5;
-                m_weaponSelect = m_weaponBegin + 5;
-            }
-        }
-        else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 6 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 7)
-        {
-            if (m_topBarIndex == TOPBAR_ITEM)
-            {
-                m_eFocus = eFocus::ITEM_SUB;
-                m_itemCursor = 6;
-                m_itemSelect = m_itemBegin + 6;
-            }
-            else if (m_topBarIndex == TOPBAR_WEAPON)
-            {
-                m_eFocus = eFocus::WEAPON_SUB;
-                m_weaponCursor = 6;
-                m_weaponSelect = m_weaponBegin + 6;
-            }
-        }
-        else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 7 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 8)
-        {
-            if (m_topBarIndex == TOPBAR_ITEM)
-            {
-                m_eFocus = eFocus::ITEM_SUB;
-                m_itemCursor = 7;
-                m_itemSelect = m_itemBegin + 7;
-            }
-            else if (m_topBarIndex == TOPBAR_WEAPON)
-            {
-                m_eFocus = eFocus::WEAPON_SUB;
-                m_weaponCursor = 7;
-                m_weaponSelect = m_weaponBegin + 7;
-            }
-        }
-        else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 8 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 9)
-        {
-            if (m_topBarIndex == TOPBAR_ITEM)
-            {
-                m_eFocus = eFocus::ITEM_SUB;
-                m_itemCursor = 8;
-                m_itemSelect = m_itemBegin + 8;
-            }
-            else if (m_topBarIndex == TOPBAR_WEAPON)
-            {
-                m_eFocus = eFocus::WEAPON_SUB;
-                m_weaponCursor = 8;
-                m_weaponSelect = m_weaponBegin + 8;
-            }
-        }
-        else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 9 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 10)
-        {
-            if (m_topBarIndex == TOPBAR_ITEM)
-            {
-                m_eFocus = eFocus::ITEM_SUB;
-                m_itemCursor = 9;
-                m_itemSelect = m_itemBegin + 9;
-            }
-            else if (m_topBarIndex == TOPBAR_WEAPON)
-            {
-                m_eFocus = eFocus::WEAPON_SUB;
-                m_weaponCursor = 9;
-                m_weaponSelect = m_weaponBegin + 9;
-            }
-        }
     }
 }
 

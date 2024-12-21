@@ -235,7 +235,6 @@ public:
     std::string Previous();
     void CursorOn(const int x, const int y);
     void Click(const int x, const int y);
-    void RightClick(const int x, const int y);
     void Draw();
     
     // ƒAƒCƒeƒ€î•ñ‚ğŒã‚©‚ç•Ï‚¦‚½‚¢‚Æ‚«
