@@ -662,7 +662,16 @@ std::string MenuLib::Into()
 std::string MenuLib::Back()
 {
     std::string result;
-    if (m_eFocus == eFocus::ITEM)
+    if (m_eFocus == eFocus::ITEM ||
+        m_eFocus == eFocus::WEAPON ||
+        m_eFocus == eFocus::GUIDE ||
+        m_eFocus == eFocus::MAP ||
+        m_eFocus == eFocus::HUMAN ||
+        m_eFocus == eFocus::ENEMY ||
+        m_eFocus == eFocus::SKILL ||
+        m_eFocus == eFocus::STATUS ||
+        m_eFocus == eFocus::QUIT ||
+        m_eFocus == eFocus::OPENING)
     {
         m_eFocus = eFocus::TOP_BAR;
         m_SE->PlayBack();
