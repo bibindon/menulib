@@ -130,14 +130,26 @@ public:
             &m_pFont);
     }
 
-    virtual void DrawText_(const std::string& msg, const int x, const int y, const int transparency)
+    virtual void DrawText_(const std::string& msg, const int x, const int y, const bool hcenter, const int transparency)
     {
-        RECT rect = { x, y, x + 100, y + 20 };
-        m_pFont->DrawText(NULL, msg.c_str(),
-                          -1,
-                          &rect,
-                          DT_VCENTER | DT_CENTER | DT_NOCLIP,
-                          D3DCOLOR_ARGB(transparency, 255, 255, 255));
+        if (hcenter)
+        {
+            RECT rect = { x, y, x + 100, y + 20 };
+            m_pFont->DrawText(NULL, msg.c_str(),
+                              -1,
+                              &rect,
+                              DT_VCENTER | DT_CENTER | DT_NOCLIP,
+                              D3DCOLOR_ARGB(transparency, 255, 255, 255));
+        }
+        else
+        {
+            RECT rect = { x, y, x + 200, y + 20 };
+            m_pFont->DrawText(NULL, msg.c_str(),
+                              -1,
+                              &rect,
+                              DT_VCENTER | DT_NOCLIP,
+                              D3DCOLOR_ARGB(transparency, 255, 255, 255));
+        }
     }
 
     ~Font()

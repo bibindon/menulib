@@ -1078,56 +1078,59 @@ void MenuLib::Draw()
 
     if (m_eFocus == eFocus::TOP_BAR)
     {
-        m_font->DrawText_(m_TopBarName.at(0), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 0) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY);
-        m_font->DrawText_(m_TopBarName.at(1), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 1) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY);
-        m_font->DrawText_(m_TopBarName.at(2), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 2) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY);
-        m_font->DrawText_(m_TopBarName.at(3), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 3) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY);
-        m_font->DrawText_(m_TopBarName.at(4), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 4) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY);
-        m_font->DrawText_(m_TopBarName.at(5), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 5) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY);
-        m_font->DrawText_(m_TopBarName.at(6), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 6) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY);
-        m_font->DrawText_(m_TopBarName.at(7), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 0) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT + TOPBAR_PADDINGY);
-        m_font->DrawText_(m_TopBarName.at(8), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 1) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT + TOPBAR_PADDINGY);
-        m_font->DrawText_(m_TopBarName.at(9), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 2) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT + TOPBAR_PADDINGY);
+        m_font->DrawText_(m_TopBarName.at(0), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 0) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY, true);
+        m_font->DrawText_(m_TopBarName.at(1), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 1) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY, true);
+        m_font->DrawText_(m_TopBarName.at(2), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 2) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY, true);
+        m_font->DrawText_(m_TopBarName.at(3), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 3) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY, true);
+        m_font->DrawText_(m_TopBarName.at(4), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 4) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY, true);
+        m_font->DrawText_(m_TopBarName.at(5), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 5) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY, true);
+        m_font->DrawText_(m_TopBarName.at(6), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 6) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY, true);
+        m_font->DrawText_(m_TopBarName.at(7), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 0) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT + TOPBAR_PADDINGY, true);
+        m_font->DrawText_(m_TopBarName.at(8), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 1) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT + TOPBAR_PADDINGY, true);
+        m_font->DrawText_(m_TopBarName.at(9), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 2) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT + TOPBAR_PADDINGY, true);
     }
     else
     {
         const int transparency = 32;
-        m_font->DrawText_(m_TopBarName.at(0), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 0) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY, transparency);
-        m_font->DrawText_(m_TopBarName.at(1), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 1) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY, transparency);
-        m_font->DrawText_(m_TopBarName.at(2), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 2) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY, transparency);
-        m_font->DrawText_(m_TopBarName.at(3), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 3) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY, transparency);
-        m_font->DrawText_(m_TopBarName.at(4), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 4) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY, transparency);
-        m_font->DrawText_(m_TopBarName.at(5), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 5) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY, transparency);
-        m_font->DrawText_(m_TopBarName.at(6), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 6) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY, transparency);
-        m_font->DrawText_(m_TopBarName.at(7), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 0) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT + TOPBAR_PADDINGY, transparency);
-        m_font->DrawText_(m_TopBarName.at(8), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 1) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT + TOPBAR_PADDINGY, transparency);
-        m_font->DrawText_(m_TopBarName.at(9), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 2) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT + TOPBAR_PADDINGY, transparency);
+        m_font->DrawText_(m_TopBarName.at(0), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 0) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY, true, transparency);
+        m_font->DrawText_(m_TopBarName.at(1), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 1) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY, true, transparency);
+        m_font->DrawText_(m_TopBarName.at(2), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 2) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY, true, transparency);
+        m_font->DrawText_(m_TopBarName.at(3), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 3) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY, true, transparency);
+        m_font->DrawText_(m_TopBarName.at(4), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 4) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY, true, transparency);
+        m_font->DrawText_(m_TopBarName.at(5), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 5) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY, true, transparency);
+        m_font->DrawText_(m_TopBarName.at(6), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 6) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PADDINGY, true, transparency);
+        m_font->DrawText_(m_TopBarName.at(7), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 0) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT + TOPBAR_PADDINGY, true, transparency);
+        m_font->DrawText_(m_TopBarName.at(8), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 1) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT + TOPBAR_PADDINGY, true, transparency);
+        m_font->DrawText_(m_TopBarName.at(9), TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * 2) + TOPBAR_PADDINGX, TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT + TOPBAR_PADDINGY, true, transparency);
 
         if (m_topBarIndex < 7)
         {
             m_font->DrawText_(m_TopBarName.at(m_topBarIndex),
                               TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * m_topBarIndex) + TOPBAR_PADDINGX,
-                              TOPBAR_STARTY + TOPBAR_PADDINGY, 255);
+                              TOPBAR_STARTY + TOPBAR_PADDINGY,
+                              true,
+                              255);
         }
         else
         {
             m_font->DrawText_(m_TopBarName.at(m_topBarIndex),
                               TOPBAR_STARTX + (TOPBAR_PANEL_WIDTH * (m_topBarIndex - 7)) + TOPBAR_PADDINGX,
-                              TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT + TOPBAR_PADDINGY, 255);
+                              TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT + TOPBAR_PADDINGY,
+                              true,
+                              255);
         }
     }
 
-    if (m_eFocus == eFocus::ITEM)
+    if (m_eFocus == eFocus::ITEM || m_eFocus == eFocus::ITEM_SUB)
     {
-        m_font->DrawText_("強化", LEFT_PANEL_STARTX + 320, LEFT_PANEL_STARTY - 35);
-        m_font->DrawText_("耐久", LEFT_PANEL_STARTX + 380, LEFT_PANEL_STARTY - 35);
+        m_font->DrawText_("強化", LEFT_PANEL_STARTX + 320, LEFT_PANEL_STARTY - 35, false, 64);
+        m_font->DrawText_("耐久", LEFT_PANEL_STARTX + 380, LEFT_PANEL_STARTY - 35, false, 64);
         for (int i = 0; i < LEFT_PANEL_ROW_MAX; ++i)
         {
             if ((int)m_itemInfoList.size() <= m_itemBegin + i)
             {
                 break;
             }
-            //m_sprPanelLeft->DrawImage(LEFT_PANEL_STARTX, LEFT_PANEL_STARTY + (i*LEFT_PANEL_HEIGHT));
             m_font->DrawText_(
                 m_itemInfoList.at(m_itemBegin+i).GetName(),
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
@@ -1150,17 +1153,16 @@ void MenuLib::Draw()
             }
         }
     }
-    else if (m_eFocus == eFocus::WEAPON)
+    else if (m_eFocus == eFocus::WEAPON || m_eFocus == eFocus::WEAPON_SUB)
     {
-        m_font->DrawText_("強化", LEFT_PANEL_STARTX + 320, LEFT_PANEL_STARTY - 35);
-        m_font->DrawText_("耐久", LEFT_PANEL_STARTX + 380, LEFT_PANEL_STARTY - 35);
+        m_font->DrawText_("強化", LEFT_PANEL_STARTX + 320, LEFT_PANEL_STARTY - 35, false, 64);
+        m_font->DrawText_("耐久", LEFT_PANEL_STARTX + 380, LEFT_PANEL_STARTY - 35, false, 64);
         for (int i = 0; i < LEFT_PANEL_ROW_MAX; ++i)
         {
             if ((int)m_weaponInfoList.size() <= m_weaponBegin + i)
             {
                 break;
             }
-            //m_sprPanelLeft->DrawImage(LEFT_PANEL_STARTX, LEFT_PANEL_STARTY + (i*LEFT_PANEL_HEIGHT));
             m_font->DrawText_(
                 m_weaponInfoList.at(m_weaponBegin+i).GetName(),
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
@@ -1192,7 +1194,6 @@ void MenuLib::Draw()
             {
                 break;
             }
-            //m_sprPanelLeft->DrawImage(LEFT_PANEL_STARTX, LEFT_PANEL_STARTY + (i*LEFT_PANEL_HEIGHT));
             m_font->DrawText_(m_guideCategory.at(m_guideBegin+i),
                               LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
                               LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
@@ -1206,7 +1207,6 @@ void MenuLib::Draw()
             {
                 break;
             }
-            //m_sprPanelLeft->DrawImage(LEFT_PANEL_STARTX, LEFT_PANEL_STARTY + (i*LEFT_PANEL_HEIGHT));
             m_font->DrawText_(
                 m_mapInfoList.at(m_mapBegin+i).GetName(),
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
@@ -1221,7 +1221,6 @@ void MenuLib::Draw()
             {
                 break;
             }
-            //m_sprPanelLeft->DrawImage(LEFT_PANEL_STARTX, LEFT_PANEL_STARTY + (i*LEFT_PANEL_HEIGHT));
             m_font->DrawText_(
                 m_humanInfoList.at(m_humanBegin+i).GetName(),
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
@@ -1236,7 +1235,6 @@ void MenuLib::Draw()
             {
                 break;
             }
-            //m_sprPanelLeft->DrawImage(LEFT_PANEL_STARTX, LEFT_PANEL_STARTY + (i*LEFT_PANEL_HEIGHT));
             m_font->DrawText_(
                 m_enemyInfoList.at(m_enemyBegin+i).GetName(),
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
@@ -1251,7 +1249,6 @@ void MenuLib::Draw()
             {
                 break;
             }
-            //m_sprPanelLeft->DrawImage(LEFT_PANEL_STARTX, LEFT_PANEL_STARTY + (i*LEFT_PANEL_HEIGHT));
             m_font->DrawText_(
                 m_skillInfoList.at(m_skillBegin+i).GetName(),
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
@@ -1266,7 +1263,6 @@ void MenuLib::Draw()
             {
                 break;
             }
-            //m_sprPanelLeft->DrawImage(LEFT_PANEL_STARTX, LEFT_PANEL_STARTY + (i*LEFT_PANEL_HEIGHT));
             m_font->DrawText_(
                 m_statusInfoList.at(m_statusBegin+i).GetName(),
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
@@ -1295,10 +1291,9 @@ void MenuLib::Draw()
     // Show item sub
     if (m_eFocus == eFocus::ITEM_SUB)
     {
-        //m_sprPanelLeft->DrawImage(550, LEFT_PANEL_STARTY + (m_itemCursor*LEFT_PANEL_HEIGHT));
         m_font->DrawText_(
-            "使う　　　　　捨てる",
-            650,
+            "使う　　　　　　捨てる",
+            630,
             LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT)
         );
     }
@@ -1306,10 +1301,9 @@ void MenuLib::Draw()
     // Show weapon sub
     if (m_eFocus == eFocus::WEAPON_SUB)
     {
-        //m_sprPanelLeft->DrawImage(550, LEFT_PANEL_STARTY + (m_weaponCursor*LEFT_PANEL_HEIGHT));
         m_font->DrawText_(
-            "装備する　　キャンセル",
-            650,
+            "装備する　　　　キャンセル",
+            630,
             LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_weaponCursor * LEFT_PANEL_HEIGHT)
         );
     }
@@ -1326,7 +1320,6 @@ void MenuLib::Draw()
             {
                 break;
             }
-            //m_sprPanelLeft->DrawImage(550, LEFT_PANEL_STARTY + (i*LEFT_PANEL_HEIGHT));
             m_font->DrawText_(vs.at(m_guideSubBegin+i),
                               650,
                               LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
@@ -1479,7 +1472,7 @@ void MenuLib::Draw()
     }
     else if (m_eFocus == eFocus::ITEM_SUB)
     {
-        m_sprCursor->DrawImage(570 + (m_itemSubCursor * 160), LEFT_PANEL_CURSORY + (m_itemCursor * 60));
+        m_sprCursor->DrawImage(MIDDLE_PANEL_CURSORX + (m_itemSubCursor * 160), MIDDLE_PANEL_CURSORY + (m_itemCursor * 60));
     }
     else if (m_eFocus == eFocus::WEAPON)
     {
@@ -1487,7 +1480,7 @@ void MenuLib::Draw()
     }
     else if (m_eFocus == eFocus::WEAPON_SUB)
     {
-        m_sprCursor->DrawImage(570 + (m_weaponSubCursor * 160), LEFT_PANEL_CURSORY + (m_weaponCursor * 60));
+        m_sprCursor->DrawImage(MIDDLE_PANEL_CURSORX + (m_weaponSubCursor * 160), MIDDLE_PANEL_CURSORY + (m_weaponCursor * 60));
     }
     else if (m_eFocus == eFocus::GUIDE)
     {
@@ -1495,7 +1488,7 @@ void MenuLib::Draw()
     }
     else if (m_eFocus == eFocus::GUIDE_SUB)
     {
-        m_sprCursor->DrawImage(570, LEFT_PANEL_CURSORY + (m_guideSubCursor * 60));
+        m_sprCursor->DrawImage(MIDDLE_PANEL_CURSORX, MIDDLE_PANEL_CURSORY + (m_guideSubCursor * 60));
     }
     else if (m_eFocus == eFocus::MAP)
     {

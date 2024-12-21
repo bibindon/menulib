@@ -17,7 +17,7 @@ public:
 class IFont
 {
 public:
-    virtual void DrawText_(const std::string& msg, const int x, const int y, const int transparency = 255) = 0;
+    virtual void DrawText_(const std::string& msg, const int x, const int y, const bool hcenter = false, const int transparency = 255) = 0;
     virtual void Init() = 0;
     virtual ~IFont() {};
 };
@@ -292,11 +292,14 @@ private:
     const int LEFT_PANEL_WIDTH = 432;
     const int LEFT_PANEL_HEIGHT = 60;
 
-    const int LEFT_PANEL_STARTX = 100;
+    const int LEFT_PANEL_STARTX = 80;
     const int LEFT_PANEL_STARTY = 280;
 
-    const int LEFT_PANEL_CURSORX = 90;
+    const int LEFT_PANEL_CURSORX = 100;
     const int LEFT_PANEL_CURSORY = 295;
+
+    const int MIDDLE_PANEL_CURSORX = 600;
+    const int MIDDLE_PANEL_CURSORY = 295;
 
     const int LEFT_PANEL_ROW_MAX = 10;
 
