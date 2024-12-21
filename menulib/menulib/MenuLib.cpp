@@ -1185,7 +1185,7 @@ void MenuLib::Draw()
             }
         }
     }
-    else if (m_eFocus == eFocus::GUIDE)
+    else if (m_eFocus == eFocus::GUIDE || m_eFocus == eFocus::GUIDE_SUB)
     {
         // ëÂÉJÉeÉSÉäÇÃêîÇæÇØï\é¶
         for (int i = 0; i < LEFT_PANEL_ROW_MAX; ++i)
@@ -1321,7 +1321,7 @@ void MenuLib::Draw()
                 break;
             }
             m_font->DrawText_(vs.at(m_guideSubBegin+i),
-                              650,
+                              630,
                               LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
         }
     }
