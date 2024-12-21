@@ -1126,6 +1126,12 @@ LRESULT WINAPI MsgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
         menu.Click(mouse_p.x, mouse_p.y);
         break;
     }
+    case WM_RBUTTONDOWN:
+    {
+        POINTS mouse_p = MAKEPOINTS(lParam);
+        menu.RightClick();
+        break;
+    }
     case WM_MOUSEMOVE:
     {
         POINTS mouse_p = MAKEPOINTS(lParam);

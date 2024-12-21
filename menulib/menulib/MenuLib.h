@@ -234,7 +234,11 @@ public:
     std::string Next();
     std::string Previous();
     void CursorOn(const int x, const int y);
-    void Click(const int x, const int y);
+    std::string Click(const int x, const int y);
+
+    // 右クリックはキャンセル操作
+    void RightClick();
+
     void Draw();
     
     // アイテム情報を後から変えたいとき
