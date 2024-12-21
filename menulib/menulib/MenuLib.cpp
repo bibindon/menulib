@@ -1379,8 +1379,8 @@ void MenuLib::Draw()
 
     if (m_eFocus == eFocus::ITEM || m_eFocus == eFocus::ITEM_SUB)
     {
-        m_font->DrawText_("‹­‰»", LEFT_PANEL_STARTX + 320, LEFT_PANEL_STARTY - 35, false, 64);
-        m_font->DrawText_("‘Ï‹v", LEFT_PANEL_STARTX + 380, LEFT_PANEL_STARTY - 35, false, 64);
+        m_font->DrawText_("‹­‰»", LEFT_PANEL_STARTX + 320, LEFT_PANEL_STARTY - 35, true, 64);
+        m_font->DrawText_("‘Ï‹v", LEFT_PANEL_STARTX + 380, LEFT_PANEL_STARTY - 35, true, 64);
         for (int i = 0; i < LEFT_PANEL_ROW_MAX; ++i)
         {
             if ((int)m_itemInfoList.size() <= m_itemBegin + i)
@@ -1396,23 +1396,25 @@ void MenuLib::Draw()
             {
                 m_font->DrawText_(
                     std::to_string(m_itemInfoList.at(m_itemBegin+i).GetLevel()),
-                    385 + LEFT_PANEL_PADDINGX,
-                    LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
+                    350 + LEFT_PANEL_PADDINGX,
+                    LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT),
+                    true);
             }
 
             if (m_itemInfoList.at(m_itemBegin + i).GetDurability() != -1)
             {
                 m_font->DrawText_(
                     std::to_string(m_itemInfoList.at(m_itemBegin + i).GetDurability()),
-                    435 + LEFT_PANEL_PADDINGX,
-                    LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i * LEFT_PANEL_HEIGHT));
+                    410 + LEFT_PANEL_PADDINGX,
+                    LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i * LEFT_PANEL_HEIGHT),
+                    true);
             }
         }
     }
     else if (m_eFocus == eFocus::WEAPON || m_eFocus == eFocus::WEAPON_SUB)
     {
-        m_font->DrawText_("‹­‰»", LEFT_PANEL_STARTX + 320, LEFT_PANEL_STARTY - 35, false, 64);
-        m_font->DrawText_("‘Ï‹v", LEFT_PANEL_STARTX + 380, LEFT_PANEL_STARTY - 35, false, 64);
+        m_font->DrawText_("‹­‰»", LEFT_PANEL_STARTX + 320, LEFT_PANEL_STARTY - 35, true, 64);
+        m_font->DrawText_("‘Ï‹v", LEFT_PANEL_STARTX + 380, LEFT_PANEL_STARTY - 35, true, 64);
         for (int i = 0; i < LEFT_PANEL_ROW_MAX; ++i)
         {
             if ((int)m_weaponInfoList.size() <= m_weaponBegin + i)
@@ -1428,16 +1430,18 @@ void MenuLib::Draw()
             {
                 m_font->DrawText_(
                     std::to_string(m_weaponInfoList.at(m_weaponBegin + i).GetLevel()),
-                    385 + LEFT_PANEL_PADDINGX,
-                    LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i * LEFT_PANEL_HEIGHT));
+                    350 + LEFT_PANEL_PADDINGX,
+                    LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i * LEFT_PANEL_HEIGHT),
+                    true);
             }
 
             if (m_weaponInfoList.at(m_weaponBegin + i).GetDurability() != -1)
             {
                 m_font->DrawText_(
                     std::to_string(m_weaponInfoList.at(m_weaponBegin+i).GetDurability()),
-                    435 + LEFT_PANEL_PADDINGX,
-                    LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
+                    410 + LEFT_PANEL_PADDINGX,
+                    LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT),
+                    true);
             }
         }
     }
