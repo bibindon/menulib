@@ -1279,10 +1279,23 @@ void MenuLib::Draw()
             {
                 break;
             }
+
+            int trans = 255;
+            if (m_eFocus == eFocus::WEAPON_SUB)
+            {
+                trans = 32;
+                if (i == m_weaponSelect)
+                {
+                    trans = 255;
+                }
+            }
+
             m_font->DrawText_(
                 m_weaponInfoList.at(m_weaponBegin+i).GetName(),
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
-                LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
+                LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT),
+                false,
+                trans);
 
             if (m_weaponInfoList.at(m_weaponBegin + i).GetLevel() != -1)
             {
@@ -1290,7 +1303,8 @@ void MenuLib::Draw()
                     std::to_string(m_weaponInfoList.at(m_weaponBegin + i).GetLevel()),
                     350 + LEFT_PANEL_PADDINGX,
                     LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i * LEFT_PANEL_HEIGHT),
-                    true);
+                    true,
+                    trans);
             }
 
             if (m_weaponInfoList.at(m_weaponBegin + i).GetDurability() != -1)
@@ -1299,7 +1313,8 @@ void MenuLib::Draw()
                     std::to_string(m_weaponInfoList.at(m_weaponBegin+i).GetDurability()),
                     410 + LEFT_PANEL_PADDINGX,
                     LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT),
-                    true);
+                    true,
+                    trans);
             }
         }
     }
@@ -1312,9 +1327,21 @@ void MenuLib::Draw()
             {
                 break;
             }
+
+            int trans = 255;
+            if (m_eFocus == eFocus::GUIDE_SUB)
+            {
+                trans = 32;
+                if (i == m_guideSelect)
+                {
+                    trans = 255;
+                }
+            }
             m_font->DrawText_(m_guideCategory.at(m_guideBegin+i),
                               LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
-                              LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
+                              LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT),
+                              false,
+                              trans);
         }
     }
     else if (m_eFocus == eFocus::MAP)
@@ -1467,6 +1494,7 @@ void MenuLib::Draw()
             {
                 break;
             }
+
             m_font->DrawText_(vs.at(m_guideSubBegin+i),
                               MIDDLE_PANEL_STARTX,
                               LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
