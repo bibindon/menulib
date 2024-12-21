@@ -732,6 +732,225 @@ std::string MenuLib::Previous()
 
 void NSMenulib::MenuLib::CursorOn(const int x, const int y)
 {
+    if (m_eFocus == eFocus::TOP_BAR)
+    {
+        int previousIndex = m_topBarIndex;
+        if (TOPBAR_STARTY < y && y <= TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT * 1)
+        {
+            if (TOPBAR_STARTX < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 1)
+            {
+                m_topBarIndex = TOPBAR_ITEM;
+            }
+            else if (TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 1 < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 2)
+            {
+                m_topBarIndex = TOPBAR_WEAPON;
+            }
+            else if (TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 2 < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 3)
+            {
+                m_topBarIndex = TOPBAR_GUIDE;
+            }
+            else if (TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 3 < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 4)
+            {
+                m_topBarIndex = TOPBAR_MAP;
+            }
+            else if (TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 4 < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 5)
+            {
+                m_topBarIndex = TOPBAR_HUMAN;
+            }
+            else if (TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 5 < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 6)
+            {
+                m_topBarIndex = TOPBAR_ENEMY;
+            }
+            else if (TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 6 < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 7)
+            {
+                m_topBarIndex = TOPBAR_SKILL;
+            }
+        }
+        else if (TOPBAR_STARTY < y + TOPBAR_PANEL_HEIGHT * 1 && y <= TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT * 2)
+        {
+            if (TOPBAR_STARTX < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 1)
+            {
+                m_topBarIndex = TOPBAR_STATUS;
+            }
+            else if (TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 1 < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 2)
+            {
+                m_topBarIndex = TOPBAR_QUIT;
+            }
+            else if (TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 2 < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 3)
+            {
+                m_topBarIndex = TOPBAR_OPENING;
+            }
+        }
+
+        if (previousIndex != m_topBarIndex)
+        {
+            m_SE->PlayMove();
+        }
+    }
+    else if (m_eFocus == eFocus::ITEM)
+    {
+        int previousIndex = m_itemCursor;
+        if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH)
+        {
+            if (LEFT_PANEL_STARTY < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 1)
+            {
+                m_itemCursor = 0;
+                m_itemSelect = m_itemBegin;
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 1 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 2)
+            {
+                m_itemCursor = 1;
+                m_itemSelect = m_itemBegin + 1;
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 2 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 3)
+            {
+                m_itemCursor = 2;
+                m_itemSelect = m_itemBegin + 2;
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 3 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 4)
+            {
+                m_itemCursor = 3;
+                m_itemSelect = m_itemBegin + 3;
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 4 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 5)
+            {
+                m_itemCursor = 4;
+                m_itemSelect = m_itemBegin + 4;
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 5 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 6)
+            {
+                m_itemCursor = 5;
+                m_itemSelect = m_itemBegin + 5;
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 6 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 7)
+            {
+                m_itemCursor = 6;
+                m_itemSelect = m_itemBegin + 6;
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 7 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 8)
+            {
+                m_itemCursor = 7;
+                m_itemSelect = m_itemBegin + 7;
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 8 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 9)
+            {
+                m_itemCursor = 8;
+                m_itemSelect = m_itemBegin + 8;
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 9 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 10)
+            {
+                m_itemCursor = 9;
+                m_itemSelect = m_itemBegin + 9;
+            }
+        }
+
+        if (previousIndex != m_itemCursor)
+        {
+            m_SE->PlayMove();
+        }
+    }
+    else if (m_eFocus == eFocus::WEAPON)
+    {
+        int previousIndex = m_weaponCursor;
+        if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH)
+        {
+            if (LEFT_PANEL_STARTY < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 1)
+            {
+                m_weaponCursor = 0;
+                m_weaponSelect = m_weaponBegin + 0;
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 1 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 2)
+            {
+                m_weaponCursor = 1;
+                m_weaponSelect = m_weaponBegin + 1;
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 2 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 3)
+            {
+                m_weaponCursor = 2;
+                m_weaponSelect = m_weaponBegin + 2;
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 3 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 4)
+            {
+                m_weaponCursor = 3;
+                m_weaponSelect = m_weaponBegin + 3;
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 4 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 5)
+            {
+                m_weaponCursor = 4;
+                m_weaponSelect = m_weaponBegin + 4;
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 5 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 6)
+            {
+                m_weaponCursor = 5;
+                m_weaponSelect = m_weaponBegin + 5;
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 6 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 7)
+            {
+                m_weaponCursor = 6;
+                m_weaponSelect = m_weaponBegin + 6;
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 7 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 8)
+            {
+                m_weaponCursor = 7;
+                m_weaponSelect = m_weaponBegin + 7;
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 8 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 9)
+            {
+                m_weaponCursor = 8;
+                m_weaponSelect = m_weaponBegin + 8;
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 9 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 10)
+            {
+                m_weaponCursor = 9;
+                m_weaponSelect = m_weaponBegin + 9;
+            }
+        }
+
+        if (previousIndex != m_itemCursor)
+        {
+            m_SE->PlayMove();
+        }
+    }
+    else if (m_eFocus == eFocus::QUIT)
+    {
+        int previousIndex = m_weaponCursor;
+        if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH)
+        {
+            if (LEFT_PANEL_STARTY < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 1)
+            {
+                m_quitCursor = 0;
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 1 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 2)
+            {
+                m_quitCursor = 1;
+            }
+        }
+
+        if (previousIndex != m_quitCursor)
+        {
+            m_SE->PlayMove();
+        }
+    }
+    else if (m_eFocus == eFocus::OPENING)
+    {
+        int previousIndex = m_openingCursor;
+        if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH)
+        {
+            if (LEFT_PANEL_STARTY < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 1)
+            {
+                m_openingCursor = 0;
+            }
+            else if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 1 < y && y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * 2)
+            {
+                m_openingCursor = 1;
+            }
+        }
+
+        if (previousIndex != m_openingCursor)
+        {
+            m_SE->PlayMove();
+        }
+    }
 }
 
 void MenuLib::Click(const int x, const int y)

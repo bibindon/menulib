@@ -1132,6 +1132,12 @@ LRESULT WINAPI MsgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
         menu.RightClick(mouse_p.x, mouse_p.y);
         break;
     }
+    case WM_MOUSEMOVE:
+    {
+        POINTS mouse_p = MAKEPOINTS(lParam);
+        menu.CursorOn(mouse_p.x, mouse_p.y);
+        break;
+    }
     case WM_MOUSEWHEEL:
     {
         int zDelta = GET_WHEEL_DELTA_WPARAM(wParam);
