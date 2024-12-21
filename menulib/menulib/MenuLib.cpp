@@ -736,6 +736,7 @@ void NSMenulib::MenuLib::CursorOn(const int x, const int y)
     int previousIndex = 0;
     if (m_eFocus == eFocus::TOP_BAR)
     {
+        previousIndex = m_topBarIndex;
         if (TOPBAR_STARTY < y && y <= TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT * 1)
         {
             if (TOPBAR_STARTX < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 1)
