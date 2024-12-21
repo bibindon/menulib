@@ -117,7 +117,7 @@ public:
     {
         HRESULT hr = D3DXCreateFont(
             m_pD3DDevice,
-            24,
+            20,
             0,
             FW_NORMAL,
             1,
@@ -130,11 +130,14 @@ public:
             &m_pFont);
     }
 
-    virtual void DrawText_(const std::string& msg, const int x, const int y)
+    virtual void DrawText_(const std::string& msg, const int x, const int y, const int transparency)
     {
-        RECT rect = { x, y, 0, 0 };
-        m_pFont->DrawText(NULL, msg.c_str(), -1, &rect, DT_LEFT | DT_NOCLIP,
-            D3DCOLOR_ARGB(255, 255, 255, 255));
+        RECT rect = { x, y, x + 100, y + 20 };
+        m_pFont->DrawText(NULL, msg.c_str(),
+                          -1,
+                          &rect,
+                          DT_VCENTER | DT_CENTER | DT_NOCLIP,
+                          D3DCOLOR_ARGB(transparency, 255, 255, 255));
     }
 
     ~Font()
@@ -297,7 +300,7 @@ HRESULT InitD3D(HWND hWnd)
 
     ISoundEffect* pSE = new SoundEffect();
 
-    menu.Init("", pFont, pSE, sprCursor, sprBackground, sprPanel, sprPanelLeft);
+    menu.Init("", pFont, pSE, sprCursor, sprBackground);
     std::vector<ItemInfo> itemInfoList;
     {
         ItemInfo itemInfo;
@@ -974,7 +977,7 @@ VOID Render()
     pEffect->SetMatrix("matWorldViewProj", &mat);
 
     g_pd3dDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,
-        D3DCOLOR_XRGB(100, 100, 100), 1.0f, 0);
+        D3DCOLOR_XRGB(80, 80, 80), 1.0f, 0);
 
     if (SUCCEEDED(g_pd3dDevice->BeginScene()))
     {

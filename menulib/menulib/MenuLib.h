@@ -17,7 +17,7 @@ public:
 class IFont
 {
 public:
-    virtual void DrawText_(const std::string& msg, const int x, const int y) = 0;
+    virtual void DrawText_(const std::string& msg, const int x, const int y, const int transparency = 255) = 0;
     virtual void Init() = 0;
     virtual ~IFont() {};
 };
@@ -214,9 +214,7 @@ public:
         IFont* font,
         ISoundEffect* SE,
         ISprite* sprCursor,
-        ISprite* sprBackground,
-        ISprite* sprPanel,
-        ISprite* sprPanelLeft
+        ISprite* sprBackground
     );
 
     void SetItem(const std::vector<ItemInfo>& items);
@@ -235,6 +233,7 @@ public:
     std::string Back();
     std::string Next();
     std::string Previous();
+    void CursorOn(const int x, const int y);
     void Click(const int x, const int y);
     void RightClick(const int x, const int y);
     void Draw();
@@ -280,10 +279,10 @@ private:
     const int TOPBAR_PADDINGX = 50;
     const int TOPBAR_PADDINGY = 8;
 
-    const int TOPBAR_STARTX = 100;
+    const int TOPBAR_STARTX = 90;
     const int TOPBAR_STARTY = 80;
     const int TOPBAR_PANEL_WIDTH = 200;
-    const int TOPBAR_PANEL_HEIGHT = 50;
+    const int TOPBAR_PANEL_HEIGHT = 60;
 
     const int TOPBAR_COL_MAX = 7;
 
@@ -294,16 +293,15 @@ private:
     const int LEFT_PANEL_HEIGHT = 60;
 
     const int LEFT_PANEL_STARTX = 100;
-    const int LEFT_PANEL_STARTY = 230;
+    const int LEFT_PANEL_STARTY = 280;
 
-    const int LEFT_PANEL_CURSORY = 235;
+    const int LEFT_PANEL_CURSORX = 90;
+    const int LEFT_PANEL_CURSORY = 295;
 
     const int LEFT_PANEL_ROW_MAX = 10;
 
     ISprite* m_sprCursor = nullptr;
     ISprite* m_sprBackground = nullptr;
-    ISprite* m_sprPanel = nullptr;
-    ISprite* m_sprPanelLeft = nullptr;
     IFont* m_font = nullptr;
     ISoundEffect* m_SE = nullptr;
     eFocus m_eFocus = eFocus::TOP_BAR;
