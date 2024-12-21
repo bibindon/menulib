@@ -254,6 +254,22 @@ std::string MenuLib::Up()
             m_SE->PlayMove();
         }
     }
+    else if (m_eFocus == eFocus::QUIT)
+    {
+        if (m_quitCursor == 1)
+        {
+            m_quitCursor = 0;
+            m_SE->PlayMove();
+        }
+    }
+    else if (m_eFocus == eFocus::OPENING)
+    {
+        if (m_openingCursor == 1)
+        {
+            m_openingCursor = 0;
+            m_SE->PlayMove();
+        }
+    }
      
     return m_TopBarName.at(m_topBarIndex);
 }
@@ -431,6 +447,23 @@ std::string MenuLib::Down()
             m_SE->PlayMove();
         }
     }
+    else if (m_eFocus == eFocus::QUIT)
+    {
+        if (m_quitCursor == 0)
+        {
+            m_quitCursor = 1;
+            m_SE->PlayMove();
+        }
+    }
+    else if (m_eFocus == eFocus::OPENING)
+    {
+        if (m_openingCursor == 0)
+        {
+            m_openingCursor = 1;
+            m_SE->PlayMove();
+        }
+    }
+
     return m_TopBarName.at(m_topBarIndex);
 }
 
@@ -554,15 +587,15 @@ std::string MenuLib::Into()
             m_statusBegin = 0;
             m_statusSelect = 0;
         }
-        else if (m_topBarIndex == TOPBAR_TITLE)
+        else if (m_topBarIndex == TOPBAR_QUIT)
         {
-            result = m_TopBarName.at(m_topBarIndex);
-            m_topBarIndex = 0;
+            m_eFocus = eFocus::QUIT;
+            m_quitCursor = 0;
         }
         else if (m_topBarIndex == TOPBAR_OPENING)
         {
-            result = m_TopBarName.at(m_topBarIndex);
-            m_topBarIndex = 0;
+            m_eFocus = eFocus::OPENING;
+            m_openingCursor = 0;
         }
     }
     else if (m_eFocus == eFocus::ITEM)
@@ -615,6 +648,10 @@ std::string MenuLib::Into()
         m_guideSubCursor = 0;
     }
     else if (m_eFocus == eFocus::QUIT)
+    {
+        result = m_TopBarName.at(m_topBarIndex);
+    }
+    else if (m_eFocus == eFocus::OPENING)
     {
         result = m_TopBarName.at(m_topBarIndex);
     }
@@ -748,7 +785,7 @@ void MenuLib::Click(const int x, const int y)
         else if (TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 1 < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 2)
         {
             m_eFocus = eFocus::QUIT;
-            m_topBarIndex = TOPBAR_TITLE;
+            m_topBarIndex = TOPBAR_QUIT;
         }
         else if (TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 2 < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 3)
         {
@@ -1269,6 +1306,30 @@ void MenuLib::Draw()
                 LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
         }
     }
+    else if (m_eFocus == eFocus::QUIT)
+    {
+        m_font->DrawText_(
+            "はい",
+            LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
+            LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*0));
+
+        m_font->DrawText_(
+            "いいえ",
+            LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
+            LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*1));
+    }
+    else if (m_eFocus == eFocus::OPENING)
+    {
+        m_font->DrawText_(
+            "はい",
+            LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
+            LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*0));
+
+        m_font->DrawText_(
+            "いいえ",
+            LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
+            LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*1));
+    }
 
     // Show item detail
     if (m_eFocus == eFocus::ITEM || m_eFocus == eFocus::ITEM_SUB)
@@ -1293,7 +1354,7 @@ void MenuLib::Draw()
     {
         m_font->DrawText_(
             "使う　　　　　　捨てる",
-            630,
+            MIDDLE_PANEL_STARTX,
             LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT)
         );
     }
@@ -1303,7 +1364,7 @@ void MenuLib::Draw()
     {
         m_font->DrawText_(
             "装備する　　　　キャンセル",
-            630,
+            MIDDLE_PANEL_STARTX,
             LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_weaponCursor * LEFT_PANEL_HEIGHT)
         );
     }
@@ -1321,7 +1382,7 @@ void MenuLib::Draw()
                 break;
             }
             m_font->DrawText_(vs.at(m_guideSubBegin+i),
-                              630,
+                              MIDDLE_PANEL_STARTX,
                               LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
         }
     }
@@ -1509,6 +1570,14 @@ void MenuLib::Draw()
     else if (m_eFocus == eFocus::STATUS)
     {
         m_sprCursor->DrawImage(LEFT_PANEL_CURSORX, LEFT_PANEL_CURSORY + (m_statusCursor * 60));
+    }
+    else if (m_eFocus == eFocus::QUIT)
+    {
+        m_sprCursor->DrawImage(LEFT_PANEL_CURSORX, LEFT_PANEL_CURSORY + (m_quitCursor * 60));
+    }
+    else if (m_eFocus == eFocus::OPENING)
+    {
+        m_sprCursor->DrawImage(LEFT_PANEL_CURSORX, LEFT_PANEL_CURSORY + (m_openingCursor * 60));
     }
 }
 

@@ -272,7 +272,7 @@ private:
     const int TOPBAR_ENEMY = 5;
     const int TOPBAR_SKILL = 6;
     const int TOPBAR_STATUS = 7;
-    const int TOPBAR_TITLE = 8;
+    const int TOPBAR_QUIT = 8;
     const int TOPBAR_OPENING = 9;
     const int TOPBAR_MAX = 10;
 
@@ -294,6 +294,8 @@ private:
 
     const int LEFT_PANEL_STARTX = 80;
     const int LEFT_PANEL_STARTY = 280;
+
+    const int MIDDLE_PANEL_STARTX = 630;
 
     const int LEFT_PANEL_CURSORX = 100;
     const int LEFT_PANEL_CURSORY = 295;
@@ -365,6 +367,9 @@ private:
     // 何番目のアイテムが一番上に表示されているか
     // スクロール可能なので一番上に表示されるアイテムはスクロールすると変わる。
     int m_statusBegin { 0 };
+
+    int m_quitCursor = 0;
+    int m_openingCursor = 0;
 
     std::vector<std::string> m_TopBarName;
     std::vector<ItemInfo> m_itemInfoList;
