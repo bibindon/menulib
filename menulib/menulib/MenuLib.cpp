@@ -38,8 +38,8 @@ void MenuLib::Init(
     m_TopBarName.push_back("敵情報");
     m_TopBarName.push_back("技・魔法");
     m_TopBarName.push_back("ステータス");
-    m_TopBarName.push_back("セーブして終了"); // TODO 確認画面があってほしい
-    m_TopBarName.push_back("最初から"); // TODO 確認画面があってほしい
+    m_TopBarName.push_back("セーブして終了");
+    m_TopBarName.push_back("最初から");
 }
 
 void MenuLib::SetItem(const std::vector<ItemInfo>& items)
