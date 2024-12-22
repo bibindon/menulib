@@ -1273,7 +1273,7 @@ std::string MenuLib::Click(const int x, const int y)
                 }
                 else
                 {
-                    m_eFocus == eFocus::TOP_BAR;
+                    m_eFocus = eFocus::TOP_BAR;
                 }
                 m_quitCursor = 0;
             }
@@ -1285,7 +1285,7 @@ std::string MenuLib::Click(const int x, const int y)
                 }
                 else
                 {
-                    m_eFocus == eFocus::TOP_BAR;
+                    m_eFocus = eFocus::TOP_BAR;
                 }
                 m_openingCursor = 0;
             }
