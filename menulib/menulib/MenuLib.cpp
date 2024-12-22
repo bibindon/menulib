@@ -1268,10 +1268,12 @@ std::string MenuLib::Click(const int x, const int y)
             else if (m_eFocus == eFocus::QUIT)
             {
                 m_quitCursor = nCursor;
+                result = m_TopBarName.at(m_topBarIndex);
             }
             else if (m_eFocus == eFocus::OPENING)
             {
                 m_openingCursor = nCursor;
+                result = m_TopBarName.at(m_topBarIndex);
             }
         }
         else if (MIDDLE_PANEL_STARTX < x && x <= MIDDLE_PANEL_STARTX + LEFT_PANEL_WIDTH)
