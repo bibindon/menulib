@@ -39,7 +39,7 @@ void MenuLib::Init(
     m_TopBarName.push_back("技・魔法");
     m_TopBarName.push_back("ステータス");
     m_TopBarName.push_back("セーブして終了");
-    m_TopBarName.push_back("最初から");
+    m_TopBarName.push_back("タイトルに戻る");
 }
 
 void MenuLib::SetItem(const std::vector<ItemInfo>& items)
