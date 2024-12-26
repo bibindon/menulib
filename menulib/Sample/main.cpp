@@ -963,9 +963,14 @@ HRESULT InitD3D(HWND hWnd)
 
 VOID Cleanup()
 {
-//    delete[] d3dxMaterials;
     SAFE_RELEASE(pEffect);
+
+    for (int i = 0; i < dwNumMaterials; ++i)
+    {
+        pTextures[i]->Release();;
+    }
     delete[] pTextures;
+
     delete[] pMaterials;
     SAFE_RELEASE(pMesh);
     SAFE_RELEASE(g_pFont);
