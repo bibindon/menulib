@@ -963,10 +963,15 @@ HRESULT InitD3D(HWND hWnd)
 
 VOID Cleanup()
 {
+//    delete[] d3dxMaterials;
+    SAFE_RELEASE(pEffect);
+    delete[] pTextures;
+    delete[] pMaterials;
     SAFE_RELEASE(pMesh);
     SAFE_RELEASE(g_pFont);
     SAFE_RELEASE(g_pd3dDevice);
     SAFE_RELEASE(g_pD3D);
+    menu.Finalize();
 }
 
 VOID Render()

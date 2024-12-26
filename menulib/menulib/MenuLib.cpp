@@ -78,6 +78,11 @@ void NSMenulib::MenuLib::Finalize()
     {
         delete it->GetSprite();
     }
+
+    delete m_sprCursor;
+    delete m_sprBackground;
+    delete m_font;
+    delete m_SE;
 }
 
 void MenuLib::SetItem(const std::vector<ItemInfo>& items)
