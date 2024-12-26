@@ -1126,6 +1126,7 @@ LRESULT WINAPI MsgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             break;
         }
         case VK_ESCAPE:
+            Cleanup();
             PostQuitMessage(0);
             break;
         }
