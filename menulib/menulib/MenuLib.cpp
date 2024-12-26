@@ -42,6 +42,44 @@ void MenuLib::Init(
     m_TopBarName.push_back("ƒ^ƒCƒgƒ‹‚É–ß‚é");
 }
 
+void NSMenulib::MenuLib::Finalize()
+{
+    for (auto it = m_itemInfoList.begin(); it != m_itemInfoList.end(); ++it)
+    {
+        delete it->GetSprite();
+    }
+
+    for (auto it = m_humanInfoList.begin(); it != m_humanInfoList.end(); ++it)
+    {
+        delete it->GetSprite();
+    }
+
+    for (auto it = m_enemyInfoList.begin(); it != m_enemyInfoList.end(); ++it)
+    {
+        delete it->GetSprite();
+    }
+
+    for (auto it = m_mapInfoList.begin(); it != m_mapInfoList.end(); ++it)
+    {
+        delete it->GetSprite();
+    }
+
+    for (auto it = m_skillInfoList.begin(); it != m_skillInfoList.end(); ++it)
+    {
+        delete it->GetSprite();
+    }
+
+    for (auto it = m_statusInfoList.begin(); it != m_statusInfoList.end(); ++it)
+    {
+        delete it->GetSprite();
+    }
+
+    for (auto it = m_weaponInfoList.begin(); it != m_weaponInfoList.end(); ++it)
+    {
+        delete it->GetSprite();
+    }
+}
+
 void MenuLib::SetItem(const std::vector<ItemInfo>& items)
 {
     m_itemInfoList = items;

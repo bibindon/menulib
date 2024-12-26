@@ -201,7 +201,6 @@ public:
 private:
     std::string m_category;
     std::string m_subCategory;
-    ISprite* m_sprite = nullptr;
     std::string m_detail;
 };
 
@@ -216,6 +215,8 @@ public:
         ISprite* sprCursor,
         ISprite* sprBackground
     );
+
+    void Finalize();
 
     void SetItem(const std::vector<ItemInfo>& items);
     void SetHuman(const std::vector<HumanInfo>& items);
