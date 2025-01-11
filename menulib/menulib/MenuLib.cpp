@@ -1859,7 +1859,7 @@ void MenuLib::Draw()
 
     if (m_eFocus == eFocus::STATUS)
     {
-        m_statusInfoList.at(m_statusSelect).GetSprite()->DrawImage(550, 300);
+        m_statusInfoList.at(m_statusSelect).GetSprite()->DrawImage(500, 200, 64);
 
         std::string detail = m_statusInfoList.at(m_statusSelect).GetDetail();
         std::vector<std::string> details = split(detail, '\n');
@@ -1868,7 +1868,7 @@ void MenuLib::Draw()
         {
             m_font->DrawText_(
                 details.at(i),
-                1100,
+                500,
                 250 + (int)i*40
                 );
         }
