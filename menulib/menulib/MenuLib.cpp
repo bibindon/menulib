@@ -2063,6 +2063,21 @@ void NSMenulib::MenuLib::DeleteItem(const int id, const int subId)
     }
 }
 
+void NSMenulib::MenuLib::UpdateItem(const ItemInfo& itemInfo)
+{
+    for (std::size_t i = 0; i < m_itemInfoList.size(); ++i)
+    {
+        if (m_itemInfoList.at(i).GetId() == itemInfo.GetId() &&
+            m_itemInfoList.at(i).GetSubId() == itemInfo.GetSubId())
+        {
+            m_itemInfoList.at(i).SetDurability(itemInfo.GetDurability());
+            m_itemInfoList.at(i).SetLevel(itemInfo.GetLevel());
+            m_itemInfoList.at(i).SetEquip(itemInfo.GetEquip());
+            break;
+        }
+    }
+}
+
 void NSMenulib::MenuLib::UpdateStatusText(const std::string& text)
 {
     m_statusInfoList.at(0).SetDetail(text);

@@ -254,6 +254,7 @@ public:
     // アイテム情報を後から変えたいとき
     void AddItem(const ItemInfo& itemInfo);
     void DeleteItem(const int id, const int subId);
+    void UpdateItem(const ItemInfo& itemInfo);
 
     // ステータス内容を後から変えたいとき
     void UpdateStatusText(const std::string& text);
