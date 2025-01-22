@@ -652,14 +652,44 @@ std::string MenuLib::Into()
         result += ":" + m_itemInfoList.at(m_itemSelect).GetName();
         result += ":" + std::to_string(m_itemInfoList.at(m_itemSelect).GetId());
         result += ":" + std::to_string(m_itemInfoList.at(m_itemSelect).GetSubId());
-        if (m_itemSubCursor == 0)
+
+        if (!m_itemInfoList.at(m_itemSelect).GetEquipEnable())
         {
-            result += ":使う";
+            if (m_itemSubCursor == 0)
+            {
+                result += ":使う";
+            }
+            else
+            {
+                result += ":捨てる";
+            }
         }
         else
         {
-            result += ":捨てる";
+            if (!m_itemInfoList.at(m_itemSelect).GetEquip())
+            {
+                if (m_itemSubCursor == 0)
+                {
+                    result += ":装備する";
+                }
+                else
+                {
+                    result += ":捨てる";
+                }
+            }
+            else
+            {
+                if (m_itemSubCursor == 0)
+                {
+                    result += ":装備を外す";
+                }
+                else
+                {
+                    result += ":捨てる";
+                }
+            }
         }
+
         m_eFocus = eFocus::ITEM;
         m_itemSubCursor = 0;
     }
@@ -1355,14 +1385,44 @@ std::string MenuLib::Click(const int x, const int y)
                     result += ":" + m_itemInfoList.at(m_itemSelect).GetName();
                     result += ":" + std::to_string(m_itemInfoList.at(m_itemSelect).GetId());
                     result += ":" + std::to_string(m_itemInfoList.at(m_itemSelect).GetSubId());
-                    if (m_itemSubCursor == 0)
+
+                    if (!m_itemInfoList.at(m_itemSelect).GetEquipEnable())
                     {
-                        result += ":使う";
+                        if (m_itemSubCursor == 0)
+                        {
+                            result += ":使う";
+                        }
+                        else
+                        {
+                            result += ":捨てる";
+                        }
                     }
                     else
                     {
-                        result += ":捨てる";
+                        if (!m_itemInfoList.at(m_itemSelect).GetEquip())
+                        {
+                            if (m_itemSubCursor == 0)
+                            {
+                                result += ":装備する";
+                            }
+                            else
+                            {
+                                result += ":捨てる";
+                            }
+                        }
+                        else
+                        {
+                            if (m_itemSubCursor == 0)
+                            {
+                                result += ":装備を外す";
+                            }
+                            else
+                            {
+                                result += ":捨てる";
+                            }
+                        }
                     }
+
                     m_eFocus = eFocus::ITEM;
                     m_itemSubCursor = 0;
                 }
@@ -1480,12 +1540,18 @@ void MenuLib::Draw()
                     trans = 255;
                 }
             }
-            m_font->DrawText_(
-                m_itemInfoList.at(m_itemBegin + i).GetName(),
-                LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
-                LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i * LEFT_PANEL_HEIGHT),
-                false,
-                trans);
+
+            std::string work = m_itemInfoList.at(m_itemBegin + i).GetName();
+            if (m_itemInfoList.at(m_itemBegin + i).GetEquip())
+            {
+                work += "（装備中）";
+            }
+
+            m_font->DrawText_(work,
+                              LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
+                              LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i * LEFT_PANEL_HEIGHT),
+                              false,
+                              trans);
 
             if (m_itemInfoList.at(m_itemBegin + i).GetLevel() != -1)
             {
@@ -1704,11 +1770,28 @@ void MenuLib::Draw()
     // Show item sub
     if (m_eFocus == eFocus::ITEM_SUB)
     {
-        m_font->DrawText_(
-            "使う　　　　　　捨てる",
-            MIDDLE_PANEL_STARTX,
-            LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT)
-        );
+        // 装備が可能なアイテムなら「装備する」を表示するようにする
+        if (!m_itemInfoList.at(m_itemSelect).GetEquipEnable())
+        {
+            m_font->DrawText_("使う　　　　　　捨てる",
+                              MIDDLE_PANEL_STARTX,
+                              LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT));
+        }
+        else
+        {
+            if (!m_itemInfoList.at(m_itemSelect).GetEquip())
+            {
+                m_font->DrawText_("装備する　　　　捨てる",
+                                  MIDDLE_PANEL_STARTX,
+                                  LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT));
+            }
+            else
+            {
+                m_font->DrawText_("装備を外す　　　捨てる",
+                                  MIDDLE_PANEL_STARTX,
+                                  LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT));
+            }
+        }
     }
 
     // Show weapon sub

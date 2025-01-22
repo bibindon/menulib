@@ -72,3 +72,23 @@ void NSMenulib::ItemInfo::SetSubId(const int arg)
     m_subId = arg;
 }
 
+bool NSMenulib::ItemInfo::GetEquipEnable() const
+{
+    return m_equipEnable;
+}
+
+void NSMenulib::ItemInfo::SetEquipEnable(const bool arg)
+{
+    m_equipEnable = arg;
+}
+
+bool NSMenulib::ItemInfo::GetEquip() const
+{
+    return m_equip;
+}
+
+void NSMenulib::ItemInfo::SetEquip(const bool arg)
+{
+    m_equip = arg;
+}
+

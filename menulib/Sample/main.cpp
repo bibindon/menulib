@@ -329,22 +329,26 @@ HRESULT InitD3D(HWND hWnd)
     }
     {
         ItemInfo itemInfo;
-        itemInfo.SetName("テストアイテム２");
+        itemInfo.SetName("袋");
         itemInfo.SetDurability(20);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item2.png");
         itemInfo.SetSprite(sprItem);
         itemInfo.SetLevel(2);
+        itemInfo.SetEquipEnable(true);
+        itemInfo.SetEquip(false);
         itemInfo.SetDetail("ＡＡＡテストアイテムテキスト\nテストテキストテストテキスト"); // TODO
         itemInfoList.push_back(itemInfo);
     }
     {
         ItemInfo itemInfo;
-        itemInfo.SetName("テストアイテム３");
+        itemInfo.SetName("袋");
         itemInfo.SetDurability(300);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item3.png");
         itemInfo.SetSprite(sprItem);
+        itemInfo.SetEquipEnable(true);
+        itemInfo.SetEquip(true);
         itemInfo.SetDetail("ＢＢＢテストアイテムテキスト\nテストテキストテストテキスト"); // TODO
         itemInfoList.push_back(itemInfo);
     }
@@ -965,7 +969,7 @@ VOID Cleanup()
 {
     SAFE_RELEASE(pEffect);
 
-    for (int i = 0; i < dwNumMaterials; ++i)
+    for (int i = 0; i < (int)dwNumMaterials; ++i)
     {
         pTextures[i]->Release();;
     }

@@ -56,6 +56,12 @@ public:
     int GetSubId() const;
     void SetSubId(const int arg);
 
+    bool GetEquipEnable() const;
+    void SetEquipEnable(const bool arg);
+
+    bool GetEquip() const;
+    void SetEquip(const bool arg);
+
 private:
 
     std::string m_name;
@@ -70,6 +76,9 @@ private:
     // IDASubID‚ğ‚Â‚±‚Æ‚ª‚Å‚«‚é‚æ‚¤‚É‚·‚éBID‚Íí•ÊASubID‚ÍŒÂ•Ê‚Ì”Ô†
     int m_id = 0;
     int m_subId = 0;
+
+    bool m_equipEnable = false;
+    bool m_equip = false;
 };
 
 class HumanInfo
