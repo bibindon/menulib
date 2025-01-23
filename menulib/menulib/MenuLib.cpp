@@ -699,8 +699,11 @@ std::string MenuLib::Into()
     }
     else if (m_eFocus == eFocus::WEAPON)
     {
-        m_eFocus = eFocus::WEAPON_SUB;
-        m_weaponSubCursor = 0;
+        if (!m_weaponInfoList.empty())
+        {
+            m_eFocus = eFocus::WEAPON_SUB;
+            m_weaponSubCursor = 0;
+        }
     }
     else if (m_eFocus == eFocus::WEAPON_SUB)
     {
@@ -1751,7 +1754,7 @@ void MenuLib::Draw()
     // Show item detail
     if (m_eFocus == eFocus::ITEM || m_eFocus == eFocus::ITEM_SUB)
     {
-        if (m_itemInfoList.size() >= 1)
+        if (!m_itemInfoList.empty())
         {
             int trans = 255;
             if (m_eFocus == eFocus::ITEM_SUB)
@@ -1858,24 +1861,27 @@ void MenuLib::Draw()
 
     if (m_eFocus == eFocus::WEAPON || m_eFocus == eFocus::WEAPON_SUB)
     {
-        int trans = 255;
-        if (m_eFocus == eFocus::WEAPON_SUB)
+        if (!m_weaponInfoList.empty())
         {
-            trans = 64;
-        }
+            int trans = 255;
+            if (m_eFocus == eFocus::WEAPON_SUB)
+            {
+                trans = 64;
+            }
 
-        m_weaponInfoList.at(m_weaponSelect).GetSprite()->DrawImage(550, 300, trans);
+            m_weaponInfoList.at(m_weaponSelect).GetSprite()->DrawImage(550, 300, trans);
 
-        std::string detail = m_weaponInfoList.at(m_weaponSelect).GetDetail();
-        std::vector<std::string> details = split(detail, '\n');
+            std::string detail = m_weaponInfoList.at(m_weaponSelect).GetDetail();
+            std::vector<std::string> details = split(detail, '\n');
 
-        for (std::size_t i = 0; i < details.size(); ++i)
-        {
-            m_font->DrawText_(
-                details.at(i),
-                1100,
-                250 + (int)i*40
-                );
+            for (std::size_t i = 0; i < details.size(); ++i)
+            {
+                m_font->DrawText_(
+                    details.at(i),
+                    1100,
+                    250 + (int)i*40
+                    );
+            }
         }
     }
 
@@ -2015,7 +2021,10 @@ void MenuLib::Draw()
     }
     else if (m_eFocus == eFocus::WEAPON)
     {
-        m_sprCursor->DrawImage(LEFT_PANEL_CURSORX, LEFT_PANEL_CURSORY + (m_weaponCursor * 60));
+        if (!m_weaponInfoList.empty())
+        {
+            m_sprCursor->DrawImage(LEFT_PANEL_CURSORX, LEFT_PANEL_CURSORY + (m_weaponCursor * 60));
+        }
     }
     else if (m_eFocus == eFocus::WEAPON_SUB)
     {
@@ -2113,6 +2122,16 @@ void NSMenulib::MenuLib::DeleteItem(const int id, const int subId)
         else
         {
             --m_itemBegin;
+        }
+    }
+
+    // •Ší‚¾‚Á‚½‚ç•ŠíƒŠƒXƒg‚©‚ç‚àíœ
+    for (auto it = m_weaponInfoList.begin(); it != m_weaponInfoList.end(); ++it)
+    {
+        if (it->GetId() == id && it->GetSubId() == subId)
+        {
+            m_weaponInfoList.erase(it);
+            break;
         }
     }
 }
