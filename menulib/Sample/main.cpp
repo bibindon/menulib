@@ -359,6 +359,8 @@ HRESULT InitD3D(HWND hWnd)
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item1.png");
         itemInfo.SetSprite(sprItem);
+        itemInfo.SetWeight(12.34f);
+        itemInfo.SetVolume(5678);
         itemInfo.SetDetail("テストアイテムテキスト\nテストテキストテキスト\nテストテキストテキスト\nテストテキストテストテキスト"); // TODO
         itemInfoList.push_back(itemInfo);
     }
@@ -369,6 +371,8 @@ HRESULT InitD3D(HWND hWnd)
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item2.png");
         itemInfo.SetSprite(sprItem);
+        itemInfo.SetWeight(2222.f);
+        itemInfo.SetVolume(3333);
         itemInfo.SetDetail("ＡＡＡテストアイテムテキスト\nテストテキストテストテキスト"); // TODO
         itemInfoList.push_back(itemInfo);
     }

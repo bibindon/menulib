@@ -62,6 +62,12 @@ public:
     bool GetEquip() const;
     void SetEquip(const bool arg);
 
+    float GetWeight() const;
+    void SetWeight(const float arg);
+
+    int GetVolume() const;
+    void SetVolume(const int arg);
+
 private:
 
     std::string m_name;
@@ -79,6 +85,9 @@ private:
 
     bool m_equipEnable = false;
     bool m_equip = false;
+
+    float m_weight = 0.f;
+    int m_volume = 0;
 };
 
 class HumanInfo
@@ -258,6 +267,9 @@ public:
 
     // ステータス内容を後から変えたいとき
     void UpdateStatusText(const std::string& text);
+
+    // 小数点以下の文字数を調節
+    static std::string ToStringWithPrecision(const float value, const int precision);
 
 private:
     enum class eFocus

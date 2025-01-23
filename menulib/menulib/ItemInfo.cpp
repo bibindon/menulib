@@ -92,3 +92,23 @@ void NSMenulib::ItemInfo::SetEquip(const bool arg)
     m_equip = arg;
 }
 
+float NSMenulib::ItemInfo::GetWeight() const
+{
+    return m_weight;
+}
+
+void NSMenulib::ItemInfo::SetWeight(const float arg)
+{
+    m_weight = arg;
+}
+
+int NSMenulib::ItemInfo::GetVolume() const
+{
+    return m_volume;
+}
+
+void NSMenulib::ItemInfo::SetVolume(const int arg)
+{
+    m_volume = arg;
+}
+

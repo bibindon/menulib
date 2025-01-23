@@ -1,6 +1,7 @@
 #include "MenuLib.h"
 #include <sstream>
 #include <algorithm>
+#include <iomanip>
 
 using namespace NSMenulib;
 
@@ -1757,6 +1758,17 @@ void MenuLib::Draw()
         std::string detail = m_itemInfoList.at(m_itemSelect).GetDetail();
         std::vector<std::string> details = split(detail, '\n');
 
+        std::string weight_volume;
+
+        weight_volume += "èdó (kg) ";
+        weight_volume += ToStringWithPrecision(m_itemInfoList.at(m_itemSelect).GetWeight(), 2);
+        weight_volume += "  ";
+
+        weight_volume += "ëÃêœ(mL) ";
+        weight_volume += std::to_string(m_itemInfoList.at(m_itemSelect).GetVolume());
+
+        details.insert(details.begin(), weight_volume);
+
         for (std::size_t i = 0; i < details.size(); ++i)
         {
             m_font->DrawText_(
@@ -2081,5 +2093,12 @@ void NSMenulib::MenuLib::UpdateItem(const ItemInfo& itemInfo)
 void NSMenulib::MenuLib::UpdateStatusText(const std::string& text)
 {
     m_statusInfoList.at(0).SetDetail(text);
+}
+
+std::string NSMenulib::MenuLib::ToStringWithPrecision(const float value, const int precision)
+{
+    std::ostringstream out;
+    out << std::fixed << std::setprecision(precision) << value;
+    return out.str();
 }
 
