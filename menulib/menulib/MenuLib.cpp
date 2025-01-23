@@ -2095,11 +2095,20 @@ void NSMenulib::MenuLib::DeleteItem(const int id, const int subId)
 
     // 一番最後の要素を削除した場合、カーソルが何もない場所を選択してしまう。
     // 選択中を表すインデックスを一つ小さくする。
-    // このとき、要素が一つしかなかった場合、-1になるので注意
     if ((int)m_itemInfoList.size() <= m_itemSelect)
     {
         m_itemSelect = m_itemInfoList.size() - 1;
-        --m_itemCursor;
+
+        // アイテムの数が9個以下ならカーソルの位置は、一つ上に移動する。
+        if (m_itemInfoList.size() <= 9)
+        {
+            --m_itemCursor;
+        }
+        // アイテムの数が9個以下ならカーソルの位置はそのまま、全体が下に移動する。
+        else
+        {
+            --m_itemBegin;
+        }
     }
 }
 
