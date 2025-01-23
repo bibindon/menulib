@@ -2099,6 +2099,7 @@ void NSMenulib::MenuLib::DeleteItem(const int id, const int subId)
     if ((int)m_itemInfoList.size() <= m_itemSelect)
     {
         m_itemSelect = m_itemInfoList.size() - 1;
+        --m_itemCursor;
     }
 }
 
