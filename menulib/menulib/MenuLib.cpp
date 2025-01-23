@@ -1777,6 +1777,21 @@ void MenuLib::Draw()
                 250 + (int)i*40
                 );
         }
+
+        // 総重量、積載量、最大積載量を表示
+        {
+            std::string weightAll_Vol_VolMax;
+            weightAll_Vol_VolMax += "総重量(kg) ";
+            weightAll_Vol_VolMax += ToStringWithPrecision(m_weightAll, 2);
+            weightAll_Vol_VolMax += "  ";
+            weightAll_Vol_VolMax += "積載量(mL)/最大積載量(mL) ";
+            weightAll_Vol_VolMax += std::to_string(m_volumeAll);
+            weightAll_Vol_VolMax += "/";
+            weightAll_Vol_VolMax += std::to_string(m_volumeMax);
+            weightAll_Vol_VolMax += "  ";
+
+            m_font->DrawText_(weightAll_Vol_VolMax, 1000, 850);
+        }
     }
 
     // Show item sub
@@ -2100,5 +2115,20 @@ std::string NSMenulib::MenuLib::ToStringWithPrecision(const float value, const i
     std::ostringstream out;
     out << std::fixed << std::setprecision(precision) << value;
     return out.str();
+}
+
+void NSMenulib::MenuLib::SetWeightAll(const float arg)
+{
+    m_weightAll = arg;
+}
+
+void NSMenulib::MenuLib::SetVolumeAll(const int arg)
+{
+    m_volumeAll = arg;
+}
+
+void NSMenulib::MenuLib::SetVolumeMax(const int arg)
+{
+    m_volumeMax = arg;
 }
 

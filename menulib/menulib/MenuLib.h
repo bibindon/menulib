@@ -271,6 +271,10 @@ public:
     // ¬”“_ˆÈ‰º‚Ì•¶š”‚ğ’²ß
     static std::string ToStringWithPrecision(const float value, const int precision);
 
+    void SetWeightAll(const float arg);
+    void SetVolumeAll(const int arg);
+    void SetVolumeMax(const int arg);
+
 private:
     enum class eFocus
     {
@@ -409,6 +413,10 @@ private:
 
     std::vector<std::string> m_guideCategory;
     std::map<std::string, std::vector<std::string>> m_guideSubCategory;
+
+    float m_weightAll = 0.f;
+    int m_volumeAll = 0;
+    int m_volumeMax = 0;
 };
 }
 

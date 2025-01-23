@@ -567,6 +567,9 @@ HRESULT InitD3D(HWND hWnd)
         itemInfoList.push_back(itemInfo);
     }
     menu.SetItem(itemInfoList);
+    menu.SetWeightAll(33.33f);
+    menu.SetVolumeAll(1234);
+    menu.SetVolumeMax(12345);
     std::vector<HumanInfo> humanInfoList;
     {
         HumanInfo humanInfo;
