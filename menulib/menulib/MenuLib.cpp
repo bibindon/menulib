@@ -1748,34 +1748,38 @@ void MenuLib::Draw()
     // Show item detail
     if (m_eFocus == eFocus::ITEM || m_eFocus == eFocus::ITEM_SUB)
     {
-        int trans = 255;
-        if (m_eFocus == eFocus::ITEM_SUB)
+        // 一つもアイテムを持っていなければ-1になる
+        if (m_itemSelect != -1)
         {
-            trans = 64;
-        }
-        m_itemInfoList.at(m_itemSelect).GetSprite()->DrawImage(550, 300, trans);
+            int trans = 255;
+            if (m_eFocus == eFocus::ITEM_SUB)
+            {
+                trans = 64;
+            }
+            m_itemInfoList.at(m_itemSelect).GetSprite()->DrawImage(550, 300, trans);
 
-        std::string detail = m_itemInfoList.at(m_itemSelect).GetDetail();
-        std::vector<std::string> details = split(detail, '\n');
+            std::string detail = m_itemInfoList.at(m_itemSelect).GetDetail();
+            std::vector<std::string> details = split(detail, '\n');
 
-        std::string weight_volume;
+            std::string weight_volume;
 
-        weight_volume += "重量(kg) ";
-        weight_volume += ToStringWithPrecision(m_itemInfoList.at(m_itemSelect).GetWeight(), 2);
-        weight_volume += "  ";
+            weight_volume += "重量(kg) ";
+            weight_volume += ToStringWithPrecision(m_itemInfoList.at(m_itemSelect).GetWeight(), 2);
+            weight_volume += "  ";
 
-        weight_volume += "体積(mL) ";
-        weight_volume += std::to_string(m_itemInfoList.at(m_itemSelect).GetVolume());
+            weight_volume += "体積(mL) ";
+            weight_volume += std::to_string(m_itemInfoList.at(m_itemSelect).GetVolume());
 
-        details.insert(details.begin(), weight_volume);
+            details.insert(details.begin(), weight_volume);
 
-        for (std::size_t i = 0; i < details.size(); ++i)
-        {
-            m_font->DrawText_(
-                details.at(i),
-                1100,
-                250 + (int)i*40
-                );
+            for (std::size_t i = 0; i < details.size(); ++i)
+            {
+                m_font->DrawText_(
+                    details.at(i),
+                    1100,
+                    250 + (int)i*40
+                    );
+            }
         }
 
         // 総重量、積載量、最大積載量を表示
@@ -2087,6 +2091,14 @@ void NSMenulib::MenuLib::DeleteItem(const int id, const int subId)
             m_itemInfoList.erase(m_itemInfoList.begin() + i);
             break;
         }
+    }
+
+    // 一番最後の要素を削除した場合、カーソルが何もない場所を選択してしまう。
+    // 選択中を表すインデックスを一つ小さくする。
+    // このとき、要素が一つしかなかった場合、-1になるので注意
+    if ((int)m_itemInfoList.size() <= m_itemSelect)
+    {
+        m_itemSelect = m_itemInfoList.size() - 1;
     }
 }
 
