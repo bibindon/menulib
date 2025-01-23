@@ -644,8 +644,11 @@ std::string MenuLib::Into()
     }
     else if (m_eFocus == eFocus::ITEM)
     {
-        m_eFocus = eFocus::ITEM_SUB;
-        m_itemSubCursor = 0;
+        if (!m_itemInfoList.empty())
+        {
+            m_eFocus = eFocus::ITEM_SUB;
+            m_itemSubCursor = 0;
+        }
     }
     else if (m_eFocus == eFocus::ITEM_SUB)
     {
@@ -1748,8 +1751,7 @@ void MenuLib::Draw()
     // Show item detail
     if (m_eFocus == eFocus::ITEM || m_eFocus == eFocus::ITEM_SUB)
     {
-        // 一つもアイテムを持っていなければ-1になる
-        if (m_itemSelect != -1)
+        if (m_itemInfoList.size() >= 1)
         {
             int trans = 255;
             if (m_eFocus == eFocus::ITEM_SUB)
@@ -2002,7 +2004,10 @@ void MenuLib::Draw()
     }
     else if (m_eFocus == eFocus::ITEM)
     {
-        m_sprCursor->DrawImage(LEFT_PANEL_CURSORX, LEFT_PANEL_CURSORY + (m_itemCursor * 60));
+        if (!m_itemInfoList.empty())
+        {
+            m_sprCursor->DrawImage(LEFT_PANEL_CURSORX, LEFT_PANEL_CURSORY + (m_itemCursor * 60));
+        }
     }
     else if (m_eFocus == eFocus::ITEM_SUB)
     {
@@ -2104,7 +2109,7 @@ void NSMenulib::MenuLib::DeleteItem(const int id, const int subId)
         {
             --m_itemCursor;
         }
-        // アイテムの数が9個以下ならカーソルの位置はそのまま、全体が下に移動する。
+        // アイテムの数が10個以上ならカーソルの位置はそのまま、全体が下に移動する。
         else
         {
             --m_itemBegin;
