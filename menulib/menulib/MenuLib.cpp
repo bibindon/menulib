@@ -131,6 +131,8 @@ void MenuLib::SetGuide(const std::vector<GuideInfo>& items)
     }
     m_guideCategory = vs;
 
+    m_guideSubCategory.clear();
+
     for (std::size_t i = 0; i < m_guideInfoList.size(); ++i)
     {
         std::string category = m_guideInfoList.at(i).GetCategory();
