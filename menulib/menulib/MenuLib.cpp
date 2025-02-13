@@ -1206,179 +1206,44 @@ std::string MenuLib::Click(const int x, const int y)
     }
     else
     {
-        if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH)
+        int nBegin = 0;
+        int nSize = 10;
+
+        // 同じ処理が延々と続くが、共通化してはいけない。
+        // メニューごとにクリック範囲が変わる可能性があるため。
+        // 例えば、「操作説明」ではサブカテゴリが左に250ピクセル寄っているのでクリックを検知する範囲が異なる。
+        if (m_eFocus == eFocus::ITEM)
         {
-            int nCursor = 0;
-            int nSelect = 0;
-            int nBegin = 0;
-            int nSize = 10;
-            if (m_eFocus == eFocus::ITEM || m_eFocus == eFocus::ITEM_SUB)
+            if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH)
             {
                 nBegin = m_itemBegin;
                 if (m_itemInfoList.size() <= 9)
                 {
                     nSize = m_itemInfoList.size();
                 }
-            }
-            else if (m_eFocus == eFocus::WEAPON || m_eFocus == eFocus::WEAPON_SUB)
-            {
-                nBegin = m_weaponBegin;
-                if (m_weaponInfoList.size() <= 9)
-                {
-                    nSize = m_weaponInfoList.size();
-                }
-            }
-            else if (m_eFocus == eFocus::GUIDE || m_eFocus == eFocus::GUIDE_SUB)
-            {
-                nBegin = m_guideBegin;
-                if (m_guideInfoList.size() <= 9)
-                {
-                    nSize = m_guideInfoList.size();
-                }
-            }
-            else if (m_eFocus == eFocus::MAP)
-            {
-                nBegin = m_mapBegin;
-                if (m_mapInfoList.size() <= 9)
-                {
-                    nSize = m_mapInfoList.size();
-                }
-            }
-            else if (m_eFocus == eFocus::HUMAN)
-            {
-                nBegin = m_humanBegin;
-                if (m_humanInfoList.size() <= 9)
-                {
-                    nSize = m_humanInfoList.size();
-                }
-            }
-            else if (m_eFocus == eFocus::ENEMY)
-            {
-                nBegin = m_enemyBegin;
-                if (m_enemyInfoList.size() <= 9)
-                {
-                    nSize = m_enemyInfoList.size();
-                }
-            }
-            else if (m_eFocus == eFocus::SKILL)
-            {
-                nBegin = m_skillBegin;
-                if (m_skillInfoList.size() <= 9)
-                {
-                    nSize = m_skillInfoList.size();
-                }
-            }
-            else if (m_eFocus == eFocus::STATUS)
-            {
-                nBegin = m_statusBegin;
-                if (m_statusInfoList.size() <= 9)
-                {
-                    nSize = m_statusInfoList.size();
-                }
-            }
-            else if (m_eFocus == eFocus::QUIT)
-            {
-                nBegin = 0;
-                nSize = 2;
-            }
-            else if (m_eFocus == eFocus::OPENING)
-            {
-                nBegin = 0;
-                nSize = 2;
-            }
 
-            for (int i = 0; i < nSize; ++i)
-            {
-                if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
-                    y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (i + 1))
+                for (int i = 0; i < nSize; ++i)
                 {
-                    nCursor = i;
-                    nSelect = nBegin + i;
-                    break;
+                    if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
+                        y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (i + 1))
+                    {
+                        m_itemCursor = i;
+                        m_itemSelect = nBegin + i;
+                        m_itemSubCursor = 0;
+                        m_eFocus = eFocus::ITEM_SUB;
+                        break;
+                    }
                 }
-            }
-
-            if (m_eFocus == eFocus::ITEM || m_eFocus == eFocus::ITEM_SUB)
-            {
-                m_itemCursor = nCursor;
-                m_itemSelect = nSelect;
-                m_itemSubCursor = 0;
-                m_eFocus = eFocus::ITEM_SUB;
-            }
-            else if (m_eFocus == eFocus::WEAPON || m_eFocus == eFocus::WEAPON_SUB)
-            {
-                m_weaponCursor = nCursor;
-                m_weaponSelect = nSelect;
-                m_weaponSubCursor = 0;
-                m_eFocus = eFocus::WEAPON_SUB;
-            }
-            else if (m_eFocus == eFocus::GUIDE || m_eFocus == eFocus::GUIDE_SUB)
-            {
-                m_guideCursor = nCursor;
-                m_guideSelect = nSelect;
-                m_guideSubCursor = 0;
-                m_guideSubSelect = 0;
-                m_eFocus = eFocus::GUIDE_SUB;
-            }
-            else if (m_eFocus == eFocus::MAP)
-            {
-                m_mapCursor = nCursor;
-                m_mapSelect = nSelect;
-            }
-            else if (m_eFocus == eFocus::HUMAN)
-            {
-                m_humanCursor = nCursor;
-                m_humanSelect = nSelect;
-            }
-            else if (m_eFocus == eFocus::ENEMY)
-            {
-                m_enemyCursor = nCursor;
-                m_enemySelect = nSelect;
-            }
-            else if (m_eFocus == eFocus::SKILL)
-            {
-                m_skillCursor = nCursor;
-                m_skillSelect = nSelect;
-            }
-            else if (m_eFocus == eFocus::STATUS)
-            {
-                m_statusCursor = nCursor;
-                m_statusSelect = nSelect;
-            }
-            else if (m_eFocus == eFocus::QUIT)
-            {
-                if (nCursor == 0)
-                {
-                    result = m_TopBarName.at(m_topBarIndex);
-                }
-                else
-                {
-                    m_eFocus = eFocus::TOP_BAR;
-                }
-                m_quitCursor = 0;
-            }
-            else if (m_eFocus == eFocus::OPENING)
-            {
-                if (nCursor == 0)
-                {
-                    result = m_TopBarName.at(m_topBarIndex);
-                }
-                else
-                {
-                    m_eFocus = eFocus::TOP_BAR;
-                }
-                m_openingCursor = 0;
             }
         }
-        else if (MIDDLE_PANEL_STARTX < x && x <= MIDDLE_PANEL_STARTX + LEFT_PANEL_WIDTH)
+        else if (m_eFocus == eFocus::ITEM_SUB)
         {
-            if (m_eFocus == eFocus::ITEM_SUB)
+            if (MIDDLE_PANEL_STARTX < x && x <= MIDDLE_PANEL_STARTX + LEFT_PANEL_WIDTH)
             {
                 if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * m_itemCursor - 10 < y &&
                     y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (m_itemCursor + 1) - 10)
                 {
-                    if (MIDDLE_PANEL_STARTX < x &&
-                        x <= MIDDLE_PANEL_STARTX + 80)
+                    if (MIDDLE_PANEL_STARTX < x && x <= MIDDLE_PANEL_STARTX + 80)
                     {
                         m_itemSubCursor = 0;
                     }
@@ -1429,42 +1294,283 @@ std::string MenuLib::Click(const int x, const int y)
                             }
                         }
                     }
-
-                    m_eFocus = eFocus::ITEM;
-                    m_itemSubCursor = 0;
                 }
             }
-            else if (m_eFocus == eFocus::WEAPON_SUB)
-            {
-                if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * m_weaponCursor -10 < y &&
-                    y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (m_weaponCursor + 1) -10)
-                {
-                    if (MIDDLE_PANEL_STARTX < x &&
-                        x <= MIDDLE_PANEL_STARTX + 100)
-                    {
-                        m_weaponSubCursor = 0;
-                    }
-                    else if (MIDDLE_PANEL_STARTX + 100 < x &&
-                             x <= MIDDLE_PANEL_STARTX + LEFT_PANEL_WIDTH)
-                    {
-                        m_weaponSubCursor = 1;
-                    }
 
-                    result = m_TopBarName.at(m_topBarIndex);
-                    result += ":" + m_weaponInfoList.at(m_weaponSelect).GetName();
-                    result += ":" + std::to_string(m_weaponInfoList.at(m_weaponSelect).GetId());
-                    result += ":" + std::to_string(m_weaponInfoList.at(m_weaponSelect).GetSubId());
-                    if (m_weaponSubCursor == 0)
+            // 「使う」「捨てる」の部分をクリックした場合も、それ以外の場所をクリックした場合も
+            // ITEM_SUBから抜ける。
+            m_eFocus = eFocus::ITEM;
+            m_itemSubCursor = 0;
+        }
+        else if (m_eFocus == eFocus::WEAPON)
+        {
+            if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH)
+            {
+                nBegin = m_weaponBegin;
+                if (m_weaponInfoList.size() <= 9)
+                {
+                    nSize = m_weaponInfoList.size();
+                }
+
+                for (int i = 0; i < nSize; ++i)
+                {
+                    if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
+                        y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (i + 1))
                     {
-                        result += ":装備";
+                        m_weaponCursor = i;
+                        m_weaponSelect = nBegin + i;
+                        m_weaponSubCursor = 0;
+                        m_eFocus = eFocus::WEAPON_SUB;
+                        break;
                     }
-                    else
-                    {
-                        result += ":キャンセル";
-                    }
-                    m_eFocus = eFocus::WEAPON;
+                }
+            }
+        }
+        else if (m_eFocus == eFocus::WEAPON_SUB)
+        {
+            if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * m_weaponCursor -10 < y &&
+                y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (m_weaponCursor + 1) -10)
+            {
+                if (MIDDLE_PANEL_STARTX < x && x <= MIDDLE_PANEL_STARTX + 100)
+                {
                     m_weaponSubCursor = 0;
                 }
+                else if (MIDDLE_PANEL_STARTX + 100 < x &&
+                         x <= MIDDLE_PANEL_STARTX + LEFT_PANEL_WIDTH)
+                {
+                    m_weaponSubCursor = 1;
+                }
+
+                result = m_TopBarName.at(m_topBarIndex);
+                result += ":" + m_weaponInfoList.at(m_weaponSelect).GetName();
+                result += ":" + std::to_string(m_weaponInfoList.at(m_weaponSelect).GetId());
+                result += ":" + std::to_string(m_weaponInfoList.at(m_weaponSelect).GetSubId());
+                if (m_weaponSubCursor == 0)
+                {
+                    result += ":装備";
+                }
+                else
+                {
+                    result += ":キャンセル";
+                }
+            }
+
+            // 「装備」「キャンセル」の部分をクリックした場合も、それ以外の場所をクリックした場合も
+            // WEAPON_SUBから抜ける。
+            m_eFocus = eFocus::WEAPON;
+            m_weaponSubCursor = 0;
+        }
+        else if (m_eFocus == eFocus::GUIDE)
+        {
+            // 操作説明はサブカテゴリが左に寄っている
+            if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH - 250)
+            {
+                nBegin = m_guideBegin;
+                if (m_guideInfoList.size() <= 9)
+                {
+                    nSize = m_guideInfoList.size();
+                }
+
+                for (int i = 0; i < nSize; ++i)
+                {
+                    if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
+                        y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (i + 1))
+                    {
+                        m_guideCursor = i;
+                        m_guideSelect = nBegin + i;
+                        m_guideSubCursor = 0;
+                        m_eFocus = eFocus::GUIDE_SUB;
+                        break;
+                    }
+                }
+            }
+        }
+        else if (m_eFocus == eFocus::GUIDE_SUB)
+        {
+            // 操作説明はサブカテゴリが左に寄っている
+            if (MIDDLE_PANEL_STARTX - 250 < x && x <= MIDDLE_PANEL_STARTX - 250 + LEFT_PANEL_WIDTH)
+            {
+                nBegin = m_guideBegin;
+                if (m_guideInfoList.size() <= 9)
+                {
+                    nSize = m_guideInfoList.size();
+                }
+
+                for (int i = 0; i < nSize; ++i)
+                {
+                    if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
+                        y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (i + 1))
+                    {
+                        m_guideSubCursor = i;
+                        m_guideSubSelect = nBegin + i;
+
+                        break;
+                    }
+                }
+            }
+        }
+        else if (m_eFocus == eFocus::MAP)
+        {
+            if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH)
+            {
+                nBegin = m_mapBegin;
+                if (m_mapInfoList.size() <= 9)
+                {
+                    nSize = m_mapInfoList.size();
+                }
+
+                for (int i = 0; i < nSize; ++i)
+                {
+                    if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
+                        y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (i + 1))
+                    {
+                        m_mapCursor = i;
+                        m_mapSelect = nBegin + i;
+                        break;
+                    }
+                }
+            }
+        }
+        else if (m_eFocus == eFocus::HUMAN)
+        {
+            if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH)
+            {
+                nBegin = m_humanBegin;
+                if (m_humanInfoList.size() <= 9)
+                {
+                    nSize = m_humanInfoList.size();
+                }
+
+                for (int i = 0; i < nSize; ++i)
+                {
+                    if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
+                        y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (i + 1))
+                    {
+                        m_humanCursor = i;
+                        m_humanSelect = nBegin + i;
+                        break;
+                    }
+                }
+            }
+        }
+        else if (m_eFocus == eFocus::ENEMY)
+        {
+            if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH)
+            {
+                nBegin = m_enemyBegin;
+                if (m_enemyInfoList.size() <= 9)
+                {
+                    nSize = m_enemyInfoList.size();
+                }
+
+                for (int i = 0; i < nSize; ++i)
+                {
+                    if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
+                        y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (i + 1))
+                    {
+                        m_enemyCursor = i;
+                        m_enemySelect = nBegin + i;
+                        break;
+                    }
+                }
+            }
+        }
+        else if (m_eFocus == eFocus::SKILL)
+        {
+            if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH)
+            {
+                nBegin = m_skillBegin;
+                if (m_skillInfoList.size() <= 9)
+                {
+                    nSize = m_skillInfoList.size();
+                }
+
+                for (int i = 0; i < nSize; ++i)
+                {
+                    if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
+                        y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (i + 1))
+                    {
+                        m_skillCursor = i;
+                        m_skillSelect = nBegin + i;
+                        break;
+                    }
+                }
+            }
+        }
+        else if (m_eFocus == eFocus::STATUS)
+        {
+            if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH)
+            {
+                nBegin = m_statusBegin;
+                if (m_statusInfoList.size() <= 9)
+                {
+                    nSize = m_statusInfoList.size();
+                }
+
+                for (int i = 0; i < nSize; ++i)
+                {
+                    if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
+                        y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (i + 1))
+                    {
+                        m_statusCursor = i;
+                        m_statusSelect = nBegin + i;
+                        break;
+                    }
+                }
+            }
+        }
+        else if (m_eFocus == eFocus::QUIT)
+        {
+            m_quitCursor = -1;
+            if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH)
+            {
+                nSize = 2;
+
+                for (int i = 0; i < nSize; ++i)
+                {
+                    if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
+                        y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (i + 1))
+                    {
+                        m_quitCursor = i;
+                        break;
+                    }
+                }
+            }
+
+            if (m_quitCursor == 0)
+            {
+                result = m_TopBarName.at(m_topBarIndex);
+            }
+            else
+            {
+                m_eFocus = eFocus::TOP_BAR;
+            }
+        }
+        else if (m_eFocus == eFocus::OPENING)
+        {
+            m_openingCursor = -1;
+            if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH)
+            {
+                nSize = 2;
+
+                for (int i = 0; i < nSize; ++i)
+                {
+                    if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
+                        y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (i + 1))
+                    {
+                        m_openingCursor = i;
+                        break;
+                    }
+                }
+            }
+
+            if (m_openingCursor == 0)
+            {
+                result = m_TopBarName.at(m_topBarIndex);
+            }
+            else
+            {
+                m_eFocus = eFocus::TOP_BAR;
             }
         }
     }
