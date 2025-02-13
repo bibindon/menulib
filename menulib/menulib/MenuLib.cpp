@@ -933,9 +933,9 @@ void NSMenulib::MenuLib::CursorOn(const int x, const int y)
             {
                 previousIndex = m_guideSelect;
                 nBegin = m_guideBegin;
-                if (m_guideInfoList.size() <= 9)
+                if (m_guideCategory.size() <= 9)
                 {
-                    nSize = m_guideInfoList.size();
+                    nSize = m_guideCategory.size();
                 }
             }
             else if (m_eFocus == eFocus::MAP)
@@ -996,6 +996,8 @@ void NSMenulib::MenuLib::CursorOn(const int x, const int y)
                 nSize = 2;
             }
 
+            bool hit = false;
+
             for (int i = 0; i < nSize; ++i)
             {
                 if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
@@ -1003,6 +1005,7 @@ void NSMenulib::MenuLib::CursorOn(const int x, const int y)
                 {
                     nCursor = i;
                     nSelect = nBegin + i;
+                    hit = true;
                     break;
                 }
             }
@@ -1012,53 +1015,56 @@ void NSMenulib::MenuLib::CursorOn(const int x, const int y)
                 m_SE->PlayMove();
             }
 
-            if (m_eFocus == eFocus::ITEM)
+            if (hit)
             {
-                m_itemCursor = nCursor;
-                m_itemSelect = nSelect;
-            }
-            else if (m_eFocus == eFocus::WEAPON)
-            {
-                m_weaponCursor = nCursor;
-                m_weaponSelect = nSelect;
-            }
-            else if (m_eFocus == eFocus::GUIDE)
-            {
-                m_guideCursor = nCursor;
-                m_guideSelect = nSelect;
-            }
-            else if (m_eFocus == eFocus::MAP)
-            {
-                m_mapCursor = nCursor;
-                m_mapSelect = nSelect;
-            }
-            else if (m_eFocus == eFocus::HUMAN)
-            {
-                m_humanCursor = nCursor;
-                m_humanSelect = nSelect;
-            }
-            else if (m_eFocus == eFocus::ENEMY)
-            {
-                m_enemyCursor = nCursor;
-                m_enemySelect = nSelect;
-            }
-            else if (m_eFocus == eFocus::SKILL)
-            {
-                m_skillCursor = nCursor;
-                m_skillSelect = nSelect;
-            }
-            else if (m_eFocus == eFocus::STATUS)
-            {
-                m_statusCursor = nCursor;
-                m_statusSelect = nSelect;
-            }
-            else if (m_eFocus == eFocus::QUIT)
-            {
-                m_quitCursor = nCursor;
-            }
-            else if (m_eFocus == eFocus::OPENING)
-            {
-                m_openingCursor = nCursor;
+                if (m_eFocus == eFocus::ITEM)
+                {
+                    m_itemCursor = nCursor;
+                    m_itemSelect = nSelect;
+                }
+                else if (m_eFocus == eFocus::WEAPON)
+                {
+                    m_weaponCursor = nCursor;
+                    m_weaponSelect = nSelect;
+                }
+                else if (m_eFocus == eFocus::GUIDE)
+                {
+                    m_guideCursor = nCursor;
+                    m_guideSelect = nSelect;
+                }
+                else if (m_eFocus == eFocus::MAP)
+                {
+                    m_mapCursor = nCursor;
+                    m_mapSelect = nSelect;
+                }
+                else if (m_eFocus == eFocus::HUMAN)
+                {
+                    m_humanCursor = nCursor;
+                    m_humanSelect = nSelect;
+                }
+                else if (m_eFocus == eFocus::ENEMY)
+                {
+                    m_enemyCursor = nCursor;
+                    m_enemySelect = nSelect;
+                }
+                else if (m_eFocus == eFocus::SKILL)
+                {
+                    m_skillCursor = nCursor;
+                    m_skillSelect = nSelect;
+                }
+                else if (m_eFocus == eFocus::STATUS)
+                {
+                    m_statusCursor = nCursor;
+                    m_statusSelect = nSelect;
+                }
+                else if (m_eFocus == eFocus::QUIT)
+                {
+                    m_quitCursor = nCursor;
+                }
+                else if (m_eFocus == eFocus::OPENING)
+                {
+                    m_openingCursor = nCursor;
+                }
             }
         }
     }
@@ -1112,7 +1118,7 @@ void NSMenulib::MenuLib::CursorOn(const int x, const int y)
     }
     else if (m_eFocus == eFocus::GUIDE_SUB)
     {
-        if (MIDDLE_PANEL_STARTX < x && x <= MIDDLE_PANEL_STARTX + LEFT_PANEL_WIDTH)
+        if (MIDDLE_PANEL_STARTX - 250 < x && x <= MIDDLE_PANEL_STARTX -250 + LEFT_PANEL_WIDTH)
         {
             previousIndex = m_weaponSubCursor;
 
@@ -1366,9 +1372,9 @@ std::string MenuLib::Click(const int x, const int y)
             if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH - 250)
             {
                 nBegin = m_guideBegin;
-                if (m_guideInfoList.size() <= 9)
+                if (m_guideCategory.size() <= 9)
                 {
-                    nSize = m_guideInfoList.size();
+                    nSize = m_guideCategory.size();
                 }
 
                 for (int i = 0; i < nSize; ++i)
@@ -1391,11 +1397,14 @@ std::string MenuLib::Click(const int x, const int y)
             if (MIDDLE_PANEL_STARTX - 250 < x && x <= MIDDLE_PANEL_STARTX - 250 + LEFT_PANEL_WIDTH)
             {
                 nBegin = m_guideBegin;
-                if (m_guideInfoList.size() <= 9)
+
+                auto category = m_guideCategory.at(m_guideSelect);
+                if (m_guideSubCategory.at(category).size() <= 9)
                 {
-                    nSize = m_guideInfoList.size();
+                    nSize = m_guideSubCategory.at(category).size();
                 }
 
+                bool hit = false;
                 for (int i = 0; i < nSize; ++i)
                 {
                     if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
@@ -1404,9 +1413,24 @@ std::string MenuLib::Click(const int x, const int y)
                         m_guideSubCursor = i;
                         m_guideSubSelect = nBegin + i;
 
+                        hit = true;
+
                         break;
                     }
                 }
+                
+                if (!hit)
+                {
+                    m_eFocus = eFocus::GUIDE;
+                    m_guideSubCursor = 0;
+                    m_guideSubSelect = 0;
+                }
+            }
+            else
+            {
+                m_eFocus = eFocus::GUIDE;
+                m_guideSubCursor = 0;
+                m_guideSubSelect = 0;
             }
         }
         else if (m_eFocus == eFocus::MAP)
