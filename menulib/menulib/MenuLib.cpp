@@ -1959,9 +1959,17 @@ void MenuLib::Draw()
                 break;
             }
 
+            int trans = 255;
+            if (m_eFocus == eFocus::GUIDE)
+            {
+                trans = 32;
+            }
+
             m_font->DrawText_(vs.at(m_guideSubBegin+i),
                               MIDDLE_PANEL_STARTX - 250,
-                              LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
+                              LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT),
+                              false,
+                              trans);
         }
     }
 
