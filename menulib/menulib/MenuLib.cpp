@@ -644,8 +644,11 @@ std::string MenuLib::Into()
     }
     else if (m_eFocus == eFocus::ITEM)
     {
-        m_eFocus = eFocus::ITEM_SUB;
-        m_itemSubCursor = 0;
+        if (!m_itemInfoList.empty())
+        {
+            m_eFocus = eFocus::ITEM_SUB;
+            m_itemSubCursor = 0;
+        }
     }
     else if (m_eFocus == eFocus::ITEM_SUB)
     {
@@ -696,8 +699,11 @@ std::string MenuLib::Into()
     }
     else if (m_eFocus == eFocus::WEAPON)
     {
-        m_eFocus = eFocus::WEAPON_SUB;
-        m_weaponSubCursor = 0;
+        if (!m_weaponInfoList.empty())
+        {
+            m_eFocus = eFocus::WEAPON_SUB;
+            m_weaponSubCursor = 0;
+        }
     }
     else if (m_eFocus == eFocus::WEAPON_SUB)
     {
@@ -1748,8 +1754,7 @@ void MenuLib::Draw()
     // Show item detail
     if (m_eFocus == eFocus::ITEM || m_eFocus == eFocus::ITEM_SUB)
     {
-        // 一つもアイテムを持っていなければ-1になる
-        if (m_itemSelect != -1)
+        if (!m_itemInfoList.empty())
         {
             int trans = 255;
             if (m_eFocus == eFocus::ITEM_SUB)
@@ -1856,24 +1861,27 @@ void MenuLib::Draw()
 
     if (m_eFocus == eFocus::WEAPON || m_eFocus == eFocus::WEAPON_SUB)
     {
-        int trans = 255;
-        if (m_eFocus == eFocus::WEAPON_SUB)
+        if (!m_weaponInfoList.empty())
         {
-            trans = 64;
-        }
+            int trans = 255;
+            if (m_eFocus == eFocus::WEAPON_SUB)
+            {
+                trans = 64;
+            }
 
-        m_weaponInfoList.at(m_weaponSelect).GetSprite()->DrawImage(550, 300, trans);
+            m_weaponInfoList.at(m_weaponSelect).GetSprite()->DrawImage(550, 300, trans);
 
-        std::string detail = m_weaponInfoList.at(m_weaponSelect).GetDetail();
-        std::vector<std::string> details = split(detail, '\n');
+            std::string detail = m_weaponInfoList.at(m_weaponSelect).GetDetail();
+            std::vector<std::string> details = split(detail, '\n');
 
-        for (std::size_t i = 0; i < details.size(); ++i)
-        {
-            m_font->DrawText_(
-                details.at(i),
-                1100,
-                250 + (int)i*40
-                );
+            for (std::size_t i = 0; i < details.size(); ++i)
+            {
+                m_font->DrawText_(
+                    details.at(i),
+                    1100,
+                    250 + (int)i*40
+                    );
+            }
         }
     }
 
@@ -2000,7 +2008,10 @@ void MenuLib::Draw()
     }
     else if (m_eFocus == eFocus::ITEM)
     {
-        m_sprCursor->DrawImage(LEFT_PANEL_CURSORX, LEFT_PANEL_CURSORY + (m_itemCursor * 60));
+        if (!m_itemInfoList.empty())
+        {
+            m_sprCursor->DrawImage(LEFT_PANEL_CURSORX, LEFT_PANEL_CURSORY + (m_itemCursor * 60));
+        }
     }
     else if (m_eFocus == eFocus::ITEM_SUB)
     {
@@ -2008,7 +2019,10 @@ void MenuLib::Draw()
     }
     else if (m_eFocus == eFocus::WEAPON)
     {
-        m_sprCursor->DrawImage(LEFT_PANEL_CURSORX, LEFT_PANEL_CURSORY + (m_weaponCursor * 60));
+        if (!m_weaponInfoList.empty())
+        {
+            m_sprCursor->DrawImage(LEFT_PANEL_CURSORX, LEFT_PANEL_CURSORY + (m_weaponCursor * 60));
+        }
     }
     else if (m_eFocus == eFocus::WEAPON_SUB)
     {
@@ -2093,11 +2107,30 @@ void NSMenulib::MenuLib::DeleteItem(const int id, const int subId)
 
     // 一番最後の要素を削除した場合、カーソルが何もない場所を選択してしまう。
     // 選択中を表すインデックスを一つ小さくする。
-    // このとき、要素が一つしかなかった場合、-1になるので注意
     if ((int)m_itemInfoList.size() <= m_itemSelect)
     {
         m_itemSelect = m_itemInfoList.size() - 1;
-        --m_itemCursor;
+
+        // アイテムの数が9個以下ならカーソルの位置は、一つ上に移動する。
+        if (m_itemInfoList.size() <= 9)
+        {
+            --m_itemCursor;
+        }
+        // アイテムの数が10個以上ならカーソルの位置はそのまま、全体が下に移動する。
+        else
+        {
+            --m_itemBegin;
+        }
+    }
+
+    // 武器だったら武器リストからも削除
+    for (auto it = m_weaponInfoList.begin(); it != m_weaponInfoList.end(); ++it)
+    {
+        if (it->GetId() == id && it->GetSubId() == subId)
+        {
+            m_weaponInfoList.erase(it);
+            break;
+        }
     }
 }
 
