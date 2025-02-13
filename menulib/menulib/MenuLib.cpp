@@ -1849,7 +1849,7 @@ void MenuLib::Draw()
             }
 
             m_font->DrawText_(vs.at(m_guideSubBegin+i),
-                              MIDDLE_PANEL_STARTX,
+                              MIDDLE_PANEL_STARTX - 250,
                               LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
         }
     }
@@ -1895,11 +1895,9 @@ void MenuLib::Draw()
 
         for (std::size_t i = 0; i < details.size(); ++i)
         {
-            m_font->DrawText_(
-                details.at(i),
-                1100,
-                250 + (int)i*40
-                );
+            m_font->DrawText_(details.at(i),
+                              700,
+                              250 + (int)i*40);
         }
     }
 
@@ -2022,7 +2020,7 @@ void MenuLib::Draw()
     }
     else if (m_eFocus == eFocus::GUIDE_SUB)
     {
-        m_sprCursor->DrawImage(MIDDLE_PANEL_CURSORX, MIDDLE_PANEL_CURSORY + (m_guideSubCursor * 60));
+        m_sprCursor->DrawImage(MIDDLE_PANEL_CURSORX - 250, MIDDLE_PANEL_CURSORY + (m_guideSubCursor * 60));
     }
     else if (m_eFocus == eFocus::MAP)
     {
