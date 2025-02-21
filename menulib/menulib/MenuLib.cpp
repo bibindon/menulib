@@ -910,7 +910,7 @@ void NSMenulib::MenuLib::CursorOn(const int x, const int y)
         if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH)
         {
             int nCursor = 0;
-            int nSelect = 0;
+            int nSelect = -1;
             int nBegin = 0;
             int nSize = 10;
             if (m_eFocus == eFocus::ITEM)
@@ -1012,9 +1012,9 @@ void NSMenulib::MenuLib::CursorOn(const int x, const int y)
                 }
             }
 
-            if (previousIndex != nSelect)
+            if (nSelect != -1)
             {
-                if (nSelect != 0)
+                if (previousIndex != nSelect)
                 {
                     m_SE->PlayMove();
                 }
@@ -1125,7 +1125,7 @@ void NSMenulib::MenuLib::CursorOn(const int x, const int y)
     {
         if (MIDDLE_PANEL_STARTX - 250 < x && x <= MIDDLE_PANEL_STARTX -250 + LEFT_PANEL_WIDTH)
         {
-            previousIndex = m_weaponSubCursor;
+            previousIndex = m_guideSubCursor;
 
             std::string category = m_guideCategory.at(m_guideSelect);
             int nSize = m_guideSubCategory.at(category).size();
@@ -1145,7 +1145,7 @@ void NSMenulib::MenuLib::CursorOn(const int x, const int y)
                 }
             }
 
-            if (previousIndex != m_weaponSubCursor)
+            if (previousIndex != m_guideSubCursor)
             {
                 m_SE->PlayMove();
             }
