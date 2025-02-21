@@ -875,7 +875,7 @@ void NSMenulib::MenuLib::CursorOn(const int x, const int y)
                 m_topBarIndex = TOPBAR_SKILL;
             }
         }
-        else if (TOPBAR_STARTY < y + TOPBAR_PANEL_HEIGHT * 1 && y <= TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT * 2)
+        else if (TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT * 1 < y && y <= TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT * 2)
         {
             if (TOPBAR_STARTX < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 1)
             {
@@ -1014,7 +1014,10 @@ void NSMenulib::MenuLib::CursorOn(const int x, const int y)
 
             if (previousIndex != nSelect)
             {
-                m_SE->PlayMove();
+                if (nSelect != 0)
+                {
+                    m_SE->PlayMove();
+                }
             }
 
             if (hit)
