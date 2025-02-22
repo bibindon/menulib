@@ -597,6 +597,10 @@ std::string MenuLib::Into()
             m_guideCursor = 0;
             m_guideBegin = 0;
             m_guideSelect = 0;
+
+            m_guideSubCursor = 0;
+            m_guideSubBegin = 0;
+            m_guideSubSelect = 0;
         }
         else if (m_topBarIndex == TOPBAR_MAP)
         {
