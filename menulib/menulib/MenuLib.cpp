@@ -33,7 +33,7 @@ void MenuLib::Init(
 
     m_TopBarName.push_back("アイテム");
     m_TopBarName.push_back("武器");
-    m_TopBarName.push_back("操作説明");
+    m_TopBarName.push_back("ガイド");
     m_TopBarName.push_back("マップ");
     m_TopBarName.push_back("人物情報");
     m_TopBarName.push_back("敵情報");
@@ -369,7 +369,7 @@ std::string MenuLib::Down()
     else if (m_eFocus == eFocus::GUIDE)
     {
         // スクロール可能なためカーソルの位置と選択アイテムは異なる
-        if (m_guideSelect <= (int)m_guideInfoList.size() - 2)
+        if (m_guideSelect <= (int)m_guideCategory.size() - 2)
         {
             m_guideSelect++;
             // 10行まで表示可能なので現在行が8ならカーソルを下に移動可能
@@ -1226,7 +1226,7 @@ std::string MenuLib::Click(const int x, const int y)
 
         // 同じ処理が延々と続くが、共通化してはいけない。
         // メニューごとにクリック範囲が変わる可能性があるため。
-        // 例えば、「操作説明」ではサブカテゴリが左に250ピクセル寄っているのでクリックを検知する範囲が異なる。
+        // 例えば、「ガイド」ではサブカテゴリが左に250ピクセル寄っているのでクリックを検知する範囲が異なる。
         if (m_eFocus == eFocus::ITEM)
         {
             if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH)
@@ -1377,7 +1377,7 @@ std::string MenuLib::Click(const int x, const int y)
         }
         else if (m_eFocus == eFocus::GUIDE)
         {
-            // 操作説明はサブカテゴリが左に寄っている
+            // ガイドはサブカテゴリが左に寄っている
             if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH - 250)
             {
                 nBegin = m_guideBegin;
@@ -1402,7 +1402,7 @@ std::string MenuLib::Click(const int x, const int y)
         }
         else if (m_eFocus == eFocus::GUIDE_SUB)
         {
-            // 操作説明はサブカテゴリが左に寄っている
+            // ガイドはサブカテゴリが左に寄っている
             if (MIDDLE_PANEL_STARTX - 250 < x && x <= MIDDLE_PANEL_STARTX - 250 + LEFT_PANEL_WIDTH)
             {
                 nBegin = m_guideBegin;
