@@ -916,7 +916,7 @@ void NSMenulib::MenuLib::CursorOn(const int x, const int y)
             int nCursor = 0;
             int nSelect = -1;
             int nBegin = 0;
-            int nSize = 10;
+            size_t nSize = 10;
             if (m_eFocus == eFocus::ITEM)
             {
                 previousIndex = m_itemSelect;
@@ -1004,7 +1004,7 @@ void NSMenulib::MenuLib::CursorOn(const int x, const int y)
 
             bool hit = false;
 
-            for (int i = 0; i < nSize; ++i)
+            for (int i = 0; i < (int)nSize; ++i)
             {
                 if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
                     y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (i + 1))
@@ -1132,13 +1132,13 @@ void NSMenulib::MenuLib::CursorOn(const int x, const int y)
             previousIndex = m_guideSubCursor;
 
             std::string category = m_guideCategory.at(m_guideSelect);
-            int nSize = m_guideSubCategory.at(category).size();
+            size_t nSize = m_guideSubCategory.at(category).size();
             if (nSize >= 10)
             {
                 nSize = 10;
             }
 
-            for (int i = 0; i < nSize; ++i)
+            for (int i = 0; i < (int)nSize; ++i)
             {
                 if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
                     y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (i + 1))
@@ -1222,7 +1222,7 @@ std::string MenuLib::Click(const int x, const int y)
     else
     {
         int nBegin = 0;
-        int nSize = 10;
+        size_t nSize = 10;
 
         // 同じ処理が延々と続くが、共通化してはいけない。
         // メニューごとにクリック範囲が変わる可能性があるため。
@@ -1237,7 +1237,7 @@ std::string MenuLib::Click(const int x, const int y)
                     nSize = m_itemInfoList.size();
                 }
 
-                for (int i = 0; i < nSize; ++i)
+                for (int i = 0; i < (int)nSize; ++i)
                 {
                     if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
                         y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (i + 1))
@@ -1327,7 +1327,7 @@ std::string MenuLib::Click(const int x, const int y)
                     nSize = m_weaponInfoList.size();
                 }
 
-                for (int i = 0; i < nSize; ++i)
+                for (int i = 0; i < (int)nSize; ++i)
                 {
                     if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
                         y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (i + 1))
@@ -1386,7 +1386,7 @@ std::string MenuLib::Click(const int x, const int y)
                     nSize = m_guideCategory.size();
                 }
 
-                for (int i = 0; i < nSize; ++i)
+                for (int i = 0; i < (int)nSize; ++i)
                 {
                     if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
                         y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (i + 1))
@@ -1414,7 +1414,7 @@ std::string MenuLib::Click(const int x, const int y)
                 }
 
                 bool hit = false;
-                for (int i = 0; i < nSize; ++i)
+                for (int i = 0; i < (int)nSize; ++i)
                 {
                     if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
                         y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (i + 1))
@@ -1452,7 +1452,7 @@ std::string MenuLib::Click(const int x, const int y)
                     nSize = m_mapInfoList.size();
                 }
 
-                for (int i = 0; i < nSize; ++i)
+                for (int i = 0; i < (int)nSize; ++i)
                 {
                     if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
                         y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (i + 1))
@@ -1474,7 +1474,7 @@ std::string MenuLib::Click(const int x, const int y)
                     nSize = m_humanInfoList.size();
                 }
 
-                for (int i = 0; i < nSize; ++i)
+                for (int i = 0; i < (int)nSize; ++i)
                 {
                     if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
                         y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (i + 1))
@@ -1496,7 +1496,7 @@ std::string MenuLib::Click(const int x, const int y)
                     nSize = m_enemyInfoList.size();
                 }
 
-                for (int i = 0; i < nSize; ++i)
+                for (int i = 0; i < (int)nSize; ++i)
                 {
                     if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
                         y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (i + 1))
@@ -1518,7 +1518,7 @@ std::string MenuLib::Click(const int x, const int y)
                     nSize = m_skillInfoList.size();
                 }
 
-                for (int i = 0; i < nSize; ++i)
+                for (int i = 0; i < (int)nSize; ++i)
                 {
                     if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
                         y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (i + 1))
@@ -1540,7 +1540,7 @@ std::string MenuLib::Click(const int x, const int y)
                     nSize = m_statusInfoList.size();
                 }
 
-                for (int i = 0; i < nSize; ++i)
+                for (int i = 0; i < (int)nSize; ++i)
                 {
                     if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
                         y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (i + 1))
@@ -1559,7 +1559,7 @@ std::string MenuLib::Click(const int x, const int y)
             {
                 nSize = 2;
 
-                for (int i = 0; i < nSize; ++i)
+                for (int i = 0; i < (int)nSize; ++i)
                 {
                     if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
                         y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (i + 1))
@@ -1586,7 +1586,7 @@ std::string MenuLib::Click(const int x, const int y)
             {
                 nSize = 2;
 
-                for (int i = 0; i < nSize; ++i)
+                for (int i = 0; i < (int)nSize; ++i)
                 {
                     if (LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * i < y &&
                         y <= LEFT_PANEL_STARTY + LEFT_PANEL_HEIGHT * (i + 1))
@@ -2256,7 +2256,7 @@ void NSMenulib::MenuLib::DeleteItem(const int id, const int subId)
     // 選択中を表すインデックスを一つ小さくする。
     if ((int)m_itemInfoList.size() <= m_itemSelect)
     {
-        m_itemSelect = m_itemInfoList.size() - 1;
+        m_itemSelect = (int)m_itemInfoList.size() - 1;
 
         // アイテムの数が9個以下ならカーソルの位置は、一つ上に移動する。
         if (m_itemInfoList.size() <= 9)
