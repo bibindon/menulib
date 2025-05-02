@@ -403,6 +403,10 @@ private:
     int m_openingCursor = 0;
 
     std::vector<std::string> m_TopBarName;
+
+    // IntoŠÖ”‚ÆClickŠÖ”‚Å‘I‘ğŒ‹‰Ê‚ğ•Ô‚·‚Æ‚«‚Ég‚¤B‰pŒê
+    std::vector<std::string> m_TopBarNameKey;
+
     std::vector<ItemInfo> m_itemInfoList;
     std::vector<HumanInfo> m_humanInfoList;
     std::vector<EnemyInfo> m_enemyInfoList;

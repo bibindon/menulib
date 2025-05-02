@@ -62,6 +62,17 @@ void MenuLib::Init(
         m_TopBarName.push_back("Save and Exit");
         m_TopBarName.push_back("Title");
     }
+
+    m_TopBarNameKey.push_back("Item");
+    m_TopBarNameKey.push_back("Weapon");
+    m_TopBarNameKey.push_back("Guide");
+    m_TopBarNameKey.push_back("Map");
+    m_TopBarNameKey.push_back("Human Info");
+    m_TopBarNameKey.push_back("Enemy Info");
+    m_TopBarNameKey.push_back("Magic");
+    m_TopBarNameKey.push_back("Status");
+    m_TopBarNameKey.push_back("Save and Exit");
+    m_TopBarNameKey.push_back("Title");
 }
 
 void NSMenulib::MenuLib::Finalize()
@@ -679,7 +690,7 @@ std::string MenuLib::Into()
     }
     else if (m_eFocus == eFocus::ITEM_SUB)
     {
-        result = m_TopBarName.at(m_topBarIndex);
+        result = m_TopBarNameKey.at(m_topBarIndex);
         result += ":" + m_itemInfoList.at(m_itemSelect).GetName();
         result += ":" + std::to_string(m_itemInfoList.at(m_itemSelect).GetId());
         result += ":" + std::to_string(m_itemInfoList.at(m_itemSelect).GetSubId());
@@ -688,11 +699,11 @@ std::string MenuLib::Into()
         {
             if (m_itemSubCursor == 0)
             {
-                result += ":使う";
+                result += ":Use";
             }
             else
             {
-                result += ":捨てる";
+                result += ":Discard";
             }
         }
         else
@@ -701,22 +712,22 @@ std::string MenuLib::Into()
             {
                 if (m_itemSubCursor == 0)
                 {
-                    result += ":装備する";
+                    result += ":Equip";
                 }
                 else
                 {
-                    result += ":捨てる";
+                    result += ":Discard";
                 }
             }
             else
             {
                 if (m_itemSubCursor == 0)
                 {
-                    result += ":装備を外す";
+                    result += ":Unequip";
                 }
                 else
                 {
-                    result += ":捨てる";
+                    result += ":Discard";
                 }
             }
         }
@@ -734,17 +745,17 @@ std::string MenuLib::Into()
     }
     else if (m_eFocus == eFocus::WEAPON_SUB)
     {
-        result = m_TopBarName.at(m_topBarIndex);
+        result = m_TopBarNameKey.at(m_topBarIndex);
         result += ":" + m_weaponInfoList.at(m_weaponSelect).GetName();
         result += ":" + std::to_string(m_weaponInfoList.at(m_weaponSelect).GetId());
         result += ":" + std::to_string(m_weaponInfoList.at(m_weaponSelect).GetSubId());
         if (m_weaponSubCursor == 0)
         {
-            result += ":装備";
+            result += ":Equip";
         }
         else
         {
-            result += ":キャンセル";
+            result += ":Cancel";
         }
         m_eFocus = eFocus::WEAPON;
         m_weaponSubCursor = 0;
@@ -758,7 +769,7 @@ std::string MenuLib::Into()
     {
         if (m_quitCursor == 0)
         {
-            result = m_TopBarName.at(m_topBarIndex);
+            result = m_TopBarNameKey.at(m_topBarIndex);
         }
         else
         {
@@ -770,7 +781,7 @@ std::string MenuLib::Into()
     {
         if (m_openingCursor == 0)
         {
-            result = m_TopBarName.at(m_topBarIndex);
+            result = m_TopBarNameKey.at(m_topBarIndex);
         }
         else
         {
@@ -798,20 +809,20 @@ std::string MenuLib::Back()
     {
         m_eFocus = eFocus::TOP_BAR;
         m_SE->PlayBack();
-        result = m_TopBarName.at(m_topBarIndex);
+        result = m_TopBarNameKey.at(m_topBarIndex);
     }
     else if (m_eFocus == eFocus::ITEM_SUB)
     {
         m_eFocus = eFocus::ITEM;
         m_SE->PlayBack();
-        result = m_TopBarName.at(m_topBarIndex);
+        result = m_TopBarNameKey.at(m_topBarIndex);
         result += ":" + m_itemInfoList.at(m_itemSelect).GetName();
     }
     else if (m_eFocus == eFocus::WEAPON_SUB)
     {
         m_eFocus = eFocus::WEAPON;
         m_SE->PlayBack();
-        result = m_TopBarName.at(m_topBarIndex);
+        result = m_TopBarNameKey.at(m_topBarIndex);
         result += ":" + m_weaponInfoList.at(m_weaponSelect).GetName();
     }
     else if (m_eFocus == eFocus::GUIDE_SUB)
@@ -832,7 +843,7 @@ std::string MenuLib::Back()
     {
         m_eFocus = eFocus::TOP_BAR;
         m_SE->PlayBack();
-        result = m_TopBarName.at(m_topBarIndex);
+        result = m_TopBarNameKey.at(m_topBarIndex);
     }
     return result;
 }
@@ -1289,7 +1300,7 @@ std::string MenuLib::Click(const int x, const int y)
                         m_itemSubCursor = 1;
                     }
 
-                    result = m_TopBarName.at(m_topBarIndex);
+                    result = m_TopBarNameKey.at(m_topBarIndex);
                     result += ":" + m_itemInfoList.at(m_itemSelect).GetName();
                     result += ":" + std::to_string(m_itemInfoList.at(m_itemSelect).GetId());
                     result += ":" + std::to_string(m_itemInfoList.at(m_itemSelect).GetSubId());
@@ -1298,11 +1309,11 @@ std::string MenuLib::Click(const int x, const int y)
                     {
                         if (m_itemSubCursor == 0)
                         {
-                            result += ":使う";
+                            result += ":Use";
                         }
                         else
                         {
-                            result += ":捨てる";
+                            result += ":Discard";
                         }
                     }
                     else
@@ -1311,22 +1322,22 @@ std::string MenuLib::Click(const int x, const int y)
                         {
                             if (m_itemSubCursor == 0)
                             {
-                                result += ":装備する";
+                                result += ":Equip";
                             }
                             else
                             {
-                                result += ":捨てる";
+                                result += ":Discard";
                             }
                         }
                         else
                         {
                             if (m_itemSubCursor == 0)
                             {
-                                result += ":装備を外す";
+                                result += ":Unequip";
                             }
                             else
                             {
-                                result += ":捨てる";
+                                result += ":Discard";
                             }
                         }
                     }
@@ -1377,17 +1388,17 @@ std::string MenuLib::Click(const int x, const int y)
                     m_weaponSubCursor = 1;
                 }
 
-                result = m_TopBarName.at(m_topBarIndex);
+                result = m_TopBarNameKey.at(m_topBarIndex);
                 result += ":" + m_weaponInfoList.at(m_weaponSelect).GetName();
                 result += ":" + std::to_string(m_weaponInfoList.at(m_weaponSelect).GetId());
                 result += ":" + std::to_string(m_weaponInfoList.at(m_weaponSelect).GetSubId());
                 if (m_weaponSubCursor == 0)
                 {
-                    result += ":装備";
+                    result += ":Equip";
                 }
                 else
                 {
-                    result += ":キャンセル";
+                    result += ":Cancel";
                 }
             }
 
@@ -1593,7 +1604,7 @@ std::string MenuLib::Click(const int x, const int y)
 
             if (m_quitCursor == 0)
             {
-                result = m_TopBarName.at(m_topBarIndex);
+                result = m_TopBarNameKey.at(m_topBarIndex);
             }
             else
             {
@@ -1620,7 +1631,7 @@ std::string MenuLib::Click(const int x, const int y)
 
             if (m_openingCursor == 0)
             {
-                result = m_TopBarName.at(m_topBarIndex);
+                result = m_TopBarNameKey.at(m_topBarIndex);
             }
             else
             {
