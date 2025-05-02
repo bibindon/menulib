@@ -24,23 +24,44 @@ void MenuLib::Init(
     IFont* font,
     ISoundEffect* SE,
     ISprite* sprCursor,
-    ISprite* sprBackground)
+    ISprite* sprBackground,
+    const bool bEnglish)
 {
     m_font = font;
     m_SE = SE;
     m_sprCursor = sprCursor;
     m_sprBackground = sprBackground;
+    m_bEnglish = bEnglish;
 
-    m_TopBarName.push_back("アイテム");
-    m_TopBarName.push_back("武器");
-    m_TopBarName.push_back("ガイド");
-    m_TopBarName.push_back("マップ");
-    m_TopBarName.push_back("人物情報");
-    m_TopBarName.push_back("敵情報");
-    m_TopBarName.push_back("技・魔法");
-    m_TopBarName.push_back("ステータス");
-    m_TopBarName.push_back("セーブして終了");
-    m_TopBarName.push_back("タイトルに戻る");
+    m_font->Init(m_bEnglish);
+    m_SE->Init();
+
+    if (!bEnglish)
+    {
+        m_TopBarName.push_back("アイテム");
+        m_TopBarName.push_back("武器");
+        m_TopBarName.push_back("ガイド");
+        m_TopBarName.push_back("マップ");
+        m_TopBarName.push_back("人物情報");
+        m_TopBarName.push_back("敵情報");
+        m_TopBarName.push_back("技・魔法");
+        m_TopBarName.push_back("ステータス");
+        m_TopBarName.push_back("セーブして終了");
+        m_TopBarName.push_back("タイトルに戻る");
+    }
+    else
+    {
+        m_TopBarName.push_back("Item");
+        m_TopBarName.push_back("Weapon");
+        m_TopBarName.push_back("Guide");
+        m_TopBarName.push_back("Map");
+        m_TopBarName.push_back("Human Info");
+        m_TopBarName.push_back("Enemy Info");
+        m_TopBarName.push_back("Magic");
+        m_TopBarName.push_back("Status");
+        m_TopBarName.push_back("Save and Exit");
+        m_TopBarName.push_back("Title");
+    }
 }
 
 void NSMenulib::MenuLib::Finalize()
@@ -1668,8 +1689,17 @@ void MenuLib::Draw()
 
     if (m_eFocus == eFocus::ITEM || m_eFocus == eFocus::ITEM_SUB)
     {
-        m_font->DrawText_("強化", LEFT_PANEL_STARTX + 320, LEFT_PANEL_STARTY - 35, true, 64);
-        m_font->DrawText_("耐久", LEFT_PANEL_STARTX + 380, LEFT_PANEL_STARTY - 35, true, 64);
+        if (!m_bEnglish)
+        {
+            m_font->DrawText_("強化", LEFT_PANEL_STARTX + 320, LEFT_PANEL_STARTY - 35, true, 64);
+            m_font->DrawText_("耐久", LEFT_PANEL_STARTX + 380, LEFT_PANEL_STARTY - 35, true, 64);
+        }
+        else
+        {
+            m_font->DrawText_("Level", LEFT_PANEL_STARTX + 320, LEFT_PANEL_STARTY - 35, true, 64);
+            m_font->DrawText_("Drblty", LEFT_PANEL_STARTX + 380, LEFT_PANEL_STARTY - 35, true, 64);
+        }
+
         for (int i = 0; i < LEFT_PANEL_ROW_MAX; ++i)
         {
             if ((int)m_itemInfoList.size() <= m_itemBegin + i)
@@ -1687,10 +1717,17 @@ void MenuLib::Draw()
                 }
             }
 
-            std::string work = m_itemInfoList.at(m_itemBegin + i).GetName();
-            if (m_itemInfoList.at(m_itemBegin + i).GetEquip())
+            std::string work = m_itemInfoList.at((size_t)m_itemBegin + i).GetName();
+            if (m_itemInfoList.at((size_t)m_itemBegin + i).GetEquip())
             {
-                work += "（装備中）";
+                if (!m_bEnglish)
+                {
+                    work += "（装備中）";
+                }
+                else
+                {
+                    work += " (Equipped)";
+                }
             }
 
             m_font->DrawText_(work,
@@ -1699,20 +1736,20 @@ void MenuLib::Draw()
                               false,
                               trans);
 
-            if (m_itemInfoList.at(m_itemBegin + i).GetLevel() != -1)
+            if (m_itemInfoList.at((size_t)m_itemBegin + i).GetLevel() != -1)
             {
                 m_font->DrawText_(
-                    std::to_string(m_itemInfoList.at(m_itemBegin+i).GetLevel()),
+                    std::to_string(m_itemInfoList.at((size_t)m_itemBegin+i).GetLevel()),
                     350 + LEFT_PANEL_PADDINGX,
                     LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT),
                     true,
                     trans);
             }
 
-            if (m_itemInfoList.at(m_itemBegin + i).GetDurability() != -1)
+            if (m_itemInfoList.at((size_t)m_itemBegin + i).GetDurability() != -1)
             {
                 m_font->DrawText_(
-                    std::to_string(m_itemInfoList.at(m_itemBegin + i).GetDurability()),
+                    std::to_string(m_itemInfoList.at((size_t)m_itemBegin + i).GetDurability()),
                     410 + LEFT_PANEL_PADDINGX,
                     LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i * LEFT_PANEL_HEIGHT),
                     true,
@@ -1722,8 +1759,17 @@ void MenuLib::Draw()
     }
     else if (m_eFocus == eFocus::WEAPON || m_eFocus == eFocus::WEAPON_SUB)
     {
-        m_font->DrawText_("強化", LEFT_PANEL_STARTX + 320, LEFT_PANEL_STARTY - 35, true, 64);
-        m_font->DrawText_("耐久", LEFT_PANEL_STARTX + 380, LEFT_PANEL_STARTY - 35, true, 64);
+        if (!m_bEnglish)
+        {
+            m_font->DrawText_("強化", LEFT_PANEL_STARTX + 320, LEFT_PANEL_STARTY - 35, true, 64);
+            m_font->DrawText_("耐久", LEFT_PANEL_STARTX + 380, LEFT_PANEL_STARTY - 35, true, 64);
+        }
+        else
+        {
+            m_font->DrawText_("Level", LEFT_PANEL_STARTX + 320, LEFT_PANEL_STARTY - 35, true, 64);
+            m_font->DrawText_("Drblty", LEFT_PANEL_STARTX + 380, LEFT_PANEL_STARTY - 35, true, 64);
+        }
+
         for (int i = 0; i < LEFT_PANEL_ROW_MAX; ++i)
         {
             if ((int)m_weaponInfoList.size() <= m_weaponBegin + i)
@@ -1742,26 +1788,26 @@ void MenuLib::Draw()
             }
 
             m_font->DrawText_(
-                m_weaponInfoList.at(m_weaponBegin+i).GetName(),
+                m_weaponInfoList.at((size_t)m_weaponBegin+i).GetName(),
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
                 LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT),
                 false,
                 trans);
 
-            if (m_weaponInfoList.at(m_weaponBegin + i).GetLevel() != -1)
+            if (m_weaponInfoList.at((size_t)m_weaponBegin + i).GetLevel() != -1)
             {
                 m_font->DrawText_(
-                    std::to_string(m_weaponInfoList.at(m_weaponBegin + i).GetLevel()),
+                    std::to_string(m_weaponInfoList.at((size_t)m_weaponBegin + i).GetLevel()),
                     350 + LEFT_PANEL_PADDINGX,
                     LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i * LEFT_PANEL_HEIGHT),
                     true,
                     trans);
             }
 
-            if (m_weaponInfoList.at(m_weaponBegin + i).GetDurability() != -1)
+            if (m_weaponInfoList.at((size_t)m_weaponBegin + i).GetDurability() != -1)
             {
                 m_font->DrawText_(
-                    std::to_string(m_weaponInfoList.at(m_weaponBegin+i).GetDurability()),
+                    std::to_string(m_weaponInfoList.at((size_t)m_weaponBegin+i).GetDurability()),
                     410 + LEFT_PANEL_PADDINGX,
                     LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT),
                     true,
@@ -1788,7 +1834,7 @@ void MenuLib::Draw()
                     trans = 255;
                 }
             }
-            m_font->DrawText_(m_guideCategory.at(m_guideBegin+i),
+            m_font->DrawText_(m_guideCategory.at((size_t)m_guideBegin+i),
                               LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
                               LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT),
                               false,
@@ -1804,7 +1850,7 @@ void MenuLib::Draw()
                 break;
             }
             m_font->DrawText_(
-                m_mapInfoList.at(m_mapBegin+i).GetName(),
+                m_mapInfoList.at((size_t)m_mapBegin+i).GetName(),
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
                 LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
         }
@@ -1818,7 +1864,7 @@ void MenuLib::Draw()
                 break;
             }
             m_font->DrawText_(
-                m_humanInfoList.at(m_humanBegin+i).GetName(),
+                m_humanInfoList.at((size_t)m_humanBegin+i).GetName(),
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
                 LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
         }
@@ -1832,7 +1878,7 @@ void MenuLib::Draw()
                 break;
             }
             m_font->DrawText_(
-                m_enemyInfoList.at(m_enemyBegin+i).GetName(),
+                m_enemyInfoList.at((size_t)m_enemyBegin+i).GetName(),
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
                 LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
         }
@@ -1846,7 +1892,7 @@ void MenuLib::Draw()
                 break;
             }
             m_font->DrawText_(
-                m_skillInfoList.at(m_skillBegin+i).GetName(),
+                m_skillInfoList.at((size_t)m_skillBegin+i).GetName(),
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
                 LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
         }
@@ -1860,34 +1906,64 @@ void MenuLib::Draw()
                 break;
             }
             m_font->DrawText_(
-                m_statusInfoList.at(m_statusBegin+i).GetName(),
+                m_statusInfoList.at((size_t)m_statusBegin+i).GetName(),
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
                 LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT));
         }
     }
     else if (m_eFocus == eFocus::QUIT)
     {
-        m_font->DrawText_(
-            "はい",
-            LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
-            LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*0));
+        if (!m_bEnglish)
+        {
+            m_font->DrawText_(
+                "はい",
+                LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
+                LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*0));
 
-        m_font->DrawText_(
-            "いいえ",
-            LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
-            LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*1));
+            m_font->DrawText_(
+                "いいえ",
+                LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
+                LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*1));
+        }
+        else
+        {
+            m_font->DrawText_(
+                "Yes",
+                LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
+                LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*0));
+
+            m_font->DrawText_(
+                "No",
+                LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
+                LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*1));
+        }
     }
     else if (m_eFocus == eFocus::OPENING)
     {
-        m_font->DrawText_(
-            "はい",
-            LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
-            LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*0));
+        if (!m_bEnglish)
+        {
+            m_font->DrawText_(
+                "はい",
+                LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
+                LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*0));
 
-        m_font->DrawText_(
-            "いいえ",
-            LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
-            LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*1));
+            m_font->DrawText_(
+                "いいえ",
+                LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
+                LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*1));
+        }
+        else
+        {
+            m_font->DrawText_(
+                "Yes",
+                LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
+                LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*0));
+
+            m_font->DrawText_(
+                "No",
+                LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
+                LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*1));
+        }
     }
 
     // Show item detail
@@ -1907,11 +1983,27 @@ void MenuLib::Draw()
 
             std::string weight_volume;
 
-            weight_volume += "重量(kg) ";
+            if (!m_bEnglish)
+            {
+                weight_volume += "重量(kg) ";
+            }
+            else
+            {
+                weight_volume += "Weight (kg) ";
+            }
+
             weight_volume += ToStringWithPrecision(m_itemInfoList.at(m_itemSelect).GetWeight(), 2);
             weight_volume += "  ";
 
-            weight_volume += "体積(mL) ";
+            if (!m_bEnglish)
+            {
+                weight_volume += "体積(mL) ";
+            }
+            else
+            {
+                weight_volume += "Volume (mL) ";
+            }
+
             weight_volume += std::to_string(m_itemInfoList.at(m_itemSelect).GetVolume());
 
             details.insert(details.begin(), weight_volume);
@@ -1929,10 +2021,28 @@ void MenuLib::Draw()
         // 総重量、積載量、最大積載量を表示
         {
             std::string weightAll_Vol_VolMax;
-            weightAll_Vol_VolMax += "総重量(kg) ";
+
+            if (!m_bEnglish)
+            {
+                weightAll_Vol_VolMax += "総重量(kg) ";
+            }
+            else
+            {
+                weightAll_Vol_VolMax += "Total Weight (kg) ";
+            }
+
             weightAll_Vol_VolMax += ToStringWithPrecision(m_weightAll, 2);
             weightAll_Vol_VolMax += "  ";
-            weightAll_Vol_VolMax += "積載量(mL)/最大積載量(mL) ";
+
+            if (!m_bEnglish)
+            {
+                weightAll_Vol_VolMax += "積載量(mL)/最大積載量(mL) ";
+            }
+            else
+            {
+                weightAll_Vol_VolMax += "Volume (mL) / Total volume (mL) ";
+            }
+
             weightAll_Vol_VolMax += std::to_string(m_volumeAll);
             weightAll_Vol_VolMax += "/";
             weightAll_Vol_VolMax += std::to_string(m_volumeMax);
@@ -1948,23 +2058,50 @@ void MenuLib::Draw()
         // 装備が可能なアイテムなら「装備する」を表示するようにする
         if (!m_itemInfoList.at(m_itemSelect).GetEquipEnable())
         {
-            m_font->DrawText_("使う　　　　　　捨てる",
-                              MIDDLE_PANEL_STARTX,
-                              LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT));
-        }
-        else
-        {
-            if (!m_itemInfoList.at(m_itemSelect).GetEquip())
+            if (!m_bEnglish)
             {
-                m_font->DrawText_("装備する　　　　捨てる",
+                m_font->DrawText_("使う　　　　　　捨てる",
                                   MIDDLE_PANEL_STARTX,
                                   LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT));
             }
             else
             {
-                m_font->DrawText_("装備を外す　　　捨てる",
+                m_font->DrawText_("Use             Discard",
                                   MIDDLE_PANEL_STARTX,
                                   LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT));
+            }
+        }
+        else
+        {
+            if (!m_itemInfoList.at(m_itemSelect).GetEquip())
+            {
+                if (!m_bEnglish)
+                {
+                    m_font->DrawText_("装備する　　　　捨てる",
+                                      MIDDLE_PANEL_STARTX,
+                                      LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT));
+                }
+                else
+                {
+                    m_font->DrawText_("Equip           Discard",
+                                      MIDDLE_PANEL_STARTX,
+                                      LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT));
+                }
+            }
+            else
+            {
+                if (!m_bEnglish)
+                {
+                    m_font->DrawText_("装備を外す　　　捨てる",
+                                      MIDDLE_PANEL_STARTX,
+                                      LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT));
+                }
+                else
+                {
+                    m_font->DrawText_("Unequip         Discard",
+                                      MIDDLE_PANEL_STARTX,
+                                      LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT));
+                }
             }
         }
     }
@@ -1972,11 +2109,18 @@ void MenuLib::Draw()
     // Show weapon sub
     if (m_eFocus == eFocus::WEAPON_SUB)
     {
-        m_font->DrawText_(
-            "装備する　　　　キャンセル",
-            MIDDLE_PANEL_STARTX,
-            LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_weaponCursor * LEFT_PANEL_HEIGHT)
-        );
+        if (!m_bEnglish)
+        {
+            m_font->DrawText_("装備する　　　　キャンセル",
+                              MIDDLE_PANEL_STARTX,
+                              LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_weaponCursor * LEFT_PANEL_HEIGHT));
+        }
+        else
+        {
+            m_font->DrawText_("Equip           Cancel",
+                              MIDDLE_PANEL_STARTX,
+                              LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_weaponCursor * LEFT_PANEL_HEIGHT));
+        }
     }
 
     // Show guide sub category
@@ -1998,7 +2142,7 @@ void MenuLib::Draw()
                 trans = 32;
             }
 
-            m_font->DrawText_(vs.at(m_guideSubBegin+i),
+            m_font->DrawText_(vs.at((size_t)m_guideSubBegin+i),
                               MIDDLE_PANEL_STARTX - 250,
                               LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT),
                               false,

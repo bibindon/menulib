@@ -18,7 +18,7 @@ class IFont
 {
 public:
     virtual void DrawText_(const std::string& msg, const int x, const int y, const bool hcenter = false, const int transparency = 255) = 0;
-    virtual void Init() = 0;
+    virtual void Init(const bool bEnglish) = 0;
     virtual ~IFont() {};
 };
 
@@ -231,7 +231,8 @@ public:
         IFont* font,
         ISoundEffect* SE,
         ISprite* sprCursor,
-        ISprite* sprBackground
+        ISprite* sprBackground,
+        const bool bEnglish
     );
 
     void Finalize();
@@ -417,6 +418,8 @@ private:
     float m_weightAll = 0.f;
     int m_volumeAll = 0;
     int m_volumeMax = 0;
+
+    bool m_bEnglish = false;
 };
 }
 

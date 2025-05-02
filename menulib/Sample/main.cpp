@@ -113,21 +113,38 @@ public:
     {
     }
 
-    void Init()
+    void Init(const bool bEnglish)
     {
-        HRESULT hr = D3DXCreateFont(
-            m_pD3DDevice,
-            20,
-            0,
-            FW_NORMAL,
-            1,
-            false,
-            SHIFTJIS_CHARSET,
-            OUT_TT_ONLY_PRECIS,
-            ANTIALIASED_QUALITY,
-            FF_DONTCARE,
-            "‚l‚r –¾’©",
-            &m_pFont);
+        if (!bEnglish)
+        {
+            HRESULT hr = D3DXCreateFont(m_pD3DDevice,
+                                        20,
+                                        0,
+                                        FW_NORMAL,
+                                        1,
+                                        false,
+                                        SHIFTJIS_CHARSET,
+                                        OUT_TT_ONLY_PRECIS,
+                                        ANTIALIASED_QUALITY,
+                                        FF_DONTCARE,
+                                        "‚l‚r –¾’©",
+                                        &m_pFont);
+        }
+        else
+        {
+            HRESULT hr = D3DXCreateFont(m_pD3DDevice,
+                                        20,
+                                        0,
+                                        FW_NORMAL,
+                                        1,
+                                        false,
+                                        DEFAULT_CHARSET,
+                                        OUT_TT_ONLY_PRECIS,
+                                        CLEARTYPE_NATURAL_QUALITY,
+                                        FF_DONTCARE,
+                                        "Courier New",
+                                        &m_pFont);
+        }
     }
 
     virtual void DrawText_(const std::string& msg, const int x, const int y, const bool hcenter, const int transparency)
@@ -308,11 +325,11 @@ HRESULT InitD3D(HWND hWnd)
     sprPanelLeft->Load("panelLeft.png");
 
     IFont* pFont = new Font(g_pd3dDevice);
-    pFont->Init();
 
     ISoundEffect* pSE = new SoundEffect();
 
-    menu.Init("", pFont, pSE, sprCursor, sprBackground);
+    const bool bEnglish = true;
+    menu.Init("", pFont, pSE, sprCursor, sprBackground, bEnglish);
     std::vector<ItemInfo> itemInfoList;
     {
         ItemInfo itemInfo;
