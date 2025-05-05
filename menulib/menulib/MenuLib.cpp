@@ -1194,6 +1194,11 @@ std::string MenuLib::Click(const int x, const int y)
     std::string result;
     m_SE->PlayClick();
 
+    if (y < TOPBAR_STARTY)
+    {
+        return result;
+    }
+
     // どこにフォーカスがあってもTOP Barをクリックしたら、その操作は有効にする。
     if (TOPBAR_STARTY < y && y <= TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT * 1)
     {
