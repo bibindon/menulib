@@ -1244,11 +1244,13 @@ std::string MenuLib::Click(const int x, const int y)
         {
             m_eFocus = eFocus::QUIT;
             m_topBarIndex = TOPBAR_QUIT;
+            m_quitCursor = 0;
         }
         else if (TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 2 < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 3)
         {
             m_eFocus = eFocus::OPENING;
             m_topBarIndex = TOPBAR_OPENING;
+            m_openingCursor = 0;
         }
     }
     else
