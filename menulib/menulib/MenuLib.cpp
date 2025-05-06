@@ -1116,21 +1116,27 @@ void NSMenulib::MenuLib::CursorOn(const int x, const int y)
         {
             previousIndex = m_itemSubCursor;
 
-            if (MIDDLE_PANEL_STARTX < x &&
-                x <= MIDDLE_PANEL_STARTX + 80)
+            if (MIDDLE_PANEL_STARTX < x && x <= MIDDLE_PANEL_STARTX + 80)
             {
                 m_itemSubCursor = 0;
             }
-            else if (MIDDLE_PANEL_STARTX + 100 < x &&
-                     x <= MIDDLE_PANEL_STARTX + LEFT_PANEL_WIDTH)
+            else if (MIDDLE_PANEL_STARTX + 100 < x && x <= MIDDLE_PANEL_STARTX + LEFT_PANEL_WIDTH)
             {
                 m_itemSubCursor = 1;
+            }
+            else
+            {
+                m_itemSubCursor = -1;
             }
 
             if (previousIndex != m_itemSubCursor)
             {
                 m_SE->PlayMove();
             }
+        }
+        else
+        {
+			m_itemSubCursor = -1;
         }
     }
     else if (m_eFocus == eFocus::WEAPON_SUB)
@@ -1140,21 +1146,27 @@ void NSMenulib::MenuLib::CursorOn(const int x, const int y)
         {
             previousIndex = m_weaponSubCursor;
 
-            if (MIDDLE_PANEL_STARTX < x &&
-                x <= MIDDLE_PANEL_STARTX + 100)
+            if (MIDDLE_PANEL_STARTX < x && x <= MIDDLE_PANEL_STARTX + 100)
             {
                 m_weaponSubCursor = 0;
             }
-            else if (MIDDLE_PANEL_STARTX + 100 < x &&
-                     x <= MIDDLE_PANEL_STARTX + LEFT_PANEL_WIDTH)
+            else if (MIDDLE_PANEL_STARTX + 100 < x && x <= MIDDLE_PANEL_STARTX + LEFT_PANEL_WIDTH)
             {
                 m_weaponSubCursor = 1;
+            }
+            else
+            {
+                m_weaponSubCursor = -1;
             }
 
             if (previousIndex != m_weaponSubCursor)
             {
                 m_SE->PlayMove();
             }
+        }
+        else
+        {
+			m_weaponSubCursor = -1;
         }
     }
     else if (m_eFocus == eFocus::GUIDE_SUB)
@@ -2324,7 +2336,11 @@ void MenuLib::Draw()
     }
     else if (m_eFocus == eFocus::ITEM_SUB)
     {
-        m_sprCursor->DrawImage(MIDDLE_PANEL_CURSORX + (m_itemSubCursor * 160), MIDDLE_PANEL_CURSORY + (m_itemCursor * 60));
+        if (m_itemSubCursor != -1)
+        {
+			m_sprCursor->DrawImage(MIDDLE_PANEL_CURSORX + (m_itemSubCursor * 160),
+                                   MIDDLE_PANEL_CURSORY + (m_itemCursor * 60));
+        }
     }
     else if (m_eFocus == eFocus::WEAPON)
     {
@@ -2335,7 +2351,11 @@ void MenuLib::Draw()
     }
     else if (m_eFocus == eFocus::WEAPON_SUB)
     {
-        m_sprCursor->DrawImage(MIDDLE_PANEL_CURSORX + (m_weaponSubCursor * 160), MIDDLE_PANEL_CURSORY + (m_weaponCursor * 60));
+        if (m_weaponSubCursor != -1)
+        {
+			m_sprCursor->DrawImage(MIDDLE_PANEL_CURSORX + (m_weaponSubCursor * 160),
+                                   MIDDLE_PANEL_CURSORY + (m_weaponCursor * 60));
+        }
     }
     else if (m_eFocus == eFocus::GUIDE)
     {
