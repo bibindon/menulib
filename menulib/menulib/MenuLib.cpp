@@ -1859,7 +1859,7 @@ void MenuLib::Draw()
             if (m_eFocus == eFocus::GUIDE_SUB)
             {
                 trans = 32;
-                if (i == m_guideSelect)
+                if (i == m_guideCursor)
                 {
                     trans = 255;
                 }
