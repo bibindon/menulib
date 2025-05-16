@@ -2,12 +2,12 @@
 
 using namespace NSMenulib;
 
-std::string HumanInfo::GetName()
+std::wstring HumanInfo::GetName()
 {
     return m_name;
 }
 
-void HumanInfo::SetName(const std::string& arg)
+void HumanInfo::SetName(const std::wstring& arg)
 {
     m_name = arg;
 }
@@ -22,12 +22,12 @@ void HumanInfo::SetSprite(ISprite* const arg)
     m_sprite = arg;
 }
 
-std::string HumanInfo::GetDetail()
+std::wstring HumanInfo::GetDetail()
 {
     return m_detail;
 }
 
-void HumanInfo::SetDetail(const std::string& arg)
+void HumanInfo::SetDetail(const std::wstring& arg)
 {
     m_detail = arg;
 }

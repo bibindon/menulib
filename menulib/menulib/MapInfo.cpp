@@ -2,12 +2,12 @@
 
 using namespace NSMenulib;
 
-std::string MapInfo::GetName()
+std::wstring MapInfo::GetName()
 {
     return m_name;
 }
 
-void MapInfo::SetName(const std::string& arg)
+void MapInfo::SetName(const std::wstring& arg)
 {
     m_name = arg;
 }
@@ -22,12 +22,12 @@ void MapInfo::SetSprite(ISprite* const arg)
     m_sprite = arg;
 }
 
-std::string MapInfo::GetDetail()
+std::wstring MapInfo::GetDetail()
 {
     return m_detail;
 }
 
-void MapInfo::SetDetail(const std::string& arg)
+void MapInfo::SetDetail(const std::wstring& arg)
 {
     m_detail = arg;
 }

@@ -2,14 +2,15 @@
 #include <sstream>
 #include <algorithm>
 #include <iomanip>
+#include <tchar.h>
 
 using namespace NSMenulib;
 
-static std::vector<std::string> split(const std::string& s, char delim)
+static std::vector<std::wstring> split(const std::wstring& s, wchar_t delim)
 {
-    std::vector<std::string> result;
-    std::stringstream ss(s);
-    std::string item;
+    std::vector<std::wstring> result;
+    std::wstringstream ss(s);
+    std::wstring item;
 
     while (getline(ss, item, delim))
     {
@@ -20,7 +21,7 @@ static std::vector<std::string> split(const std::string& s, char delim)
 }
 
 void MenuLib::Init(
-    const std::string& csvfilepath, /* TODO remove */
+    const std::wstring& csvfilepath, /* TODO remove */
     IFont* font,
     ISoundEffect* SE,
     ISprite* sprCursor,
@@ -38,41 +39,41 @@ void MenuLib::Init(
 
     if (!bEnglish)
     {
-        m_TopBarName.push_back("アイテム");
-        m_TopBarName.push_back("武器");
-        m_TopBarName.push_back("ガイド");
-        m_TopBarName.push_back("マップ");
-        m_TopBarName.push_back("人物情報");
-        m_TopBarName.push_back("敵情報");
-        m_TopBarName.push_back("技・魔法");
-        m_TopBarName.push_back("ステータス");
-        m_TopBarName.push_back("セーブして終了");
-        m_TopBarName.push_back("タイトルに戻る");
+        m_TopBarName.push_back(_T("アイテム"));
+        m_TopBarName.push_back(_T("武器"));
+        m_TopBarName.push_back(_T("ガイド"));
+        m_TopBarName.push_back(_T("マップ"));
+        m_TopBarName.push_back(_T("人物情報"));
+        m_TopBarName.push_back(_T("敵情報"));
+        m_TopBarName.push_back(_T("技・魔法"));
+        m_TopBarName.push_back(_T("ステータス"));
+        m_TopBarName.push_back(_T("セーブして終了"));
+        m_TopBarName.push_back(_T("タイトルに戻る"));
     }
     else
     {
-        m_TopBarName.push_back("Item");
-        m_TopBarName.push_back("Weapon");
-        m_TopBarName.push_back("Guide");
-        m_TopBarName.push_back("Map");
-        m_TopBarName.push_back("Human Info");
-        m_TopBarName.push_back("Enemy Info");
-        m_TopBarName.push_back("Magic");
-        m_TopBarName.push_back("Status");
-        m_TopBarName.push_back("Save and Exit");
-        m_TopBarName.push_back("Title");
+        m_TopBarName.push_back(_T("Item"));
+        m_TopBarName.push_back(_T("Weapon"));
+        m_TopBarName.push_back(_T("Guide"));
+        m_TopBarName.push_back(_T("Map"));
+        m_TopBarName.push_back(_T("Human Info"));
+        m_TopBarName.push_back(_T("Enemy Info"));
+        m_TopBarName.push_back(_T("Magic"));
+        m_TopBarName.push_back(_T("Status"));
+        m_TopBarName.push_back(_T("Save and Exit"));
+        m_TopBarName.push_back(_T("Title"));
     }
 
-    m_TopBarNameKey.push_back("Item");
-    m_TopBarNameKey.push_back("Weapon");
-    m_TopBarNameKey.push_back("Guide");
-    m_TopBarNameKey.push_back("Map");
-    m_TopBarNameKey.push_back("Human Info");
-    m_TopBarNameKey.push_back("Enemy Info");
-    m_TopBarNameKey.push_back("Magic");
-    m_TopBarNameKey.push_back("Status");
-    m_TopBarNameKey.push_back("Save and Exit");
-    m_TopBarNameKey.push_back("Title");
+    m_TopBarNameKey.push_back(_T("Item"));
+    m_TopBarNameKey.push_back(_T("Weapon"));
+    m_TopBarNameKey.push_back(_T("Guide"));
+    m_TopBarNameKey.push_back(_T("Map"));
+    m_TopBarNameKey.push_back(_T("Human Info"));
+    m_TopBarNameKey.push_back(_T("Enemy Info"));
+    m_TopBarNameKey.push_back(_T("Magic"));
+    m_TopBarNameKey.push_back(_T("Status"));
+    m_TopBarNameKey.push_back(_T("Save and Exit"));
+    m_TopBarNameKey.push_back(_T("Title"));
 }
 
 void NSMenulib::MenuLib::Finalize()
@@ -152,10 +153,10 @@ void MenuLib::SetGuide(const std::vector<GuideInfo>& items)
 {
     m_guideInfoList = items;
 
-    std::vector<std::string> vs;
+    std::vector<std::wstring> vs;
     for (std::size_t i = 0; i < m_guideInfoList.size(); ++i)
     {
-        std::string work_str = m_guideInfoList.at(i).GetCategory();
+        std::wstring work_str = m_guideInfoList.at(i).GetCategory();
         if (std::find(vs.begin(), vs.end(), work_str) == vs.end())
         {
             vs.push_back(work_str);
@@ -167,8 +168,8 @@ void MenuLib::SetGuide(const std::vector<GuideInfo>& items)
 
     for (std::size_t i = 0; i < m_guideInfoList.size(); ++i)
     {
-        std::string category = m_guideInfoList.at(i).GetCategory();
-        std::string subCategory = m_guideInfoList.at(i).GetSubCategory();
+        std::wstring category = m_guideInfoList.at(i).GetCategory();
+        std::wstring subCategory = m_guideInfoList.at(i).GetSubCategory();
         m_guideSubCategory[category].push_back(subCategory);
     }
 }
@@ -178,7 +179,7 @@ void MenuLib::SetWeapon(const std::vector<WeaponInfo>& items)
     m_weaponInfoList = items;
 }
 
-std::string MenuLib::Up()
+std::wstring MenuLib::Up()
 {
     if (m_eFocus == eFocus::TOP_BAR)
     {
@@ -352,7 +353,7 @@ std::string MenuLib::Up()
     return m_TopBarName.at(m_topBarIndex);
 }
 
-std::string MenuLib::Down()
+std::wstring MenuLib::Down()
 {
     if (m_eFocus == eFocus::TOP_BAR)
     {
@@ -419,7 +420,7 @@ std::string MenuLib::Down()
     else if (m_eFocus == eFocus::GUIDE_SUB)
     {
         // スクロール可能なためカーソルの位置と選択アイテムは異なる
-        std::vector<std::string> vs = m_guideSubCategory.at(m_guideCategory.at(m_guideSelect));
+        std::vector<std::wstring> vs = m_guideSubCategory.at(m_guideCategory.at(m_guideSelect));
         if (m_guideSubSelect <= (int)vs.size() - 2)
         {
             m_guideSubSelect++;
@@ -545,7 +546,7 @@ std::string MenuLib::Down()
     return m_TopBarName.at(m_topBarIndex);
 }
 
-std::string MenuLib::Right()
+std::wstring MenuLib::Right()
 {
     if (m_eFocus == eFocus::TOP_BAR)
     {
@@ -574,7 +575,7 @@ std::string MenuLib::Right()
     return m_TopBarName.at(m_topBarIndex);
 }
 
-std::string MenuLib::Left()
+std::wstring MenuLib::Left()
 {
     if (m_eFocus == eFocus::TOP_BAR)
     {
@@ -603,9 +604,9 @@ std::string MenuLib::Left()
     return m_TopBarName.at(m_topBarIndex);
 }
 
-std::string MenuLib::Into()
+std::wstring MenuLib::Into()
 {
-    std::string result;
+    std::wstring result;
     m_SE->PlayClick();
     if (m_eFocus == eFocus::TOP_BAR)
     {
@@ -691,19 +692,19 @@ std::string MenuLib::Into()
     else if (m_eFocus == eFocus::ITEM_SUB)
     {
         result = m_TopBarNameKey.at(m_topBarIndex);
-        result += ":" + m_itemInfoList.at(m_itemSelect).GetName();
-        result += ":" + std::to_string(m_itemInfoList.at(m_itemSelect).GetId());
-        result += ":" + std::to_string(m_itemInfoList.at(m_itemSelect).GetSubId());
+        result += _T(":") + m_itemInfoList.at(m_itemSelect).GetName();
+        result += _T(":") + std::to_wstring(m_itemInfoList.at(m_itemSelect).GetId());
+        result += _T(":") + std::to_wstring(m_itemInfoList.at(m_itemSelect).GetSubId());
 
         if (!m_itemInfoList.at(m_itemSelect).GetEquipEnable())
         {
             if (m_itemSubCursor == 0)
             {
-                result += ":Use";
+                result += _T(":Use");
             }
             else
             {
-                result += ":Discard";
+                result += _T(":Discard");
             }
         }
         else
@@ -712,22 +713,22 @@ std::string MenuLib::Into()
             {
                 if (m_itemSubCursor == 0)
                 {
-                    result += ":Equip";
+                    result += _T(":Equip");
                 }
                 else
                 {
-                    result += ":Discard";
+                    result += _T(":Discard");
                 }
             }
             else
             {
                 if (m_itemSubCursor == 0)
                 {
-                    result += ":Unequip";
+                    result += _T(":Unequip");
                 }
                 else
                 {
-                    result += ":Discard";
+                    result += _T(":Discard");
                 }
             }
         }
@@ -746,16 +747,16 @@ std::string MenuLib::Into()
     else if (m_eFocus == eFocus::WEAPON_SUB)
     {
         result = m_TopBarNameKey.at(m_topBarIndex);
-        result += ":" + m_weaponInfoList.at(m_weaponSelect).GetName();
-        result += ":" + std::to_string(m_weaponInfoList.at(m_weaponSelect).GetId());
-        result += ":" + std::to_string(m_weaponInfoList.at(m_weaponSelect).GetSubId());
+        result += _T(":") + m_weaponInfoList.at(m_weaponSelect).GetName();
+        result += _T(":") + std::to_wstring(m_weaponInfoList.at(m_weaponSelect).GetId());
+        result += _T(":") + std::to_wstring(m_weaponInfoList.at(m_weaponSelect).GetSubId());
         if (m_weaponSubCursor == 0)
         {
-            result += ":Equip";
+            result += _T(":Equip");
         }
         else
         {
-            result += ":Cancel";
+            result += _T(":Cancel");
         }
         m_eFocus = eFocus::WEAPON;
         m_weaponSubCursor = 0;
@@ -793,9 +794,9 @@ std::string MenuLib::Into()
     return result;
 }
 
-std::string MenuLib::Back()
+std::wstring MenuLib::Back()
 {
-    std::string result;
+    std::wstring result;
     if (m_eFocus == eFocus::ITEM ||
         m_eFocus == eFocus::WEAPON ||
         m_eFocus == eFocus::GUIDE ||
@@ -816,14 +817,14 @@ std::string MenuLib::Back()
         m_eFocus = eFocus::ITEM;
         m_SE->PlayBack();
         result = m_TopBarNameKey.at(m_topBarIndex);
-        result += ":" + m_itemInfoList.at(m_itemSelect).GetName();
+        result += _T(":") + m_itemInfoList.at(m_itemSelect).GetName();
     }
     else if (m_eFocus == eFocus::WEAPON_SUB)
     {
         m_eFocus = eFocus::WEAPON;
         m_SE->PlayBack();
         result = m_TopBarNameKey.at(m_topBarIndex);
-        result += ":" + m_weaponInfoList.at(m_weaponSelect).GetName();
+        result += _T(":") + m_weaponInfoList.at(m_weaponSelect).GetName();
     }
     else if (m_eFocus == eFocus::GUIDE_SUB)
     {
@@ -837,7 +838,7 @@ std::string MenuLib::Back()
     else if (m_eFocus == eFocus::TOP_BAR)
     {
         m_SE->PlayBack();
-        result = "EXIT";
+        result = _T("EXIT");
     }
     else
     {
@@ -848,7 +849,7 @@ std::string MenuLib::Back()
     return result;
 }
 
-std::string MenuLib::Next()
+std::wstring MenuLib::Next()
 {
     if (m_eFocus == eFocus::TOP_BAR)
     {
@@ -858,10 +859,10 @@ std::string MenuLib::Next()
     {
         Down();
     }
-    return std::string();
+    return std::wstring();
 }
 
-std::string MenuLib::Previous()
+std::wstring MenuLib::Previous()
 {
     if (m_eFocus == eFocus::TOP_BAR)
     {
@@ -871,7 +872,7 @@ std::string MenuLib::Previous()
     {
         Up();
     }
-    return std::string();
+    return std::wstring();
 }
 
 void NSMenulib::MenuLib::CursorOn(const int x, const int y)
@@ -1175,7 +1176,7 @@ void NSMenulib::MenuLib::CursorOn(const int x, const int y)
         {
             previousIndex = m_guideSubCursor;
 
-            std::string category = m_guideCategory.at(m_guideSelect);
+            std::wstring category = m_guideCategory.at(m_guideSelect);
             size_t nSize = m_guideSubCategory.at(category).size();
             if (nSize >= 10)
             {
@@ -1201,9 +1202,9 @@ void NSMenulib::MenuLib::CursorOn(const int x, const int y)
     }
 }
 
-std::string MenuLib::Click(const int x, const int y)
+std::wstring MenuLib::Click(const int x, const int y)
 {
-    std::string result;
+    std::wstring result;
     m_SE->PlayClick();
 
     if (y < TOPBAR_STARTY)
@@ -1320,19 +1321,19 @@ std::string MenuLib::Click(const int x, const int y)
                     }
 
                     result = m_TopBarNameKey.at(m_topBarIndex);
-                    result += ":" + m_itemInfoList.at(m_itemSelect).GetName();
-                    result += ":" + std::to_string(m_itemInfoList.at(m_itemSelect).GetId());
-                    result += ":" + std::to_string(m_itemInfoList.at(m_itemSelect).GetSubId());
+                    result += _T(":") + m_itemInfoList.at(m_itemSelect).GetName();
+                    result += _T(":") + std::to_wstring(m_itemInfoList.at(m_itemSelect).GetId());
+                    result += _T(":") + std::to_wstring(m_itemInfoList.at(m_itemSelect).GetSubId());
 
                     if (!m_itemInfoList.at(m_itemSelect).GetEquipEnable())
                     {
                         if (m_itemSubCursor == 0)
                         {
-                            result += ":Use";
+                            result += _T(":Use");
                         }
                         else
                         {
-                            result += ":Discard";
+                            result += _T(":Discard");
                         }
                     }
                     else
@@ -1341,22 +1342,22 @@ std::string MenuLib::Click(const int x, const int y)
                         {
                             if (m_itemSubCursor == 0)
                             {
-                                result += ":Equip";
+                                result += _T(":Equip");
                             }
                             else
                             {
-                                result += ":Discard";
+                                result += _T(":Discard");
                             }
                         }
                         else
                         {
                             if (m_itemSubCursor == 0)
                             {
-                                result += ":Unequip";
+                                result += _T(":Unequip");
                             }
                             else
                             {
-                                result += ":Discard";
+                                result += _T(":Discard");
                             }
                         }
                     }
@@ -1408,16 +1409,16 @@ std::string MenuLib::Click(const int x, const int y)
                 }
 
                 result = m_TopBarNameKey.at(m_topBarIndex);
-                result += ":" + m_weaponInfoList.at(m_weaponSelect).GetName();
-                result += ":" + std::to_string(m_weaponInfoList.at(m_weaponSelect).GetId());
-                result += ":" + std::to_string(m_weaponInfoList.at(m_weaponSelect).GetSubId());
+                result += _T(":") + m_weaponInfoList.at(m_weaponSelect).GetName();
+                result += _T(":") + std::to_wstring(m_weaponInfoList.at(m_weaponSelect).GetId());
+                result += _T(":") + std::to_wstring(m_weaponInfoList.at(m_weaponSelect).GetSubId());
                 if (m_weaponSubCursor == 0)
                 {
-                    result += ":Equip";
+                    result += _T(":Equip");
                 }
                 else
                 {
-                    result += ":Cancel";
+                    result += _T(":Cancel");
                 }
             }
 
@@ -1721,13 +1722,13 @@ void MenuLib::Draw()
     {
         if (!m_bEnglish)
         {
-            m_font->DrawText_("強化", LEFT_PANEL_STARTX + 320, LEFT_PANEL_STARTY - 35, true, 64);
-            m_font->DrawText_("耐久", LEFT_PANEL_STARTX + 380, LEFT_PANEL_STARTY - 35, true, 64);
+            m_font->DrawText_(_T("強化"), LEFT_PANEL_STARTX + 320, LEFT_PANEL_STARTY - 35, true, 64);
+            m_font->DrawText_(_T("耐久"), LEFT_PANEL_STARTX + 380, LEFT_PANEL_STARTY - 35, true, 64);
         }
         else
         {
-            m_font->DrawText_("Level", LEFT_PANEL_STARTX + 320, LEFT_PANEL_STARTY - 35, true, 64);
-            m_font->DrawText_("Drblty", LEFT_PANEL_STARTX + 380, LEFT_PANEL_STARTY - 35, true, 64);
+            m_font->DrawText_(_T("Level"), LEFT_PANEL_STARTX + 320, LEFT_PANEL_STARTY - 35, true, 64);
+            m_font->DrawText_(_T("Drblty"), LEFT_PANEL_STARTX + 380, LEFT_PANEL_STARTY - 35, true, 64);
         }
 
         for (int i = 0; i < LEFT_PANEL_ROW_MAX; ++i)
@@ -1747,16 +1748,16 @@ void MenuLib::Draw()
                 }
             }
 
-            std::string work = m_itemInfoList.at((size_t)m_itemBegin + i).GetName();
+            std::wstring work = m_itemInfoList.at((size_t)m_itemBegin + i).GetName();
             if (m_itemInfoList.at((size_t)m_itemBegin + i).GetEquip())
             {
                 if (!m_bEnglish)
                 {
-                    work += "（装備中）";
+                    work += _T("（装備中）");
                 }
                 else
                 {
-                    work += " (Equipped)";
+                    work += _T(" (Equipped)");
                 }
             }
 
@@ -1769,7 +1770,7 @@ void MenuLib::Draw()
             if (m_itemInfoList.at((size_t)m_itemBegin + i).GetLevel() != -1)
             {
                 m_font->DrawText_(
-                    std::to_string(m_itemInfoList.at((size_t)m_itemBegin+i).GetLevel()),
+                    std::to_wstring(m_itemInfoList.at((size_t)m_itemBegin+i).GetLevel()),
                     350 + LEFT_PANEL_PADDINGX,
                     LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT),
                     true,
@@ -1779,7 +1780,7 @@ void MenuLib::Draw()
             if (m_itemInfoList.at((size_t)m_itemBegin + i).GetDurability() != -1)
             {
                 m_font->DrawText_(
-                    std::to_string(m_itemInfoList.at((size_t)m_itemBegin + i).GetDurability()),
+                    std::to_wstring(m_itemInfoList.at((size_t)m_itemBegin + i).GetDurability()),
                     410 + LEFT_PANEL_PADDINGX,
                     LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i * LEFT_PANEL_HEIGHT),
                     true,
@@ -1791,13 +1792,13 @@ void MenuLib::Draw()
     {
         if (!m_bEnglish)
         {
-            m_font->DrawText_("強化", LEFT_PANEL_STARTX + 320, LEFT_PANEL_STARTY - 35, true, 64);
-            m_font->DrawText_("耐久", LEFT_PANEL_STARTX + 380, LEFT_PANEL_STARTY - 35, true, 64);
+            m_font->DrawText_(_T("強化"), LEFT_PANEL_STARTX + 320, LEFT_PANEL_STARTY - 35, true, 64);
+            m_font->DrawText_(_T("耐久"), LEFT_PANEL_STARTX + 380, LEFT_PANEL_STARTY - 35, true, 64);
         }
         else
         {
-            m_font->DrawText_("Level", LEFT_PANEL_STARTX + 320, LEFT_PANEL_STARTY - 35, true, 64);
-            m_font->DrawText_("Drblty", LEFT_PANEL_STARTX + 380, LEFT_PANEL_STARTY - 35, true, 64);
+            m_font->DrawText_(_T("Level"), LEFT_PANEL_STARTX + 320, LEFT_PANEL_STARTY - 35, true, 64);
+            m_font->DrawText_(_T("Drblty"), LEFT_PANEL_STARTX + 380, LEFT_PANEL_STARTY - 35, true, 64);
         }
 
         for (int i = 0; i < LEFT_PANEL_ROW_MAX; ++i)
@@ -1827,7 +1828,7 @@ void MenuLib::Draw()
             if (m_weaponInfoList.at((size_t)m_weaponBegin + i).GetLevel() != -1)
             {
                 m_font->DrawText_(
-                    std::to_string(m_weaponInfoList.at((size_t)m_weaponBegin + i).GetLevel()),
+                    std::to_wstring(m_weaponInfoList.at((size_t)m_weaponBegin + i).GetLevel()),
                     350 + LEFT_PANEL_PADDINGX,
                     LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i * LEFT_PANEL_HEIGHT),
                     true,
@@ -1837,7 +1838,7 @@ void MenuLib::Draw()
             if (m_weaponInfoList.at((size_t)m_weaponBegin + i).GetDurability() != -1)
             {
                 m_font->DrawText_(
-                    std::to_string(m_weaponInfoList.at((size_t)m_weaponBegin+i).GetDurability()),
+                    std::to_wstring(m_weaponInfoList.at((size_t)m_weaponBegin+i).GetDurability()),
                     410 + LEFT_PANEL_PADDINGX,
                     LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (i*LEFT_PANEL_HEIGHT),
                     true,
@@ -1946,24 +1947,24 @@ void MenuLib::Draw()
         if (!m_bEnglish)
         {
             m_font->DrawText_(
-                "はい",
+                _T("はい"),
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
                 LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*0));
 
             m_font->DrawText_(
-                "いいえ",
+                _T("いいえ"),
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
                 LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*1));
         }
         else
         {
             m_font->DrawText_(
-                "Yes",
+                _T("Yes"),
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
                 LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*0));
 
             m_font->DrawText_(
-                "No",
+                _T("No"),
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
                 LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*1));
         }
@@ -1973,24 +1974,24 @@ void MenuLib::Draw()
         if (!m_bEnglish)
         {
             m_font->DrawText_(
-                "はい",
+                _T("はい"),
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
                 LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*0));
 
             m_font->DrawText_(
-                "いいえ",
+                _T("いいえ"),
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
                 LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*1));
         }
         else
         {
             m_font->DrawText_(
-                "Yes",
+                _T("Yes"),
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
                 LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*0));
 
             m_font->DrawText_(
-                "No",
+                _T("No"),
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
                 LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*1));
         }
@@ -2008,33 +2009,33 @@ void MenuLib::Draw()
             }
             m_itemInfoList.at(m_itemSelect).GetSprite()->DrawImage(550, 300, trans);
 
-            std::string detail = m_itemInfoList.at(m_itemSelect).GetDetail();
-            std::vector<std::string> details = split(detail, '\n');
+            std::wstring detail = m_itemInfoList.at(m_itemSelect).GetDetail();
+            std::vector<std::wstring> details = split(detail, '\n');
 
-            std::string weight_volume;
+            std::wstring weight_volume;
 
             if (!m_bEnglish)
             {
-                weight_volume += "重量(kg) ";
+                weight_volume += _T("重量(kg) ");
             }
             else
             {
-                weight_volume += "Weight (kg) ";
+                weight_volume += _T("Weight (kg) ");
             }
 
             weight_volume += ToStringWithPrecision(m_itemInfoList.at(m_itemSelect).GetWeight(), 2);
-            weight_volume += "  ";
+            weight_volume += _T("  ");
 
             if (!m_bEnglish)
             {
-                weight_volume += "体積(mL) ";
+                weight_volume += _T("体積(mL) ");
             }
             else
             {
-                weight_volume += "Volume (mL) ";
+                weight_volume += _T("Volume (mL) ");
             }
 
-            weight_volume += std::to_string(m_itemInfoList.at(m_itemSelect).GetVolume());
+            weight_volume += std::to_wstring(m_itemInfoList.at(m_itemSelect).GetVolume());
 
             details.insert(details.begin(), weight_volume);
 
@@ -2050,33 +2051,33 @@ void MenuLib::Draw()
 
         // 総重量、積載量、最大積載量を表示
         {
-            std::string weightAll_Vol_VolMax;
+            std::wstring weightAll_Vol_VolMax;
 
             if (!m_bEnglish)
             {
-                weightAll_Vol_VolMax += "総重量(kg) ";
+                weightAll_Vol_VolMax += _T("総重量(kg) ");
             }
             else
             {
-                weightAll_Vol_VolMax += "Total Weight (kg) ";
+                weightAll_Vol_VolMax += _T("Total Weight (kg) ");
             }
 
             weightAll_Vol_VolMax += ToStringWithPrecision(m_weightAll, 2);
-            weightAll_Vol_VolMax += "  ";
+            weightAll_Vol_VolMax += _T("  ");
 
             if (!m_bEnglish)
             {
-                weightAll_Vol_VolMax += "積載量(mL)/最大積載量(mL) ";
+                weightAll_Vol_VolMax += _T("積載量(mL)/最大積載量(mL) ");
             }
             else
             {
-                weightAll_Vol_VolMax += "Volume (mL) / Total volume (mL) ";
+                weightAll_Vol_VolMax += _T("Volume (mL) / Total volume (mL) ");
             }
 
-            weightAll_Vol_VolMax += std::to_string(m_volumeAll);
-            weightAll_Vol_VolMax += "/";
-            weightAll_Vol_VolMax += std::to_string(m_volumeMax);
-            weightAll_Vol_VolMax += "  ";
+            weightAll_Vol_VolMax += std::to_wstring(m_volumeAll);
+            weightAll_Vol_VolMax += _T("/");
+            weightAll_Vol_VolMax += std::to_wstring(m_volumeMax);
+            weightAll_Vol_VolMax += _T("  ");
 
             m_font->DrawText_(weightAll_Vol_VolMax, 1000, 850);
         }
@@ -2090,13 +2091,13 @@ void MenuLib::Draw()
         {
             if (!m_bEnglish)
             {
-                m_font->DrawText_("使う　　　　　　捨てる",
+                m_font->DrawText_(_T("使う　　　　　　捨てる"),
                                   MIDDLE_PANEL_STARTX,
                                   LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT));
             }
             else
             {
-                m_font->DrawText_("Use             Discard",
+                m_font->DrawText_(_T("Use             Discard"),
                                   MIDDLE_PANEL_STARTX,
                                   LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT));
             }
@@ -2107,13 +2108,13 @@ void MenuLib::Draw()
             {
                 if (!m_bEnglish)
                 {
-                    m_font->DrawText_("装備する　　　　捨てる",
+                    m_font->DrawText_(_T("装備する　　　　捨てる"),
                                       MIDDLE_PANEL_STARTX,
                                       LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT));
                 }
                 else
                 {
-                    m_font->DrawText_("Equip           Discard",
+                    m_font->DrawText_(_T("Equip           Discard"),
                                       MIDDLE_PANEL_STARTX,
                                       LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT));
                 }
@@ -2122,13 +2123,13 @@ void MenuLib::Draw()
             {
                 if (!m_bEnglish)
                 {
-                    m_font->DrawText_("装備を外す　　　捨てる",
+                    m_font->DrawText_(_T("装備を外す　　　捨てる"),
                                       MIDDLE_PANEL_STARTX,
                                       LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT));
                 }
                 else
                 {
-                    m_font->DrawText_("Unequip         Discard",
+                    m_font->DrawText_(_T("Unequip         Discard"),
                                       MIDDLE_PANEL_STARTX,
                                       LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT));
                 }
@@ -2141,13 +2142,13 @@ void MenuLib::Draw()
     {
         if (!m_bEnglish)
         {
-            m_font->DrawText_("装備する　　　　キャンセル",
+            m_font->DrawText_(_T("装備する　　　　キャンセル"),
                               MIDDLE_PANEL_STARTX,
                               LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_weaponCursor * LEFT_PANEL_HEIGHT));
         }
         else
         {
-            m_font->DrawText_("Equip           Cancel",
+            m_font->DrawText_(_T("Equip           Cancel"),
                               MIDDLE_PANEL_STARTX,
                               LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_weaponCursor * LEFT_PANEL_HEIGHT));
         }
@@ -2156,8 +2157,8 @@ void MenuLib::Draw()
     // Show guide sub category
     if (m_eFocus == eFocus::GUIDE || m_eFocus == eFocus::GUIDE_SUB)
     {
-        std::string category = m_guideCategory.at(m_guideSelect);
-        std::vector<std::string> vs = m_guideSubCategory.at(category);
+        std::wstring category = m_guideCategory.at(m_guideSelect);
+        std::vector<std::wstring> vs = m_guideSubCategory.at(category);
 
         for (int i = 0; i < LEFT_PANEL_ROW_MAX; ++i)
         {
@@ -2192,8 +2193,8 @@ void MenuLib::Draw()
 
             m_weaponInfoList.at(m_weaponSelect).GetSprite()->DrawImage(550, 300, trans);
 
-            std::string detail = m_weaponInfoList.at(m_weaponSelect).GetDetail();
-            std::vector<std::string> details = split(detail, '\n');
+            std::wstring detail = m_weaponInfoList.at(m_weaponSelect).GetDetail();
+            std::vector<std::wstring> details = split(detail, '\n');
 
             for (std::size_t i = 0; i < details.size(); ++i)
             {
@@ -2208,9 +2209,9 @@ void MenuLib::Draw()
 
     if (m_eFocus == eFocus::GUIDE_SUB)
     {
-        std::string category = m_guideCategory.at(m_guideSelect);
-        std::string subCategory = m_guideSubCategory.at(category).at(m_guideSubSelect);
-        std::string detail;
+        std::wstring category = m_guideCategory.at(m_guideSelect);
+        std::wstring subCategory = m_guideSubCategory.at(category).at(m_guideSubSelect);
+        std::wstring detail;
         for (std::size_t i = 0; i < m_guideInfoList.size(); ++i)
         {
             if (m_guideInfoList.at(i).GetCategory() == category &&
@@ -2220,7 +2221,7 @@ void MenuLib::Draw()
                 break;
             }
         }
-        std::vector<std::string> details = split(detail, '\n');
+        std::vector<std::wstring> details = split(detail, '\n');
 
         for (std::size_t i = 0; i < details.size(); ++i)
         {
@@ -2234,8 +2235,8 @@ void MenuLib::Draw()
     {
         m_mapInfoList.at(m_mapSelect).GetSprite()->DrawImage(550, 300);
 
-        std::string detail = m_mapInfoList.at(m_mapSelect).GetDetail();
-        std::vector<std::string> details = split(detail, '\n');
+        std::wstring detail = m_mapInfoList.at(m_mapSelect).GetDetail();
+        std::vector<std::wstring> details = split(detail, '\n');
 
         for (std::size_t i = 0; i < details.size(); ++i)
         {
@@ -2251,8 +2252,8 @@ void MenuLib::Draw()
     {
         m_humanInfoList.at(m_humanSelect).GetSprite()->DrawImage(550, 300);
 
-        std::string detail = m_humanInfoList.at(m_humanSelect).GetDetail();
-        std::vector<std::string> details = split(detail, '\n');
+        std::wstring detail = m_humanInfoList.at(m_humanSelect).GetDetail();
+        std::vector<std::wstring> details = split(detail, '\n');
 
         for (std::size_t i = 0; i < details.size(); ++i)
         {
@@ -2268,8 +2269,8 @@ void MenuLib::Draw()
     {
         m_enemyInfoList.at(m_enemySelect).GetSprite()->DrawImage(550, 300);
 
-        std::string detail = m_enemyInfoList.at(m_enemySelect).GetDetail();
-        std::vector<std::string> details = split(detail, '\n');
+        std::wstring detail = m_enemyInfoList.at(m_enemySelect).GetDetail();
+        std::vector<std::wstring> details = split(detail, '\n');
 
         for (std::size_t i = 0; i < details.size(); ++i)
         {
@@ -2285,8 +2286,8 @@ void MenuLib::Draw()
     {
         m_skillInfoList.at(m_skillSelect).GetSprite()->DrawImage(550, 300);
 
-        std::string detail = m_skillInfoList.at(m_skillSelect).GetDetail();
-        std::vector<std::string> details = split(detail, '\n');
+        std::wstring detail = m_skillInfoList.at(m_skillSelect).GetDetail();
+        std::vector<std::wstring> details = split(detail, '\n');
 
         for (std::size_t i = 0; i < details.size(); ++i)
         {
@@ -2302,8 +2303,8 @@ void MenuLib::Draw()
     {
         m_statusInfoList.at(m_statusSelect).GetSprite()->DrawImage(900, 200, 64);
 
-        std::string detail = m_statusInfoList.at(m_statusSelect).GetDetail();
-        std::vector<std::string> details = split(detail, '\n');
+        std::wstring detail = m_statusInfoList.at(m_statusSelect).GetDetail();
+        std::vector<std::wstring> details = split(detail, '\n');
 
         for (std::size_t i = 0; i < details.size(); ++i)
         {
@@ -2478,14 +2479,14 @@ void NSMenulib::MenuLib::UpdateItem(const ItemInfo& itemInfo)
     }
 }
 
-void NSMenulib::MenuLib::UpdateStatusText(const std::string& text)
+void NSMenulib::MenuLib::UpdateStatusText(const std::wstring& text)
 {
     m_statusInfoList.at(0).SetDetail(text);
 }
 
-std::string NSMenulib::MenuLib::ToStringWithPrecision(const float value, const int precision)
+std::wstring NSMenulib::MenuLib::ToStringWithPrecision(const float value, const int precision)
 {
-    std::ostringstream out;
+    std::wostringstream out;
     out << std::fixed << std::setprecision(precision) << value;
     return out.str();
 }

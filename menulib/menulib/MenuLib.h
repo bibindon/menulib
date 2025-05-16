@@ -10,14 +10,14 @@ class ISprite
 {
 public:
     virtual void DrawImage(const int x, const int y, const int transparency = 255) = 0;
-    virtual void Load(const std::string& filepath) = 0;
+    virtual void Load(const std::wstring& filepath) = 0;
     virtual ~ISprite() {};
 };
 
 class IFont
 {
 public:
-    virtual void DrawText_(const std::string& msg, const int x, const int y, const bool hcenter = false, const int transparency = 255) = 0;
+    virtual void DrawText_(const std::wstring& msg, const int x, const int y, const bool hcenter = false, const int transparency = 255) = 0;
     virtual void Init(const bool bEnglish) = 0;
     virtual ~IFont() {};
 };
@@ -35,8 +35,8 @@ public:
 class ItemInfo
 {
 public:
-    std::string GetName() const;
-    void SetName(const std::string& arg);
+    std::wstring GetName() const;
+    void SetName(const std::wstring& arg);
 
     int GetDurability() const;
     void SetDurability(const int arg);
@@ -44,8 +44,8 @@ public:
     ISprite* GetSprite() const;
     void SetSprite(ISprite* const arg);
 
-    std::string GetDetail() const;
-    void SetDetail(const std::string& arg);
+    std::wstring GetDetail() const;
+    void SetDetail(const std::wstring& arg);
 
     int GetLevel() const;
     void SetLevel(const int arg);
@@ -70,10 +70,10 @@ public:
 
 private:
 
-    std::string m_name;
+    std::wstring m_name;
     int m_durability = 0;
     ISprite* m_sprite = nullptr;
-    std::string m_detail;
+    std::wstring m_detail;
     int m_level = 0;
 
     // 画面表示に使用されない。
@@ -93,89 +93,89 @@ private:
 class HumanInfo
 {
 public:
-    std::string GetName();
-    void SetName(const std::string& arg);
+    std::wstring GetName();
+    void SetName(const std::wstring& arg);
     ISprite* GetSprite();
     void SetSprite(ISprite* const arg);
-    std::string GetDetail();
-    void SetDetail(const std::string& arg);
+    std::wstring GetDetail();
+    void SetDetail(const std::wstring& arg);
 private:
-    std::string m_name;
+    std::wstring m_name;
     ISprite* m_sprite = nullptr;
-    std::string m_detail;
+    std::wstring m_detail;
 };
 
 class EnemyInfo
 {
 public:
-    std::string GetName();
-    void SetName(const std::string& arg);
+    std::wstring GetName();
+    void SetName(const std::wstring& arg);
     ISprite* GetSprite();
     void SetSprite(ISprite* const arg);
-    std::string GetDetail();
-    void SetDetail(const std::string& arg);
+    std::wstring GetDetail();
+    void SetDetail(const std::wstring& arg);
 private:
-    std::string m_name;
+    std::wstring m_name;
     ISprite* m_sprite = nullptr;
-    std::string m_detail;
+    std::wstring m_detail;
 };
 
 class SkillInfo
 {
 public:
-    std::string GetName();
-    void SetName(const std::string& arg);
+    std::wstring GetName();
+    void SetName(const std::wstring& arg);
     ISprite* GetSprite();
     void SetSprite(ISprite* const arg);
-    std::string GetDetail();
-    void SetDetail(const std::string& arg);
+    std::wstring GetDetail();
+    void SetDetail(const std::wstring& arg);
 private:
-    std::string m_name;
+    std::wstring m_name;
     ISprite* m_sprite = nullptr;
-    std::string m_detail;
+    std::wstring m_detail;
 };
 
 class StatusInfo
 {
 public:
-    std::string GetName();
-    void SetName(const std::string& arg);
+    std::wstring GetName();
+    void SetName(const std::wstring& arg);
     ISprite* GetSprite();
     void SetSprite(ISprite* const arg);
-    std::string GetDetail();
-    void SetDetail(const std::string& arg);
+    std::wstring GetDetail();
+    void SetDetail(const std::wstring& arg);
 private:
-    std::string m_name;
+    std::wstring m_name;
     ISprite* m_sprite = nullptr;
-    std::string m_detail;
+    std::wstring m_detail;
 };
 
 class MapInfo
 {
 public:
-    std::string GetName();
-    void SetName(const std::string& arg);
+    std::wstring GetName();
+    void SetName(const std::wstring& arg);
     ISprite* GetSprite();
     void SetSprite(ISprite* const arg);
-    std::string GetDetail();
-    void SetDetail(const std::string& arg);
+    std::wstring GetDetail();
+    void SetDetail(const std::wstring& arg);
 private:
-    std::string m_name;
+    std::wstring m_name;
     ISprite* m_sprite = nullptr;
-    std::string m_detail;
+    std::wstring m_detail;
 };
 
 class WeaponInfo
 {
 public:
-    std::string GetName();
-    void SetName(const std::string& arg);
+    std::wstring GetName();
+    void SetName(const std::wstring& arg);
 
     ISprite* GetSprite();
     void SetSprite(ISprite* const arg);
 
-    std::string GetDetail();
-    void SetDetail(const std::string& arg);
+    std::wstring GetDetail();
+    void SetDetail(const std::wstring& arg);
 
     int GetDurability();
     void SetDurability(const int arg);
@@ -191,9 +191,9 @@ public:
 
 private:
 
-    std::string m_name;
+    std::wstring m_name;
     ISprite* m_sprite = nullptr;
-    std::string m_detail;
+    std::wstring m_detail;
     int m_durability = 0;
     int m_level = 0;
 
@@ -208,18 +208,18 @@ private:
 class GuideInfo
 {
 public:
-    std::string GetCategory();
-    void SetCategory(const std::string& arg);
+    std::wstring GetCategory();
+    void SetCategory(const std::wstring& arg);
 
-    std::string GetSubCategory();
-    void SetSubCategory(const std::string& arg);
+    std::wstring GetSubCategory();
+    void SetSubCategory(const std::wstring& arg);
 
-    std::string GetDetail();
-    void SetDetail(const std::string& arg);
+    std::wstring GetDetail();
+    void SetDetail(const std::wstring& arg);
 private:
-    std::string m_category;
-    std::string m_subCategory;
-    std::string m_detail;
+    std::wstring m_category;
+    std::wstring m_subCategory;
+    std::wstring m_detail;
 };
 
 class MenuLib
@@ -227,7 +227,7 @@ class MenuLib
 public:
 
     void Init(
-        const std::string& csvfilepath,
+        const std::wstring& csvfilepath,
         IFont* font,
         ISoundEffect* SE,
         ISprite* sprCursor,
@@ -245,16 +245,16 @@ public:
     void SetStatus(const std::vector<StatusInfo>& items);
     void SetGuide(const std::vector<GuideInfo>& items);
     void SetWeapon(const std::vector<WeaponInfo>& items);
-    std::string Up();
-    std::string Down();
-    std::string Right();
-    std::string Left();
-    std::string Into();
-    std::string Back();
-    std::string Next();
-    std::string Previous();
+    std::wstring Up();
+    std::wstring Down();
+    std::wstring Right();
+    std::wstring Left();
+    std::wstring Into();
+    std::wstring Back();
+    std::wstring Next();
+    std::wstring Previous();
     void CursorOn(const int x, const int y);
-    std::string Click(const int x, const int y);
+    std::wstring Click(const int x, const int y);
 
     // 右クリックはキャンセル操作
     void RightClick();
@@ -267,10 +267,10 @@ public:
     void UpdateItem(const ItemInfo& itemInfo);
 
     // ステータス内容を後から変えたいとき
-    void UpdateStatusText(const std::string& text);
+    void UpdateStatusText(const std::wstring& text);
 
     // 小数点以下の文字数を調節
-    static std::string ToStringWithPrecision(const float value, const int precision);
+    static std::wstring ToStringWithPrecision(const float value, const int precision);
 
     void SetWeightAll(const float arg);
     void SetVolumeAll(const int arg);
@@ -402,10 +402,10 @@ private:
     int m_quitCursor = 0;
     int m_openingCursor = 0;
 
-    std::vector<std::string> m_TopBarName;
+    std::vector<std::wstring> m_TopBarName;
 
     // Into関数とClick関数で選択結果を返すときに使う。英語
-    std::vector<std::string> m_TopBarNameKey;
+    std::vector<std::wstring> m_TopBarNameKey;
 
     std::vector<ItemInfo> m_itemInfoList;
     std::vector<HumanInfo> m_humanInfoList;
@@ -416,8 +416,8 @@ private:
     std::vector<GuideInfo> m_guideInfoList;
     std::vector<WeaponInfo> m_weaponInfoList;
 
-    std::vector<std::string> m_guideCategory;
-    std::map<std::string, std::vector<std::string>> m_guideSubCategory;
+    std::vector<std::wstring> m_guideCategory;
+    std::map<std::wstring, std::vector<std::wstring>> m_guideSubCategory;
 
     float m_weightAll = 0.f;
     int m_volumeAll = 0;
