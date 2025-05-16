@@ -1,4 +1,4 @@
-#pragma comment( lib, "d3d9.lib" )
+ï»¿#pragma comment( lib, "d3d9.lib" )
 #if defined(DEBUG) || defined(_DEBUG)
 #pragma comment( lib, "d3dx9d.lib" )
 #else
@@ -127,7 +127,7 @@ public:
                                         OUT_TT_ONLY_PRECIS,
                                         ANTIALIASED_QUALITY,
                                         FF_DONTCARE,
-                                        "‚l‚r –¾’©",
+                                        "ï¼­ï¼³ æ˜æœ",
                                         &m_pFont);
         }
         else
@@ -263,7 +263,7 @@ HRESULT InitD3D(HWND hWnd)
         OUT_TT_ONLY_PRECIS,
         ANTIALIASED_QUALITY,
         FF_DONTCARE,
-        "‚l‚r ƒSƒVƒbƒN",
+        "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯",
         &g_pFont);
     if FAILED(hr)
     {
@@ -276,7 +276,7 @@ HRESULT InitD3D(HWND hWnd)
         g_pd3dDevice, NULL, &pD3DXMtrlBuffer, NULL,
         &dwNumMaterials, &pMesh)))
     {
-        MessageBox(NULL, "Xƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½", NULL, MB_OK);
+        MessageBox(NULL, "Xãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸ", NULL, MB_OK);
         return E_FAIL;
     }
     d3dxMaterials = (D3DXMATERIAL*)pD3DXMtrlBuffer->GetBufferPointer();
@@ -295,7 +295,7 @@ HRESULT InitD3D(HWND hWnd)
                 d3dxMaterials[i].pTextureFilename,
                 &pTextures[i])))
             {
-                MessageBox(NULL, "ƒeƒNƒXƒ`ƒƒ‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½", NULL, MB_OK);
+                MessageBox(NULL, "ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸ", NULL, MB_OK);
             }
         }
     }
@@ -333,7 +333,7 @@ HRESULT InitD3D(HWND hWnd)
     std::vector<ItemInfo> itemInfoList;
     {
         ItemInfo itemInfo;
-        itemInfo.SetName("ƒeƒXƒgƒAƒCƒeƒ€‚P");
+        itemInfo.SetName("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ï¼‘");
         itemInfo.SetDurability(10);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item1.png");
@@ -341,12 +341,12 @@ HRESULT InitD3D(HWND hWnd)
         itemInfo.SetId(1);
         itemInfo.SetSubId(1);
         itemInfo.SetLevel(3);
-        itemInfo.SetDetail("ƒeƒXƒgƒAƒCƒeƒ€ƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒXƒgƒeƒLƒXƒg"); // TODO
+        itemInfo.SetDetail("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ"); // TODO
         itemInfoList.push_back(itemInfo);
     }
     {
         ItemInfo itemInfo;
-        itemInfo.SetName("‘Ü");
+        itemInfo.SetName("è¢‹");
         itemInfo.SetDurability(20);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item2.png");
@@ -356,12 +356,12 @@ HRESULT InitD3D(HWND hWnd)
         itemInfo.SetEquip(false);
         itemInfo.SetId(1);
         itemInfo.SetSubId(2);
-        itemInfo.SetDetail("‚`‚`‚`ƒeƒXƒgƒAƒCƒeƒ€ƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒXƒgƒeƒLƒXƒg"); // TODO
+        itemInfo.SetDetail("ï¼¡ï¼¡ï¼¡ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ"); // TODO
         itemInfoList.push_back(itemInfo);
     }
     {
         ItemInfo itemInfo;
-        itemInfo.SetName("‘Ü");
+        itemInfo.SetName("è¢‹");
         itemInfo.SetDurability(300);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item3.png");
@@ -370,12 +370,12 @@ HRESULT InitD3D(HWND hWnd)
         itemInfo.SetEquip(true);
         itemInfo.SetId(1);
         itemInfo.SetSubId(3);
-        itemInfo.SetDetail("‚a‚a‚aƒeƒXƒgƒAƒCƒeƒ€ƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒXƒgƒeƒLƒXƒg"); // TODO
+        itemInfo.SetDetail("ï¼¢ï¼¢ï¼¢ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ"); // TODO
         itemInfoList.push_back(itemInfo);
     }
     {
         ItemInfo itemInfo;
-        itemInfo.SetName("ƒeƒXƒgƒAƒCƒeƒ€‚P");
+        itemInfo.SetName("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ï¼‘");
         itemInfo.SetDurability(10);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item1.png");
@@ -384,12 +384,12 @@ HRESULT InitD3D(HWND hWnd)
         itemInfo.SetVolume(5678);
         itemInfo.SetId(1);
         itemInfo.SetSubId(4);
-        itemInfo.SetDetail("ƒeƒXƒgƒAƒCƒeƒ€ƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒXƒgƒeƒLƒXƒg"); // TODO
+        itemInfo.SetDetail("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ"); // TODO
         itemInfoList.push_back(itemInfo);
     }
     {
         ItemInfo itemInfo;
-        itemInfo.SetName("ƒeƒXƒgƒAƒCƒeƒ€‚Q");
+        itemInfo.SetName("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ï¼’");
         itemInfo.SetDurability(20);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item2.png");
@@ -398,233 +398,233 @@ HRESULT InitD3D(HWND hWnd)
         itemInfo.SetVolume(3333);
         itemInfo.SetId(1);
         itemInfo.SetSubId(5);
-        itemInfo.SetDetail("‚`‚`‚`ƒeƒXƒgƒAƒCƒeƒ€ƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒXƒgƒeƒLƒXƒg"); // TODO
+        itemInfo.SetDetail("ï¼¡ï¼¡ï¼¡ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ"); // TODO
         itemInfoList.push_back(itemInfo);
     }
     {
         ItemInfo itemInfo;
-        itemInfo.SetName("ƒeƒXƒgƒAƒCƒeƒ€‚R");
+        itemInfo.SetName("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ï¼“");
         itemInfo.SetDurability(30);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item3.png");
         itemInfo.SetSprite(sprItem);
-        itemInfo.SetDetail("‚a‚a‚aƒeƒXƒgƒAƒCƒeƒ€ƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒXƒgƒeƒLƒXƒg"); // TODO
+        itemInfo.SetDetail("ï¼¢ï¼¢ï¼¢ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ"); // TODO
         itemInfo.SetId(1);
         itemInfo.SetSubId(6);
         itemInfoList.push_back(itemInfo);
     }
     {
         ItemInfo itemInfo;
-        itemInfo.SetName("ƒeƒXƒgƒAƒCƒeƒ€‚P");
+        itemInfo.SetName("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ï¼‘");
         itemInfo.SetDurability(10);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item1.png");
         itemInfo.SetSprite(sprItem);
-        itemInfo.SetDetail("ƒeƒXƒgƒAƒCƒeƒ€ƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒXƒgƒeƒLƒXƒg"); // TODO
+        itemInfo.SetDetail("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ"); // TODO
         itemInfo.SetId(1);
         itemInfo.SetSubId(7);
         itemInfoList.push_back(itemInfo);
     }
     {
         ItemInfo itemInfo;
-        itemInfo.SetName("ƒeƒXƒgƒAƒCƒeƒ€‚Q");
+        itemInfo.SetName("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ï¼’");
         itemInfo.SetDurability(20);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item2.png");
         itemInfo.SetSprite(sprItem);
-        itemInfo.SetDetail("‚`‚`‚`ƒeƒXƒgƒAƒCƒeƒ€ƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒXƒgƒeƒLƒXƒg"); // TODO
+        itemInfo.SetDetail("ï¼¡ï¼¡ï¼¡ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ"); // TODO
         itemInfo.SetId(1);
         itemInfo.SetSubId(8);
         itemInfoList.push_back(itemInfo);
     }
     {
         ItemInfo itemInfo;
-        itemInfo.SetName("ƒeƒXƒgƒAƒCƒeƒ€‚R");
+        itemInfo.SetName("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ï¼“");
         itemInfo.SetDurability(30);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item3.png");
         itemInfo.SetSprite(sprItem);
-        itemInfo.SetDetail("‚a‚a‚aƒeƒXƒgƒAƒCƒeƒ€ƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒXƒgƒeƒLƒXƒg"); // TODO
+        itemInfo.SetDetail("ï¼¢ï¼¢ï¼¢ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ"); // TODO
         itemInfo.SetId(1);
         itemInfo.SetSubId(9);
         itemInfoList.push_back(itemInfo);
     }
     {
         ItemInfo itemInfo;
-        itemInfo.SetName("ƒeƒXƒgƒAƒCƒeƒ€‚P");
+        itemInfo.SetName("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ï¼‘");
         itemInfo.SetDurability(10);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item1.png");
         itemInfo.SetSprite(sprItem);
-        itemInfo.SetDetail("ƒeƒXƒgƒAƒCƒeƒ€ƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒXƒgƒeƒLƒXƒg"); // TODO
+        itemInfo.SetDetail("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ"); // TODO
         itemInfo.SetId(1);
         itemInfo.SetSubId(10);
         itemInfoList.push_back(itemInfo);
     }
     {
         ItemInfo itemInfo;
-        itemInfo.SetName("ƒeƒXƒgƒAƒCƒeƒ€‚Q");
+        itemInfo.SetName("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ï¼’");
         itemInfo.SetDurability(20);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item2.png");
         itemInfo.SetSprite(sprItem);
-        itemInfo.SetDetail("‚`‚`‚`ƒeƒXƒgƒAƒCƒeƒ€ƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒXƒgƒeƒLƒXƒg"); // TODO
+        itemInfo.SetDetail("ï¼¡ï¼¡ï¼¡ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ"); // TODO
         itemInfo.SetId(1);
         itemInfo.SetSubId(11);
         itemInfoList.push_back(itemInfo);
     }
     {
         ItemInfo itemInfo;
-        itemInfo.SetName("ƒeƒXƒgƒAƒCƒeƒ€‚R");
+        itemInfo.SetName("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ï¼“");
         itemInfo.SetDurability(30);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item3.png");
         itemInfo.SetSprite(sprItem);
-        itemInfo.SetDetail("‚a‚a‚aƒeƒXƒgƒAƒCƒeƒ€ƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒXƒgƒeƒLƒXƒg"); // TODO
+        itemInfo.SetDetail("ï¼¢ï¼¢ï¼¢ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ"); // TODO
         itemInfo.SetId(1);
         itemInfo.SetSubId(12);
         itemInfoList.push_back(itemInfo);
     }
     {
         ItemInfo itemInfo;
-        itemInfo.SetName("ƒeƒXƒgƒAƒCƒeƒ€‚P");
+        itemInfo.SetName("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ï¼‘");
         itemInfo.SetDurability(10);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item1.png");
         itemInfo.SetSprite(sprItem);
-        itemInfo.SetDetail("ƒeƒXƒgƒAƒCƒeƒ€ƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒXƒgƒeƒLƒXƒg"); // TODO
+        itemInfo.SetDetail("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ"); // TODO
         itemInfo.SetId(1);
         itemInfo.SetSubId(13);
         itemInfoList.push_back(itemInfo);
     }
     {
         ItemInfo itemInfo;
-        itemInfo.SetName("ƒeƒXƒgƒAƒCƒeƒ€‚Q");
+        itemInfo.SetName("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ï¼’");
         itemInfo.SetDurability(20);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item2.png");
         itemInfo.SetSprite(sprItem);
-        itemInfo.SetDetail("‚`‚`‚`ƒeƒXƒgƒAƒCƒeƒ€ƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒXƒgƒeƒLƒXƒg"); // TODO
+        itemInfo.SetDetail("ï¼¡ï¼¡ï¼¡ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ"); // TODO
         itemInfo.SetId(1);
         itemInfo.SetSubId(14);
         itemInfoList.push_back(itemInfo);
     }
     {
         ItemInfo itemInfo;
-        itemInfo.SetName("ƒeƒXƒgƒAƒCƒeƒ€‚R");
+        itemInfo.SetName("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ï¼“");
         itemInfo.SetDurability(30);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item3.png");
         itemInfo.SetSprite(sprItem);
-        itemInfo.SetDetail("‚a‚a‚aƒeƒXƒgƒAƒCƒeƒ€ƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒXƒgƒeƒLƒXƒg"); // TODO
+        itemInfo.SetDetail("ï¼¢ï¼¢ï¼¢ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ"); // TODO
         itemInfo.SetId(1);
         itemInfo.SetSubId(15);
         itemInfoList.push_back(itemInfo);
     }
     {
         ItemInfo itemInfo;
-        itemInfo.SetName("ƒeƒXƒgƒAƒCƒeƒ€‚P");
+        itemInfo.SetName("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ï¼‘");
         itemInfo.SetDurability(10);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item1.png");
         itemInfo.SetSprite(sprItem);
-        itemInfo.SetDetail("ƒeƒXƒgƒAƒCƒeƒ€ƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒXƒgƒeƒLƒXƒg"); // TODO
+        itemInfo.SetDetail("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ"); // TODO
         itemInfo.SetId(1);
         itemInfo.SetSubId(16);
         itemInfoList.push_back(itemInfo);
     }
     {
         ItemInfo itemInfo;
-        itemInfo.SetName("ƒeƒXƒgƒAƒCƒeƒ€‚Q");
+        itemInfo.SetName("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ï¼’");
         itemInfo.SetDurability(20);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item2.png");
         itemInfo.SetSprite(sprItem);
-        itemInfo.SetDetail("‚`‚`‚`ƒeƒXƒgƒAƒCƒeƒ€ƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒXƒgƒeƒLƒXƒg"); // TODO
+        itemInfo.SetDetail("ï¼¡ï¼¡ï¼¡ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ"); // TODO
         itemInfo.SetId(1);
         itemInfo.SetSubId(17);
         itemInfoList.push_back(itemInfo);
     }
     {
         ItemInfo itemInfo;
-        itemInfo.SetName("ƒeƒXƒgƒAƒCƒeƒ€‚R");
+        itemInfo.SetName("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ï¼“");
         itemInfo.SetDurability(30);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item3.png");
         itemInfo.SetSprite(sprItem);
-        itemInfo.SetDetail("‚a‚a‚aƒeƒXƒgƒAƒCƒeƒ€ƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒXƒgƒeƒLƒXƒg"); // TODO
+        itemInfo.SetDetail("ï¼¢ï¼¢ï¼¢ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ"); // TODO
         itemInfo.SetId(1);
         itemInfo.SetSubId(18);
         itemInfoList.push_back(itemInfo);
     }
     {
         ItemInfo itemInfo;
-        itemInfo.SetName("ƒeƒXƒgƒAƒCƒeƒ€‚P");
+        itemInfo.SetName("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ï¼‘");
         itemInfo.SetDurability(10);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item1.png");
         itemInfo.SetSprite(sprItem);
-        itemInfo.SetDetail("ƒeƒXƒgƒAƒCƒeƒ€ƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒXƒgƒeƒLƒXƒg"); // TODO
+        itemInfo.SetDetail("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ"); // TODO
         itemInfo.SetId(1);
         itemInfo.SetSubId(19);
         itemInfoList.push_back(itemInfo);
     }
     {
         ItemInfo itemInfo;
-        itemInfo.SetName("ƒeƒXƒgƒAƒCƒeƒ€‚Q");
+        itemInfo.SetName("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ï¼’");
         itemInfo.SetDurability(20);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item2.png");
         itemInfo.SetSprite(sprItem);
-        itemInfo.SetDetail("‚`‚`‚`ƒeƒXƒgƒAƒCƒeƒ€ƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒXƒgƒeƒLƒXƒg"); // TODO
+        itemInfo.SetDetail("ï¼¡ï¼¡ï¼¡ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ"); // TODO
         itemInfo.SetId(1);
         itemInfo.SetSubId(20);
         itemInfoList.push_back(itemInfo);
     }
     {
         ItemInfo itemInfo;
-        itemInfo.SetName("ƒeƒXƒgƒAƒCƒeƒ€‚R");
+        itemInfo.SetName("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ï¼“");
         itemInfo.SetDurability(30);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item3.png");
         itemInfo.SetSprite(sprItem);
-        itemInfo.SetDetail("‚a‚a‚aƒeƒXƒgƒAƒCƒeƒ€ƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒXƒgƒeƒLƒXƒg"); // TODO
+        itemInfo.SetDetail("ï¼¢ï¼¢ï¼¢ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ"); // TODO
         itemInfo.SetId(1);
         itemInfo.SetSubId(21);
         itemInfoList.push_back(itemInfo);
     }
     {
         ItemInfo itemInfo;
-        itemInfo.SetName("ƒeƒXƒgƒAƒCƒeƒ€‚P");
+        itemInfo.SetName("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ï¼‘");
         itemInfo.SetDurability(10);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item1.png");
         itemInfo.SetSprite(sprItem);
-        itemInfo.SetDetail("ƒeƒXƒgƒAƒCƒeƒ€ƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒXƒgƒeƒLƒXƒg"); // TODO
+        itemInfo.SetDetail("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ"); // TODO
         itemInfo.SetId(1);
         itemInfo.SetSubId(22);
         itemInfoList.push_back(itemInfo);
     }
     {
         ItemInfo itemInfo;
-        itemInfo.SetName("ƒeƒXƒgƒAƒCƒeƒ€‚Q");
+        itemInfo.SetName("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ï¼’");
         itemInfo.SetDurability(20);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item2.png");
         itemInfo.SetSprite(sprItem);
-        itemInfo.SetDetail("‚`‚`‚`ƒeƒXƒgƒAƒCƒeƒ€ƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒXƒgƒeƒLƒXƒg"); // TODO
+        itemInfo.SetDetail("ï¼¡ï¼¡ï¼¡ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ"); // TODO
         itemInfo.SetId(1);
         itemInfo.SetSubId(23);
         itemInfoList.push_back(itemInfo);
     }
     {
         ItemInfo itemInfo;
-        itemInfo.SetName("ƒeƒXƒgƒAƒCƒeƒ€‚R");
+        itemInfo.SetName("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ï¼“");
         itemInfo.SetDurability(30);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("item3.png");
         itemInfo.SetSprite(sprItem);
-        itemInfo.SetDetail("‚a‚a‚aƒeƒXƒgƒAƒCƒeƒ€ƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒXƒgƒeƒLƒXƒg"); // TODO
+        itemInfo.SetDetail("ï¼¢ï¼¢ï¼¢ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ"); // TODO
         itemInfo.SetId(1);
         itemInfo.SetSubId(24);
         itemInfoList.push_back(itemInfo);
@@ -636,29 +636,29 @@ HRESULT InitD3D(HWND hWnd)
     std::vector<HumanInfo> humanInfoList;
     {
         HumanInfo humanInfo;
-        humanInfo.SetName("ƒeƒXƒgl•¨‚P");
+        humanInfo.SetName("ãƒ†ã‚¹ãƒˆäººç‰©ï¼‘");
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("human1.png");
         humanInfo.SetSprite(sprItem);
-        humanInfo.SetDetail("ƒeƒXƒgl•¨ƒeƒLƒXƒg\nƒeƒXƒgl•¨ƒeƒLƒXƒg\nƒeƒXƒgl•¨ƒeƒLƒXƒg\nƒeƒXƒgl•¨ƒeƒLƒXƒg\nƒeƒXƒgl•¨ƒeƒLƒXƒg");
+        humanInfo.SetDetail("ãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ");
         humanInfoList.push_back(humanInfo);
     }
     {
         HumanInfo humanInfo;
-        humanInfo.SetName("ƒeƒXƒgl•¨‚Q");
+        humanInfo.SetName("ãƒ†ã‚¹ãƒˆäººç‰©ï¼’");
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("human2.png");
         humanInfo.SetSprite(sprItem);
-        humanInfo.SetDetail("ƒeƒXƒgl•¨‚Q\n@\nƒeƒXƒgl•¨ƒeƒLƒXƒg\nƒeƒXƒgl•¨ƒeƒLƒXƒg\nƒeƒXƒgl•¨ƒeƒLƒXƒg\nƒeƒXƒgl•¨ƒeƒLƒXƒg\nƒeƒXƒgl•¨ƒeƒLƒXƒg");
+        humanInfo.SetDetail("ãƒ†ã‚¹ãƒˆäººç‰©ï¼’\nã€€\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ");
         humanInfoList.push_back(humanInfo);
     }
     {
         HumanInfo humanInfo;
-        humanInfo.SetName("ƒeƒXƒgl•¨‚R");
+        humanInfo.SetName("ãƒ†ã‚¹ãƒˆäººç‰©ï¼“");
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load("human3.png");
         humanInfo.SetSprite(sprItem);
-        humanInfo.SetDetail("ƒeƒXƒgl•¨‚R\n@\nƒeƒXƒgl•¨ƒeƒLƒXƒg\nƒeƒXƒgl•¨ƒeƒLƒXƒg\nƒeƒXƒgl•¨ƒeƒLƒXƒg\nƒeƒXƒgl•¨ƒeƒLƒXƒg\nƒeƒXƒgl•¨ƒeƒLƒXƒg");
+        humanInfo.SetDetail("ãƒ†ã‚¹ãƒˆäººç‰©ï¼“\nã€€\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ");
         humanInfoList.push_back(humanInfo);
     }
     menu.SetHuman(humanInfoList);
@@ -666,32 +666,32 @@ HRESULT InitD3D(HWND hWnd)
         std::vector<WeaponInfo> infoList;
         {
             WeaponInfo info;
-            info.SetName("ƒeƒXƒgl•¨‚P");
+            info.SetName("ãƒ†ã‚¹ãƒˆäººç‰©ï¼‘");
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load("test.png");
             info.SetSprite(sprItem);
             info.SetDurability(10);
-            info.SetDetail("ƒeƒXƒgl•¨ƒeƒLƒXƒg\nƒeƒXƒgl•¨ƒeƒLƒXƒg\nƒeƒXƒgl•¨ƒeƒLƒXƒg\nƒeƒXƒgl•¨ƒeƒLƒXƒg\nƒeƒXƒgl•¨ƒeƒLƒXƒg");
+            info.SetDetail("ãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             WeaponInfo info;
-            info.SetName("ƒeƒXƒgl•¨‚Q");
+            info.SetName("ãƒ†ã‚¹ãƒˆäººç‰©ï¼’");
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load("test.png");
             info.SetSprite(sprItem);
             info.SetDurability(20);
-            info.SetDetail("ƒeƒXƒgl•¨‚Q\n@\nƒeƒXƒgl•¨ƒeƒLƒXƒg\nƒeƒXƒgl•¨ƒeƒLƒXƒg\nƒeƒXƒgl•¨ƒeƒLƒXƒg\nƒeƒXƒgl•¨ƒeƒLƒXƒg\nƒeƒXƒgl•¨ƒeƒLƒXƒg");
+            info.SetDetail("ãƒ†ã‚¹ãƒˆäººç‰©ï¼’\nã€€\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             WeaponInfo info;
-            info.SetName("ƒeƒXƒgl•¨‚R");
+            info.SetName("ãƒ†ã‚¹ãƒˆäººç‰©ï¼“");
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load("test.png");
             info.SetSprite(sprItem);
             info.SetDurability(30);
-            info.SetDetail("ƒeƒXƒgl•¨‚R\n@\nƒeƒXƒgl•¨ƒeƒLƒXƒg\nƒeƒXƒgl•¨ƒeƒLƒXƒg\nƒeƒXƒgl•¨ƒeƒLƒXƒg\nƒeƒXƒgl•¨ƒeƒLƒXƒg\nƒeƒXƒgl•¨ƒeƒLƒXƒg");
+            info.SetDetail("ãƒ†ã‚¹ãƒˆäººç‰©ï¼“\nã€€\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆäººç‰©ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         menu.SetWeapon(infoList);
@@ -700,268 +700,268 @@ HRESULT InitD3D(HWND hWnd)
         std::vector<GuideInfo> infoList;
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚P");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ‚P");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼‘");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒªï¼‘");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚P");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ‚Q");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼‘");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒªï¼’");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚P");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ‚R");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼‘");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒªï¼“");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚Q");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ‚P");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼’");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒªï¼‘");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚Q");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ‚Q");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼’");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒªï¼’");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚Q");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ‚R");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼’");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒªï¼“");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚Q");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ‚S");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼’");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒªï¼”");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚Q");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ‚T");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼’");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒªï¼•");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚Q");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ‚T");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼’");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒªï¼•");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚Q");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ‚T");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼’");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒªï¼•");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚Q");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ‚T");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼’");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒªï¼•");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚Q");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ‚T");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼’");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒªï¼•");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚Q");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ‚T");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼’");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒªï¼•");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚Q");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ‚T");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼’");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒªï¼•");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚Q");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ‚T");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼’");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒªï¼•");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚Q");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ‚T");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼’");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒªï¼•");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚Q");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ‚T");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼’");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒªï¼•");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚R");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ‚P");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼“");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒªï¼‘");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚S");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ‚P");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼”");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒªï¼‘");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚T");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ‚P");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼•");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒªï¼‘");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚U");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ‚P");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼–");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒªï¼‘");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚V");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ‚P");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼—");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒªï¼‘");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚W");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ‚P");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼˜");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒªï¼‘");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚X");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ‚P");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼™");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒªï¼‘");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚P‚O");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ‚P");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼‘ï¼");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒªï¼‘");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚P‚P");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ‚P");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼‘ï¼‘");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒªï¼‘");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚P‚Q");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ‚P");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼‘ï¼’");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒªï¼‘");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚P‚Q");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ2");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼‘ï¼’");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒª2");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚P‚Q");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ3");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼‘ï¼’");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒª3");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚P‚Q");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ4");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼‘ï¼’");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒª4");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚P‚Q");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ5");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼‘ï¼’");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒª5");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚P‚Q");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ6");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼‘ï¼’");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒª6");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚P‚Q");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ7");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼‘ï¼’");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒª7");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚P‚Q");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ8");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼‘ï¼’");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒª8");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚P‚Q");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ9");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼‘ï¼’");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒª9");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚P‚Q");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ10");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼‘ï¼’");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒª10");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚P‚Q");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ11");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼‘ï¼’");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒª11");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             GuideInfo info;
-            info.SetCategory("‘åƒJƒeƒSƒŠ‚P‚Q");
-            info.SetSubCategory("¬ƒJƒeƒSƒŠ12");
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetCategory("å¤§ã‚«ãƒ†ã‚´ãƒªï¼‘ï¼’");
+            info.SetSubCategory("å°ã‚«ãƒ†ã‚´ãƒª12");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         menu.SetGuide(infoList);
@@ -970,83 +970,83 @@ HRESULT InitD3D(HWND hWnd)
         std::vector<EnemyInfo> infoList;
         {
             EnemyInfo info;
-            info.SetName("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg‚P");
+            info.SetName("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆï¼‘");
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load("test.png");
             info.SetSprite(sprItem);
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             EnemyInfo info;
-            info.SetName("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg‚Q");
+            info.SetName("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆï¼’");
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load("test.png");
             info.SetSprite(sprItem);
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             EnemyInfo info;
-            info.SetName("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg‚R");
+            info.SetName("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆï¼“");
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load("test.png");
             info.SetSprite(sprItem);
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             EnemyInfo info;
-            info.SetName("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg‚P");
+            info.SetName("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆï¼‘");
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load("test.png");
             info.SetSprite(sprItem);
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             EnemyInfo info;
-            info.SetName("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg‚Q");
+            info.SetName("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆï¼’");
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load("test.png");
             info.SetSprite(sprItem);
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             EnemyInfo info;
-            info.SetName("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg‚R");
+            info.SetName("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆï¼“");
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load("test.png");
             info.SetSprite(sprItem);
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             EnemyInfo info;
-            info.SetName("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg‚P");
+            info.SetName("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆï¼‘");
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load("test.png");
             info.SetSprite(sprItem);
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             EnemyInfo info;
-            info.SetName("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg‚Q");
+            info.SetName("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆï¼’");
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load("test.png");
             info.SetSprite(sprItem);
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             EnemyInfo info;
-            info.SetName("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg‚R");
+            info.SetName("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆï¼“");
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load("test.png");
             info.SetSprite(sprItem);
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         menu.SetEnemy(infoList);
@@ -1055,29 +1055,29 @@ HRESULT InitD3D(HWND hWnd)
         std::vector<SkillInfo> infoList;
         {
             SkillInfo info;
-            info.SetName("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg‚P");
+            info.SetName("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆï¼‘");
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load("test.png");
             info.SetSprite(sprItem);
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             SkillInfo info;
-            info.SetName("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg‚Q");
+            info.SetName("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆï¼’");
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load("test.png");
             info.SetSprite(sprItem);
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             SkillInfo info;
-            info.SetName("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg‚R");
+            info.SetName("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆï¼“");
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load("test.png");
             info.SetSprite(sprItem);
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         menu.SetSkill(infoList);
@@ -1086,29 +1086,29 @@ HRESULT InitD3D(HWND hWnd)
         std::vector<StatusInfo> infoList;
         {
             StatusInfo info;
-            info.SetName("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg‚P");
+            info.SetName("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆï¼‘");
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load("test.png");
             info.SetSprite(sprItem);
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             StatusInfo info;
-            info.SetName("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg‚Q");
+            info.SetName("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆï¼’");
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load("test.png");
             info.SetSprite(sprItem);
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             StatusInfo info;
-            info.SetName("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg‚R");
+            info.SetName("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆï¼“");
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load("test.png");
             info.SetSprite(sprItem);
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         menu.SetStatus(infoList);
@@ -1117,56 +1117,56 @@ HRESULT InitD3D(HWND hWnd)
         std::vector<MapInfo> infoList;
         {
             MapInfo info;
-            info.SetName("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg‚P");
+            info.SetName("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆï¼‘");
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load("test.png");
             info.SetSprite(sprItem);
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             MapInfo info;
-            info.SetName("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg‚Q");
+            info.SetName("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆï¼’");
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load("test.png");
             info.SetSprite(sprItem);
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             MapInfo info;
-            info.SetName("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg‚R");
+            info.SetName("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆï¼“");
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load("test.png");
             info.SetSprite(sprItem);
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             MapInfo info;
-            info.SetName("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg‚P");
+            info.SetName("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆï¼‘");
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load("test.png");
             info.SetSprite(sprItem);
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             MapInfo info;
-            info.SetName("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg‚Q");
+            info.SetName("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆï¼’");
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load("test.png");
             info.SetSprite(sprItem);
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         {
             MapInfo info;
-            info.SetName("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg‚R");
+            info.SetName("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆï¼“");
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load("test.png");
             info.SetSprite(sprItem);
-            info.SetDetail("ƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\n\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg\nƒTƒ“ƒvƒ‹ƒeƒLƒXƒg");
+            info.SetDetail("ã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\n\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ\nã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ");
             infoList.push_back(info);
         }
         menu.SetMap(infoList);
@@ -1218,7 +1218,7 @@ VOID Render()
     if (SUCCEEDED(g_pd3dDevice->BeginScene()))
     {
         char msg[128];
-        strcpy_s(msg, 128, "MƒL[‚Åƒƒjƒ…[‚ğ•\¦E”ñ•\¦");
+        strcpy_s(msg, 128, "Mã‚­ãƒ¼ã§ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤ºãƒ»éè¡¨ç¤º");
         TextDraw(g_pFont, msg, 0, 0);
 
         pEffect->SetTechnique("BasicTec");
@@ -1269,28 +1269,28 @@ LRESULT WINAPI MsgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
                 bShowMenu = true;
             }
             break;
-        // ƒƒjƒ…[‚ğ•\¦‚µ‚Ä‚¢‚éÅ’†‚Éƒƒjƒ…[‚É•\¦‚³‚ê‚Ä‚¢‚é“à—e‚ğ•Ï‚¦‚é
+        // ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤ºã—ã¦ã„ã‚‹æœ€ä¸­ã«ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹å†…å®¹ã‚’å¤‰ãˆã‚‹
         case VK_F2:
         {
             std::vector<ItemInfo> itemInfoList;
             {
                 ItemInfo itemInfo;
-                itemInfo.SetName("ƒeƒXƒgƒAƒCƒeƒ€‚P");
+                itemInfo.SetName("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ï¼‘");
                 itemInfo.SetDurability(10);
                 Sprite* sprItem = new Sprite(g_pd3dDevice);
                 sprItem->Load("item1.png");
                 itemInfo.SetSprite(sprItem);
-                itemInfo.SetDetail("ƒeƒXƒgƒAƒCƒeƒ€ƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒXƒgƒeƒLƒXƒg"); // TODO
+                itemInfo.SetDetail("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ"); // TODO
                 itemInfoList.push_back(itemInfo);
             }
             {
                 ItemInfo itemInfo;
-                itemInfo.SetName("ƒeƒXƒgƒAƒCƒeƒ€‚R");
+                itemInfo.SetName("ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ï¼“");
                 itemInfo.SetDurability(30);
                 Sprite* sprItem = new Sprite(g_pd3dDevice);
                 sprItem->Load("item3.png");
                 itemInfo.SetSprite(sprItem);
-                itemInfo.SetDetail("‚a‚a‚aƒeƒXƒgƒAƒCƒeƒ€ƒeƒLƒXƒg\nƒeƒXƒgƒeƒLƒXƒgƒeƒXƒgƒeƒLƒXƒg"); // TODO
+                itemInfo.SetDetail("ï¼¢ï¼¢ï¼¢ãƒ†ã‚¹ãƒˆã‚¢ã‚¤ãƒ†ãƒ ãƒ†ã‚­ã‚¹ãƒˆ\nãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ"); // TODO
                 itemInfoList.push_back(itemInfo);
             }
             menu.SetItem(itemInfoList);
@@ -1310,11 +1310,11 @@ LRESULT WINAPI MsgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
         case VK_RETURN:
         {
             std::string result = menu.Into();
-            if (result == "ƒ^ƒCƒgƒ‹")
+            if (result == "ã‚¿ã‚¤ãƒˆãƒ«")
             {
                 bShowMenu = false;
             }
-            else if (result == "Å‰‚©‚ç")
+            else if (result == "æœ€åˆã‹ã‚‰")
             {
                 bShowMenu = false;
             }

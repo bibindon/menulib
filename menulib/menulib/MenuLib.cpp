@@ -1,4 +1,4 @@
-#include "MenuLib.h"
+ï»¿#include "MenuLib.h"
 #include <sstream>
 #include <algorithm>
 #include <iomanip>
@@ -38,16 +38,16 @@ void MenuLib::Init(
 
     if (!bEnglish)
     {
-        m_TopBarName.push_back("ƒAƒCƒeƒ€");
-        m_TopBarName.push_back("•Ší");
-        m_TopBarName.push_back("ƒKƒCƒh");
-        m_TopBarName.push_back("ƒ}ƒbƒv");
-        m_TopBarName.push_back("l•¨î•ñ");
-        m_TopBarName.push_back("“Gî•ñ");
-        m_TopBarName.push_back("‹ZE–‚–@");
-        m_TopBarName.push_back("ƒXƒe[ƒ^ƒX");
-        m_TopBarName.push_back("ƒZ[ƒu‚µ‚ÄI—¹");
-        m_TopBarName.push_back("ƒ^ƒCƒgƒ‹‚É–ß‚é");
+        m_TopBarName.push_back("ã‚¢ã‚¤ãƒ†ãƒ ");
+        m_TopBarName.push_back("æ­¦å™¨");
+        m_TopBarName.push_back("ã‚¬ã‚¤ãƒ‰");
+        m_TopBarName.push_back("ãƒãƒƒãƒ—");
+        m_TopBarName.push_back("äººç‰©æƒ…å ±");
+        m_TopBarName.push_back("æ•µæƒ…å ±");
+        m_TopBarName.push_back("æŠ€ãƒ»é­”æ³•");
+        m_TopBarName.push_back("ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹");
+        m_TopBarName.push_back("ã‚»ãƒ¼ãƒ–ã—ã¦çµ‚äº†");
+        m_TopBarName.push_back("ã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã‚‹");
     }
     else
     {
@@ -364,11 +364,11 @@ std::string MenuLib::Down()
     }
     else if (m_eFocus == eFocus::ITEM)
     {
-        // ƒXƒNƒ[ƒ‹‰Â”\‚È‚½‚ßƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚Æ‘I‘ğƒAƒCƒeƒ€‚ÍˆÙ‚È‚é
+        // ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å¯èƒ½ãªãŸã‚ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã¨é¸æŠã‚¢ã‚¤ãƒ†ãƒ ã¯ç•°ãªã‚‹
         if (m_itemSelect <= (int)m_itemInfoList.size() - 2)
         {
             m_itemSelect++;
-            // 10s‚Ü‚Å•\¦‰Â”\‚È‚Ì‚ÅŒ»İs‚ª8‚È‚çƒJ[ƒ\ƒ‹‚ğ‰º‚ÉˆÚ“®‰Â”\
+            // 10è¡Œã¾ã§è¡¨ç¤ºå¯èƒ½ãªã®ã§ç¾åœ¨è¡ŒãŒ8ãªã‚‰ã‚«ãƒ¼ã‚½ãƒ«ã‚’ä¸‹ã«ç§»å‹•å¯èƒ½
             if (m_itemCursor <= LEFT_PANEL_ROW_MAX - 2)
             {
                 m_itemCursor++;
@@ -382,11 +382,11 @@ std::string MenuLib::Down()
     }
     else if (m_eFocus == eFocus::WEAPON)
     {
-        // ƒXƒNƒ[ƒ‹‰Â”\‚È‚½‚ßƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚Æ‘I‘ğƒAƒCƒeƒ€‚ÍˆÙ‚È‚é
+        // ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å¯èƒ½ãªãŸã‚ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã¨é¸æŠã‚¢ã‚¤ãƒ†ãƒ ã¯ç•°ãªã‚‹
         if (m_weaponSelect <= (int)m_weaponInfoList.size() - 2)
         {
             m_weaponSelect++;
-            // 10s‚Ü‚Å•\¦‰Â”\‚È‚Ì‚ÅŒ»İs‚ª8‚È‚çƒJ[ƒ\ƒ‹‚ğ‰º‚ÉˆÚ“®‰Â”\
+            // 10è¡Œã¾ã§è¡¨ç¤ºå¯èƒ½ãªã®ã§ç¾åœ¨è¡ŒãŒ8ãªã‚‰ã‚«ãƒ¼ã‚½ãƒ«ã‚’ä¸‹ã«ç§»å‹•å¯èƒ½
             if (m_weaponCursor <= LEFT_PANEL_ROW_MAX-2)
             {
                 m_weaponCursor++;
@@ -400,11 +400,11 @@ std::string MenuLib::Down()
     }
     else if (m_eFocus == eFocus::GUIDE)
     {
-        // ƒXƒNƒ[ƒ‹‰Â”\‚È‚½‚ßƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚Æ‘I‘ğƒAƒCƒeƒ€‚ÍˆÙ‚È‚é
+        // ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å¯èƒ½ãªãŸã‚ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã¨é¸æŠã‚¢ã‚¤ãƒ†ãƒ ã¯ç•°ãªã‚‹
         if (m_guideSelect <= (int)m_guideCategory.size() - 2)
         {
             m_guideSelect++;
-            // 10s‚Ü‚Å•\¦‰Â”\‚È‚Ì‚ÅŒ»İs‚ª8‚È‚çƒJ[ƒ\ƒ‹‚ğ‰º‚ÉˆÚ“®‰Â”\
+            // 10è¡Œã¾ã§è¡¨ç¤ºå¯èƒ½ãªã®ã§ç¾åœ¨è¡ŒãŒ8ãªã‚‰ã‚«ãƒ¼ã‚½ãƒ«ã‚’ä¸‹ã«ç§»å‹•å¯èƒ½
             if (m_guideCursor <= LEFT_PANEL_ROW_MAX-2)
             {
                 m_guideCursor++;
@@ -418,12 +418,12 @@ std::string MenuLib::Down()
     }
     else if (m_eFocus == eFocus::GUIDE_SUB)
     {
-        // ƒXƒNƒ[ƒ‹‰Â”\‚È‚½‚ßƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚Æ‘I‘ğƒAƒCƒeƒ€‚ÍˆÙ‚È‚é
+        // ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å¯èƒ½ãªãŸã‚ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã¨é¸æŠã‚¢ã‚¤ãƒ†ãƒ ã¯ç•°ãªã‚‹
         std::vector<std::string> vs = m_guideSubCategory.at(m_guideCategory.at(m_guideSelect));
         if (m_guideSubSelect <= (int)vs.size() - 2)
         {
             m_guideSubSelect++;
-            // 10s‚Ü‚Å•\¦‰Â”\‚È‚Ì‚ÅŒ»İs‚ª8‚È‚çƒJ[ƒ\ƒ‹‚ğ‰º‚ÉˆÚ“®‰Â”\
+            // 10è¡Œã¾ã§è¡¨ç¤ºå¯èƒ½ãªã®ã§ç¾åœ¨è¡ŒãŒ8ãªã‚‰ã‚«ãƒ¼ã‚½ãƒ«ã‚’ä¸‹ã«ç§»å‹•å¯èƒ½
             if (m_guideSubCursor <= LEFT_PANEL_ROW_MAX-2)
             {
                 m_guideSubCursor++;
@@ -437,11 +437,11 @@ std::string MenuLib::Down()
     }
     else if (m_eFocus == eFocus::MAP)
     {
-        // ƒXƒNƒ[ƒ‹‰Â”\‚È‚½‚ßƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚Æ‘I‘ğƒAƒCƒeƒ€‚ÍˆÙ‚È‚é
+        // ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å¯èƒ½ãªãŸã‚ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã¨é¸æŠã‚¢ã‚¤ãƒ†ãƒ ã¯ç•°ãªã‚‹
         if (m_mapSelect <= (int)m_mapInfoList.size() - 2)
         {
             m_mapSelect++;
-            // 10s‚Ü‚Å•\¦‰Â”\‚È‚Ì‚ÅŒ»İs‚ª8‚È‚çƒJ[ƒ\ƒ‹‚ğ‰º‚ÉˆÚ“®‰Â”\
+            // 10è¡Œã¾ã§è¡¨ç¤ºå¯èƒ½ãªã®ã§ç¾åœ¨è¡ŒãŒ8ãªã‚‰ã‚«ãƒ¼ã‚½ãƒ«ã‚’ä¸‹ã«ç§»å‹•å¯èƒ½
             if (m_mapCursor <= LEFT_PANEL_ROW_MAX-2)
             {
                 m_mapCursor++;
@@ -455,11 +455,11 @@ std::string MenuLib::Down()
     }
     else if (m_eFocus == eFocus::HUMAN)
     {
-        // ƒXƒNƒ[ƒ‹‰Â”\‚È‚½‚ßƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚Æ‘I‘ğƒAƒCƒeƒ€‚ÍˆÙ‚È‚é
+        // ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å¯èƒ½ãªãŸã‚ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã¨é¸æŠã‚¢ã‚¤ãƒ†ãƒ ã¯ç•°ãªã‚‹
         if (m_humanSelect <= (int)m_humanInfoList.size() - 2)
         {
             m_humanSelect++;
-            // 10s‚Ü‚Å•\¦‰Â”\‚È‚Ì‚ÅŒ»İs‚ª8‚È‚çƒJ[ƒ\ƒ‹‚ğ‰º‚ÉˆÚ“®‰Â”\
+            // 10è¡Œã¾ã§è¡¨ç¤ºå¯èƒ½ãªã®ã§ç¾åœ¨è¡ŒãŒ8ãªã‚‰ã‚«ãƒ¼ã‚½ãƒ«ã‚’ä¸‹ã«ç§»å‹•å¯èƒ½
             if (m_humanCursor <= LEFT_PANEL_ROW_MAX-2)
             {
                 m_humanCursor++;
@@ -473,11 +473,11 @@ std::string MenuLib::Down()
     }
     else if (m_eFocus == eFocus::ENEMY)
     {
-        // ƒXƒNƒ[ƒ‹‰Â”\‚È‚½‚ßƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚Æ‘I‘ğƒAƒCƒeƒ€‚ÍˆÙ‚È‚é
+        // ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å¯èƒ½ãªãŸã‚ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã¨é¸æŠã‚¢ã‚¤ãƒ†ãƒ ã¯ç•°ãªã‚‹
         if (m_enemySelect <= (int)m_enemyInfoList.size() - 2)
         {
             m_enemySelect++;
-            // 10s‚Ü‚Å•\¦‰Â”\‚È‚Ì‚ÅŒ»İs‚ª8‚È‚çƒJ[ƒ\ƒ‹‚ğ‰º‚ÉˆÚ“®‰Â”\
+            // 10è¡Œã¾ã§è¡¨ç¤ºå¯èƒ½ãªã®ã§ç¾åœ¨è¡ŒãŒ8ãªã‚‰ã‚«ãƒ¼ã‚½ãƒ«ã‚’ä¸‹ã«ç§»å‹•å¯èƒ½
             if (m_enemyCursor <= LEFT_PANEL_ROW_MAX-2)
             {
                 m_enemyCursor++;
@@ -491,11 +491,11 @@ std::string MenuLib::Down()
     }
     else if (m_eFocus == eFocus::SKILL)
     {
-        // ƒXƒNƒ[ƒ‹‰Â”\‚È‚½‚ßƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚Æ‘I‘ğƒAƒCƒeƒ€‚ÍˆÙ‚È‚é
+        // ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å¯èƒ½ãªãŸã‚ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã¨é¸æŠã‚¢ã‚¤ãƒ†ãƒ ã¯ç•°ãªã‚‹
         if (m_skillSelect <= (int)m_skillInfoList.size() - 2)
         {
             m_skillSelect++;
-            // 10s‚Ü‚Å•\¦‰Â”\‚È‚Ì‚ÅŒ»İs‚ª8‚È‚çƒJ[ƒ\ƒ‹‚ğ‰º‚ÉˆÚ“®‰Â”\
+            // 10è¡Œã¾ã§è¡¨ç¤ºå¯èƒ½ãªã®ã§ç¾åœ¨è¡ŒãŒ8ãªã‚‰ã‚«ãƒ¼ã‚½ãƒ«ã‚’ä¸‹ã«ç§»å‹•å¯èƒ½
             if (m_skillCursor <= LEFT_PANEL_ROW_MAX-2)
             {
                 m_skillCursor++;
@@ -509,11 +509,11 @@ std::string MenuLib::Down()
     }
     else if (m_eFocus == eFocus::STATUS)
     {
-        // ƒXƒNƒ[ƒ‹‰Â”\‚È‚½‚ßƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚Æ‘I‘ğƒAƒCƒeƒ€‚ÍˆÙ‚È‚é
+        // ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å¯èƒ½ãªãŸã‚ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã¨é¸æŠã‚¢ã‚¤ãƒ†ãƒ ã¯ç•°ãªã‚‹
         if (m_statusSelect <= (int)m_statusInfoList.size() - 2)
         {
             m_statusSelect++;
-            // 10s‚Ü‚Å•\¦‰Â”\‚È‚Ì‚ÅŒ»İs‚ª8‚È‚çƒJ[ƒ\ƒ‹‚ğ‰º‚ÉˆÚ“®‰Â”\
+            // 10è¡Œã¾ã§è¡¨ç¤ºå¯èƒ½ãªã®ã§ç¾åœ¨è¡ŒãŒ8ãªã‚‰ã‚«ãƒ¼ã‚½ãƒ«ã‚’ä¸‹ã«ç§»å‹•å¯èƒ½
             if (m_statusCursor <= LEFT_PANEL_ROW_MAX-2)
             {
                 m_statusCursor++;
@@ -832,8 +832,8 @@ std::string MenuLib::Back()
         m_guideSubSelect = 0;
         m_guideSubBegin = 0;
     }
-    // TOP_BAR‚ÉƒtƒH[ƒJƒX‚ª‚ ‚é‚Æ‚«‚É–ß‚ë‚¤‚Æ‚µ‚½B
-    // ‚Â‚Ü‚èƒƒjƒ…[‰æ–Ê‚ğ•Â‚¶‚æ‚¤‚Æ‚µ‚½B
+    // TOP_BARã«ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ãŒã‚ã‚‹ã¨ãã«æˆ»ã‚ã†ã¨ã—ãŸã€‚
+    // ã¤ã¾ã‚Šãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”»é¢ã‚’é–‰ã˜ã‚ˆã†ã¨ã—ãŸã€‚
     else if (m_eFocus == eFocus::TOP_BAR)
     {
         m_SE->PlayBack();
@@ -1211,7 +1211,7 @@ std::string MenuLib::Click(const int x, const int y)
         return result;
     }
 
-    // ‚Ç‚±‚ÉƒtƒH[ƒJƒX‚ª‚ ‚Á‚Ä‚àTOP Bar‚ğƒNƒŠƒbƒN‚µ‚½‚çA‚»‚Ì‘€ì‚Í—LŒø‚É‚·‚éB
+    // ã©ã“ã«ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ãŒã‚ã£ã¦ã‚‚TOP Barã‚’ã‚¯ãƒªãƒƒã‚¯ã—ãŸã‚‰ã€ãã®æ“ä½œã¯æœ‰åŠ¹ã«ã™ã‚‹ã€‚
     if (TOPBAR_STARTY < y && y <= TOPBAR_STARTY + TOPBAR_PANEL_HEIGHT * 1)
     {
         if (TOPBAR_STARTX < x && x <= TOPBAR_STARTX + TOPBAR_PANEL_WIDTH * 1)
@@ -1275,9 +1275,9 @@ std::string MenuLib::Click(const int x, const int y)
         int nBegin = 0;
         size_t nSize = 10;
 
-        // “¯‚¶ˆ—‚ª‰„X‚Æ‘±‚­‚ªA‹¤’Ê‰»‚µ‚Ä‚Í‚¢‚¯‚È‚¢B
-        // ƒƒjƒ…[‚²‚Æ‚ÉƒNƒŠƒbƒN”ÍˆÍ‚ª•Ï‚í‚é‰Â”\«‚ª‚ ‚é‚½‚ßB
-        // —á‚¦‚ÎAuƒKƒCƒhv‚Å‚ÍƒTƒuƒJƒeƒSƒŠ‚ª¶‚É250ƒsƒNƒZƒ‹Šñ‚Á‚Ä‚¢‚é‚Ì‚ÅƒNƒŠƒbƒN‚ğŒŸ’m‚·‚é”ÍˆÍ‚ªˆÙ‚È‚éB
+        // åŒã˜å‡¦ç†ãŒå»¶ã€…ã¨ç¶šããŒã€å…±é€šåŒ–ã—ã¦ã¯ã„ã‘ãªã„ã€‚
+        // ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã”ã¨ã«ã‚¯ãƒªãƒƒã‚¯ç¯„å›²ãŒå¤‰ã‚ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ãŸã‚ã€‚
+        // ä¾‹ãˆã°ã€ã€Œã‚¬ã‚¤ãƒ‰ã€ã§ã¯ã‚µãƒ–ã‚«ãƒ†ã‚´ãƒªãŒå·¦ã«250ãƒ”ã‚¯ã‚»ãƒ«å¯„ã£ã¦ã„ã‚‹ã®ã§ã‚¯ãƒªãƒƒã‚¯ã‚’æ¤œçŸ¥ã™ã‚‹ç¯„å›²ãŒç•°ãªã‚‹ã€‚
         if (m_eFocus == eFocus::ITEM)
         {
             if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH)
@@ -1363,8 +1363,8 @@ std::string MenuLib::Click(const int x, const int y)
                 }
             }
 
-            // ug‚¤vuÌ‚Ä‚év‚Ì•”•ª‚ğƒNƒŠƒbƒN‚µ‚½ê‡‚àA‚»‚êˆÈŠO‚ÌêŠ‚ğƒNƒŠƒbƒN‚µ‚½ê‡‚à
-            // ITEM_SUB‚©‚ç”²‚¯‚éB
+            // ã€Œä½¿ã†ã€ã€Œæ¨ã¦ã‚‹ã€ã®éƒ¨åˆ†ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ãŸå ´åˆã‚‚ã€ãã‚Œä»¥å¤–ã®å ´æ‰€ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ãŸå ´åˆã‚‚
+            // ITEM_SUBã‹ã‚‰æŠœã‘ã‚‹ã€‚
             m_eFocus = eFocus::ITEM;
             m_itemSubCursor = 0;
         }
@@ -1421,14 +1421,14 @@ std::string MenuLib::Click(const int x, const int y)
                 }
             }
 
-            // u‘•”õvuƒLƒƒƒ“ƒZƒ‹v‚Ì•”•ª‚ğƒNƒŠƒbƒN‚µ‚½ê‡‚àA‚»‚êˆÈŠO‚ÌêŠ‚ğƒNƒŠƒbƒN‚µ‚½ê‡‚à
-            // WEAPON_SUB‚©‚ç”²‚¯‚éB
+            // ã€Œè£…å‚™ã€ã€Œã‚­ãƒ£ãƒ³ã‚»ãƒ«ã€ã®éƒ¨åˆ†ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ãŸå ´åˆã‚‚ã€ãã‚Œä»¥å¤–ã®å ´æ‰€ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ãŸå ´åˆã‚‚
+            // WEAPON_SUBã‹ã‚‰æŠœã‘ã‚‹ã€‚
             m_eFocus = eFocus::WEAPON;
             m_weaponSubCursor = 0;
         }
         else if (m_eFocus == eFocus::GUIDE)
         {
-            // ƒKƒCƒh‚ÍƒTƒuƒJƒeƒSƒŠ‚ª¶‚ÉŠñ‚Á‚Ä‚¢‚é
+            // ã‚¬ã‚¤ãƒ‰ã¯ã‚µãƒ–ã‚«ãƒ†ã‚´ãƒªãŒå·¦ã«å¯„ã£ã¦ã„ã‚‹
             if (LEFT_PANEL_STARTX < x && x <= LEFT_PANEL_STARTX + LEFT_PANEL_WIDTH - 250)
             {
                 nBegin = m_guideBegin;
@@ -1453,7 +1453,7 @@ std::string MenuLib::Click(const int x, const int y)
         }
         else if (m_eFocus == eFocus::GUIDE_SUB)
         {
-            // ƒKƒCƒh‚ÍƒTƒuƒJƒeƒSƒŠ‚ª¶‚ÉŠñ‚Á‚Ä‚¢‚é
+            // ã‚¬ã‚¤ãƒ‰ã¯ã‚µãƒ–ã‚«ãƒ†ã‚´ãƒªãŒå·¦ã«å¯„ã£ã¦ã„ã‚‹
             if (MIDDLE_PANEL_STARTX - 250 < x && x <= MIDDLE_PANEL_STARTX - 250 + LEFT_PANEL_WIDTH)
             {
                 nBegin = m_guideBegin;
@@ -1721,8 +1721,8 @@ void MenuLib::Draw()
     {
         if (!m_bEnglish)
         {
-            m_font->DrawText_("‹­‰»", LEFT_PANEL_STARTX + 320, LEFT_PANEL_STARTY - 35, true, 64);
-            m_font->DrawText_("‘Ï‹v", LEFT_PANEL_STARTX + 380, LEFT_PANEL_STARTY - 35, true, 64);
+            m_font->DrawText_("å¼·åŒ–", LEFT_PANEL_STARTX + 320, LEFT_PANEL_STARTY - 35, true, 64);
+            m_font->DrawText_("è€ä¹…", LEFT_PANEL_STARTX + 380, LEFT_PANEL_STARTY - 35, true, 64);
         }
         else
         {
@@ -1752,7 +1752,7 @@ void MenuLib::Draw()
             {
                 if (!m_bEnglish)
                 {
-                    work += "i‘•”õ’†j";
+                    work += "ï¼ˆè£…å‚™ä¸­ï¼‰";
                 }
                 else
                 {
@@ -1791,8 +1791,8 @@ void MenuLib::Draw()
     {
         if (!m_bEnglish)
         {
-            m_font->DrawText_("‹­‰»", LEFT_PANEL_STARTX + 320, LEFT_PANEL_STARTY - 35, true, 64);
-            m_font->DrawText_("‘Ï‹v", LEFT_PANEL_STARTX + 380, LEFT_PANEL_STARTY - 35, true, 64);
+            m_font->DrawText_("å¼·åŒ–", LEFT_PANEL_STARTX + 320, LEFT_PANEL_STARTY - 35, true, 64);
+            m_font->DrawText_("è€ä¹…", LEFT_PANEL_STARTX + 380, LEFT_PANEL_STARTY - 35, true, 64);
         }
         else
         {
@@ -1847,7 +1847,7 @@ void MenuLib::Draw()
     }
     else if (m_eFocus == eFocus::GUIDE || m_eFocus == eFocus::GUIDE_SUB)
     {
-        // ‘åƒJƒeƒSƒŠ‚Ì”‚¾‚¯•\¦
+        // å¤§ã‚«ãƒ†ã‚´ãƒªã®æ•°ã ã‘è¡¨ç¤º
         for (int i = 0; i < LEFT_PANEL_ROW_MAX; ++i)
         {
             if ((int)m_guideCategory.size() <= m_guideBegin + i)
@@ -1946,12 +1946,12 @@ void MenuLib::Draw()
         if (!m_bEnglish)
         {
             m_font->DrawText_(
-                "‚Í‚¢",
+                "ã¯ã„",
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
                 LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*0));
 
             m_font->DrawText_(
-                "‚¢‚¢‚¦",
+                "ã„ã„ãˆ",
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
                 LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*1));
         }
@@ -1973,12 +1973,12 @@ void MenuLib::Draw()
         if (!m_bEnglish)
         {
             m_font->DrawText_(
-                "‚Í‚¢",
+                "ã¯ã„",
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
                 LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*0));
 
             m_font->DrawText_(
-                "‚¢‚¢‚¦",
+                "ã„ã„ãˆ",
                 LEFT_PANEL_STARTX + LEFT_PANEL_PADDINGX,
                 LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (LEFT_PANEL_HEIGHT*1));
         }
@@ -2015,7 +2015,7 @@ void MenuLib::Draw()
 
             if (!m_bEnglish)
             {
-                weight_volume += "d—Ê(kg) ";
+                weight_volume += "é‡é‡(kg) ";
             }
             else
             {
@@ -2027,7 +2027,7 @@ void MenuLib::Draw()
 
             if (!m_bEnglish)
             {
-                weight_volume += "‘ÌÏ(mL) ";
+                weight_volume += "ä½“ç©(mL) ";
             }
             else
             {
@@ -2048,13 +2048,13 @@ void MenuLib::Draw()
             }
         }
 
-        // ‘d—ÊAÏÚ—ÊAÅ‘åÏÚ—Ê‚ğ•\¦
+        // ç·é‡é‡ã€ç©è¼‰é‡ã€æœ€å¤§ç©è¼‰é‡ã‚’è¡¨ç¤º
         {
             std::string weightAll_Vol_VolMax;
 
             if (!m_bEnglish)
             {
-                weightAll_Vol_VolMax += "‘d—Ê(kg) ";
+                weightAll_Vol_VolMax += "ç·é‡é‡(kg) ";
             }
             else
             {
@@ -2066,7 +2066,7 @@ void MenuLib::Draw()
 
             if (!m_bEnglish)
             {
-                weightAll_Vol_VolMax += "ÏÚ—Ê(mL)/Å‘åÏÚ—Ê(mL) ";
+                weightAll_Vol_VolMax += "ç©è¼‰é‡(mL)/æœ€å¤§ç©è¼‰é‡(mL) ";
             }
             else
             {
@@ -2085,12 +2085,12 @@ void MenuLib::Draw()
     // Show item sub
     if (m_eFocus == eFocus::ITEM_SUB)
     {
-        // ‘•”õ‚ª‰Â”\‚ÈƒAƒCƒeƒ€‚È‚çu‘•”õ‚·‚év‚ğ•\¦‚·‚é‚æ‚¤‚É‚·‚é
+        // è£…å‚™ãŒå¯èƒ½ãªã‚¢ã‚¤ãƒ†ãƒ ãªã‚‰ã€Œè£…å‚™ã™ã‚‹ã€ã‚’è¡¨ç¤ºã™ã‚‹ã‚ˆã†ã«ã™ã‚‹
         if (!m_itemInfoList.at(m_itemSelect).GetEquipEnable())
         {
             if (!m_bEnglish)
             {
-                m_font->DrawText_("g‚¤@@@@@@Ì‚Ä‚é",
+                m_font->DrawText_("ä½¿ã†ã€€ã€€ã€€ã€€ã€€ã€€æ¨ã¦ã‚‹",
                                   MIDDLE_PANEL_STARTX,
                                   LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT));
             }
@@ -2107,7 +2107,7 @@ void MenuLib::Draw()
             {
                 if (!m_bEnglish)
                 {
-                    m_font->DrawText_("‘•”õ‚·‚é@@@@Ì‚Ä‚é",
+                    m_font->DrawText_("è£…å‚™ã™ã‚‹ã€€ã€€ã€€ã€€æ¨ã¦ã‚‹",
                                       MIDDLE_PANEL_STARTX,
                                       LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT));
                 }
@@ -2122,7 +2122,7 @@ void MenuLib::Draw()
             {
                 if (!m_bEnglish)
                 {
-                    m_font->DrawText_("‘•”õ‚ğŠO‚·@@@Ì‚Ä‚é",
+                    m_font->DrawText_("è£…å‚™ã‚’å¤–ã™ã€€ã€€ã€€æ¨ã¦ã‚‹",
                                       MIDDLE_PANEL_STARTX,
                                       LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT));
                 }
@@ -2141,7 +2141,7 @@ void MenuLib::Draw()
     {
         if (!m_bEnglish)
         {
-            m_font->DrawText_("‘•”õ‚·‚é@@@@ƒLƒƒƒ“ƒZƒ‹",
+            m_font->DrawText_("è£…å‚™ã™ã‚‹ã€€ã€€ã€€ã€€ã‚­ãƒ£ãƒ³ã‚»ãƒ«",
                               MIDDLE_PANEL_STARTX,
                               LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_weaponCursor * LEFT_PANEL_HEIGHT));
         }
@@ -2434,25 +2434,25 @@ void NSMenulib::MenuLib::DeleteItem(const int id, const int subId)
         }
     }
 
-    // ˆê”ÔÅŒã‚Ì—v‘f‚ğíœ‚µ‚½ê‡AƒJ[ƒ\ƒ‹‚ª‰½‚à‚È‚¢êŠ‚ğ‘I‘ğ‚µ‚Ä‚µ‚Ü‚¤B
-    // ‘I‘ğ’†‚ğ•\‚·ƒCƒ“ƒfƒbƒNƒX‚ğˆê‚Â¬‚³‚­‚·‚éB
+    // ä¸€ç•ªæœ€å¾Œã®è¦ç´ ã‚’å‰Šé™¤ã—ãŸå ´åˆã€ã‚«ãƒ¼ã‚½ãƒ«ãŒä½•ã‚‚ãªã„å ´æ‰€ã‚’é¸æŠã—ã¦ã—ã¾ã†ã€‚
+    // é¸æŠä¸­ã‚’è¡¨ã™ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä¸€ã¤å°ã•ãã™ã‚‹ã€‚
     if ((int)m_itemInfoList.size() <= m_itemSelect)
     {
         m_itemSelect = (int)m_itemInfoList.size() - 1;
 
-        // ƒAƒCƒeƒ€‚Ì”‚ª9ŒÂˆÈ‰º‚È‚çƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚ÍAˆê‚Âã‚ÉˆÚ“®‚·‚éB
+        // ã‚¢ã‚¤ãƒ†ãƒ ã®æ•°ãŒ9å€‹ä»¥ä¸‹ãªã‚‰ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã¯ã€ä¸€ã¤ä¸Šã«ç§»å‹•ã™ã‚‹ã€‚
         if (m_itemInfoList.size() <= 9)
         {
             --m_itemCursor;
         }
-        // ƒAƒCƒeƒ€‚Ì”‚ª10ŒÂˆÈã‚È‚çƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚Í‚»‚Ì‚Ü‚ÜA‘S‘Ì‚ª‰º‚ÉˆÚ“®‚·‚éB
+        // ã‚¢ã‚¤ãƒ†ãƒ ã®æ•°ãŒ10å€‹ä»¥ä¸Šãªã‚‰ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã¯ãã®ã¾ã¾ã€å…¨ä½“ãŒä¸‹ã«ç§»å‹•ã™ã‚‹ã€‚
         else
         {
             --m_itemBegin;
         }
     }
 
-    // •Ší‚¾‚Á‚½‚ç•ŠíƒŠƒXƒg‚©‚ç‚àíœ
+    // æ­¦å™¨ã ã£ãŸã‚‰æ­¦å™¨ãƒªã‚¹ãƒˆã‹ã‚‰ã‚‚å‰Šé™¤
     for (auto it = m_weaponInfoList.begin(); it != m_weaponInfoList.end(); ++it)
     {
         if (it->GetId() == id && it->GetSubId() == subId)

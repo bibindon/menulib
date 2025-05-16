@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <string>
 #include <list>
 #include <vector>
@@ -76,10 +76,10 @@ private:
     std::string m_detail;
     int m_level = 0;
 
-    // ��ʕ\���Ɏg�p����Ȃ��B
-    // �ϋv�l��100�̕��ƁA50�̕���50�̕����������ăC���x���g���ɕ\���ł���B
-    // �ϋv�l50�̕���I�������Ƃ��ǂ����I�������̂��킩��Ȃ��̂�
-    // ID�ASubID�������Ƃ��ł���悤�ɂ���BID�͎�ʁASubID�͌ʂ̔ԍ�
+    // 画面表示に使用されない。
+    // 耐久値が100の斧と、50の斧と50の斧を所持してインベントリに表示できる。
+    // 耐久値50の斧を選択したときどちらを選択したのかわからないので
+    // ID、SubIDを持つことができるようにする。IDは種別、SubIDは個別の番号
     int m_id = 0;
     int m_subId = 0;
 
@@ -197,10 +197,10 @@ private:
     int m_durability = 0;
     int m_level = 0;
 
-    // ��ʕ\���Ɏg�p����Ȃ��B
-    // �ϋv�l��100�̕��ƁA50�̕���50�̕����������ăC���x���g���ɕ\���ł���B
-    // �ϋv�l50�̕���I�������Ƃ��ǂ����I�������̂��킩��Ȃ��̂�
-    // ID�ASubID�������Ƃ��ł���悤�ɂ���BID�͎�ʁASubID�͌ʂ̔ԍ�
+    // 画面表示に使用されない。
+    // 耐久値が100の斧と、50の斧と50の斧を所持してインベントリに表示できる。
+    // 耐久値50の斧を選択したときどちらを選択したのかわからないので
+    // ID、SubIDを持つことができるようにする。IDは種別、SubIDは個別の番号
     int m_id = 0;
     int m_subId = 0;
 };
@@ -256,20 +256,20 @@ public:
     void CursorOn(const int x, const int y);
     std::string Click(const int x, const int y);
 
-    // �E�N���b�N�̓L�����Z������
+    // 右クリックはキャンセル操作
     void RightClick();
 
     void Draw();
     
-    // �A�C�e�������ォ��ς������Ƃ�
+    // アイテム情報を後から変えたいとき
     void AddItem(const ItemInfo& itemInfo);
     void DeleteItem(const int id, const int subId);
     void UpdateItem(const ItemInfo& itemInfo);
 
-    // �X�e�[�^�X���e���ォ��ς������Ƃ�
+    // ステータス内容を後から変えたいとき
     void UpdateStatusText(const std::string& text);
 
-    // �����_�ȉ��̕������𒲐�
+    // 小数点以下の文字数を調節
     static std::string ToStringWithPrecision(const float value, const int precision);
 
     void SetWeightAll(const float arg);
@@ -345,58 +345,58 @@ private:
 
     int m_itemCursor { 0 };
     int m_itemSelect { 0 };
-    // ���Ԗڂ̃A�C�e������ԏ�ɕ\������Ă��邩
-    // �X�N���[���\�Ȃ̂ň�ԏ�ɕ\�������A�C�e���̓X�N���[������ƕς��B
+    // 何番目のアイテムが一番上に表示されているか
+    // スクロール可能なので一番上に表示されるアイテムはスクロールすると変わる。
     int m_itemBegin { 0 };
     int m_itemSubCursor { 0 };
 
     int m_humanCursor { 0 };
     int m_humanSelect { 0 };
-    // ���Ԗڂ̃A�C�e������ԏ�ɕ\������Ă��邩
-    // �X�N���[���\�Ȃ̂ň�ԏ�ɕ\�������A�C�e���̓X�N���[������ƕς��B
+    // 何番目のアイテムが一番上に表示されているか
+    // スクロール可能なので一番上に表示されるアイテムはスクロールすると変わる。
     int m_humanBegin { 0 };
 
     int m_guideCursor { 0 };
     int m_guideSelect { 0 };
-    // ���Ԗڂ̃A�C�e������ԏ�ɕ\������Ă��邩
-    // �X�N���[���\�Ȃ̂ň�ԏ�ɕ\�������A�C�e���̓X�N���[������ƕς��B
+    // 何番目のアイテムが一番上に表示されているか
+    // スクロール可能なので一番上に表示されるアイテムはスクロールすると変わる。
     int m_guideBegin { 0 };
 
     int m_guideSubCursor { 0 };
     int m_guideSubSelect { 0 };
-    // ���Ԗڂ̃A�C�e������ԏ�ɕ\������Ă��邩
-    // �X�N���[���\�Ȃ̂ň�ԏ�ɕ\�������A�C�e���̓X�N���[������ƕς��B
+    // 何番目のアイテムが一番上に表示されているか
+    // スクロール可能なので一番上に表示されるアイテムはスクロールすると変わる。
     int m_guideSubBegin { 0 };
 
     int m_enemyCursor { 0 };
     int m_enemySelect { 0 };
-    // ���Ԗڂ̃A�C�e������ԏ�ɕ\������Ă��邩
-    // �X�N���[���\�Ȃ̂ň�ԏ�ɕ\�������A�C�e���̓X�N���[������ƕς��B
+    // 何番目のアイテムが一番上に表示されているか
+    // スクロール可能なので一番上に表示されるアイテムはスクロールすると変わる。
     int m_enemyBegin { 0 };
 
     int m_mapCursor { 0 };
     int m_mapSelect { 0 };
-    // ���Ԗڂ̃A�C�e������ԏ�ɕ\������Ă��邩
-    // �X�N���[���\�Ȃ̂ň�ԏ�ɕ\�������A�C�e���̓X�N���[������ƕς��B
+    // 何番目のアイテムが一番上に表示されているか
+    // スクロール可能なので一番上に表示されるアイテムはスクロールすると変わる。
     int m_mapBegin { 0 };
 
     int m_weaponCursor { 0 };
     int m_weaponSelect { 0 };
-    // ���Ԗڂ̃A�C�e������ԏ�ɕ\������Ă��邩
-    // �X�N���[���\�Ȃ̂ň�ԏ�ɕ\�������A�C�e���̓X�N���[������ƕς��B
+    // 何番目のアイテムが一番上に表示されているか
+    // スクロール可能なので一番上に表示されるアイテムはスクロールすると変わる。
     int m_weaponBegin { 0 };
     int m_weaponSubCursor { 0 };
 
     int m_skillCursor { 0 };
     int m_skillSelect { 0 };
-    // ���Ԗڂ̃A�C�e������ԏ�ɕ\������Ă��邩
-    // �X�N���[���\�Ȃ̂ň�ԏ�ɕ\�������A�C�e���̓X�N���[������ƕς��B
+    // 何番目のアイテムが一番上に表示されているか
+    // スクロール可能なので一番上に表示されるアイテムはスクロールすると変わる。
     int m_skillBegin { 0 };
 
     int m_statusCursor { 0 };
     int m_statusSelect { 0 };
-    // ���Ԗڂ̃A�C�e������ԏ�ɕ\������Ă��邩
-    // �X�N���[���\�Ȃ̂ň�ԏ�ɕ\�������A�C�e���̓X�N���[������ƕς��B
+    // 何番目のアイテムが一番上に表示されているか
+    // スクロール可能なので一番上に表示されるアイテムはスクロールすると変わる。
     int m_statusBegin { 0 };
 
     int m_quitCursor = 0;
@@ -404,7 +404,7 @@ private:
 
     std::vector<std::string> m_TopBarName;
 
-    // Into�֐���Click�֐��őI�����ʂ�Ԃ��Ƃ��Ɏg���B�p��
+    // Into関数とClick関数で選択結果を返すときに使う。英語
     std::vector<std::string> m_TopBarNameKey;
 
     std::vector<ItemInfo> m_itemInfoList;
