@@ -2250,7 +2250,7 @@ void MenuLib::Draw()
 
     if (m_eFocus == eFocus::HUMAN)
     {
-        m_humanInfoList.at(m_humanSelect).GetSprite()->DrawImage(550, 300);
+        m_humanInfoList.at(m_humanSelect).GetSprite()->DrawImage(450, 300, 127);
 
         std::wstring detail = m_humanInfoList.at(m_humanSelect).GetDetail();
         std::vector<std::wstring> details = split(detail, '\n');
@@ -2267,7 +2267,7 @@ void MenuLib::Draw()
 
     if (m_eFocus == eFocus::ENEMY)
     {
-        m_enemyInfoList.at(m_enemySelect).GetSprite()->DrawImage(550, 300);
+        m_enemyInfoList.at(m_enemySelect).GetSprite()->DrawImage(450, 300, 127);
 
         std::wstring detail = m_enemyInfoList.at(m_enemySelect).GetDetail();
         std::vector<std::wstring> details = split(detail, '\n');
