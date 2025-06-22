@@ -2,6 +2,16 @@
 
 using namespace NSMenulib;
 
+std::wstring ItemInfo::GetId() const
+{
+    return m_id;
+}
+
+void ItemInfo::SetId(const std::wstring& arg)
+{
+    m_id = arg;
+}
+
 std::wstring ItemInfo::GetName() const
 {
     return m_name;
@@ -50,16 +60,6 @@ int NSMenulib::ItemInfo::GetLevel() const
 void NSMenulib::ItemInfo::SetLevel(const int arg)
 {
     m_level = arg;
-}
-
-int NSMenulib::ItemInfo::GetId() const
-{
-    return m_id;;
-}
-
-void NSMenulib::ItemInfo::SetId(const int arg)
-{
-    m_id = arg;
 }
 
 int NSMenulib::ItemInfo::GetSubId() const

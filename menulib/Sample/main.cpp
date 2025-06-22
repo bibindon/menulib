@@ -348,7 +348,7 @@ HRESULT InitD3D(HWND hWnd)
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load(_T("item1.png"));
         itemInfo.SetSprite(sprItem);
-        itemInfo.SetId(1);
+        itemInfo.SetId(L"1");
         itemInfo.SetSubId(1);
         itemInfo.SetLevel(3);
         itemInfo.SetDetail(_T("テストアイテムテキスト\nテストテキストテキスト\nテストテキストテキスト\nテストテキストテストテキスト")); // TODO
@@ -364,7 +364,7 @@ HRESULT InitD3D(HWND hWnd)
         itemInfo.SetLevel(2);
         itemInfo.SetEquipEnable(true);
         itemInfo.SetEquip(false);
-        itemInfo.SetId(1);
+        itemInfo.SetId(L"1");
         itemInfo.SetSubId(2);
         itemInfo.SetDetail(_T("ＡＡＡテストアイテムテキスト\nテストテキストテストテキスト")); // TODO
         itemInfoList.push_back(itemInfo);
@@ -378,7 +378,7 @@ HRESULT InitD3D(HWND hWnd)
         itemInfo.SetSprite(sprItem);
         itemInfo.SetEquipEnable(true);
         itemInfo.SetEquip(true);
-        itemInfo.SetId(1);
+        itemInfo.SetId(L"1");
         itemInfo.SetSubId(3);
         itemInfo.SetDetail(_T("ＢＢＢテストアイテムテキスト\nテストテキストテストテキスト")); // TODO
         itemInfoList.push_back(itemInfo);
@@ -392,7 +392,7 @@ HRESULT InitD3D(HWND hWnd)
         itemInfo.SetSprite(sprItem);
         itemInfo.SetWeight(12.34f);
         itemInfo.SetVolume(5678);
-        itemInfo.SetId(1);
+        itemInfo.SetId(L"1");
         itemInfo.SetSubId(4);
         itemInfo.SetDetail(_T("テストアイテムテキスト\nテストテキストテキスト\nテストテキストテキスト\nテストテキストテストテキスト")); // TODO
         itemInfoList.push_back(itemInfo);
@@ -406,7 +406,7 @@ HRESULT InitD3D(HWND hWnd)
         itemInfo.SetSprite(sprItem);
         itemInfo.SetWeight(2222.f);
         itemInfo.SetVolume(3333);
-        itemInfo.SetId(1);
+        itemInfo.SetId(L"1");
         itemInfo.SetSubId(5);
         itemInfo.SetDetail(_T("ＡＡＡテストアイテムテキスト\nテストテキストテストテキスト")); // TODO
         itemInfoList.push_back(itemInfo);
@@ -419,7 +419,7 @@ HRESULT InitD3D(HWND hWnd)
         sprItem->Load(_T("item3.png"));
         itemInfo.SetSprite(sprItem);
         itemInfo.SetDetail(_T("ＢＢＢテストアイテムテキスト\nテストテキストテストテキスト")); // TODO
-        itemInfo.SetId(1);
+        itemInfo.SetId(L"1");
         itemInfo.SetSubId(6);
         itemInfoList.push_back(itemInfo);
     }
@@ -431,7 +431,7 @@ HRESULT InitD3D(HWND hWnd)
         sprItem->Load(_T("item1.png"));
         itemInfo.SetSprite(sprItem);
         itemInfo.SetDetail(_T("テストアイテムテキスト\nテストテキストテキスト\nテストテキストテキスト\nテストテキストテストテキスト")); // TODO
-        itemInfo.SetId(1);
+        itemInfo.SetId(L"1");
         itemInfo.SetSubId(7);
         itemInfoList.push_back(itemInfo);
     }
@@ -443,7 +443,7 @@ HRESULT InitD3D(HWND hWnd)
         sprItem->Load(_T("item2.png"));
         itemInfo.SetSprite(sprItem);
         itemInfo.SetDetail(_T("ＡＡＡテストアイテムテキスト\nテストテキストテストテキスト")); // TODO
-        itemInfo.SetId(1);
+        itemInfo.SetId(L"1");
         itemInfo.SetSubId(8);
         itemInfoList.push_back(itemInfo);
     }
@@ -455,7 +455,7 @@ HRESULT InitD3D(HWND hWnd)
         sprItem->Load(_T("item3.png"));
         itemInfo.SetSprite(sprItem);
         itemInfo.SetDetail(_T("ＢＢＢテストアイテムテキスト\nテストテキストテストテキスト")); // TODO
-        itemInfo.SetId(1);
+        itemInfo.SetId(L"1");
         itemInfo.SetSubId(9);
         itemInfoList.push_back(itemInfo);
     }
@@ -467,7 +467,7 @@ HRESULT InitD3D(HWND hWnd)
         sprItem->Load(_T("item1.png"));
         itemInfo.SetSprite(sprItem);
         itemInfo.SetDetail(_T("テストアイテムテキスト\nテストテキストテキスト\nテストテキストテキスト\nテストテキストテストテキスト")); // TODO
-        itemInfo.SetId(1);
+        itemInfo.SetId(L"1");
         itemInfo.SetSubId(10);
         itemInfoList.push_back(itemInfo);
     }
@@ -479,7 +479,7 @@ HRESULT InitD3D(HWND hWnd)
         sprItem->Load(_T("item2.png"));
         itemInfo.SetSprite(sprItem);
         itemInfo.SetDetail(_T("ＡＡＡテストアイテムテキスト\nテストテキストテストテキスト")); // TODO
-        itemInfo.SetId(1);
+        itemInfo.SetId(L"1");
         itemInfo.SetSubId(11);
         itemInfoList.push_back(itemInfo);
     }
@@ -491,7 +491,7 @@ HRESULT InitD3D(HWND hWnd)
         sprItem->Load(_T("item3.png"));
         itemInfo.SetSprite(sprItem);
         itemInfo.SetDetail(_T("ＢＢＢテストアイテムテキスト\nテストテキストテストテキスト")); // TODO
-        itemInfo.SetId(1);
+        itemInfo.SetId(L"1");
         itemInfo.SetSubId(12);
         itemInfoList.push_back(itemInfo);
     }
@@ -503,7 +503,7 @@ HRESULT InitD3D(HWND hWnd)
         sprItem->Load(_T("item1.png"));
         itemInfo.SetSprite(sprItem);
         itemInfo.SetDetail(_T("テストアイテムテキスト\nテストテキストテキスト\nテストテキストテキスト\nテストテキストテストテキスト")); // TODO
-        itemInfo.SetId(1);
+        itemInfo.SetId(L"1");
         itemInfo.SetSubId(13);
         itemInfoList.push_back(itemInfo);
     }
@@ -515,7 +515,7 @@ HRESULT InitD3D(HWND hWnd)
         sprItem->Load(_T("item2.png"));
         itemInfo.SetSprite(sprItem);
         itemInfo.SetDetail(_T("ＡＡＡテストアイテムテキスト\nテストテキストテストテキスト")); // TODO
-        itemInfo.SetId(1);
+        itemInfo.SetId(L"1");
         itemInfo.SetSubId(14);
         itemInfoList.push_back(itemInfo);
     }
@@ -527,7 +527,7 @@ HRESULT InitD3D(HWND hWnd)
         sprItem->Load(_T("item3.png"));
         itemInfo.SetSprite(sprItem);
         itemInfo.SetDetail(_T("ＢＢＢテストアイテムテキスト\nテストテキストテストテキスト")); // TODO
-        itemInfo.SetId(1);
+        itemInfo.SetId(L"1");
         itemInfo.SetSubId(15);
         itemInfoList.push_back(itemInfo);
     }
@@ -539,7 +539,7 @@ HRESULT InitD3D(HWND hWnd)
         sprItem->Load(_T("item1.png"));
         itemInfo.SetSprite(sprItem);
         itemInfo.SetDetail(_T("テストアイテムテキスト\nテストテキストテキスト\nテストテキストテキスト\nテストテキストテストテキスト")); // TODO
-        itemInfo.SetId(1);
+        itemInfo.SetId(L"1");
         itemInfo.SetSubId(16);
         itemInfoList.push_back(itemInfo);
     }
@@ -551,7 +551,7 @@ HRESULT InitD3D(HWND hWnd)
         sprItem->Load(_T("item2.png"));
         itemInfo.SetSprite(sprItem);
         itemInfo.SetDetail(_T("ＡＡＡテストアイテムテキスト\nテストテキストテストテキスト")); // TODO
-        itemInfo.SetId(1);
+        itemInfo.SetId(L"1");
         itemInfo.SetSubId(17);
         itemInfoList.push_back(itemInfo);
     }
@@ -563,7 +563,7 @@ HRESULT InitD3D(HWND hWnd)
         sprItem->Load(_T("item3.png"));
         itemInfo.SetSprite(sprItem);
         itemInfo.SetDetail(_T("ＢＢＢテストアイテムテキスト\nテストテキストテストテキスト")); // TODO
-        itemInfo.SetId(1);
+        itemInfo.SetId(L"1");
         itemInfo.SetSubId(18);
         itemInfoList.push_back(itemInfo);
     }
@@ -575,7 +575,7 @@ HRESULT InitD3D(HWND hWnd)
         sprItem->Load(_T("item1.png"));
         itemInfo.SetSprite(sprItem);
         itemInfo.SetDetail(_T("テストアイテムテキスト\nテストテキストテキスト\nテストテキストテキスト\nテストテキストテストテキスト")); // TODO
-        itemInfo.SetId(1);
+        itemInfo.SetId(L"1");
         itemInfo.SetSubId(19);
         itemInfoList.push_back(itemInfo);
     }
@@ -587,7 +587,7 @@ HRESULT InitD3D(HWND hWnd)
         sprItem->Load(_T("item2.png"));
         itemInfo.SetSprite(sprItem);
         itemInfo.SetDetail(_T("ＡＡＡテストアイテムテキスト\nテストテキストテストテキスト")); // TODO
-        itemInfo.SetId(1);
+        itemInfo.SetId(L"1");
         itemInfo.SetSubId(20);
         itemInfoList.push_back(itemInfo);
     }
@@ -599,7 +599,7 @@ HRESULT InitD3D(HWND hWnd)
         sprItem->Load(_T("item3.png"));
         itemInfo.SetSprite(sprItem);
         itemInfo.SetDetail(_T("ＢＢＢテストアイテムテキスト\nテストテキストテストテキスト")); // TODO
-        itemInfo.SetId(1);
+        itemInfo.SetId(L"1");
         itemInfo.SetSubId(21);
         itemInfoList.push_back(itemInfo);
     }
@@ -611,32 +611,44 @@ HRESULT InitD3D(HWND hWnd)
         sprItem->Load(_T("item1.png"));
         itemInfo.SetSprite(sprItem);
         itemInfo.SetDetail(_T("テストアイテムテキスト\nテストテキストテキスト\nテストテキストテキスト\nテストテキストテストテキスト")); // TODO
-        itemInfo.SetId(1);
+        itemInfo.SetId(L"1");
         itemInfo.SetSubId(22);
         itemInfoList.push_back(itemInfo);
     }
     {
         ItemInfo itemInfo;
-        itemInfo.SetName(_T("テストアイテム２"));
+        itemInfo.SetName(_T("テスト武器１"));
         itemInfo.SetDurability(20);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load(_T("item2.png"));
         itemInfo.SetSprite(sprItem);
         itemInfo.SetDetail(_T("ＡＡＡテストアイテムテキスト\nテストテキストテストテキスト")); // TODO
-        itemInfo.SetId(1);
-        itemInfo.SetSubId(23);
+        itemInfo.SetId(L"weapon1");
+        itemInfo.SetSubId(2);
         itemInfoList.push_back(itemInfo);
     }
     {
         ItemInfo itemInfo;
-        itemInfo.SetName(_T("テストアイテム３"));
+        itemInfo.SetName(_T("テスト武器１"));
+        itemInfo.SetDurability(30);
+        Sprite* sprItem = new Sprite(g_pd3dDevice);
+        sprItem->Load(_T("item2.png"));
+        itemInfo.SetSprite(sprItem);
+        itemInfo.SetDetail(_T("ＢＢＢテストアイテムテキスト\nテストテキストテストテキスト")); // TODO
+        itemInfo.SetId(L"weapon1");
+        itemInfo.SetSubId(3);
+        itemInfoList.push_back(itemInfo);
+    }
+    {
+        ItemInfo itemInfo;
+        itemInfo.SetName(_T("テスト武器２"));
         itemInfo.SetDurability(30);
         Sprite* sprItem = new Sprite(g_pd3dDevice);
         sprItem->Load(_T("item3.png"));
         itemInfo.SetSprite(sprItem);
         itemInfo.SetDetail(_T("ＢＢＢテストアイテムテキスト\nテストテキストテストテキスト")); // TODO
-        itemInfo.SetId(1);
-        itemInfo.SetSubId(24);
+        itemInfo.SetId(L"weapon2");
+        itemInfo.SetSubId(3);
         itemInfoList.push_back(itemInfo);
     }
     menu.SetItem(itemInfoList);
@@ -672,11 +684,14 @@ HRESULT InitD3D(HWND hWnd)
         humanInfoList.push_back(humanInfo);
     }
     menu.SetHuman(humanInfoList);
+
     {
         std::vector<WeaponInfo> infoList;
         {
             WeaponInfo info;
-            info.SetName(_T("テスト人物１"));
+            info.SetId(L"weapon1");
+            info.SetSubId(2);
+            info.SetName(_T("テスト武器１"));
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load(_T("test.png"));
             info.SetSprite(sprItem);
@@ -686,7 +701,9 @@ HRESULT InitD3D(HWND hWnd)
         }
         {
             WeaponInfo info;
-            info.SetName(_T("テスト人物２"));
+            info.SetId(L"weapon1");
+            info.SetSubId(3);
+            info.SetName(_T("テスト武器１"));
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load(_T("test.png"));
             info.SetSprite(sprItem);
@@ -696,7 +713,9 @@ HRESULT InitD3D(HWND hWnd)
         }
         {
             WeaponInfo info;
-            info.SetName(_T("テスト人物３"));
+            info.SetId(L"weapon2");
+            info.SetSubId(3);
+            info.SetName(_T("テスト武器２"));
             Sprite* sprItem = new Sprite(g_pd3dDevice);
             sprItem->Load(_T("test.png"));
             info.SetSprite(sprItem);
@@ -706,6 +725,7 @@ HRESULT InitD3D(HWND hWnd)
         }
         menu.SetWeapon(infoList);
     }
+
     {
         std::vector<GuideInfo> infoList;
         {
@@ -1333,9 +1353,12 @@ LRESULT WINAPI MsgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
             if (vs.size() == 5)
             {
-                int id =std::stoi(vs.at(2));
-                int subId =std::stoi(vs.at(3));
-                menu.DeleteItem(id, subId);
+                if (vs.at(0) == L"Item")
+                {
+					std::wstring id = vs.at(2);
+					int subId =std::stoi(vs.at(3));
+					menu.DeleteItem(id, subId);
+                }
             }
             break;
         }

@@ -179,7 +179,7 @@ void MenuLib::SetWeapon(const std::vector<WeaponInfo>& items)
     m_weaponInfoList = items;
 }
 
-std::wstring MenuLib::Up()
+void MenuLib::Up()
 {
     if (m_eFocus == eFocus::TOP_BAR)
     {
@@ -349,11 +349,9 @@ std::wstring MenuLib::Up()
             m_SE->PlayMove();
         }
     }
-     
-    return m_TopBarName.at(m_topBarIndex);
 }
 
-std::wstring MenuLib::Down()
+void MenuLib::Down()
 {
     if (m_eFocus == eFocus::TOP_BAR)
     {
@@ -542,11 +540,9 @@ std::wstring MenuLib::Down()
             m_SE->PlayMove();
         }
     }
-
-    return m_TopBarName.at(m_topBarIndex);
 }
 
-std::wstring MenuLib::Right()
+void MenuLib::Right()
 {
     if (m_eFocus == eFocus::TOP_BAR)
     {
@@ -572,10 +568,9 @@ std::wstring MenuLib::Right()
             m_SE->PlayMove();
         }
     }
-    return m_TopBarName.at(m_topBarIndex);
 }
 
-std::wstring MenuLib::Left()
+void MenuLib::Left()
 {
     if (m_eFocus == eFocus::TOP_BAR)
     {
@@ -601,7 +596,6 @@ std::wstring MenuLib::Left()
             m_SE->PlayMove();
         }
     }
-    return m_TopBarName.at(m_topBarIndex);
 }
 
 std::wstring MenuLib::Into()
@@ -693,7 +687,7 @@ std::wstring MenuLib::Into()
     {
         result = m_TopBarNameKey.at(m_topBarIndex);
         result += _T(":") + m_itemInfoList.at(m_itemSelect).GetName();
-        result += _T(":") + std::to_wstring(m_itemInfoList.at(m_itemSelect).GetId());
+        result += _T(":") + m_itemInfoList.at(m_itemSelect).GetId();
         result += _T(":") + std::to_wstring(m_itemInfoList.at(m_itemSelect).GetSubId());
 
         if (!m_itemInfoList.at(m_itemSelect).GetEquipEnable())
@@ -748,7 +742,7 @@ std::wstring MenuLib::Into()
     {
         result = m_TopBarNameKey.at(m_topBarIndex);
         result += _T(":") + m_weaponInfoList.at(m_weaponSelect).GetName();
-        result += _T(":") + std::to_wstring(m_weaponInfoList.at(m_weaponSelect).GetId());
+        result += _T(":") + m_weaponInfoList.at(m_weaponSelect).GetId();
         result += _T(":") + std::to_wstring(m_weaponInfoList.at(m_weaponSelect).GetSubId());
         if (m_weaponSubCursor == 0)
         {
@@ -849,7 +843,7 @@ std::wstring MenuLib::Back()
     return result;
 }
 
-std::wstring MenuLib::Next()
+void MenuLib::Next()
 {
     if (m_eFocus == eFocus::TOP_BAR)
     {
@@ -859,10 +853,9 @@ std::wstring MenuLib::Next()
     {
         Down();
     }
-    return std::wstring();
 }
 
-std::wstring MenuLib::Previous()
+void MenuLib::Previous()
 {
     if (m_eFocus == eFocus::TOP_BAR)
     {
@@ -872,7 +865,6 @@ std::wstring MenuLib::Previous()
     {
         Up();
     }
-    return std::wstring();
 }
 
 void NSMenulib::MenuLib::CursorOn(const int x, const int y)
@@ -1322,7 +1314,7 @@ std::wstring MenuLib::Click(const int x, const int y)
 
                     result = m_TopBarNameKey.at(m_topBarIndex);
                     result += _T(":") + m_itemInfoList.at(m_itemSelect).GetName();
-                    result += _T(":") + std::to_wstring(m_itemInfoList.at(m_itemSelect).GetId());
+                    result += _T(":") + m_itemInfoList.at(m_itemSelect).GetId();
                     result += _T(":") + std::to_wstring(m_itemInfoList.at(m_itemSelect).GetSubId());
 
                     if (!m_itemInfoList.at(m_itemSelect).GetEquipEnable())
@@ -1410,7 +1402,7 @@ std::wstring MenuLib::Click(const int x, const int y)
 
                 result = m_TopBarNameKey.at(m_topBarIndex);
                 result += _T(":") + m_weaponInfoList.at(m_weaponSelect).GetName();
-                result += _T(":") + std::to_wstring(m_weaponInfoList.at(m_weaponSelect).GetId());
+                result += _T(":") + m_weaponInfoList.at(m_weaponSelect).GetId();
                 result += _T(":") + std::to_wstring(m_weaponInfoList.at(m_weaponSelect).GetSubId());
                 if (m_weaponSubCursor == 0)
                 {
@@ -2424,7 +2416,7 @@ void NSMenulib::MenuLib::AddItem(const ItemInfo& itemInfo)
               });
 }
 
-void NSMenulib::MenuLib::DeleteItem(const int id, const int subId)
+void NSMenulib::MenuLib::DeleteItem(const std::wstring& id, const int subId)
 {
     for (std::size_t i = 0; i < m_itemInfoList.size(); ++i)
     {

@@ -2,6 +2,16 @@
 
 using namespace NSMenulib;
 
+std::wstring EnemyInfo::GetId()
+{
+    return m_id;
+}
+
+void EnemyInfo::SetId(const std::wstring& arg)
+{
+    m_id = arg;
+}
+
 std::wstring EnemyInfo::GetName()
 {
     return m_name;

@@ -2,6 +2,16 @@
 
 using namespace NSMenulib;
 
+std::wstring NSMenulib::GuideInfo::GetId()
+{
+    return m_id;
+}
+
+void NSMenulib::GuideInfo::SetId(const std::wstring& arg)
+{
+    m_id = arg;
+}
+
 std::wstring NSMenulib::GuideInfo::GetCategory()
 {
     return m_category;

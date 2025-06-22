@@ -35,6 +35,12 @@ public:
 class ItemInfo
 {
 public:
+    std::wstring GetId() const;
+    void SetId(const std::wstring& arg);
+
+    int GetSubId() const;
+    void SetSubId(const int arg);
+
     std::wstring GetName() const;
     void SetName(const std::wstring& arg);
 
@@ -49,12 +55,6 @@ public:
 
     int GetLevel() const;
     void SetLevel(const int arg);
-
-    int GetId() const;
-    void SetId(const int arg);
-
-    int GetSubId() const;
-    void SetSubId(const int arg);
 
     bool GetEquipEnable() const;
     void SetEquipEnable(const bool arg);
@@ -80,7 +80,7 @@ private:
     // 耐久値が100の斧と、50の斧と50の斧を所持してインベントリに表示できる。
     // 耐久値50の斧を選択したときどちらを選択したのかわからないので
     // ID、SubIDを持つことができるようにする。IDは種別、SubIDは個別の番号
-    int m_id = 0;
+    std::wstring m_id;
     int m_subId = 0;
 
     bool m_equipEnable = false;
@@ -93,13 +93,22 @@ private:
 class HumanInfo
 {
 public:
+
+    std::wstring GetId();
+    void SetId(const std::wstring& arg);
+
     std::wstring GetName();
     void SetName(const std::wstring& arg);
+
     ISprite* GetSprite();
     void SetSprite(ISprite* const arg);
+
     std::wstring GetDetail();
     void SetDetail(const std::wstring& arg);
+
 private:
+
+    std::wstring m_id;
     std::wstring m_name;
     ISprite* m_sprite = nullptr;
     std::wstring m_detail;
@@ -108,13 +117,22 @@ private:
 class EnemyInfo
 {
 public:
+
+    std::wstring GetId();
+    void SetId(const std::wstring& arg);
+
     std::wstring GetName();
     void SetName(const std::wstring& arg);
+
     ISprite* GetSprite();
     void SetSprite(ISprite* const arg);
+
     std::wstring GetDetail();
     void SetDetail(const std::wstring& arg);
+
 private:
+
+    std::wstring m_id;
     std::wstring m_name;
     ISprite* m_sprite = nullptr;
     std::wstring m_detail;
@@ -123,13 +141,22 @@ private:
 class SkillInfo
 {
 public:
+
+    std::wstring GetId();
+    void SetId(const std::wstring& arg);
+
     std::wstring GetName();
     void SetName(const std::wstring& arg);
+
     ISprite* GetSprite();
     void SetSprite(ISprite* const arg);
+
     std::wstring GetDetail();
     void SetDetail(const std::wstring& arg);
+
 private:
+
+    std::wstring m_id;
     std::wstring m_name;
     ISprite* m_sprite = nullptr;
     std::wstring m_detail;
@@ -138,13 +165,22 @@ private:
 class StatusInfo
 {
 public:
+
+    std::wstring GetId();
+    void SetId(const std::wstring& arg);
+
     std::wstring GetName();
     void SetName(const std::wstring& arg);
+
     ISprite* GetSprite();
     void SetSprite(ISprite* const arg);
+
     std::wstring GetDetail();
     void SetDetail(const std::wstring& arg);
+
 private:
+
+    std::wstring m_id;
     std::wstring m_name;
     ISprite* m_sprite = nullptr;
     std::wstring m_detail;
@@ -153,13 +189,22 @@ private:
 class MapInfo
 {
 public:
+
+    std::wstring GetId();
+    void SetId(const std::wstring& arg);
+
     std::wstring GetName();
     void SetName(const std::wstring& arg);
+
     ISprite* GetSprite();
     void SetSprite(ISprite* const arg);
+
     std::wstring GetDetail();
     void SetDetail(const std::wstring& arg);
+
 private:
+
+    std::wstring m_id;
     std::wstring m_name;
     ISprite* m_sprite = nullptr;
     std::wstring m_detail;
@@ -168,6 +213,13 @@ private:
 class WeaponInfo
 {
 public:
+
+    std::wstring GetId();
+    void SetId(const std::wstring& arg);
+
+    int GetSubId();
+    void SetSubId(const int arg);
+
     std::wstring GetName();
     void SetName(const std::wstring& arg);
 
@@ -183,12 +235,6 @@ public:
     int GetLevel();
     void SetLevel(const int arg);
 
-    int GetId();
-    void SetId(const int arg);
-
-    int GetSubId();
-    void SetSubId(const int arg);
-
 private:
 
     std::wstring m_name;
@@ -201,13 +247,18 @@ private:
     // 耐久値が100の斧と、50の斧と50の斧を所持してインベントリに表示できる。
     // 耐久値50の斧を選択したときどちらを選択したのかわからないので
     // ID、SubIDを持つことができるようにする。IDは種別、SubIDは個別の番号
-    int m_id = 0;
+    std::wstring m_id;
     int m_subId = 0;
+
 };
 
 class GuideInfo
 {
 public:
+
+    std::wstring GetId();
+    void SetId(const std::wstring& arg);
+
     std::wstring GetCategory();
     void SetCategory(const std::wstring& arg);
 
@@ -216,7 +267,10 @@ public:
 
     std::wstring GetDetail();
     void SetDetail(const std::wstring& arg);
+
 private:
+
+    std::wstring m_id;
     std::wstring m_category;
     std::wstring m_subCategory;
     std::wstring m_detail;
@@ -245,14 +299,14 @@ public:
     void SetStatus(const std::vector<StatusInfo>& items);
     void SetGuide(const std::vector<GuideInfo>& items);
     void SetWeapon(const std::vector<WeaponInfo>& items);
-    std::wstring Up();
-    std::wstring Down();
-    std::wstring Right();
-    std::wstring Left();
+    void Up();
+    void Down();
+    void Right();
+    void Left();
     std::wstring Into();
     std::wstring Back();
-    std::wstring Next();
-    std::wstring Previous();
+    void Next();
+    void Previous();
     void CursorOn(const int x, const int y);
     std::wstring Click(const int x, const int y);
 
@@ -263,7 +317,7 @@ public:
     
     // アイテム情報を後から変えたいとき
     void AddItem(const ItemInfo& itemInfo);
-    void DeleteItem(const int id, const int subId);
+    void DeleteItem(const std::wstring& id, const int subId);
     void UpdateItem(const ItemInfo& itemInfo);
 
     // ステータス内容を後から変えたいとき

@@ -2,6 +2,16 @@
 
 using namespace NSMenulib;
 
+std::wstring MapInfo::GetId()
+{
+    return m_id;
+}
+
+void MapInfo::SetId(const std::wstring& arg)
+{
+    m_id = arg;
+}
+
 std::wstring MapInfo::GetName()
 {
     return m_name;

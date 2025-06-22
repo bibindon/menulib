@@ -2,6 +2,16 @@
 
 using namespace NSMenulib;
 
+std::wstring WeaponInfo::GetId()
+{
+    return m_id;
+}
+
+void WeaponInfo::SetId(const std::wstring& arg)
+{
+    m_id = arg;
+}
+
 std::wstring WeaponInfo::GetName()
 {
     return m_name;
@@ -50,16 +60,6 @@ int NSMenulib::WeaponInfo::GetLevel()
 void NSMenulib::WeaponInfo::SetLevel(const int arg)
 {
     m_level = arg;
-}
-
-int NSMenulib::WeaponInfo::GetId()
-{
-    return m_id;
-}
-
-void NSMenulib::WeaponInfo::SetId(const int arg)
-{
-    m_id = arg;
 }
 
 int NSMenulib::WeaponInfo::GetSubId()

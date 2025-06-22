@@ -2,6 +2,16 @@
 
 using namespace NSMenulib;
 
+std::wstring StatusInfo::GetId()
+{
+    return m_id;
+}
+
+void StatusInfo::SetId(const std::wstring& arg)
+{
+    m_id = arg;
+}
+
 std::wstring StatusInfo::GetName()
 {
     return m_name;
