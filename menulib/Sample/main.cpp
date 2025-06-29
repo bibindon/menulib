@@ -1355,9 +1355,9 @@ LRESULT WINAPI MsgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             {
                 if (vs.at(0) == L"Item")
                 {
-					std::wstring id = vs.at(2);
-					int subId =std::stoi(vs.at(3));
-					menu.DeleteItem(id, subId);
+                    std::wstring id = vs.at(2);
+                    int subId =std::stoi(vs.at(3));
+                    menu.DeleteItem(id, subId);
                 }
             }
             break;

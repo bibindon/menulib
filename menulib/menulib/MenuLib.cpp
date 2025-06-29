@@ -47,7 +47,7 @@ void MenuLib::Init(
         m_TopBarName.push_back(_T("敵情報"));
         m_TopBarName.push_back(_T("技・魔法"));
         m_TopBarName.push_back(_T("ステータス"));
-        m_TopBarName.push_back(_T("セーブして終了"));
+        m_TopBarName.push_back(_T("セーブ"));
         m_TopBarName.push_back(_T("タイトルに戻る"));
     }
     else
@@ -60,7 +60,7 @@ void MenuLib::Init(
         m_TopBarName.push_back(_T("Enemy Info"));
         m_TopBarName.push_back(_T("Magic"));
         m_TopBarName.push_back(_T("Status"));
-        m_TopBarName.push_back(_T("Save and Exit"));
+        m_TopBarName.push_back(_T("Save"));
         m_TopBarName.push_back(_T("Title"));
     }
 
@@ -72,7 +72,7 @@ void MenuLib::Init(
     m_TopBarNameKey.push_back(_T("Enemy Info"));
     m_TopBarNameKey.push_back(_T("Magic"));
     m_TopBarNameKey.push_back(_T("Status"));
-    m_TopBarNameKey.push_back(_T("Save and Exit"));
+    m_TopBarNameKey.push_back(_T("Save"));
     m_TopBarNameKey.push_back(_T("Title"));
 }
 
@@ -1129,7 +1129,7 @@ void NSMenulib::MenuLib::CursorOn(const int x, const int y)
         }
         else
         {
-			m_itemSubCursor = -1;
+            m_itemSubCursor = -1;
         }
     }
     else if (m_eFocus == eFocus::WEAPON_SUB)
@@ -1159,7 +1159,7 @@ void NSMenulib::MenuLib::CursorOn(const int x, const int y)
         }
         else
         {
-			m_weaponSubCursor = -1;
+            m_weaponSubCursor = -1;
         }
     }
     else if (m_eFocus == eFocus::GUIDE_SUB)
@@ -2331,7 +2331,7 @@ void MenuLib::Draw()
     {
         if (m_itemSubCursor != -1)
         {
-			m_sprCursor->DrawImage(MIDDLE_PANEL_CURSORX + (m_itemSubCursor * 160),
+            m_sprCursor->DrawImage(MIDDLE_PANEL_CURSORX + (m_itemSubCursor * 160),
                                    MIDDLE_PANEL_CURSORY + (m_itemCursor * 60));
         }
     }
@@ -2346,7 +2346,7 @@ void MenuLib::Draw()
     {
         if (m_weaponSubCursor != -1)
         {
-			m_sprCursor->DrawImage(MIDDLE_PANEL_CURSORX + (m_weaponSubCursor * 160),
+            m_sprCursor->DrawImage(MIDDLE_PANEL_CURSORX + (m_weaponSubCursor * 160),
                                    MIDDLE_PANEL_CURSORY + (m_weaponCursor * 60));
         }
     }
