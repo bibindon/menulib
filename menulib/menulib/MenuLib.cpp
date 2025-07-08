@@ -824,6 +824,8 @@ std::wstring MenuLib::Back()
     {
         m_eFocus = eFocus::GUIDE;
         m_SE->PlayBack();
+
+        m_guideSubCursor = 0;
         m_guideSubSelect = 0;
         m_guideSubBegin = 0;
     }
@@ -1477,6 +1479,7 @@ std::wstring MenuLib::Click(const int x, const int y)
                     m_eFocus = eFocus::GUIDE;
                     m_guideSubCursor = 0;
                     m_guideSubSelect = 0;
+                    m_guideSubBegin = 0;
                 }
             }
             else
@@ -1484,6 +1487,7 @@ std::wstring MenuLib::Click(const int x, const int y)
                 m_eFocus = eFocus::GUIDE;
                 m_guideSubCursor = 0;
                 m_guideSubSelect = 0;
+                m_guideSubBegin = 0;
             }
         }
         else if (m_eFocus == eFocus::MAP)
