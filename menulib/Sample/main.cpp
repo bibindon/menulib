@@ -49,20 +49,15 @@ public:
     {
         D3DXVECTOR3 pos {(float)x, (float)y, 0.f};
         m_D3DSprite->Begin(D3DXSPRITE_ALPHABLEND);
-        RECT rect = {
-            0,
-            0,
-            static_cast<LONG>(m_width),
-            static_cast<LONG>(m_height) };
+        RECT rect = { 0, 0, static_cast<LONG>(m_width), static_cast<LONG>(m_height) };
         D3DXVECTOR3 center { 0, 0, 0 };
-        m_D3DSprite->Draw(
-            m_pD3DTexture,
-            &rect,
-            &center,
-            &pos,
-            D3DCOLOR_ARGB(transparency, 255, 255, 255));
-        m_D3DSprite->End();
+        m_D3DSprite->Draw(m_pD3DTexture,
+                          &rect,
+                          &center,
+                          &pos,
+                          D3DCOLOR_ARGB(transparency, 255, 255, 255));
 
+        m_D3DSprite->End();
     }
 
     void Load(const std::wstring& filepath) override
@@ -73,10 +68,9 @@ public:
             throw std::exception("Failed to create a sprite.");
         }
 
-        if (FAILED(D3DXCreateTextureFromFile(
-            m_pD3DDevice,
-            filepath.c_str(),
-            &m_pD3DTexture)))
+        if (FAILED(D3DXCreateTextureFromFile(m_pD3DDevice,
+                                             filepath.c_str(),
+                                             &m_pD3DTexture)))
         {
             throw std::exception("Failed to create a texture.");
         }
@@ -109,8 +103,9 @@ class Font : public IFont
 {
 public:
 
-    Font(LPDIRECT3DDEVICE9 pD3DDevice)
+    Font(LPDIRECT3DDEVICE9 pD3DDevice, const int size)
         : m_pD3DDevice(pD3DDevice)
+        , m_fontSize(size)
     {
     }
 
@@ -119,7 +114,7 @@ public:
         if (!bEnglish)
         {
             HRESULT hr = D3DXCreateFont(m_pD3DDevice,
-                                        20,
+                                        m_fontSize,
                                         0,
                                         FW_NORMAL,
                                         1,
@@ -134,7 +129,7 @@ public:
         else
         {
             HRESULT hr = D3DXCreateFont(m_pD3DDevice,
-                                        20,
+                                        m_fontSize,
                                         0,
                                         FW_NORMAL,
                                         1,
@@ -179,6 +174,7 @@ private:
 
     LPDIRECT3DDEVICE9 m_pD3DDevice = NULL;
     LPD3DXFONT m_pFont = NULL;
+    const int m_fontSize = 0;
 };
 
 
@@ -334,12 +330,13 @@ HRESULT InitD3D(HWND hWnd)
     Sprite* sprPanelLeft = new Sprite(g_pd3dDevice);
     sprPanelLeft->Load(_T("panelLeft.png"));
 
-    IFont* pFont = new Font(g_pd3dDevice);
+    IFont* pFont = new Font(g_pd3dDevice, 20);
+    IFont* pFontStatus = new Font(g_pd3dDevice, 16);
 
     ISoundEffect* pSE = new SoundEffect();
 
     const bool bEnglish = true;
-    menu.Init(_T(""), pFont, pSE, sprCursor, sprBackground, bEnglish);
+    menu.Init(_T(""), pFont, pFontStatus, pSE, sprCursor, sprBackground, bEnglish);
     std::vector<ItemInfo> itemInfoList;
     {
         ItemInfo itemInfo;

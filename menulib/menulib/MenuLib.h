@@ -280,14 +280,13 @@ class MenuLib
 {
 public:
 
-    void Init(
-        const std::wstring& csvfilepath,
-        IFont* font,
-        ISoundEffect* SE,
-        ISprite* sprCursor,
-        ISprite* sprBackground,
-        const bool bEnglish
-    );
+    void Init(const std::wstring& csvfilepath,
+              IFont* font,
+              IFont* fontStatus,
+              ISoundEffect* SE,
+              ISprite* sprCursor, 
+              ISprite* sprBackground,
+              const bool bEnglish);
 
     void Finalize();
 
@@ -393,6 +392,7 @@ private:
     ISprite* m_sprCursor = nullptr;
     ISprite* m_sprBackground = nullptr;
     IFont* m_font = nullptr;
+    IFont* m_fontStatus = nullptr;
     ISoundEffect* m_SE = nullptr;
     eFocus m_eFocus = eFocus::TOP_BAR;
     int m_topBarIndex { 0 };

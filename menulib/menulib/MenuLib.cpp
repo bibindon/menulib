@@ -23,18 +23,22 @@ static std::vector<std::wstring> split(const std::wstring& s, wchar_t delim)
 void MenuLib::Init(
     const std::wstring& csvfilepath, /* TODO remove */
     IFont* font,
+    IFont* fontStatus,
     ISoundEffect* SE,
     ISprite* sprCursor,
     ISprite* sprBackground,
     const bool bEnglish)
 {
     m_font = font;
+    m_fontStatus = fontStatus;
     m_SE = SE;
     m_sprCursor = sprCursor;
     m_sprBackground = sprBackground;
     m_bEnglish = bEnglish;
 
     m_font->Init(m_bEnglish);
+    m_fontStatus->Init(m_bEnglish);
+
     m_SE->Init();
 
     if (!bEnglish)
@@ -115,6 +119,7 @@ void NSMenulib::MenuLib::Finalize()
 
     delete m_sprCursor;
     delete m_sprBackground;
+    delete m_fontStatus;
     delete m_font;
     delete m_SE;
 }
@@ -2304,11 +2309,9 @@ void MenuLib::Draw()
 
         for (std::size_t i = 0; i < details.size(); ++i)
         {
-            m_font->DrawText_(
-                details.at(i),
-                500,
-                250 + (int)i*40
-                );
+            m_fontStatus->DrawText_(details.at(i),
+                                    500,
+                                    250 + (int)i * 30 );
         }
     }
 
