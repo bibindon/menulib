@@ -39,6 +39,12 @@ ISprite* ItemInfo::GetSprite() const
 
 void ItemInfo::SetSprite(ISprite * const arg)
 {
+    if (m_sprite != nullptr)
+    {
+        delete m_sprite;
+        m_sprite = nullptr;
+    }
+
     m_sprite = arg;
 }
 

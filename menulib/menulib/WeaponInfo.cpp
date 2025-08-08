@@ -29,6 +29,12 @@ ISprite* WeaponInfo::GetSprite()
 
 void WeaponInfo::SetSprite(ISprite* const arg)
 {
+    if (m_sprite != nullptr)
+    {
+        delete m_sprite;
+        m_sprite = nullptr;
+    }
+
     m_sprite = arg;
 }
 
