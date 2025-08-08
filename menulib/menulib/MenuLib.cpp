@@ -1458,7 +1458,7 @@ std::wstring MenuLib::Click(const int x, const int y)
             {
                 nBegin = m_guideBegin;
 
-                auto category = m_guideCategory.at(m_guideSelect);
+                auto& category = m_guideCategory.at(m_guideSelect);
                 if (m_guideSubCategory.at(category).size() <= 9)
                 {
                     nSize = m_guideSubCategory.at(category).size();
