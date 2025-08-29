@@ -2133,7 +2133,7 @@ void MenuLib::Draw()
             }
             else
             {
-                m_font->DrawText_(_T("Use             Discard"),
+                m_font->DrawText_(_T("Use                                 Discard"),
                                   MIDDLE_PANEL_STARTX,
                                   LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT));
             }
@@ -2150,7 +2150,7 @@ void MenuLib::Draw()
                 }
                 else
                 {
-                    m_font->DrawText_(_T("Equip           Discard"),
+                    m_font->DrawText_(_T("Equip                            Discard"),
                                       MIDDLE_PANEL_STARTX,
                                       LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT));
                 }
@@ -2165,7 +2165,7 @@ void MenuLib::Draw()
                 }
                 else
                 {
-                    m_font->DrawText_(_T("Unequip         Discard"),
+                    m_font->DrawText_(_T("Unequip                          Discard"),
                                       MIDDLE_PANEL_STARTX,
                                       LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_itemCursor * LEFT_PANEL_HEIGHT));
                 }
@@ -2184,7 +2184,7 @@ void MenuLib::Draw()
         }
         else
         {
-            m_font->DrawText_(_T("Equip           Cancel"),
+            m_font->DrawText_(_T("Equip                               Cancel"),
                               MIDDLE_PANEL_STARTX,
                               LEFT_PANEL_STARTY + LEFT_PANEL_PADDINGY + (m_weaponCursor * LEFT_PANEL_HEIGHT));
         }
